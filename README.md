@@ -1,18 +1,15 @@
 # `5d+nd`
 
-**`5d+nd` is the reference resolver for ONE grounding scheme used by governance
-certifications — not a standard, one interchangeable option (peers: `7d+nd`,
-`prov-o`).**
+**`5d+nd` is a reference resolver for ONE grounding scheme — not a standard, one
+interchangeable option (peers: `7d+nd`, `prov-o`).**
 
-A `GovernanceCertification` (predicateType
-`https://loomground.org/attestations/GovernanceCertification/v1`) carries a
-`grounded` pillar: the claim that a verdict rests on a cited span. That
-pillar names a `scheme` (a URI/short name), a `ref`, and a `digest`. `5d+nd` is
-one value that `scheme` may take. There is **no bespoke registry and no privileged
-default** — whatever verifier understands a scheme's vocabulary resolves its
-references; a certification could just as well say `7d+nd` or `prov-o`. This repo
-exists so that when the scheme *is* `5d+nd`, any verifier can canonicalize,
-digest, and (optionally) resolve the reference.
+A **grounding reference** is the claim that a verdict rests on a cited span. It
+names a `scheme` (a URI/short name), a `ref`, and a `digest`. `5d+nd` is one value
+that `scheme` may take. There is **no bespoke registry and no privileged default**
+— whatever verifier understands a scheme's vocabulary resolves its references; a
+grounding could just as well say `7d+nd` or `prov-o`. This repo exists so that
+when the scheme *is* `5d+nd`, any verifier can canonicalize, digest, and
+(optionally) resolve the reference.
 
 ## What this is not
 
@@ -67,8 +64,7 @@ A `5d+nd` reference is dimensioned addressing over the store:
 - `anchor` — a **store-span** (e.g. `{"folder": ..., "note": ..., "span": ...}`)
   or a **URI** that addresses a location in versum.
 
-As it appears inside a certification's `grounded` pillar, it is wrapped with its
-scheme and a content digest:
+Wrapped with its scheme and a content digest, for use in a `grounded` pillar:
 
 ```json
 {
@@ -101,8 +97,8 @@ assert digest(grounded["ref"]) == grounded["digest"]
   **recursively**, compact separators, UTF-8. Two references differing only in
   key order canonicalize to identical bytes and therefore digest identically.
   This is a **JCS-style** approximation built on the standard library; for
-  production interop (to match the **RFC 8785** digest a certification computes
-  over its `grounded` pillar) swap in a full RFC 8785 canonicalizer.
+  production interop, swap in a full **RFC 8785** canonicalizer so the `grounded`
+  digest matches across implementations.
 - **`digest(ref) -> {"sha256": hex}`** — sha256 over `canonicalize(ref)`; the
   same digest shape a certification stores in `grounded.digest`.
 - **`validate(ref) -> bool`** — well-formed iff every entry in `dimensions` is a
@@ -133,7 +129,7 @@ Do not fork or extend the algebra in this repo — changes belong upstream.
 ## Status
 
 A thin, standalone resolver with no runtime dependency on any consumer — what a
-verifier reaches for when a certification's `grounded.scheme` is `5d+nd`.
+verifier reaches for when a grounding scheme is `5d+nd`.
 
 ## Install & test
 
