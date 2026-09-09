@@ -1,147 +1,36 @@
-# `5d+nd`
+# 5d-nd
 
-**`5d+nd` is a reference resolver for ONE grounding scheme — not a standard, one
-interchangeable option (peers: `7d+nd`, `prov-o`).**
+Reference resolver for the `5d+nd` grounding scheme: canonicalises, digests and validates a dimensioned reference to a versum span.
 
-A **grounding reference** is the claim that a verdict rests on a cited span. It
-names a `scheme` (a URI/short name), a `ref`, and a `digest`. `5d+nd` is one value
-that `scheme` may take. There is **no bespoke registry and no privileged default**
-— whatever verifier understands a scheme's vocabulary resolves its references; a
-grounding could just as well say `7d+nd` or `prov-o`. This repo exists so that
-when the scheme *is* `5d+nd`, any verifier can canonicalize, digest, and
-(optionally) resolve the reference.
+## Install
 
-## What this is not
+`pip install "5d-nd @ git+https://github.com/flxk1/5d-nd"`
 
-The `5D+nD` dimensional model is **not a novel invention**. A prior-art audit
-found it re-describes established modal knowledge representation:
-
-- **BFO** (Basic Formal Ontology) — the upper-ontology carving of reality;
-- **CIDOC-CRM** — event-centric cultural-heritage modelling;
-- **RDF-Data-Cube** / **PROV-O** — dimensioned observations and provenance.
-
-So this repo claims none of the theory. It owns only a thin resolver and honest
-packaging. The dimension algebra it addresses with is **vendored** from
-[`loomground-solver`](#the-vendored-dimension-algebra); the reference-modelling it
-leans on is **PROV-O / RDF-Data-Cube**; the conceptual carving is **BFO /
-CIDOC-CRM**. `5d+nd` composes on all of these and invents no dimensional theory.
-
-## The three layers
-
-```
-versum            the STORE.  Dimension-agnostic: it holds content and takes a
-                  `dimension` STRING; it does not know what the dimensions mean.
-
-5D algebra        the ADDRESSING SCHEME over the store.  The `Dimension` enum
-                  (structural / causal / intentional / temporal / relational)
-                  + the composition table that says which dimension governs a
-                  two-step inference.  Vendored from loomground-solver.
-
-5d+nd  (this repo) packages that addressing scheme as a GROUNDING RESOLVER:
-                  canonicalize + digest + validate a reference, and (stub)
-                  resolve its anchor into a versum span.
-```
-
-`versum` stores; the 5D algebra *addresses* what versum stores; `5d+nd` makes
-that addressing citable from a certification. The `+nD` is the
-forward-compatibility axis for custom dimensions beyond the base five — the
-reference resolver validates strictly against the base vocabulary it vendors.
-
-## Shape of a reference
-
-A `5d+nd` reference is dimensioned addressing over the store:
-
-```json
-{
-  "dimensions": ["causal", "structural"],
-  "anchor": "versum://research/note-7#span-42"
-}
-```
-
-- `dimensions` — one or more known `Dimension` values (the base-5 vocabulary,
-  extensible via `+nD`); they select the edges along which the span is retrieved
-  or traversed.
-- `anchor` — a **store-span** (e.g. `{"folder": ..., "note": ..., "span": ...}`)
-  or a **URI** that addresses a location in versum.
-
-Wrapped with its scheme and a content digest, for use in a `grounded` pillar:
-
-```json
-{
-  "scheme": "5d+nd",
-  "ref":    { "dimensions": ["causal", "structural"], "anchor": "versum://research/note-7#span-42" },
-  "digest": { "sha256": "<hex over canonicalize(ref)>" }
-}
-```
-
-## Canonicalize · digest · verify
+## Usage
 
 ```python
-from five_d_nd import canonicalize, digest, validate, SCHEME
-
-ref = {
-    "dimensions": ["causal", "structural"],
-    "anchor": "versum://research/note-7#span-42",
-}
-
-assert validate(ref)                     # well-formed 5d+nd reference?
-canonicalize(ref)                        # b'{"anchor":"versum://...","dimensions":["causal","structural"]}'
-digest(ref)                              # {'sha256': '…64 hex chars…'}
-
-# A verifier re-derives the digest and compares it to grounded.digest:
-grounded = {"scheme": SCHEME, "ref": ref, "digest": digest(ref)}
-assert digest(grounded["ref"]) == grounded["digest"]
+from five_d_nd import digest, validate
+ref = {"dimensions": ["causal", "structural"], "anchor": "versum://research/note-7#span-42"}
+digest(ref)     # {"sha256": "<hex>"}
 ```
 
-- **`canonicalize(ref) -> bytes`** — deterministic JSON, keys sorted
-  **recursively**, compact separators, UTF-8. Two references differing only in
-  key order canonicalize to identical bytes and therefore digest identically.
-  This is a **JCS-style** approximation built on the standard library; for
-  production interop, swap in a full **RFC 8785** canonicalizer so the `grounded`
-  digest matches across implementations.
-- **`digest(ref) -> {"sha256": hex}`** — sha256 over `canonicalize(ref)`; the
-  same digest shape a certification stores in `grounded.digest`.
-- **`validate(ref) -> bool`** — well-formed iff every entry in `dimensions` is a
-  known `Dimension` value and the reference carries an `anchor`. Fails closed on
-  anything it does not recognise.
-- **`resolve(ref, *, store=None)`** — a **documented stub**. It validates, then
-  describes how an anchor becomes a concrete versum span (parse anchor → read the
-  span from an injected `store` handle → return content + provenance). The store
-  read is an **extension point**: this repo does not depend on versum, and
-  `resolve` raises rather than fabricating a result.
+## Interface
 
-## The vendored dimension algebra
+- input `ref`: `dimensions` ⊆ {structural, causal, intentional, temporal, relational}, `anchor` (store-span or URI)
+- `canonicalize(ref) -> bytes`, keys sorted recursively
+- `digest(ref) -> {"sha256": hex}`
+- `validate(ref) -> bool`, fails closed on an unknown dimension
+- `resolve(ref, *, store=None)`: stub, raises without an injected store
+- output shape for a `grounded` pillar: `{"scheme": "5d+nd", "ref", "digest"}`
 
-`src/five_d_nd/dimensions.py` is a **faithful copy** of
-`loomground_solver.dimensions` — the `Dimension` enum, `DEFAULT_DIMENSION`,
-`COMPOSITION_TABLE`, `compose`, `compose_weights`, `classify_predicate`, and
-`classify_query_dimension`. Its original Apache-2.0 header is preserved.
+## Family
 
-**The authoritative table lives upstream in `loomground-solver`**, not here.
-Install the extra to depend on the real module instead of the vendored copy:
-
-```
-pip install '5d-nd[solver]'
-```
-
-Do not fork or extend the algebra in this repo — changes belong upstream.
+Assurance artifact, pillar "grounding" of [governance-certification](https://github.com/flxk1/governance-certification). Consumes: the `Dimension` algebra vendored from [loomground-solver](https://github.com/flxk1/loomground-solver); a [loomground-versum](https://github.com/flxk1/loomground-versum) store, injected. Peers: `7d+nd`, `prov-o`. Docs: [docs/](docs/).
 
 ## Status
 
-A thin, standalone resolver with no runtime dependency on any consumer — what a
-verifier reaches for when a grounding scheme is `5d+nd`.
-
-## Install & test
-
-```
-pip install -e .
-python3 -m pytest tests -q
-```
-
-No hard dependencies; the resolver seam is stdlib-only. `pytest` is needed only
-to run the tests.
+0.1.0 · 11 tests · Python ≥ 3.9
 
 ## License
 
-MIT (`LICENSES/MIT.txt`). Exception: `src/five_d_nd/dimensions.py` is vendored from
-`loomground-solver` and remains **Apache-2.0** under its preserved header.
+MIT — [LICENSES/MIT.txt](LICENSES/MIT.txt); `src/five_d_nd/dimensions.py` Apache-2.0 (vendored)

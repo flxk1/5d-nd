@@ -5,4 +5,4 @@ Licensed under the MIT License. See LICENSES/MIT.txt.
 Exception: src/five_d_nd/dimensions.py is vendored from loomground-solver and
 remains Apache-2.0 under its preserved header. See LICENSES/Apache-2.0.txt.
 
-Generative-AI tools assisted in development; they are not authors or copyright holders.
+Generative-AI tools assisted in development.
