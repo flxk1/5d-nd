@@ -1,0 +1,15 @@
+version = 1
+SPDX-PackageName = "5d-nd"
+SPDX-PackageSupplier = "flxk1"
+
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "src/five_d_nd/dimensions.py"
+precedence = "closest"
+SPDX-FileCopyrightText = "2026 flxk1"
+SPDX-License-Identifier = "Apache-2.0"

@@ -112,7 +112,7 @@ assert digest(grounded["ref"]) == grounded["digest"]
 
 ## The vendored dimension algebra
 
-`five_d_nd/dimensions.py` is a **faithful copy** of
+`src/five_d_nd/dimensions.py` is a **faithful copy** of
 `loomground_solver.dimensions` — the `Dimension` enum, `DEFAULT_DIMENSION`,
 `COMPOSITION_TABLE`, `compose`, `compose_weights`, `classify_predicate`, and
 `classify_query_dimension`. Its original Apache-2.0 header is preserved.
@@ -143,5 +143,5 @@ to run the tests.
 
 ## License
 
-MIT (`LICENSE`). Exception: `five_d_nd/dimensions.py` is vendored from
+MIT (`LICENSES/MIT.txt`). Exception: `src/five_d_nd/dimensions.py` is vendored from
 `loomground-solver` and remains **Apache-2.0** under its preserved header.

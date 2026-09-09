@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "python",
+      "package-name": "5d-nd",
+      "changelog-path": "CHANGELOG.md",
+      "version-file": "src/five_d_nd/_version.py"
+    }
+  }
+}

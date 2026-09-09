@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "5d-nd"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Reference resolver for the 5d+nd grounding scheme — one interchangeable option among a governance certification's grounding schemes (peers: 7d+nd, prov-o), not a standard."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -22,15 +22,23 @@ dependencies = []
 
 [project.optional-dependencies]
 # The dimension vocabulary + composition table is VENDORED into
-# five_d_nd/dimensions.py, but the AUTHORITATIVE table lives upstream in
+# src/five_d_nd/dimensions.py, but the AUTHORITATIVE table lives upstream in
 # loomground-solver. Install this extra to depend on the real module instead of
 # the vendored copy (keep the two in sync until the resolver imports upstream).
 solver = ["loomground-solver"]
+dev = ["pytest>=7"]
 
 [tool.setuptools]
+license-files = ["LICENSES/*.txt", "NOTICE"]
+
+[tool.setuptools.dynamic]
+version = { attr = "five_d_nd._version.__version__" }
+
 # Distribution name is "5d-nd" (starts with a digit — valid for a project name
 # but not for a Python identifier), so the import package is "five_d_nd".
-packages = ["five_d_nd"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
+pythonpath = ["src"]
 testpaths = ["tests"]
