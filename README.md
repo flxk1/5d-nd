@@ -2,6 +2,10 @@
 
 Reference resolver for the `5d+nd` grounding scheme: canonicalises, digests and validates a dimensioned reference to a versum span.
 
+## Problem
+
+"Grounded in span X" cannot be verified after the fact. Canonical reference and digest of a span.
+
 ## Install
 
 `pip install "5d-nd @ git+https://github.com/flxk1/5d-nd"`
@@ -12,6 +16,14 @@ Reference resolver for the `5d+nd` grounding scheme: canonicalises, digests and 
 from five_d_nd import digest, validate
 ref = {"dimensions": ["causal", "structural"], "anchor": "versum://research/note-7#span-42"}
 digest(ref)     # {"sha256": "<hex>"}
+```
+
+## Example
+
+```
+in : ref = {"dimensions": ["temporal", "relational"], "anchor": "versum://policy/p1#span-150-240"}; canonicalize(ref); digest(ref)
+out: b'{"anchor":"versum://policy/p1#span-150-240","dimensions":["temporal","relational"]}'
+     {'sha256': '4da8b3468ad57b8a4e6c6d2a741876e1b3f00eb8c974df29e540c9517e2a88d2'}
 ```
 
 ## Interface
