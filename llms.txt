@@ -1,0 +1,29 @@
+# 5d-nd
+
+> Reference resolver for the `5d+nd` grounding scheme: canonicalises, digests and validates a dimensioned reference to a versum span.
+
+## Problem
+"Grounded in span X" cannot be verified after the fact. Canonical reference and digest of a span.
+
+## Install
+`pip install "5d-nd @ git+https://github.com/flxk1/5d-nd"`
+
+## Usage
+```python
+from five_d_nd import digest, validate
+ref = {"dimensions": ["causal", "structural"], "anchor": "versum://research/note-7#span-42"}
+digest(ref)     # {"sha256": "<hex>"}
+```
+
+## Interface
+- input `ref`: `dimensions` ⊆ {structural, causal, intentional, temporal, relational}, `anchor` (store-span or URI)
+- `canonicalize(ref) -> bytes`, keys sorted recursively
+- `digest(ref) -> {"sha256": hex}`
+- `validate(ref) -> bool`, fails closed on an unknown dimension
+- `resolve(ref, *, store=None)`: stub, raises without an injected store
+- output shape for a `grounded` pillar: `{"scheme": "5d+nd", "ref", "digest"}`
+
+## Family
+Assurance artifact, pillar "grounding" of [governance-certification](https://github.com/flxk1/governance-certification). Consumes: the `Dimension` algebra vendored from [loomground-solver](https://github.com/flxk1/loomground-solver); a [loomground-versum](https://github.com/flxk1/loomground-versum) store, injected. Peers: `7d+nd`, `prov-o`. Docs: [docs/](docs/).
+
+Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
