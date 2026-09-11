@@ -4,8 +4,9 @@
     ".": {
       "release-type": "python",
       "package-name": "5d-nd",
+      "include-component-in-tag": false,
       "changelog-path": "CHANGELOG.md",
-      "version-file": "src/five_d_nd/_version.py"
+      "extra-files": ["src/five_d_nd/_version.py"]
     }
   }
 }
