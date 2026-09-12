@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE: src/five_d_nd/dimensions.py is vendored from the loomground-solver project
-and is licensed Apache-2.0 (SPDX-License-Identifier: Apache-2.0), not MIT. Its
-original license header is preserved in that file. The authoritative version
-lives upstream in loomground-solver.
