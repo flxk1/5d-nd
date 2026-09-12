@@ -72,7 +72,7 @@ def canonicalize(ref: Any) -> bytes:
     object keys and strips insignificant whitespace, but it does NOT implement
     the full RFC 8785 (JSON Canonicalization Scheme) rules for number formatting
     (ECMAScript ``Number`` serialization) or Unicode string normalization. For
-    production interop — matching the RFC 8785 digest RVND computes over its
+    production interop — matching the RFC 8785 digest a conforming host computes over its
     ``grounded`` pillar — swap this for a real RFC 8785 canonicalizer. Keep
     references to JSON scalars, objects, and arrays (no floats needing exponent
     normalization, no non-NFC strings) and the two agree.
@@ -89,7 +89,7 @@ def digest(ref: Any) -> dict:
     """Return ``{"sha256": <hex>}`` — the content digest of a reference.
 
     Computed over :func:`canonicalize`, so it is stable across key ordering and
-    matches the shape RVND stores in a certification's ``grounded.digest``.
+    matches the shape stored in a certification's ``grounded.digest``.
     """
     return {"sha256": hashlib.sha256(canonicalize(ref)).hexdigest()}
 
