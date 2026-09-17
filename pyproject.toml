@@ -25,7 +25,11 @@ dependencies = []
 # src/five_d_nd/dimensions.py, but the AUTHORITATIVE table lives upstream in
 # loomground-solver. Install this extra to depend on the real module instead of
 # the vendored copy (keep the two in sync until the resolver imports upstream).
-solver = ["loomground-solver"]
+solver = [
+    "loomground-solver @ git+https://github.com/flxk1/loomground-solver@solver-v0.6.0",
+    "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@loomground-deontic-v0.2.1",
+    "loomground-governance @ git+https://github.com/flxk1/loomground-governance@loomground-governance-v0.11.1",
+]
 dev = ["pytest>=7"]
 
 [tool.setuptools]
