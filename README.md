@@ -53,7 +53,11 @@ Assurance artifact, pillar "grounding" of [governance-certification](https://git
 
 ## Status
 
-0.1.0 · 35 tests · Python ≥ 3.9
+0.2.0 · 35 tests · Python ≥ 3.9
+
+## How this is made
+
+The code and documentation are written with Loomground agents. The maintainer reads and corrects all of it.
 
 ## License
 
