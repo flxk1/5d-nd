@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/flxk1/5d-nd/compare/v0.2.0...v0.2.1) (2026-09-28)
+
+
+### Documentation
+
+* correct stale claims; add How this is made ([21c3772](https://github.com/flxk1/5d-nd/commit/21c3772ddd23834ff3f784fe267d477daca1f5ee))
+* fix stale version, add How this is made section ([f2ebce2](https://github.com/flxk1/5d-nd/commit/f2ebce2d26675e9847feb41a8792a8ad2b06281b))
+
 ## [0.2.0](https://github.com/flxk1/5d-nd/compare/v0.1.0...v0.2.0) (2026-09-11)
 
 
