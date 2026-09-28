@@ -13,7 +13,7 @@ Public surface:
     ``Dimension``, ``DEFAULT_DIMENSION``, ``COMPOSITION_TABLE``, ``compose``,
     ``compose_weights``, ``classify_predicate``, ``classify_query_dimension``
   * the owned resolver seam — ``SCHEME``, ``canonicalize``, ``digest``,
-    ``validate``, ``resolve``
+    ``validate``, ``normalize_reference``, ``resolve``, ``content_digest``
 """
 
 from __future__ import annotations
@@ -27,7 +27,21 @@ from .dimensions import (
     compose,
     compose_weights,
 )
-from .grounding import SCHEME, canonicalize, digest, resolve, validate
+from .grounding import (
+    SCHEME,
+    MalformedReferenceError,
+    MissingStoreError,
+    ResolutionError,
+    SpanMismatchError,
+    SpanReferenceError,
+    UnknownReferenceError,
+    canonicalize,
+    content_digest,
+    digest,
+    normalize_reference,
+    resolve,
+    validate,
+)
 
 __version__ = "0.1.0"
 
@@ -37,7 +51,15 @@ __all__ = [
     "canonicalize",
     "digest",
     "validate",
+    "normalize_reference",
     "resolve",
+    "content_digest",
+    "SpanReferenceError",
+    "MalformedReferenceError",
+    "ResolutionError",
+    "MissingStoreError",
+    "UnknownReferenceError",
+    "SpanMismatchError",
     # vendored dimension vocabulary (authoritative copy lives upstream)
     "Dimension",
     "DEFAULT_DIMENSION",

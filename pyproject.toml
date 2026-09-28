@@ -30,6 +30,27 @@ solver = [
     "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@loomground-deontic-v0.2.1",
     "loomground-governance @ git+https://github.com/flxk1/loomground-governance@loomground-governance-v0.11.1",
 ]
+# resolve() is the one function with a runtime dependency on versum (imported
+# lazily, only inside resolve() — importing this package stays stdlib-only
+# otherwise). Install this extra to actually call resolve() against a real
+# versum store.
+#
+# HONESTY NOTE (2026-09-27): resolve() needs versum.coordinates.entry_coordinates,
+# which is NOT present in any tagged loomground-versum release yet — the newest
+# tag, loomground-versum-v0.14.0, predates the commit that adds it
+# ("feat(coordinates): entry_coordinates + entries_in_cell query API and CLI").
+# Pinning that tag here would be a broken pin (versum.coordinates would not
+# import). Left UNPINNED on purpose until a release ships `coordinates`; for
+# local development in the meantime, install the sibling repo by path or
+# branch instead of relying on this extra, e.g.:
+#     pip install -e ../loomground-versum
+# or
+#     pip install "loomground-versum @ git+https://github.com/flxk1/loomground-versum@<branch-or-commit-with-coordinates>"
+# Once a release contains `coordinates`, re-pin this extra to that version
+# (e.g. "loomground-versum>=0.15.0") and remove this note.
+grounding = [
+    "loomground-versum",
+]
 dev = ["pytest>=7"]
 
 [tool.setuptools]
