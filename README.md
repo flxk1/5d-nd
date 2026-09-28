@@ -49,11 +49,15 @@ out: b'{"anchor":"versum://policy/p1#span-150-240","dimensions":["temporal","rel
 
 Assurance artifact, pillar "grounding" of [governance-certification](https://github.com/flxk1/governance-certification). Consumes: the `Dimension` algebra vendored from [loomground-solver](https://github.com/flxk1/loomground-solver); a [loomground-versum](https://github.com/flxk1/loomground-versum) store, via its public API (`pip install '5d-nd[grounding]'`). Peers: `7d+nd`, `prov-o`. Docs: [docs/](docs/).
 
-`resolve()` needs `versum.coordinates.entry_coordinates`, which no tagged `loomground-versum` release carries yet — the `grounding` extra is therefore left unpinned rather than pinned to a tag that lacks it. For local development, install the sibling repo directly instead: `pip install -e ../loomground-versum`, or a git ref that has `coordinates` (`pip install "loomground-versum @ git+https://github.com/flxk1/loomground-versum@<branch-or-commit>"`). Tests that need `versum.coordinates` skip, with a reason, when it is not importable.
+`resolve()` needs `versum.coordinates.entry_coordinates`, which no tagged `loomground-versum` release carries yet, so the `grounding` extra pins versum at a main commit that has it, together with the `loomground-factual` plane that contributes the action-type entries. Tests that need `versum.coordinates` skip, with a reason, when it is not importable; the `grounding` CI job installs it so they run.
 
 ## Status
 
-0.1.0 · 35 tests · Python ≥ 3.9
+0.2.0 · 35 tests · Python ≥ 3.9
+
+## How this is made
+
+The code and documentation are written with Loomground agents. The maintainer reads and corrects all of it.
 
 ## License
 

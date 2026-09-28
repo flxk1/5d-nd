@@ -27,29 +27,21 @@ dependencies = []
 # the vendored copy (keep the two in sync until the resolver imports upstream).
 solver = [
     "loomground-solver @ git+https://github.com/flxk1/loomground-solver@solver-v0.6.0",
-    "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@loomground-deontic-v0.2.1",
-    "loomground-governance @ git+https://github.com/flxk1/loomground-governance@loomground-governance-v0.11.1",
+    "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@4c01e0390767917333db99b6355842eb34745563",
+    "loomground-governance @ git+https://github.com/flxk1/loomground-governance@3eed4cab3cba2a288fcac3671171cd4fa7e5bc18",
 ]
 # resolve() is the one function with a runtime dependency on versum (imported
 # lazily, only inside resolve() — importing this package stays stdlib-only
 # otherwise). Install this extra to actually call resolve() against a real
 # versum store.
 #
-# HONESTY NOTE (2026-09-27): resolve() needs versum.coordinates.entry_coordinates,
-# which is NOT present in any tagged loomground-versum release yet — the newest
-# tag, loomground-versum-v0.14.0, predates the commit that adds it
-# ("feat(coordinates): entry_coordinates + entries_in_cell query API and CLI").
-# Pinning that tag here would be a broken pin (versum.coordinates would not
-# import). Left UNPINNED on purpose until a release ships `coordinates`; for
-# local development in the meantime, install the sibling repo by path or
-# branch instead of relying on this extra, e.g.:
-#     pip install -e ../loomground-versum
-# or
-#     pip install "loomground-versum @ git+https://github.com/flxk1/loomground-versum@<branch-or-commit-with-coordinates>"
-# Once a release contains `coordinates`, re-pin this extra to that version
-# (e.g. "loomground-versum>=0.15.0") and remove this note.
+# The extra pins versum at a main commit that has versum.coordinates.entry_coordinates
+# (no tagged versum release carries it yet), plus the factual plane, which contributes
+# the action-type entries the resolver reads (planes are separate installs, discovered
+# by entry point).
 grounding = [
-    "loomground-versum",
+    "loomground-versum @ git+https://github.com/flxk1/loomground-versum@2e608826834a580646abcaf5991fffb6b19e03d6",
+    "loomground-factual @ git+https://github.com/flxk1/loomground-factual@4f3043dcd64f1cde4e30f790a76afe80058ab4dc",
 ]
 dev = ["pytest>=7"]
 
