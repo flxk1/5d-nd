@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/flxk1/5d-nd/compare/v0.2.1...v0.2.2) (2026-09-29)
+
+
+### Documentation
+
+* neutralize Federation wording in dimensions adapter note ([c12eae7](https://github.com/flxk1/5d-nd/commit/c12eae7a1edfc0e9f14445257f96d4b93b2ec18a))
+
 ## [0.2.1](https://github.com/flxk1/5d-nd/compare/v0.2.0...v0.2.1) (2026-09-28)
 
 
