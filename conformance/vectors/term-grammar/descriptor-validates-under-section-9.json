@@ -1,0 +1,48 @@
+{
+  "family": "term-grammar",
+  "case": "descriptor-validates-under-section-9",
+  "input": {
+    "descriptor": {
+      "plane": "term-grammar",
+      "language_version": "1.0.0",
+      "nd_system": {
+        "id": "term-grammar",
+        "namespace": "org.loomground.nd.term",
+        "version": "1.0.0",
+        "version_5d": "1.0-draft",
+        "axes": {
+          "term_weight": {
+            "value_type": "number",
+            "cardinality": "many",
+            "vocabulary_mode": "external",
+            "ontology_id": "term-vocabulary",
+            "ontology_version": "dc0830774abc4b20b17a0b931e93502b3cc3b1c0332d7056b8ef50734a8aeb78"
+          }
+        },
+        "bindings": [
+          {
+            "form_slot": "term_weight",
+            "allowed_axes": [
+              "term_weight"
+            ],
+            "required": false
+          }
+        ],
+        "ontology_relations": [],
+        "validation": {
+          "unknown_values": "reject",
+          "missing_coordinates": "ignore",
+          "provenance_required": false
+        }
+      },
+      "binding": {
+        "term_weight": "relational"
+      },
+      "examples": [],
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "violations": []
+  }
+}

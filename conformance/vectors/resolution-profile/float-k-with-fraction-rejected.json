@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "float-k-with-fraction-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "k": 5.5
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

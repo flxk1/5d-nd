@@ -1,0 +1,27 @@
+{
+  "family": "descriptor-binding",
+  "case": "normative-relation-case-variant-bound-accepted",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {
+        "id": "x",
+        "namespace": "x",
+        "version": "1",
+        "axes": {
+          "subject": {
+            "value_type": "concept_reference"
+          }
+        }
+      },
+      "binding": {
+        "Obliges": "intentional"
+      },
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

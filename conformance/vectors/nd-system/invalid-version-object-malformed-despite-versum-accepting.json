@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "invalid-version-object-malformed-despite-versum-accepting",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": {"a": 1},
+      "axes": {
+        "subject": {"value_type": "string"}
+      }
+    }
+  },
+  "expected": {"valid": false}
+}

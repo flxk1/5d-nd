@@ -1,0 +1,16 @@
+{
+  "family": "triple",
+  "case": "empty-subject-rejected",
+  "input": {
+    "doc": {
+      "s": "",
+      "p": "p",
+      "o": "b",
+      "dimension": "causal",
+      "provenance": {}
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

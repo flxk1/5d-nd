@@ -1,0 +1,26 @@
+{
+  "family": "staleness",
+  "case": "single-branch-chain",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": [
+        "B"
+      ],
+      "B": [
+        "C"
+      ],
+      "C": []
+    },
+    "changed": [
+      "A"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A",
+      "B",
+      "C"
+    ]
+  }
+}

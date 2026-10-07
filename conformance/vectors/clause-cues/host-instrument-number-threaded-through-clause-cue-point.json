@@ -1,0 +1,17 @@
+{
+  "family": "clause-cues",
+  "case": "host-instrument-number-threaded-through-clause-cue-point",
+  "input": {
+    "text": "Article 45 of Regulation (EU) 2016/679 lays down the adequacy mechanism.",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "point": {
+      "structural": 0.333333,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  }
+}

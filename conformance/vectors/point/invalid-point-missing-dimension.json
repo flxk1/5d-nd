@@ -1,0 +1,16 @@
+{
+  "family": "point",
+  "case": "invalid-point-missing-dimension",
+  "input": {
+    "kind": "validate",
+    "doc": {
+      "structural": 0.1,
+      "causal": 0.1,
+      "intentional": 0.1,
+      "temporal": 0.1
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

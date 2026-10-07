@@ -1,0 +1,10 @@
+{
+  "family": "extractor",
+  "case": "empty-unit-text-no-statements",
+  "input": {
+    "unit_text": ""
+  },
+  "expected": {
+    "statements": []
+  }
+}

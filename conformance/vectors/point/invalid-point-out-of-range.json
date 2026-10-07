@@ -1,0 +1,17 @@
+{
+  "family": "point",
+  "case": "invalid-point-out-of-range",
+  "input": {
+    "kind": "validate",
+    "doc": {
+      "structural": 1.5,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

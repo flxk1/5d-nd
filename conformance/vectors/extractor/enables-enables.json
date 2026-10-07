@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "enables-enables",
+  "input": {
+    "unit_text": "The shared interface enables a connected device to exchange telemetry with the platform."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#6aff958ac67e7865",
+        "subj": "shared interface",
+        "obj": "connected device to exchange telemetry with the platform",
+        "predicate": "enables",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 87
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-enables-enables"
+      }
+    ]
+  }
+}

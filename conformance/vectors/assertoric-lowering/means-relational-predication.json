@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "means-relational-predication",
+  "input": {
+    "sentence": "Personal data means any information relating to a person."
+  },
+  "expected": {
+    "subject": "Personal data",
+    "predicate": "means",
+    "object": "any information relating to a person",
+    "dimension": "relational",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

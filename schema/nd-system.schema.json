@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/nd-system.schema.json",
+  "title": "NDSystem",
+  "description": "An nD grammar's contextual coordinate system document (spec/SPEC.md §9), ported field-for-field from versum src/versum/nd.py NDSystem/AxisSpec (see src/five_d_nd/contract.py nd_system_violations()/axis_violations()). This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py's _local_validator()). validation.unknown_values is NOT constrained here: in versum, that check lives at the descriptor layer (grammar-descriptor.schema.json), not inside NDSystem itself. Accepts EITHER the bare NDSystem fields directly, OR a {\"nd_system\": {...}} wrapper around them, matching versum's own unwrap-FIRST semantics (`root = raw.get(\"nd_system\", raw)`, src/versum/nd.py `NDSystem.from_dict`) via an if/then/else keyed on whether the top-level 'nd_system' key is present: if present, ONLY its value is checked against the bare-fields shape (a bad wrapper value — junk, null, {} missing required fields — is INVALID even when the surrounding document ALSO happens to carry valid bare top-level fields, matching versum: a present 'nd_system' key always wins, the bare fields are never a fallback); if absent, the document ITSELF is checked directly. An earlier anyOf-based version of this schema incorrectly accepted {\"nd_system\": \"junk\", ...valid bare fields...} because the bare-fields branch of an anyOf matches independently of the other branch; this if/then/else closes that gap by construction (there is exactly one branch per case, never two to choose from). INTENTIONAL schema strictness beyond versum: versum's from_dict str()-coerces 'version' and _tuple()-coerces 'vocabulary' BEFORE validating, so it (and this schema's own code counterpart, src/five_d_nd/contract.py) accepts odd values such as version: [], [1], {}, {\"a\":1} or null (all stringify to a non-empty string) and vocabulary: 0 or {} (both coerce to a non-empty one-element tuple) — this schema deliberately does NOT accept those shapes (version is string|number|boolean only; vocabulary's scalar form is a string only), to avoid inviting a hand-authored document to write them even though versum would swallow them; see the documented exceptions in tests/test_conformance.py's _ND_SYSTEM_SCHEMA_INTENTIONALLY_STRICTER.",
+  "type": "object",
+  "if": { "required": ["nd_system"] },
+  "then": { "properties": { "nd_system": { "$ref": "#/$defs/ndSystemFields" } }, "required": ["nd_system"] },
+  "else": { "$ref": "#/$defs/ndSystemFields" },
+  "$defs": {
+    "ndSystemFields": {
+      "type": "object",
+      "required": ["id", "namespace", "version", "axes"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]*$" },
+        "namespace": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]*$" },
+        "version": {
+          "description": "§9 explicit field type: version is a STRING, or a JSON NUMBER accepted via str() coercion (versum's own `str(root.get('version', ''))`, applied before validating — e.g. the JSON integer 1 stringifies to a non-empty, truthy '1'). A JSON BOOLEAN, null, array, or object is MALFORMED here, even though versum's own str() coercion would swallow all four (str(True) == 'True', str(None) == 'None', str([]) == '[]', str({}) == '{}', all non-empty and truthy) — src/five_d_nd/contract.py rejects all four explicitly too (a NAMED P2 class, _ND_SYSTEM_VERSUM_P2_MALFORMED), so schema and code now agree here; only versum itself remains more lenient. An EARLIER version of this schema field also accepted boolean, matching versum's own leniency at the time — this field now matches the explicit §9 table instead.",
+          "anyOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "number" }
+          ]
+        },
+        "version_5d": { "type": "string", "description": "Informative; not validated beyond being a string." },
+        "axes": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9_.:-]*$" },
+          "additionalProperties": {
+            "description": "A null/falsy axis value is versum's own leniency (`v or {}`) — treated as an empty (all-default) axis spec, never a violation by itself.",
+            "anyOf": [{ "$ref": "#/$defs/axisSpec" }, { "type": "null" }]
+          }
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "form_slot": { "type": "string", "minLength": 1 },
+              "allowed_axes": { "$ref": "#/$defs/stringOrArrayOfStrings" },
+              "required": { "type": "boolean" }
+            }
+          }
+        },
+        "ontology_relations": { "type": "array" },
+        "validation": {
+          "description": "versum's own NDSystem.from_dict does `validation = root.get(\"validation\") or {}` — a FALSY non-mapping (null, 0, false, \"\", []) is replaced by `or {}` and so is ACCEPTED (equivalent to an absent/empty validation object), while a TRUTHY non-mapping (e.g. \"x\", [1]) is passed straight to `.get(...)`, which a str/list do not have, and CRASHES. This schema accepts the same shapes versum accepts (an object, OR any JSON-falsy value) and rejects everything else, matching src/five_d_nd/contract.py's own `validation_raw and not isinstance(validation_raw, Mapping)` guard exactly.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "unknown_values": { "type": "string" },
+                "missing_coordinates": { "type": "string" },
+                "provenance_required": { "type": "boolean" }
+              }
+            },
+            { "enum": [null, 0, false, "", []] }
+          ]
+        }
+      }
+    },
+    "stringOrArrayOfStrings": {
+      "description": "versum's own _tuple() coercion: a bare string means the same as a one-element array; null means an empty array; this schema accepts both shapes rather than requiring the caller to pre-wrap a scalar. Used ONLY where §9 itself declares the field a list of STRINGS specifically (e.g. 'allowed_axes', which names other axes by their string id) — NOT for 'vocabulary', whose own declared type is a list of ANY scalar (see scalarOrArrayOfScalars below).",
+      "anyOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } },
+        { "type": "null" }
+      ]
+    },
+    "scalarOrArrayOfScalars": {
+      "description": "§9 P3 violation fixed: §9 declares 'vocabulary' as `[...] | scalar | null` — ANY JSON scalar, not only a string. versum's own AxisSpec.violations() never type-checks a vocabulary ENTRY against the axis's own value_type (that cross-check lives in a SEPARATE method, AxisSpec.validate_value(), which validates a DATA VALUE against an axis — never called from violations()/NDSystem.violations() itself, confirmed by reading versum's own src/versum/nd.py); so a typed closed vocabulary (value_type 'integer' with vocabulary [1,2,3], 'boolean' with [true,false], 'number' with [0.5,1.0]) is well-formed and code/versum both accept it — this schema must too. versum's own _tuple() coercion: a bare scalar means the same as a one-element array; null means an empty array.",
+      "anyOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "boolean" },
+        { "type": "array", "items": { "anyOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }] } },
+        { "type": "null" }
+      ]
+    },
+    "axisSpec": {
+      "type": "object",
+      "properties": {
+        "value_type": {
+          "type": "string",
+          "enum": [
+            "string", "controlled_identifier", "concept_reference", "entity_reference",
+            "integer", "non_negative_integer", "number", "boolean", "date", "interval",
+            "quantity"
+          ]
+        },
+        "cardinality": { "type": "string", "enum": ["one", "many"] },
+        "vocabulary_mode": { "type": "string", "enum": ["closed", "open", "external"] },
+        "vocabulary": {
+          "description": "A bare scalar is accepted even when it is the EMPTY STRING \"\" — axis_violations()'s own _tuple(\"\") coercion yields a one-element tuple (\"\",), which is non-empty and therefore satisfies the closed-vocabulary-is-non-empty rule below, however odd that may read. Verified against real versum (origin/main e416c81): vocabulary=\"\" with vocabulary_mode: closed validates. This schema intentionally does NOT require minLength on the string form, matching that leniency exactly rather than being stricter than the code/versum it is meant to describe. Items MAY be any JSON scalar (string/number/boolean), not only a string — see scalarOrArrayOfScalars's own description for why a typed vocabulary (e.g. value_type 'integer' with vocabulary [1,2,3]) is well-formed.",
+          "$ref": "#/$defs/scalarOrArrayOfScalars"
+        },
+        "primitives": {
+          "description": "versum's own _tuple() coercion: a bare primitive name means the same as a one-element array; null means an empty array (no primitives declared — never itself a violation).",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": ["equal", "contains", "contained_by", "overlaps", "disjoint", "precedes", "succeeds"]
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["equal", "contains", "contained_by", "overlaps", "disjoint", "precedes", "succeeds"]
+              }
+            },
+            { "type": "null" }
+          ]
+        },
+        "ontology_id": { "type": "string", "minLength": 1 },
+        "ontology_version": { "type": "string", "minLength": 1 },
+        "ontology": {
+          "description": "versum's own AxisSpec.from_dict does `ontology = raw.get(\"ontology\") or {}` — a FALSY non-mapping (null, 0, false, \"\", []) is replaced by `or {}` and so is ACCEPTED (equivalent to no ontology given), while a TRUTHY non-mapping (a non-empty string/list, true, a nonzero number) reaches `ontology.get(...)` in versum and CRASHES with AttributeError there. This schema accepts the same shapes versum accepts (an object, OR any JSON-falsy value) and rejects everything else, matching src/five_d_nd/contract.py axis_violations()'s own `ontology_raw and not isinstance(ontology_raw, Mapping)` guard exactly (same pattern as 'validation', above). An earlier version of this field REQUIRED 'id' AND 'version' on ANY object value unconditionally — wrongly rejecting a well-formed {} or {\"id\": \"o\"} in 'open'/'closed' mode (where ontology is never even READ — mode must be 'external' before id/version matter at all, see the allOf clause below) and wrongly rejecting the FLAT ontology_id/ontology_version form on its own. 'id'/'version' are now OPTIONAL here, each typed as a string when present; the id+version requirement itself lives ONLY in the vocabulary_mode == 'external' allOf clause below, which is the one place code/versum actually enforce it.",
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "minLength": 1 },
+                "version": { "type": "string", "minLength": 1 }
+              }
+            },
+            { "enum": [null, 0, false, "", []] }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "vocabulary_mode": { "const": "closed" } }, "required": ["vocabulary_mode"] },
+          "then": {
+            "properties": {
+              "vocabulary": {
+                "anyOf": [
+                  { "type": "string" },
+                  { "type": "number" },
+                  { "type": "boolean" },
+                  { "type": "array", "minItems": 1 }
+                ]
+              }
+            },
+            "required": ["vocabulary"]
+          }
+        },
+        {
+          "description": "versum's own default: vocabulary_mode is 'closed' iff the KEY 'vocabulary' is present at all (even an empty array OR an empty string) AND vocabulary_mode is itself absent — NOT only when vocabulary_mode is explicitly 'closed' (the clause above). This mirrors axis_violations()'s has_vocab_key logic exactly. The bare-scalar branch now also accepts number/boolean (e.g. vocabulary: 0) — §9's own coercion table says a bare SCALAR (any JSON scalar, not only a string) means a one-element list, so 0 is NOT a malformed shape here; _tuple(0) == (0,), non-empty, satisfying the closed-vocabulary-is-non-empty rule.",
+          "if": {
+            "required": ["vocabulary"],
+            "not": { "required": ["vocabulary_mode"] }
+          },
+          "then": {
+            "properties": {
+              "vocabulary": {
+                "anyOf": [
+                  { "type": "string" },
+                  { "type": "number" },
+                  { "type": "boolean" },
+                  { "type": "array", "minItems": 1 }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "description": "code/versum compute ontology_id/ontology_version INDEPENDENTLY of each other (`axis.get(\"ontology_id\") or ontology.get(\"id\") or \"\"` and the same pattern for version) — so a FLAT ontology_id may satisfy 'id' while a NESTED ontology.version satisfies 'version', or vice versa, not only the all-flat or all-nested forms. This if/then enumerates all four satisfying combinations explicitly, exactly as code and versum accept them.",
+          "if": { "properties": { "vocabulary_mode": { "const": "external" } }, "required": ["vocabulary_mode"] },
+          "then": {
+            "anyOf": [
+              { "required": ["ontology_id", "ontology_version"] },
+              {
+                "required": ["ontology_id", "ontology"],
+                "properties": { "ontology": { "type": "object", "required": ["version"] } }
+              },
+              {
+                "required": ["ontology_version", "ontology"],
+                "properties": { "ontology": { "type": "object", "required": ["id"] } }
+              },
+              {
+                "required": ["ontology"],
+                "properties": { "ontology": { "type": "object", "required": ["id", "version"] } }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

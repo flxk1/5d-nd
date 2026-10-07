@@ -1,0 +1,16 @@
+{
+  "family": "descriptor-binding",
+  "case": "validation-null-wrapper-coerced-empty-valid",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {"nd_system":{"id":"x","namespace":"x","version":"1","axes":{"op":{"vocabulary":["O","P","F"]}},"validation":null}},
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

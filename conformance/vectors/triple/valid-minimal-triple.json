@@ -1,0 +1,18 @@
+{
+  "family": "triple",
+  "case": "valid-minimal-triple",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "enables",
+      "o": "b",
+      "dimension": "causal",
+      "provenance": {
+        "origin": "human"
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

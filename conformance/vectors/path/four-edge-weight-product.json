@@ -1,0 +1,28 @@
+{
+  "family": "path",
+  "case": "four-edge-weight-product",
+  "input": {
+    "edges": [
+      {
+        "dimension": "structural",
+        "weight": 0.9
+      },
+      {
+        "dimension": "causal",
+        "weight": 0.8
+      },
+      {
+        "dimension": "intentional",
+        "weight": 0.7
+      },
+      {
+        "dimension": "temporal",
+        "weight": 0.6
+      }
+    ]
+  },
+  "expected": {
+    "dimension": "temporal",
+    "weight": 0.3024
+  }
+}

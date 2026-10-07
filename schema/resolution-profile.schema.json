@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/resolution-profile.schema.json",
+  "title": "5D resolution profile",
+  "description": "A digest-pinned resolution profile (spec/SPEC.md §16, build list item 6; fields clause_cue_saturation/match_blend_weights added by the fix round, 2026-10-02, owner-approved integration step — spec/SPEC.md §8a/§19; relational_suppression_scale added 2026-10-03, the s in §8a's relational_effective down-weighting formula). Mirrors five_d_nd/profile.py's profile_violations() field table exactly: 'profile_id' is the only REQUIRED field; every other field is OPTIONAL (absent means the module's own DEFAULTS), but MUST have the declared type when present. 'additionalProperties: false' (fix round item 7): an unknown field (e.g. a typo like \"K\") is now REJECTED here too, matching five_d_nd.profile.KNOWN_FIELDS exactly — a typo must not silently leave a default in place. This schema cannot express the 'd_blend_weights.links + d_blend_weights.nesting must be strictly positive' / 'match_blend_weights.term + match_blend_weights.structural must be strictly positive' cross-field rules — that is code-only, the same category of gap §9's own id/namespace cross-field checks already document.",
+  "type": "object",
+  "required": ["profile_id"],
+  "additionalProperties": false,
+  "properties": {
+    "profile_id": {"type": "string", "minLength": 1},
+    "k": {"type": "integer", "minimum": 1},
+    "n_min": {"type": "integer", "minimum": 1},
+    "r": {"type": "integer", "minimum": 1},
+    "link_saturation": {"type": "integer", "minimum": 1},
+    "anchor_saturation": {"type": "integer", "minimum": 1},
+    "point_saturation": {"type": "integer", "minimum": 1},
+    "clause_cue_saturation": {"type": "integer", "minimum": 1},
+    "d_blend_weights": {
+      "type": "object",
+      "required": ["links", "nesting"],
+      "additionalProperties": false,
+      "properties": {
+        "links": {"type": "number", "minimum": 0},
+        "nesting": {"type": "number", "minimum": 0}
+      }
+    },
+    "match_blend_weights": {
+      "type": "object",
+      "required": ["term", "structural"],
+      "additionalProperties": false,
+      "properties": {
+        "term": {"type": "number", "minimum": 0},
+        "structural": {"type": "number", "minimum": 0}
+      }
+    },
+    "relational_suppression_scale": {"type": "number", "exclusiveMinimum": 0},
+    "confidence_floor": {"type": "number", "minimum": 0, "maximum": 1},
+    "staleness_window_seconds": {"type": "number", "minimum": 0},
+    "tiebreak_salt": {"type": "string", "minLength": 1},
+    "schema_version": {"type": "string", "minLength": 1},
+    "segmenter_digest": {"type": "string", "minLength": 1},
+    "table_digest": {"type": "string", "minLength": 1}
+  }
+}

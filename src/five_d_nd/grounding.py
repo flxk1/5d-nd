@@ -4,14 +4,21 @@
 
 Is / ought
 ----------
-5D is what **IS**: the ``dimension`` this module reports for a resolved span is
-versum's own 5D dominant-dimension classification of a factual entry. A deontic
-operator (O/P/F — obligation/permission/prohibition) is a normative FORCE, never
-a fact on the 5D manifold: an OUGHT/norm entry's ``dimension`` is always ``None``
-(never fabricated as a structural artefact its own indexing happens to leave
-behind). Norm content reaches this module only through the factual entry the
-norm's own nD assignment references (the ``action`` coordinate) — deontic only,
-never 5D.
+**The normative rule lives in the 5D language specification, spec/SPEC.md §7
+(N1-N4): 5D is neutral on is/ought** — a link carries one dimension and
+nothing else; a normative relation may bind a dimension exactly like any
+other relation; whether a relation is normative is the owning nD grammar's
+own knowledge (a co-dimension on that grammar's NDSystem), never something
+5D itself inspects.
+
+**What follows is CURRENT versum behaviour**, a plane-level choice, not a
+5D-level rule: the ``dimension`` this module reports for a resolved span is
+versum's own 5D dominant-dimension classification of a factual entry. TODAY,
+versum's deontic plane binds nothing (its own ``binding()`` is ``{}``), so an
+OUGHT/norm entry's ``dimension`` comes back ``None`` (never fabricated as a
+structural artefact its own indexing happens to leave behind). Norm content
+reaches this module only through the factual entry the norm's own nD
+assignment references (the ``action`` coordinate).
 
 ``5d+nd`` is the reference resolver for ONE grounding scheme used by governance
 certifications — **not** a standard, and not privileged. It is one interchangeable
@@ -42,7 +49,7 @@ Shape of a ``5d+nd`` reference
 A reference is dimensioned addressing over a dimension-agnostic store (versum):
 
     {
-        "dimensions": ["causal", "structural"],      # base-5 (+nD) addressing
+        "dimensions": ["causal", "structural"],      # closed base-5 addressing
         "anchor": "urn:dls:sha256:<hex>#11-88"        # the canonical span reference
     }
 
@@ -199,11 +206,14 @@ def validate(ref: Any) -> bool:
     whose every entry is a known :class:`~five_d_nd.dimensions.Dimension` value,
     and it carries an ``anchor`` (a store-span or a URI).
 
-    The ``+nD`` in the scheme name is the forward-compatibility axis for custom
-    dimensions beyond the base five; the *reference* resolver deliberately
-    validates only against the base vocabulary it vendors. A downstream resolver
-    that understands extra dimensions may accept more — this one is strict, and
-    fails closed on anything it does not recognise.
+    ``dimensions`` validates strictly against the CLOSED base-five vocabulary
+    (``Dimension``) — not "any of the base five plus custom extras". ``nD`` in
+    the scheme name is a separate, domain-specific GRAMMAR that attaches to 5D
+    through the contract in ``spec/SPEC.md`` §9 (its own ``NDSystem``/grammar
+    descriptor), never an extension of THIS list. This resolver fails closed on
+    any ``dimensions`` entry outside the base five, with no downstream
+    exception for an nD grammar's own axes (see ``docs/model.md``, "The 5D
+    language specification").
     """
     if not isinstance(ref, dict):
         return False

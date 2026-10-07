@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-market_surveillance_authority",
+  "input": {
+    "value": "market_surveillance_authority"
+  },
+  "expected": {
+    "known": true
+  }
+}

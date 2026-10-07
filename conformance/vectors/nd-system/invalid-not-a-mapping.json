@@ -1,0 +1,10 @@
+{
+  "family": "nd-system",
+  "case": "invalid-not-a-mapping",
+  "input": {
+    "doc": "not a doc"
+  },
+  "expected": {
+    "valid": false
+  }
+}

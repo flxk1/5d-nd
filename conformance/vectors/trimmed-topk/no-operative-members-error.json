@@ -1,0 +1,26 @@
+{
+  "family": "trimmed-topk",
+  "case": "no-operative-members-error",
+  "input": {
+    "members": [
+      {
+        "claim_id": "a",
+        "weight": 1.0,
+        "point": {
+          "structural": 0.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": false
+      }
+    ],
+    "k": 5,
+    "n_min": 3,
+    "salt": "s"
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

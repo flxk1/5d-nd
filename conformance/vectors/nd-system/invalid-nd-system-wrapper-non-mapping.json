@@ -1,0 +1,10 @@
+{
+  "family": "nd-system",
+  "case": "invalid-nd-system-wrapper-non-mapping",
+  "input": {
+    "doc": {
+      "nd_system": "not-a-mapping"
+    }
+  },
+  "expected": {"valid": false}
+}

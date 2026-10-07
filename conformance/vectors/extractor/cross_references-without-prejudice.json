@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "cross_references-without-prejudice",
+  "input": {
+    "unit_text": "The audit power is without prejudice to any inspection carried out by a national authority."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#a62095b589504eeb",
+        "subj": "audit power",
+        "obj": "any inspection carried out by a national authority",
+        "predicate": "cross_references",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.7,
+        "provenance": {
+          "start": 0,
+          "end": 90
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-cross_references-without-prejudice"
+      }
+    ]
+  }
+}

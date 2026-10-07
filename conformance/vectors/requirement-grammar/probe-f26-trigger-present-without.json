@@ -1,0 +1,38 @@
+{
+  "family": "requirement-grammar",
+  "case": "probe-f26-trigger-present-without",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "Applications are assessed by automated processing without manual steps."
+    ]
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": true,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [],
+    "missing": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": null,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "X",
+    "right_to_express_view": "X",
+    "right_to_contest": "X"
+  },
+  "provenance": "Probe set, re-scored after later rule revisions"
+}

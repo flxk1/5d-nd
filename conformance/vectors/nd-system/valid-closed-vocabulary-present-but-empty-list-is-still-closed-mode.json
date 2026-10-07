@@ -1,0 +1,20 @@
+{
+  "family": "nd-system",
+  "case": "valid-closed-vocabulary-present-but-empty-list-is-still-closed-mode",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "vocabulary": ["x", "y"]
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

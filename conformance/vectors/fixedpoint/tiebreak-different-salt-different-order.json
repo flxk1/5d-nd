@@ -1,0 +1,20 @@
+{
+  "family": "fixedpoint",
+  "case": "tiebreak-different-salt-different-order",
+  "input": {
+    "op": "tiebreak_order",
+    "claim_ids": [
+      "claim-b",
+      "claim-a",
+      "claim-c"
+    ],
+    "salt": "other-salt"
+  },
+  "expected": {
+    "ordered": [
+      "claim-a",
+      "claim-b",
+      "claim-c"
+    ]
+  }
+}

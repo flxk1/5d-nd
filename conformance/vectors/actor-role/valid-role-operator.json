@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-operator",
+  "input": {
+    "value": "operator"
+  },
+  "expected": {
+    "known": true
+  }
+}

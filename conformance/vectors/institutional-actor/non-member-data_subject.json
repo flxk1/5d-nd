@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "non-member-data_subject",
+  "input": {
+    "role": "data_subject"
+  },
+  "expected": {
+    "institutional": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "shall-be-stays-copula-not-modal",
+  "input": {
+    "sentence": "The controller shall be liable."
+  },
+  "expected": {
+    "subject": "controller",
+    "predicate": "shall be",
+    "object": "liable",
+    "dimension": "relational",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

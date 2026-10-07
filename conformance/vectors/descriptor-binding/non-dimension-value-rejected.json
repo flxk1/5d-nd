@@ -1,0 +1,27 @@
+{
+  "family": "descriptor-binding",
+  "case": "non-dimension-value-rejected",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {
+        "id": "x",
+        "namespace": "x",
+        "version": "1",
+        "axes": {
+          "subject": {
+            "value_type": "concept_reference"
+          }
+        }
+      },
+      "binding": {
+        "is-a": "sixth-dimension"
+      },
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

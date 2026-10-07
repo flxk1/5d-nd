@@ -1,0 +1,21 @@
+{
+  "family": "point",
+  "case": "single-dim-below-saturation",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": 2,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "structural": 0.4,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0
+  }
+}

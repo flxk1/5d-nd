@@ -1,0 +1,13 @@
+{
+  "family": "compose-identity",
+  "case": "identity-causal",
+  "input": {
+    "d": "causal",
+    "identity": "relational"
+  },
+  "expected": {
+    "left_with_identity": "causal",
+    "identity_with_right": "causal",
+    "expected_both": "causal"
+  }
+}

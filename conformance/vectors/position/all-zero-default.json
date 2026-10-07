@@ -1,0 +1,16 @@
+{
+  "family": "position",
+  "case": "all-zero-default",
+  "input": {
+    "contributions": {}
+  },
+  "expected": {
+    "structural": 0.0,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "relational",
+    "basis": "default"
+  }
+}

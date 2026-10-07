@@ -1,0 +1,23 @@
+{
+  "family": "statement",
+  "case": "invalid-edge-confidence-out-of-range",
+  "input": {
+    "doc": {
+      "id": "x#y#0123456789abcdef",
+      "subj": "a",
+      "obj": "b",
+      "predicate": "enables",
+      "dimension": "causal",
+      "edge_confidence": 1.4,
+      "provenance": {
+        "start": 0,
+        "end": 1
+      },
+      "negation": "absent",
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

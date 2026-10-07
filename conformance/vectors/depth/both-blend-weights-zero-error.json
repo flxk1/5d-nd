@@ -1,0 +1,28 @@
+{
+  "family": "depth",
+  "case": "both-blend-weights-zero-error",
+  "input": {
+    "graph": {
+      "concept_links": {
+        "X": [
+          "p0",
+          "p1",
+          "p2",
+          "p3",
+          "p4"
+        ]
+      },
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X",
+    "w_links": 0.0,
+    "w_nesting": 0.0
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

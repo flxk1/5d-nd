@@ -1,0 +1,13 @@
+{
+  "family": "is-ought",
+  "case": "content-entry-carries-dimension-valid",
+  "input": {
+    "kind": "content_entry",
+    "contributions": {
+      "structural": 1
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

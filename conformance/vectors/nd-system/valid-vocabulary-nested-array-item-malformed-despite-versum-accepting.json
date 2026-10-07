@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "valid-vocabulary-nested-array-item-malformed-despite-versum-accepting",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "subject": {"value_type": "string", "vocabulary_mode": "closed", "vocabulary": [[1]]}
+      }
+    }
+  },
+  "expected": {"valid": true}
+}

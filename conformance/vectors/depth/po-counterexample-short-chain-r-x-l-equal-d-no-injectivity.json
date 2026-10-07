@@ -1,0 +1,43 @@
+{
+  "family": "depth",
+  "case": "po-counterexample-short-chain-r-x-l-equal-d-no-injectivity",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {
+        "r": [
+          "x"
+        ],
+        "x": [
+          "l"
+        ],
+        "l": []
+      },
+      "order": {
+        "r": 0,
+        "x": 1,
+        "l": 2
+      },
+      "reverse": {
+        "r": [],
+        "x": [
+          "r"
+        ],
+        "l": [
+          "x"
+        ]
+      },
+      "next_order": 3
+    },
+    "entry_id": "x",
+    "r": 1,
+    "w_links": 1e-09,
+    "w_nesting": 1.0
+  },
+  "expected": {
+    "d": 0.5
+  }
+}

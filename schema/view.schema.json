@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/view.schema.json",
+  "title": "5D derived view",
+  "description": "A derived view record (spec/SPEC.md §15; the four 'kind' values each name a §14 view — position, match_statistic, d, and nesting_level). Mirrors five_d_nd/views.make_view()/view_violations(). 'staleness_tier' is one of the CLOSED enum (five_d_nd.views.STALENESS_TIERS) when stale is true, and MUST be null when stale is false — the cross-field 'stale implies tier present, non-stale implies tier absent' rule is code-only (views.make_view()/view_violations() apply it); this schema only pins each field's own type.",
+  "type": "object",
+  "required": ["value", "kind", "position_digest", "basis", "stale", "staleness_tier"],
+  "additionalProperties": false,
+  "properties": {
+    "value": {},
+    "kind": {
+      "type": "string",
+      "enum": ["position", "match_statistic", "d", "nesting_level"]
+    },
+    "position_digest": {"type": "string", "minLength": 1},
+    "basis": {"type": "string"},
+    "stale": {"type": "boolean"},
+    "staleness_tier": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "enum": ["erasure", "ingest"]}
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "reference",
+  "case": "canonical-is-returned-as-is",
+  "input": {
+    "ref": "urn:dls:sha256:abc123#11-88"
+  },
+  "expected": {
+    "canonical": "urn:dls:sha256:abc123#11-88"
+  }
+}

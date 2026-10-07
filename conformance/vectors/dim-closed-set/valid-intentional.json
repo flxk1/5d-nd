@@ -1,0 +1,10 @@
+{
+  "family": "dim-closed-set",
+  "case": "valid-intentional",
+  "input": {
+    "value": "intentional"
+  },
+  "expected": {
+    "valid": true
+  }
+}

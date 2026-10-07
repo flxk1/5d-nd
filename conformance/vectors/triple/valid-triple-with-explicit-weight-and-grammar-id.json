@@ -1,0 +1,20 @@
+{
+  "family": "triple",
+  "case": "valid-triple-with-explicit-weight-and-grammar-id",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "enables",
+      "o": "b",
+      "dimension": "causal",
+      "weight": 0.5,
+      "provenance": {
+        "origin": "human"
+      },
+      "grammar_id": "deontic"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

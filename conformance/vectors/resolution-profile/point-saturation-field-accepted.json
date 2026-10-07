@@ -1,0 +1,14 @@
+{
+  "family": "resolution-profile",
+  "case": "point-saturation-field-accepted",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "point_saturation": 10
+    }
+  },
+  "expected": {
+    "valid": true,
+    "profile_digest": "81ee926d4325b63e5943e7ca0d5bc952c46201d9f9f7f3c032f43e083ebb89d6"
+  }
+}

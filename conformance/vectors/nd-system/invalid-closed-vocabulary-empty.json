@@ -1,0 +1,21 @@
+{
+  "family": "nd-system",
+  "case": "invalid-closed-vocabulary-empty",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "vocabulary_mode": "closed",
+          "vocabulary": []
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

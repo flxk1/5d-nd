@@ -1,0 +1,52 @@
+{
+  "family": "path-search",
+  "case": "dijkstra-best-weight-no-floor",
+  "note": "",
+  "input": {
+    "adjacency": {
+      "n0": [
+        {
+          "target": "n2",
+          "dimension": "temporal",
+          "weight": 0.5
+        },
+        {
+          "target": "n2",
+          "dimension": "temporal",
+          "weight": 0.9
+        }
+      ],
+      "n2": [
+        {
+          "target": "n2",
+          "dimension": "intentional",
+          "weight": 0.5
+        }
+      ]
+    },
+    "start": "n0",
+    "floor": null
+  },
+  "expected": {
+    "reached": [
+      [
+        "n0",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "n2",
+        "intentional",
+        0.45,
+        2
+      ],
+      [
+        "n2",
+        "temporal",
+        0.9,
+        1
+      ]
+    ]
+  }
+}

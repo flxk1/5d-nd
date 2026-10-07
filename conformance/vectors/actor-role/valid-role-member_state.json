@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-member_state",
+  "input": {
+    "value": "member_state"
+  },
+  "expected": {
+    "known": true
+  }
+}

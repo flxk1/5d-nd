@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "valid-vocabulary-empty-object-coerced-nonempty-tuple",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "subject": {"value_type": "string", "vocabulary_mode": "closed", "vocabulary": {}}
+      }
+    }
+  },
+  "expected": {"valid": true}
+}

@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "host-instrument-the-regulation-numbered-is-internal",
+  "input": {
+    "text": "Article 45(3) of this Regulation applies to this transfer.",
+    "self_article_number": 97
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      45
+    ]
+  }
+}

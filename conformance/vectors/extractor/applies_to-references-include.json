@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "applies_to-references-include",
+  "input": {
+    "unit_text": "References to the register include any successor register maintained under this Act."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#048bc9de555f0c6b",
+        "subj": "any successor register maintained under this Act",
+        "obj": "References to the register",
+        "predicate": "part_of",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 83
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-part_of-includes-swap"
+      }
+    ]
+  }
+}

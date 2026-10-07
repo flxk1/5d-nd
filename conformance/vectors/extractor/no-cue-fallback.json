@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "no-cue-fallback",
+  "input": {
+    "unit_text": "Testing shall ensure the system behaves consistently across every intended use."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#67167f2a638f488a",
+        "subj": "Testing shall ensure the system behaves consistently across",
+        "obj": "every intended use",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.2,
+        "provenance": {
+          "start": 0,
+          "end": 78
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-whole-unit-fallback"
+      }
+    ]
+  }
+}

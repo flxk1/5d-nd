@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "purpose-compliance",
+  "input": {
+    "unit_text": "The provider shall keep a log for the purposes of demonstrating compliance with this Article."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#6148426f8ce4980f",
+        "subj": "provider shall keep a log",
+        "obj": "demonstrating compliance with this Article",
+        "predicate": "compliance_purpose_of",
+        "dimension": "intentional",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 92
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-purpose-cue-compliance-by-modal-fallback"
+      }
+    ]
+  }
+}

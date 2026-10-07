@@ -1,0 +1,17 @@
+{
+  "family": "nd-system",
+  "case": "valid-axis-null-treated-as-empty",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": null
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

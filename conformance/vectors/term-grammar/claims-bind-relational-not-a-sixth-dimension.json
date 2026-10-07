@@ -1,0 +1,13 @@
+{
+  "family": "term-grammar",
+  "case": "claims-bind-relational-not-a-sixth-dimension",
+  "input": {
+    "entry_id": "a",
+    "text": "The controller shall notify the supervisory authority without undue delay.",
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "all_relational": true,
+    "n_claims": 7
+  }
+}

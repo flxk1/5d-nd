@@ -1,0 +1,28 @@
+{
+  "family": "path-search",
+  "case": "floor-cuts-only-path",
+  "note": "floor=0.5 cuts a->b (weight 0.3), so (b, causal) is unreached",
+  "input": {
+    "adjacency": {
+      "a": [
+        {
+          "target": "b",
+          "dimension": "causal",
+          "weight": 0.3
+        }
+      ]
+    },
+    "start": "a",
+    "floor": 0.5
+  },
+  "expected": {
+    "reached": [
+      [
+        "a",
+        "relational",
+        1.0,
+        0
+      ]
+    ]
+  }
+}

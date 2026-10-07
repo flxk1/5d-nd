@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "unknown-field-typo-does-not-silently-change-digest",
+  "input": {
+    "doc": {
+      "profile_id": "default",
+      "K": 999
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

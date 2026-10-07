@@ -1,0 +1,11 @@
+{
+  "family": "compose-table",
+  "case": "temporal-intentional",
+  "input": {
+    "a": "temporal",
+    "b": "intentional"
+  },
+  "expected": {
+    "result": "intentional"
+  }
+}

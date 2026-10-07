@@ -1,0 +1,11 @@
+{
+  "family": "term-grammar",
+  "case": "cosine-self-similarity-is-one",
+  "input": {
+    "text": "The controller shall notify the supervisory authority without undue delay.",
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "cosine": 1.0
+  }
+}

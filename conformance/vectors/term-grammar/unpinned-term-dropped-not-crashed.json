@@ -1,0 +1,11 @@
+{
+  "family": "term-grammar",
+  "case": "unpinned-term-dropped-not-crashed",
+  "input": {
+    "text": "An entirely unrelated sentence about zebras and volcanoes.",
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "vector": {}
+  }
+}

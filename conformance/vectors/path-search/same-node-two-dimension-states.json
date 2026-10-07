@@ -1,0 +1,71 @@
+{
+  "family": "path-search",
+  "case": "same-node-two-dimension-states",
+  "note": "",
+  "input": {
+    "adjacency": {
+      "a": [
+        {
+          "target": "b",
+          "dimension": "causal",
+          "weight": 1.0
+        },
+        {
+          "target": "c",
+          "dimension": "structural",
+          "weight": 1.0
+        }
+      ],
+      "b": [
+        {
+          "target": "d",
+          "dimension": "intentional",
+          "weight": 1.0
+        }
+      ],
+      "c": [
+        {
+          "target": "d",
+          "dimension": "temporal",
+          "weight": 1.0
+        }
+      ]
+    },
+    "start": "a",
+    "floor": null
+  },
+  "expected": {
+    "reached": [
+      [
+        "a",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "b",
+        "causal",
+        1.0,
+        1
+      ],
+      [
+        "c",
+        "structural",
+        1.0,
+        1
+      ],
+      [
+        "d",
+        "intentional",
+        1.0,
+        2
+      ],
+      [
+        "d",
+        "temporal",
+        1.0,
+        2
+      ]
+    ]
+  }
+}

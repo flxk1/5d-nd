@@ -1,0 +1,26 @@
+{
+  "family": "resolution-profile",
+  "case": "two-profiles-same-resolved-fields-same-digest",
+  "input": {
+    "doc": {
+      "profile_id": "default",
+      "k": 5,
+      "n_min": 3,
+      "r": 2,
+      "d_blend_weights": {
+        "links": 0.5,
+        "nesting": 0.5
+      },
+      "link_saturation": 5,
+      "anchor_saturation": 2,
+      "point_saturation": 5,
+      "confidence_floor": 0.05,
+      "staleness_window_seconds": 3600,
+      "tiebreak_salt": "5d-nd-coordinate-round-2026-10-01"
+    }
+  },
+  "expected": {
+    "valid": true,
+    "profile_digest": "fad36394a7ba554d6968897239fbc27b64e1d1a7f35435eca5031e4d51bb2a01"
+  }
+}

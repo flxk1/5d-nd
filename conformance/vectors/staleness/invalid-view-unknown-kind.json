@@ -1,0 +1,18 @@
+{
+  "family": "staleness",
+  "case": "invalid-view-unknown-kind",
+  "input": {
+    "kind": "validate_view",
+    "doc": {
+      "value": 1,
+      "kind": "bogus",
+      "position_digest": "abc",
+      "basis": "planes",
+      "stale": false,
+      "staleness_tier": null
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

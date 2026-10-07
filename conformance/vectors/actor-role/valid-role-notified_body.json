@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-notified_body",
+  "input": {
+    "value": "notified_body"
+  },
+  "expected": {
+    "known": true
+  }
+}

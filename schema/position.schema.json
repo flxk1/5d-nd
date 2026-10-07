@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/position.schema.json",
+  "title": "5D position (fingerprint)",
+  "description": "The ONE fingerprint of an entry — five values summing to 1 (rounded to 6 decimal places), or all-zero when nothing contributes (spec/SPEC.md §5). 5D is neutral on is/ought (§7, N1 — owner design change, 2026-10-01): there is exactly one fingerprint per entry, full stop; an earlier two-fingerprint (is/ought) design on this branch is superseded — see docs/decisions/0003-is-ought-in-nd-grammars.md. This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py).",
+  "type": "object",
+  "required": [
+    "structural",
+    "causal",
+    "intentional",
+    "temporal",
+    "relational",
+    "dominant",
+    "basis"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "structural": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "causal": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "intentional": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "temporal": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "relational": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "dominant": {
+      "type": "string",
+      "enum": [
+        "structural",
+        "causal",
+        "intentional",
+        "temporal",
+        "relational"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "enum": [
+        "planes",
+        "default"
+      ]
+    }
+  }
+}

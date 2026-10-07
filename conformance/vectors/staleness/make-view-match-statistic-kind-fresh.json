@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "make-view-match-statistic-kind-fresh",
+  "input": {
+    "kind": "make_view",
+    "view_kind": "match_statistic",
+    "stale": false,
+    "staleness_tier": null
+  },
+  "expected": {
+    "kind": "match_statistic",
+    "staleness_tier": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "family": "descriptor-binding",
+  "case": "nd-system-version-mismatch-rejected",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "2",
+      "nd_system": {
+        "id": "x",
+        "namespace": "x",
+        "version": "1",
+        "axes": {
+          "subject": {
+            "value_type": "concept_reference"
+          }
+        }
+      },
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

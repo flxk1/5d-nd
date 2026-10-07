@@ -1,0 +1,16 @@
+{
+  "family": "is-ought",
+  "case": "embeds-link-structural-valid",
+  "input": {
+    "kind": "embeds_link",
+    "link": {
+      "src_id": "norm-1",
+      "dst_id": "content-1",
+      "relation": "embeds",
+      "dimension": "structural"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

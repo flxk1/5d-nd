@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "requires-and-deadline-of-co-coded",
+  "input": {
+    "unit_text": "If a near-miss is detected, the operator shall record the event within 72 hours."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#0572044a7135caed",
+        "subj": "near-miss is detected",
+        "obj": "record the event within 72 hours",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 79
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-requires-where-if"
+      },
+      {
+        "id": "extracted-unit#n/a#401755ae63627481",
+        "subj": "operator",
+        "obj": "72 hours",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 27,
+          "end": 79
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-within-n"
+      }
+    ]
+  }
+}

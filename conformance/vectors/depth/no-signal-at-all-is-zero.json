@@ -1,0 +1,18 @@
+{
+  "family": "depth",
+  "case": "no-signal-at-all-is-zero",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X"
+  },
+  "expected": {
+    "d": 0.0
+  }
+}

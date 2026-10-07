@@ -1,0 +1,57 @@
+{
+  "family": "depth",
+  "case": "po-counterexample-long-chain-r-q-x-l-m-equal-d-no-injectivity",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {
+        "r": [
+          "q"
+        ],
+        "q": [
+          "x"
+        ],
+        "x": [
+          "l"
+        ],
+        "l": [
+          "m"
+        ],
+        "m": []
+      },
+      "order": {
+        "r": 0,
+        "q": 1,
+        "x": 2,
+        "l": 3,
+        "m": 4
+      },
+      "reverse": {
+        "r": [],
+        "q": [
+          "r"
+        ],
+        "x": [
+          "q"
+        ],
+        "l": [
+          "x"
+        ],
+        "m": [
+          "l"
+        ]
+      },
+      "next_order": 5
+    },
+    "entry_id": "x",
+    "r": 1,
+    "w_links": 1e-09,
+    "w_nesting": 1.0
+  },
+  "expected": {
+    "d": 0.5
+  }
+}

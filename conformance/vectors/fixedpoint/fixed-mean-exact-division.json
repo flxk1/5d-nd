@@ -1,0 +1,12 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-mean-exact-division",
+  "input": {
+    "op": "fixed_mean",
+    "total": 3000000,
+    "n": 3
+  },
+  "expected": {
+    "result": 1000000
+  }
+}

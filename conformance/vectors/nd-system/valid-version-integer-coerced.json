@@ -1,0 +1,13 @@
+{
+  "family": "nd-system",
+  "case": "valid-version-integer-coerced",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": 1,
+      "axes": {"a": {"value_type": "string"}}
+    }
+  },
+  "expected": {"valid": true}
+}

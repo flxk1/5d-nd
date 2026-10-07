@@ -1,0 +1,24 @@
+{
+  "family": "statement",
+  "case": "valid-causal-requires",
+  "input": {
+    "doc": {
+      "id": "eli:gdpr:2016-679#2016-05-04#0123456789abcdef",
+      "subj": "personal_data_breach",
+      "obj": "notification_to_supervisory_authority",
+      "predicate": "requires",
+      "dimension": "causal",
+      "weight": 0.95,
+      "edge_confidence": 0.8,
+      "provenance": {
+        "start": 100,
+        "end": 220
+      },
+      "negation": "absent",
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

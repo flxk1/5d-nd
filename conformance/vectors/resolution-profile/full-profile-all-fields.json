@@ -1,0 +1,35 @@
+{
+  "family": "resolution-profile",
+  "case": "full-profile-all-fields",
+  "input": {
+    "doc": {
+      "profile_id": "full-v1",
+      "k": 7,
+      "n_min": 2,
+      "r": 3,
+      "d_blend_weights": {
+        "links": 0.3,
+        "nesting": 0.7
+      },
+      "link_saturation": 4,
+      "anchor_saturation": 1,
+      "point_saturation": 8,
+      "confidence_floor": 0.1,
+      "staleness_window_seconds": 7200,
+      "tiebreak_salt": "custom-salt",
+      "schema_version": "1.0",
+      "segmenter_digest": "abc123",
+      "table_digest": "def456",
+      "clause_cue_saturation": 4,
+      "match_blend_weights": {
+        "term": 0.6,
+        "structural": 0.4
+      },
+      "relational_suppression_scale": 2
+    }
+  },
+  "expected": {
+    "valid": true,
+    "profile_digest": "d2001c9bfa3dadc4cbd3e044d62afea9dfee9d338d3ecdf8060f8977ae062226"
+  }
+}

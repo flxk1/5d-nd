@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "unknown-field-typo-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "K": 7
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "clausal-complement-lowers-embedded-clause-only",
+  "input": {
+    "sentence": "The supervisor knows that the report is a draft."
+  },
+  "expected": {
+    "subject": "report",
+    "predicate": "is",
+    "object": "draft",
+    "dimension": "structural",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "is-a",
+    "canonical": null
+  }
+}

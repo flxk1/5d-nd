@@ -1,0 +1,17 @@
+{
+  "family": "nd-system",
+  "case": "valid-axis-ontology-zero-coerced-empty",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": { "ontology": 0 }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "family": "compose-table",
+  "case": "structural-causal",
+  "input": {
+    "a": "structural",
+    "b": "causal"
+  },
+  "expected": {
+    "result": "causal"
+  }
+}

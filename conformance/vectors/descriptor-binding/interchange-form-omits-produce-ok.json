@@ -1,0 +1,26 @@
+{
+  "family": "descriptor-binding",
+  "case": "interchange-form-omits-produce-ok",
+  "input": {
+    "require_produce": false,
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {
+        "id": "x",
+        "namespace": "x",
+        "version": "1",
+        "axes": {
+          "subject": {
+            "value_type": "concept_reference"
+          }
+        }
+      },
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

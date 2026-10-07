@@ -1,0 +1,21 @@
+{
+  "family": "depth",
+  "case": "quantiles-four-members-with-tie",
+  "input": {
+    "kind": "quantiles",
+    "member_depths": {
+      "a": 0.1,
+      "b": 0.5,
+      "c": 0.5,
+      "d": 0.9
+    }
+  },
+  "expected": {
+    "quantiles": {
+      "a": 0.0,
+      "b": 0.333333,
+      "c": 0.333333,
+      "d": 1.0
+    }
+  }
+}

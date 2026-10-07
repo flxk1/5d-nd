@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "applies_to-not-apply-to",
+  "input": {
+    "unit_text": "This Directive does not apply to activities concerning national security."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#3596a17ec35418a3",
+        "subj": "This Directive",
+        "obj": "activities concerning national security",
+        "predicate": "applies_to",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.65,
+        "provenance": {
+          "start": 0,
+          "end": 72
+        },
+        "negation": "present",
+        "extraction_rule_id": "T3-applies_to-not-apply-to"
+      }
+    ]
+  }
+}

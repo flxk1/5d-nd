@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-joint_controller",
+  "input": {
+    "value": "joint_controller"
+  },
+  "expected": {
+    "known": true
+  }
+}

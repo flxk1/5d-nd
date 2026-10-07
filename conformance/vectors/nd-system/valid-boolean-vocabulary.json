@@ -1,0 +1,21 @@
+{
+  "family": "nd-system",
+  "case": "valid-boolean-vocabulary",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "boolean",
+          "vocabulary_mode": "closed",
+          "vocabulary": [true, false]
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

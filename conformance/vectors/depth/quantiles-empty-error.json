@@ -1,0 +1,11 @@
+{
+  "family": "depth",
+  "case": "quantiles-empty-error",
+  "input": {
+    "kind": "quantiles",
+    "member_depths": {}
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

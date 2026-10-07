@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-competent_authority",
+  "input": {
+    "role": "competent_authority"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

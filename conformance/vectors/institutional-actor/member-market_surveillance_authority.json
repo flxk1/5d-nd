@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-market_surveillance_authority",
+  "input": {
+    "role": "market_surveillance_authority"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

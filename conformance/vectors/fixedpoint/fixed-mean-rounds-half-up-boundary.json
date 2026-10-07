@@ -1,0 +1,12 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-mean-rounds-half-up-boundary",
+  "input": {
+    "op": "fixed_mean",
+    "total": 5,
+    "n": 2
+  },
+  "expected": {
+    "result": 3
+  }
+}

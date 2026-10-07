@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "other-instrument-citation-excluded",
+  "input": {
+    "text": "Decisions adopted on the basis of Article 25(6) of Directive 95/46/EC shall remain in force.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

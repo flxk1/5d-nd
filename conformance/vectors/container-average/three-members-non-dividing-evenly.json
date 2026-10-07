@@ -1,0 +1,38 @@
+{
+  "family": "container-average",
+  "case": "three-members-non-dividing-evenly",
+  "input": {
+    "member_points": [
+      {
+        "structural": 1.0,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.0,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.0,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      }
+    ]
+  },
+  "expected": {
+    "position": {
+      "structural": 0.333333,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  }
+}

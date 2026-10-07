@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "cross-reference-links-forwards-host-instrument-number",
+  "input": {
+    "text": "Article 45 of Regulation (EU) 2016/679 lays down the adequacy mechanism.",
+    "source_id": "entry-ht1",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "links": [
+      {
+        "s": "entry-ht1",
+        "p": "cross_references",
+        "o": "Article 45",
+        "dimension": "structural",
+        "weight": 1.0,
+        "provenance": {
+          "layer": "clause_cues",
+          "source_text": "Article 45 of Regulation (EU) 2016/679 lays down the adequacy mechanism."
+        }
+      }
+    ]
+  }
+}

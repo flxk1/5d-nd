@@ -1,0 +1,43 @@
+{
+  "family": "staleness",
+  "case": "burst-then-trailing-remainder-both-flush",
+  "input": {
+    "kind": "debounce",
+    "events": [
+      [
+        "node",
+        0
+      ],
+      [
+        "node",
+        1
+      ],
+      [
+        "node",
+        2
+      ],
+      [
+        "node",
+        3
+      ],
+      [
+        "node",
+        4
+      ],
+      [
+        "node",
+        100
+      ]
+    ],
+    "window_seconds": 10,
+    "threshold": 5
+  },
+  "expected": {
+    "coalesced": [
+      [
+        "node",
+        2
+      ]
+    ]
+  }
+}

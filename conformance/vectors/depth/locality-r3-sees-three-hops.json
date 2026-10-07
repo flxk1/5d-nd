@@ -1,0 +1,29 @@
+{
+  "family": "depth",
+  "case": "locality-r3-sees-three-hops",
+  "input": {
+    "graph": {
+      "concept_links": {
+        "X": [
+          "A"
+        ],
+        "A": [
+          "B"
+        ],
+        "B": [
+          "C"
+        ]
+      },
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X",
+    "r": 3
+  },
+  "expected": {
+    "d": 0.1875
+  }
+}

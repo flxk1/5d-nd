@@ -1,0 +1,26 @@
+{
+  "family": "cycle-rejection",
+  "case": "re-nesting-same-pair-twice-accepted-idempotent",
+  "input": {
+    "existing_edges": [
+      [
+        "A",
+        "B"
+      ]
+    ],
+    "add_edge": [
+      "A",
+      "B"
+    ]
+  },
+  "expected": {
+    "accepted": true,
+    "order": {
+      "A": 0,
+      "B": 1
+    },
+    "children_of_parent": [
+      "B"
+    ]
+  }
+}

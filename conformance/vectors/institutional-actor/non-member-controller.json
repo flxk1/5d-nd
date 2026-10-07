@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "non-member-controller",
+  "input": {
+    "role": "controller"
+  },
+  "expected": {
+    "institutional": false
+  }
+}

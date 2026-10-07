@@ -1,0 +1,15 @@
+{
+  "family": "descriptor-binding",
+  "case": "missing-required-key-rejected",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

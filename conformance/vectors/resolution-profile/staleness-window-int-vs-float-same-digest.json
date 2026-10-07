@@ -1,0 +1,19 @@
+{
+  "family": "resolution-profile",
+  "case": "staleness-window-int-vs-float-same-digest",
+  "input": {
+    "doc_a": {
+      "profile_id": "x",
+      "staleness_window_seconds": 3600
+    },
+    "doc_b": {
+      "profile_id": "x",
+      "staleness_window_seconds": 3600.0
+    }
+  },
+  "expected": {
+    "valid_a": true,
+    "valid_b": true,
+    "same_digest": true
+  }
+}

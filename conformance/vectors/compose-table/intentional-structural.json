@@ -1,0 +1,11 @@
+{
+  "family": "compose-table",
+  "case": "intentional-structural",
+  "input": {
+    "a": "intentional",
+    "b": "structural"
+  },
+  "expected": {
+    "result": "structural"
+  }
+}

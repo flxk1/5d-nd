@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "make-view-position-kind-fresh",
+  "input": {
+    "kind": "make_view",
+    "view_kind": "position",
+    "stale": false,
+    "staleness_tier": null
+  },
+  "expected": {
+    "kind": "position",
+    "staleness_tier": null
+  }
+}

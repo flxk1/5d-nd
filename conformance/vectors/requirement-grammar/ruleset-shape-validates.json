@@ -1,0 +1,27 @@
+{
+  "family": "requirement-grammar",
+  "case": "ruleset-shape-validates",
+  "input": {
+    "ruleset": {
+      "ruleset_id": "requirement-grammar-example-rules",
+      "rules": [
+        {
+          "obligation_id": "GDPR:Art22(3)",
+          "citation": "GDPR Article 22(3)",
+          "description": "Where Art. 22(1)/(2) applies (a decision based solely on automated processing, incl. profiling, with legal/similarly significant effects), the controller shall implement suitable measures to safeguard the data subject's rights, freedoms and legitimate interests, at least the right to obtain human intervention, to express his or her point of view, and to contest the decision.",
+          "trigger_concepts": [
+            "automated_decision_making"
+          ],
+          "required_concepts": [
+            "human_intervention",
+            "right_to_express_view",
+            "right_to_contest"
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "violations": []
+  }
+}

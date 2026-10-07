@@ -1,0 +1,26 @@
+{
+  "family": "trimmed-topk",
+  "case": "inf-weight-rejected",
+  "input": {
+    "members": [
+      {
+        "claim_id": "a",
+        "weight": Infinity,
+        "point": {
+          "structural": 0.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      }
+    ],
+    "k": 5,
+    "n_min": 3,
+    "salt": "s"
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

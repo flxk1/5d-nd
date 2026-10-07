@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "council-regulation-excluded",
+  "input": {
+    "text": "This matter is governed by Article 4 of Council Regulation (EC) No 1/2003.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

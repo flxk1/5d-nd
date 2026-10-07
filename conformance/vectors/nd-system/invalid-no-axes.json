@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "invalid-no-axes",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {}
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

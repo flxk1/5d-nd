@@ -1,0 +1,28 @@
+{
+  "family": "nd-system",
+  "case": "valid-minimal",
+  "input": {
+    "doc": {
+      "id": "loomground-deontic",
+      "namespace": "loomground.deontic",
+      "version": "1",
+      "axes": {
+        "operator": {
+          "value_type": "controlled_identifier",
+          "vocabulary_mode": "closed",
+          "vocabulary": [
+            "O",
+            "P",
+            "F"
+          ]
+        }
+      },
+      "validation": {
+        "unknown_values": "reject"
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

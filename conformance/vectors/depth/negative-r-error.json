@@ -1,0 +1,19 @@
+{
+  "family": "depth",
+  "case": "negative-r-error",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X",
+    "r": -1
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

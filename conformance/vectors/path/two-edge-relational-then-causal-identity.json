@@ -1,0 +1,20 @@
+{
+  "family": "path",
+  "case": "two-edge-relational-then-causal-identity",
+  "input": {
+    "edges": [
+      {
+        "dimension": "relational",
+        "weight": 1.0
+      },
+      {
+        "dimension": "causal",
+        "weight": 0.9
+      }
+    ]
+  },
+  "expected": {
+    "dimension": "causal",
+    "weight": 0.9
+  }
+}

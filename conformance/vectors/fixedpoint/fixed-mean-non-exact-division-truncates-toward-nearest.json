@@ -1,0 +1,12 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-mean-non-exact-division-truncates-toward-nearest",
+  "input": {
+    "op": "fixed_mean",
+    "total": 1000000,
+    "n": 3
+  },
+  "expected": {
+    "result": 333333
+  }
+}

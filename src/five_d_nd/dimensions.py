@@ -15,7 +15,7 @@
 #       module; keep this vendored copy in sync until then. Do not fork or extend
 #       the algebra in this repo — changes belong upstream.
 #
-# NOTE ON HONESTY: the 5D+nD dimensional model is NOT a novel invention. It
+# NOTE: the 5D+nD dimensional model is NOT a novel invention. It
 # re-describes established modal knowledge representation — BFO, CIDOC-CRM,
 # RDF-Data-Cube. This module is kept only so a grounding reference can name its
 # addressing scheme; the theory is borrowed, not claimed.
@@ -98,6 +98,27 @@ COMPOSITION_TABLE: dict[tuple[Dimension, Dimension], Dimension] = {
 def compose(a: Dimension, b: Dimension) -> Dimension:
     """Return the dimension governing a two-step inference across ``a`` then ``b``."""
     return COMPOSITION_TABLE[(Dimension(a), Dimension(b))]
+
+
+def left_fold(path: "list[Dimension]") -> Dimension:
+    """Compose a path of 1+ dimensions in NORMATIVE left-fold order.
+
+    ``left_fold([a, b, c, ...]) == compose(compose(compose(a, b), c), ...)`` — evaluated
+    strictly left to right. The composition table is NOT associative (two of the 125
+    ordered triples disagree by grouping: ``(causal, intentional, structural)`` and
+    ``(causal, temporal, structural)`` — see ``docs/decisions/0004-left-fold.md``), so a
+    path of length > 2 has no single answer without a fixed evaluation order. Left-fold is
+    that fixed order for this specification.
+
+    Raises ``ValueError`` on an empty path.
+    """
+    dims = [Dimension(d) for d in path]
+    if not dims:
+        raise ValueError("left_fold() requires at least one dimension")
+    acc = dims[0]
+    for d in dims[1:]:
+        acc = compose(acc, d)
+    return acc
 
 
 def compose_weights(w1: float, w2: float) -> float:

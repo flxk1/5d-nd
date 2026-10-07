@@ -1,0 +1,24 @@
+{
+  "family": "path",
+  "case": "nonassoc-causal-temporal-structural",
+  "input": {
+    "edges": [
+      {
+        "dimension": "causal",
+        "weight": 0.9
+      },
+      {
+        "dimension": "temporal",
+        "weight": 0.8
+      },
+      {
+        "dimension": "structural",
+        "weight": 0.7
+      }
+    ]
+  },
+  "expected": {
+    "dimension": "structural",
+    "weight": 0.504
+  }
+}

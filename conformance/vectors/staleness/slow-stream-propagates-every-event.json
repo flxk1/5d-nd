@@ -1,0 +1,31 @@
+{
+  "family": "staleness",
+  "case": "slow-stream-propagates-every-event",
+  "input": {
+    "kind": "debounce",
+    "events": [
+      [
+        "node",
+        0
+      ],
+      [
+        "node",
+        50
+      ],
+      [
+        "node",
+        100
+      ]
+    ],
+    "window_seconds": 10,
+    "threshold": 5
+  },
+  "expected": {
+    "coalesced": [
+      [
+        "node",
+        3
+      ]
+    ]
+  }
+}

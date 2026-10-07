@@ -1,0 +1,10 @@
+{
+  "family": "nd-system",
+  "case": "invalid-nd-system-wrapper-junk-string",
+  "input": {
+    "doc": {
+      "nd_system": "junk"
+    }
+  },
+  "expected": {"valid": false}
+}

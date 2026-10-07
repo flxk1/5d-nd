@@ -1,0 +1,24 @@
+{
+  "family": "statement",
+  "case": "invalid-weight-as-bool",
+  "input": {
+    "doc": {
+      "id": "eli:gdpr:2016-679#2016-05-04#0123456789abcdef",
+      "subj": "a_entity",
+      "obj": "b_entity",
+      "predicate": "enables",
+      "dimension": "causal",
+      "layer": "domain",
+      "weight": true,
+      "edge_confidence": 0.8,
+      "provenance": {
+        "start": 0,
+        "end": 10
+      },
+      "negation": "absent"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "family": "statement",
+  "case": "valid-minimal-predication",
+  "input": {
+    "doc": {
+      "id": "eli:gdpr:2016-679#2016-05-04#0123456789abcdef",
+      "subj": "controller",
+      "obj": "personal_data",
+      "predicate": "predication",
+      "dimension": "relational",
+      "weight": 1.0,
+      "edge_confidence": 0.9,
+      "provenance": {
+        "start": 10,
+        "end": 42
+      },
+      "negation": "absent",
+      "extraction_rule_id": null,
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-provider_of_online_platform",
+  "input": {
+    "value": "provider_of_online_platform"
+  },
+  "expected": {
+    "known": true
+  }
+}

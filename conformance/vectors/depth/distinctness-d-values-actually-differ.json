@@ -1,0 +1,12 @@
+{
+  "family": "depth",
+  "case": "distinctness-d-values-actually-differ",
+  "input": {
+    "kind": "distinct-pair-check",
+    "d_low": 0.25,
+    "d_high": 0.291667
+  },
+  "expected": {
+    "differ": true
+  }
+}

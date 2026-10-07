@@ -1,0 +1,16 @@
+{
+  "family": "fold-left",
+  "case": "path-2-causal-temporal-structural",
+  "input": {
+    "path": [
+      "causal",
+      "temporal",
+      "structural"
+    ]
+  },
+  "expected": {
+    "left_fold": "structural",
+    "right_fold": "causal",
+    "associative": false
+  }
+}

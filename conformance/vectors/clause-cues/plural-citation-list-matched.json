@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "plural-citation-list-matched",
+  "input": {
+    "text": "The rights referred to in Articles 15, 16 and 17 shall apply.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 4,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      15,
+      16,
+      17
+    ]
+  }
+}

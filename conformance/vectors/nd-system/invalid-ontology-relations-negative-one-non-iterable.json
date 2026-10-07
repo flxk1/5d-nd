@@ -1,0 +1,18 @@
+{
+  "family": "nd-system",
+  "case": "invalid-ontology-relations-negative-one-non-iterable",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": { "vocabulary": ["O"] }
+      },
+      "ontology_relations": -1
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

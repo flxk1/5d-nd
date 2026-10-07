@@ -1,0 +1,38 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout3-s10-gdpr-art21-2-profiling",
+  "provenance": "Held-out set 3",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "Where personal data are processed for direct marketing purposes, the data subject shall have the right to object at any time to processing of personal data concerning him or her for such marketing, which includes profiling to the extent that it is related to such direct marketing."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "-"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [],
+    "missing": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": false,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "cross_references-without-prejudice-bare",
+  "input": {
+    "unit_text": "The audit power applies without prejudice to any inspection by a national authority."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#b3253e20df25ae51",
+        "subj": "audit power applies",
+        "obj": "any inspection by a national authority",
+        "predicate": "cross_references",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 0,
+          "end": 83
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-cross_references-without-prejudice-bare"
+      }
+    ]
+  }
+}

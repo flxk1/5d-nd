@@ -1,0 +1,19 @@
+{
+  "family": "nd-system",
+  "case": "valid-vocabulary-mode-all-three",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "ax_closed": {"vocabulary_mode": "closed", "vocabulary": ["a", "b"]},
+        "ax_open": {"vocabulary_mode": "open"},
+        "ax_external": {"vocabulary_mode": "external", "ontology_id": "o", "ontology_version": "v"}
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

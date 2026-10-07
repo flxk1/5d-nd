@@ -1,15 +1,51 @@
 # The three layers, reference shape, operations
 
+## The 5D language specification
+
+This repository also carries the normative 5D **language specification** —
+[`spec/SPEC.md`](../spec/SPEC.md) — of which the resolver below is one
+consumer. The owner's model (`docs/decisions/0001-owner-model.md`): 5D is the
+five-dimension fingerprint/coordinate system; nD is the EXTRA GRAMMAR SYSTEM
+for domain-specific fingerprints (deontic is the grammar for deontic
+languages, governance for governance languages, mathematics is a collection
+of nD grammars). **"+nD" is NOT extra dimensions beyond the base five** — a
+prior reading in this file that said so was wrong and is corrected here. An
+nD grammar attaches to 5D through the contract in `spec/SPEC.md` §9
+(`NDSystem` + grammar descriptor, binding values restricted to the five
+dimensions and to is-relations only); it never adds a sixth dimension. No
+Loomground repository conforms to the spec yet — versum, solver, and the
+grammar planes are its PLANNED consumers.
+
 ## Is / ought
 
-5D is what **IS**: `resolve`'s `dimension` field is versum's own 5D
-dominant-dimension classification of a *factual* entry. A deontic operator
-(O/P/F — obligation/permission/prohibition) is a normative FORCE, never a
-fact on the 5D manifold — an OUGHT/norm entry's `dimension` is always `None`,
-never fabricated from a structural artefact its own indexing happens to leave
-behind. Norm content reaches a reference only through the factual entry the
-norm's own nD assignment points at (its `action` coordinate) — deontic only,
-never 5D.
+**The normative rule for is/ought lives in `spec/SPEC.md` §7 (N1-N4,
+2026-10-01): 5D knows nothing about is/ought.** A 5D link carries exactly
+one dimension and nothing else; there is one fingerprint per entry (N1). A
+normative relation MAY bind to a 5D dimension exactly like any other
+relation (N2). Whether a relation is normative is the OWNING nD grammar's
+own knowledge, which it MAY OPTIONALLY carry as a "co-dimension" — an
+ordinary axis in that grammar's own `NDSystem` (e.g. the deontic plane's
+existing `operator` axis, O/P/F) — never something 5D itself inspects or
+enforces (N3, final: "co-dimension rule is final, optional" — a grammar is
+NOT required to declare one). A norm's
+regulated content may still enter 5D as its own entry, linked by a
+structural `embeds` link (N4; the relation name is matched case- and
+separator-insensitively). This is the SETTLED rule — two earlier designs
+(D2's "no dimension for ought at all", then R1-R5's "every link
+carries a mode") were both tried and both superseded; see
+`docs/decisions/0003-is-ought-in-nd-grammars.md` for the full history.
+
+**What follows describes CURRENT versum behaviour** (the resolver's actual
+`resolve()` return shape today): `resolve`'s `dimension` field is versum's
+own 5D dominant-dimension classification of a *factual* entry. A deontic
+operator (O/P/F — obligation/permission/prohibition) is a normative FORCE;
+TODAY's versum gives an OUGHT/norm entry's `dimension` value `None` rather
+than computing one from its own content, never fabricating it from a
+structural artefact its own indexing happens to leave behind. Norm content
+reaches a reference only through the factual entry the norm's own nD
+assignment points at (its `action` coordinate) — this describes versum's
+OWN deontic plane's binding (still `{}` today, a plane-level choice), not a
+5D-level rule that excludes ought (5D itself is neutral — see §7 above).
 
 ## The three layers
 
@@ -29,9 +65,11 @@ versum            the STORE.  Dimension-agnostic: it holds content and takes a
 ```
 
 `versum` stores; the 5D algebra *addresses* what versum stores; `5d+nd` makes
-that addressing citable from a certification. The `+nD` is the
-forward-compatibility axis for custom dimensions beyond the base five — the
-reference resolver validates strictly against the base vocabulary it vendors.
+that addressing citable from a certification. `nD` names a domain-specific
+GRAMMAR that attaches to 5D through the contract in `spec/SPEC.md` §9 (not
+extra dimensions beyond the base five — see "The 5D language specification"
+above); this reference resolver validates strictly against the base
+vocabulary it vendors and does not itself interpret any nD grammar's axes.
 
 ## Shape of a reference
 
@@ -44,9 +82,11 @@ A `5d+nd` reference is dimensioned addressing over the store:
 }
 ```
 
-- `dimensions` — one or more known `Dimension` values (the base-5 vocabulary,
-  extensible via `+nD`), declaring which reasoning dimension(s) this reference
-  is addressed under. `validate(ref)` requires every entry to be a known
+- `dimensions` — one or more known `Dimension` values (the closed base-5
+  vocabulary; see "The 5D language specification" above — nD grammars attach
+  through a separate contract, they do not extend this list), declaring which
+  reasoning dimension(s) this reference is addressed under. `validate(ref)`
+  requires every entry to be a known
   `Dimension` value (fails closed otherwise); this is the only role `dimensions`
   plays in THIS module. `resolve(ref, *, store=...)` does not read, filter, or
   select by `dimensions` at all — it resolves purely from `anchor`, so two refs
@@ -144,7 +184,11 @@ result = resolve(ref, store=an_indexed_versum_store_path)
 #   "entry_id": "ent-33b8bdf7229b64c8",
 #   "span": {"start": 11, "end": 88,
 #             "text": "The lender must not make a solely automated decision on a credit application."},
-#   "dimension": None,          # OUGHT/norm entry: 5D is what IS, never a deontic operator
+#   "dimension": None,          # OUGHT/norm entry: TODAY's versum deontic plane
+#                               # binds nothing (its own binding() is {}), so this
+#                               # entry gets no 5D contribution at all — a choice
+#                               # of THAT plane, not a 5D-level rule (see
+#                               # spec/SPEC.md §7, N1-N4)
 #   "nd": {"loomground-deontic": {"operator": "F", "bearer": "lender", ...}},
 #   "source_urn": "urn:dls:sha256:defa970572b4d201a900ee509861d597bc206a7d21916082a43aa56af377e1f4",
 #   "content_digest": {"sha256": "…64 hex chars…"},

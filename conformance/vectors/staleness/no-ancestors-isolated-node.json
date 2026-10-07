@@ -1,0 +1,18 @@
+{
+  "family": "staleness",
+  "case": "no-ancestors-isolated-node",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": []
+    },
+    "changed": [
+      "A"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "family": "reference",
+  "case": "canonicalize-key-sorting",
+  "input": {
+    "ref": {
+      "z": 1,
+      "a": 2,
+      "m": 3
+    }
+  },
+  "expected": {
+    "canonicalize_utf8": "{\"a\":2,\"m\":3,\"z\":1}"
+  }
+}

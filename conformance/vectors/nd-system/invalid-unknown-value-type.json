@@ -1,0 +1,19 @@
+{
+  "family": "nd-system",
+  "case": "invalid-unknown-value-type",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "nonsense"
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

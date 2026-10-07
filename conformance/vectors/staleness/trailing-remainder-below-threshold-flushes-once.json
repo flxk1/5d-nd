@@ -1,0 +1,31 @@
+{
+  "family": "staleness",
+  "case": "trailing-remainder-below-threshold-flushes-once",
+  "input": {
+    "kind": "debounce",
+    "events": [
+      [
+        "node",
+        0
+      ],
+      [
+        "node",
+        1
+      ],
+      [
+        "node",
+        2
+      ]
+    ],
+    "window_seconds": 10,
+    "threshold": 5
+  },
+  "expected": {
+    "coalesced": [
+      [
+        "node",
+        1
+      ]
+    ]
+  }
+}

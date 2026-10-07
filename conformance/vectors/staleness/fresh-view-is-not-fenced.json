@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "fresh-view-is-not-fenced",
+  "input": {
+    "kind": "erasure_fence",
+    "view": {
+      "stale": false,
+      "staleness_tier": null
+    }
+  },
+  "expected": {
+    "fenced": false
+  }
+}

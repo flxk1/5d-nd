@@ -1,0 +1,11 @@
+{
+  "family": "fixedpoint",
+  "case": "to-fixed-zero",
+  "input": {
+    "op": "to_fixed",
+    "x": 0.0
+  },
+  "expected": {
+    "result": 0
+  }
+}

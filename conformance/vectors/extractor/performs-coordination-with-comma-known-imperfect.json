@@ -1,0 +1,45 @@
+{
+  "family": "extractor",
+  "case": "performs-coordination-with-comma-known-imperfect",
+  "known_imperfect": true,
+  "known_imperfect_reason": "The second conjunct's own Statement comes from T3-predication-whole-unit-fallback, whose own 8-word split has no notion of where a modal falls -- 'auditor' leads the span so the LEADING-only modal strip (R-k) never reaches the non-leading 'shall' two words later. This is the SAME documented limitation named in docs/decisions/0010-deterministic-extractor.md's own residual-modal-count section and ADR 0011 -- not fixed here; this vector locks the CURRENT, imperfect behaviour so a future fix is a visible, deliberate vector change, not a silent regression.",
+  "input": {
+    "unit_text": "The operator shall keep the log, and the auditor shall review it."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#65556ade0664eaff",
+        "subj": "auditor shall review",
+        "obj": "it",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.2,
+        "provenance": {
+          "start": 37,
+          "end": 64
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-whole-unit-fallback"
+      },
+      {
+        "id": "extracted-unit#n/a#3ec296939c09c903",
+        "subj": "operator",
+        "obj": "keep the log",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 31
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      }
+    ]
+  }
+}

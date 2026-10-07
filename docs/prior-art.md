@@ -21,7 +21,7 @@ found it re-describes established modal knowledge representation:
 - **CIDOC-CRM** — event-centric cultural-heritage modelling;
 - **RDF-Data-Cube** / **PROV-O** — dimensioned observations and provenance.
 
-So this repo claims none of the theory. It owns only a thin resolver and honest
+So this repo claims none of the theory. It owns only a thin resolver and a plain
 packaging. The dimension algebra it addresses with is **vendored** from
 [`loomground-solver`](#the-vendored-dimension-algebra); the reference-modelling it
 leans on is **PROV-O / RDF-Data-Cube**; the conceptual carving is **BFO /

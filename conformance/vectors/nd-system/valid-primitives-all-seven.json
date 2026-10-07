@@ -1,0 +1,20 @@
+{
+  "family": "nd-system",
+  "case": "valid-primitives-all-seven",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "primitives": ["equal", "contains", "contained_by", "overlaps", "disjoint", "precedes", "succeeds"]
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

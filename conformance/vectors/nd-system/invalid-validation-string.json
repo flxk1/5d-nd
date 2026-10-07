@@ -1,0 +1,18 @@
+{
+  "family": "nd-system",
+  "case": "invalid-validation-string",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "op": { "vocabulary": ["O", "P", "F"] }
+      },
+      "validation": "x"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

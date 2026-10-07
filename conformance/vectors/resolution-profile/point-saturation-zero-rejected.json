@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "point-saturation-zero-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "point_saturation": 0
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

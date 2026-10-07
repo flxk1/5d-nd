@@ -1,0 +1,32 @@
+{
+  "family": "cycle-rejection",
+  "case": "insertion-forces-incremental-reorder",
+  "input": {
+    "existing_edges": [
+      [
+        "C",
+        "D"
+      ],
+      [
+        "A",
+        "B"
+      ]
+    ],
+    "add_edge": [
+      "B",
+      "C"
+    ]
+  },
+  "expected": {
+    "accepted": true,
+    "order": {
+      "C": 2,
+      "D": 3,
+      "A": 0,
+      "B": 1
+    },
+    "children_of_parent": [
+      "C"
+    ]
+  }
+}

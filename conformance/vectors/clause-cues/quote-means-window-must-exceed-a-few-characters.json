@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "quote-means-window-must-exceed-a-few-characters",
+  "input": {
+    "text": "'consent' of the data subject means: see paragraph 4.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 2,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.333333
+    },
+    "cross_reference_targets": []
+  }
+}

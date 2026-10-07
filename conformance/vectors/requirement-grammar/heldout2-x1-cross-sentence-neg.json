@@ -1,0 +1,40 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout2-x1-cross-sentence-neg",
+  "provenance": "Held-out set 2",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "A decision based solely on automated processing is taken.",
+      "Human intervention, the right to express their views and the right to contest the decision are listed in the policy.",
+      "None of these is actually offered."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "N",
+    "right_to_express_view": "N",
+    "right_to_contest": "N"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "uncertain": [],
+    "missing": [],
+    "all_present": true,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

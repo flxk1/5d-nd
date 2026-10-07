@@ -1,0 +1,31 @@
+{
+  "family": "cycle-rejection",
+  "case": "two-new-parents-of-existing-children-then-join-them",
+  "input": {
+    "existing_edges": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "p1",
+        "a"
+      ],
+      [
+        "p2",
+        "b"
+      ]
+    ],
+    "add_edge": [
+      "p1",
+      "p2"
+    ]
+  },
+  "expected": {
+    "accepted": true,
+    "children_of_parent": [
+      "a",
+      "p2"
+    ]
+  }
+}

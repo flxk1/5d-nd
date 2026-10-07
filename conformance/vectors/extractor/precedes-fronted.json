@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "precedes-fronted",
+  "input": {
+    "unit_text": "Prior to the deployment, the operator shall complete the assessment."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#1382629bf2d511ab",
+        "subj": "operator",
+        "obj": "deployment",
+        "predicate": "precedes",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 0,
+          "end": 67
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-precedes-fronted"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "family": "nd-system",
+  "case": "invalid-allowed-axes-bare-string-but-unknown-axis",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string"
+        }
+      },
+      "bindings": [
+        {"form_slot": "s", "allowed_axes": "nonexistent"}
+      ]
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "family": "cycle-rejection",
+  "case": "three-cycle-rejected",
+  "input": {
+    "existing_edges": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "B",
+        "C"
+      ]
+    ],
+    "add_edge": [
+      "C",
+      "A"
+    ]
+  },
+  "expected": {
+    "error": "CycleError"
+  }
+}

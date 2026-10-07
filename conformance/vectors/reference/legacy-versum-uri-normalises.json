@@ -1,0 +1,10 @@
+{
+  "family": "reference",
+  "case": "legacy-versum-uri-normalises",
+  "input": {
+    "ref": "versum://policy/p1#span-150-240"
+  },
+  "expected": {
+    "canonical": "versum://policy/p1#150-240"
+  }
+}

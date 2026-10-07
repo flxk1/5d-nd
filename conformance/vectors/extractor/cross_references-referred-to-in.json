@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "cross_references-referred-to-in",
+  "input": {
+    "unit_text": "The notice referred to in Article 12 shall be published without delay."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#96b1beb8d9f7d833",
+        "subj": "notice",
+        "obj": "Article 12",
+        "predicate": "cross_references",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.65,
+        "provenance": {
+          "start": 0,
+          "end": 36
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-cross_references-referred-to-in"
+      }
+    ]
+  }
+}

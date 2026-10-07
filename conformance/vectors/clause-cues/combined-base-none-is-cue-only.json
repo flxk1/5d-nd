@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "combined-base-none-is-cue-only",
+  "input": {
+    "text": "The measures referred to in paragraph 1 shall apply.",
+    "base_fact": null,
+    "self_article_number": null
+  },
+  "expected": {
+    "combined": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  }
+}

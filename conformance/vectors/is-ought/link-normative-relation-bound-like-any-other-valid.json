@@ -1,0 +1,16 @@
+{
+  "family": "is-ought",
+  "case": "link-normative-relation-bound-like-any-other-valid",
+  "input": {
+    "kind": "link",
+    "link": {
+      "src_id": "norm-1",
+      "dst_id": "bank-1",
+      "relation": "obliges",
+      "dimension": "intentional"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

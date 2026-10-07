@@ -1,0 +1,12 @@
+{
+  "family": "match-blend",
+  "case": "default-weights-both-zero",
+  "input": {
+    "term_score": 0.0,
+    "structural_score": 0.0,
+    "weights": null
+  },
+  "expected": {
+    "combined": 0.0
+  }
+}

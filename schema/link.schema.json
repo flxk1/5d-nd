@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/link.schema.json",
+  "title": "5D link",
+  "description": "A typed link between two entries; carries exactly one dimension, nothing else (spec/SPEC.md §6; §7 N1 — 5D is neutral on is/ought, owner design change 2026-10-01, supersedes an earlier link 'mode' field on this branch; see docs/decisions/0003-is-ought-in-nd-grammars.md). additionalProperties is true: an extra field an nD grammar chooses to attach (e.g. its own normative marker) is simply ignored by 5D, never rejected. The 'embeds' relation is always dimension 'structural' (used to lower a norm's content into 5D, §7 N4) — matched case- and separator-insensitively, with any run of whitespace/hyphen/underscore collapsed ANYWHERE in the string (not only leading/trailing), via the same normalisation src/five_d_nd/contract.py normalise_relation_key()/is_embeds_relation() apply in code: 'Embeds', 'EMBEDS', ' embeds ', 'em-beds', 'em_beds' and 'Em Beds' are all recognised, not only the exact literal string 'embeds'. This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py).",
+  "type": "object",
+  "required": [
+    "src_id",
+    "dst_id",
+    "dimension",
+    "relation"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "src_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dst_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "structural",
+        "causal",
+        "intentional",
+        "temporal",
+        "relational"
+      ]
+    },
+    "relation": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "relation": {
+            "pattern": "^[\\s_-]*[Ee][\\s_-]*[Mm][\\s_-]*[Bb][\\s_-]*[Ee][\\s_-]*[Dd][\\s_-]*[Ss][\\s_-]*$"
+          }
+        },
+        "required": [
+          "relation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "dimension": {
+            "const": "structural"
+          }
+        }
+      }
+    }
+  ]
+}

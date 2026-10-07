@@ -1,0 +1,23 @@
+{
+  "family": "statement",
+  "case": "invalid-provenance-start-not-less-than-end",
+  "input": {
+    "doc": {
+      "id": "x#y#0123456789abcdef",
+      "subj": "a",
+      "obj": "b",
+      "predicate": "enables",
+      "dimension": "causal",
+      "edge_confidence": 0.5,
+      "provenance": {
+        "start": 20,
+        "end": 10
+      },
+      "negation": "absent",
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

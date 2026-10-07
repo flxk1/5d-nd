@@ -1,0 +1,16 @@
+{
+  "family": "resolution-profile",
+  "case": "d-blend-weights-both-zero-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "d_blend_weights": {
+        "links": 0.0,
+        "nesting": 0.0
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

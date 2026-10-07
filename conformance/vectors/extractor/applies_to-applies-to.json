@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "applies_to-applies-to",
+  "input": {
+    "unit_text": "This Directive applies to the processing of traffic data by a network operator."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#548df1f2c4e89aa4",
+        "subj": "This Directive",
+        "obj": "processing of traffic data by a network operator",
+        "predicate": "applies_to",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.7,
+        "provenance": {
+          "start": 0,
+          "end": 78
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-applies_to-applies-to"
+      }
+    ]
+  }
+}

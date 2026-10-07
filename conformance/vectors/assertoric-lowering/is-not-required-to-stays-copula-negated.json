@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "is-not-required-to-stays-copula-negated",
+  "input": {
+    "sentence": "The provider is not required to comply with the code."
+  },
+  "expected": {
+    "subject": "provider",
+    "predicate": "is",
+    "object": "not required to comply with the code",
+    "dimension": "relational",
+    "negated": true,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

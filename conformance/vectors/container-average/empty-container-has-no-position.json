@@ -1,0 +1,10 @@
+{
+  "family": "container-average",
+  "case": "empty-container-has-no-position",
+  "input": {
+    "member_points": []
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

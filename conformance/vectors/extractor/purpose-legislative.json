@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "purpose-legislative",
+  "input": {
+    "unit_text": "The retention period exists in order to support a later audit of the decision."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#dab17e78458ec028",
+        "subj": "retention period exists",
+        "obj": "support a later audit of the decision",
+        "predicate": "legislative_purpose_of",
+        "dimension": "intentional",
+        "layer": "surface",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 77
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-purpose-cue-legislative-by-modal-fallback"
+      }
+    ]
+  }
+}

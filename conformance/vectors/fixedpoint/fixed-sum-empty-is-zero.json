@@ -1,0 +1,11 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-sum-empty-is-zero",
+  "input": {
+    "op": "fixed_sum",
+    "values": []
+  },
+  "expected": {
+    "result": 0
+  }
+}

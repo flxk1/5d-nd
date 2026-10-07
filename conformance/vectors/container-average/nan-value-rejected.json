@@ -1,0 +1,18 @@
+{
+  "family": "container-average",
+  "case": "nan-value-rejected",
+  "input": {
+    "member_points": [
+      {
+        "structural": NaN,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      }
+    ]
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

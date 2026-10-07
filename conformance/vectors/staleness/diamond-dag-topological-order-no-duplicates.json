@@ -1,0 +1,31 @@
+{
+  "family": "staleness",
+  "case": "diamond-dag-topological-order-no-duplicates",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": [
+        "B",
+        "C"
+      ],
+      "B": [
+        "D"
+      ],
+      "C": [
+        "D"
+      ],
+      "D": []
+    },
+    "changed": [
+      "A"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "predication-copula",
+  "input": {
+    "unit_text": "The retention schedule is a binding part of the internal compliance policy."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#e11a2f87c4c9641c",
+        "subj": "retention schedule",
+        "obj": "binding part of the internal compliance policy",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.35,
+        "provenance": {
+          "start": 0,
+          "end": 74
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-copula-fallback"
+      }
+    ]
+  }
+}

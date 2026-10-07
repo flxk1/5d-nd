@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "external-phrase-must-follow-citation-directly",
+  "input": {
+    "text": "As referred to in Article 6(1), which is subject to the rules of Regulation (EU) No 182/2011.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 2,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      6
+    ]
+  }
+}

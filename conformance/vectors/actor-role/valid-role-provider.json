@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-provider",
+  "input": {
+    "value": "provider"
+  },
+  "expected": {
+    "known": true
+  }
+}

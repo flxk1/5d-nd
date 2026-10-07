@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-other-escape",
+  "input": {
+    "value": "other(notifying_authority)"
+  },
+  "expected": {
+    "known": true
+  }
+}

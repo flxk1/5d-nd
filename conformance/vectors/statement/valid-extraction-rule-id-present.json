@@ -1,0 +1,25 @@
+{
+  "family": "statement",
+  "case": "valid-extraction-rule-id-present",
+  "input": {
+    "doc": {
+      "id": "eli:aiact:2024-1689#2024-07-12#0123456789abcdef",
+      "subj": "ai_system",
+      "obj": "high_risk_classification",
+      "predicate": "legislative_purpose_of",
+      "dimension": "intentional",
+      "weight": 1.0,
+      "edge_confidence": 0.7,
+      "provenance": {
+        "start": 5,
+        "end": 60
+      },
+      "negation": "uncertain",
+      "extraction_rule_id": "cue-rule-007",
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

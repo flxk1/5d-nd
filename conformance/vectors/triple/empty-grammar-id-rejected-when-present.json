@@ -1,0 +1,17 @@
+{
+  "family": "triple",
+  "case": "empty-grammar-id-rejected-when-present",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "p",
+      "o": "b",
+      "dimension": "causal",
+      "provenance": {},
+      "grammar_id": ""
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

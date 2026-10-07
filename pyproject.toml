@@ -56,6 +56,12 @@ version = { attr = "five_d_nd._version.__version__" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Fix round (owner-approved integration step, 2026-10-02): the requirement
+# nD grammar's rule data (five_d_nd/grammars/requirement_rules.json) is
+# DATA, not code — ship it inside the wheel, not only in the source tree.
+[tool.setuptools.package-data]
+five_d_nd = ["grammars/*.json"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]

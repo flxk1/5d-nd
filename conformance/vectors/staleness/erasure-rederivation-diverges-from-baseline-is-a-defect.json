@@ -1,0 +1,24 @@
+{
+  "family": "staleness",
+  "case": "erasure-rederivation-diverges-from-baseline-is-a-defect",
+  "input": {
+    "kind": "erasure_bit_identity",
+    "rederived_value": {
+      "structural": 0.500001,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "baseline_value": {
+      "structural": 0.5,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  },
+  "expected": {
+    "bit_identical": false
+  }
+}

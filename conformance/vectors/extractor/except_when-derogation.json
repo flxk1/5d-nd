@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "except_when-derogation",
+  "input": {
+    "unit_text": "By way of derogation from the standard procedure, a simplified notice may be used for a minor incident."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#8ae27822f1bf6a22",
+        "subj": "simplified notice",
+        "obj": "standard procedure",
+        "predicate": "except_when",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.65,
+        "provenance": {
+          "start": 0,
+          "end": 102
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-except_when-derogation-from"
+      }
+    ]
+  }
+}

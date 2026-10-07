@@ -1,0 +1,23 @@
+{
+  "family": "nd-system",
+  "case": "invalid-unknown-primitive",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "primitives": [
+            "equal",
+            "flies"
+          ]
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

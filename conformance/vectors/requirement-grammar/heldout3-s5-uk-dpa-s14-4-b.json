@@ -1,0 +1,38 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout3-s5-uk-dpa-s14-4-b",
+  "provenance": "Held-out set 3",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "The data subject may, before the end of the period of 1 month beginning with receipt of the notification, request the controller to reconsider the decision, or take a new decision that is not based solely on automated processing."
+    ]
+  },
+  "truth": {
+    "trigger": "N",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "-"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": true,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [],
+    "missing": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": null,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

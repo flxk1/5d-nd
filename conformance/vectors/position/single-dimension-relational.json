@@ -1,0 +1,18 @@
+{
+  "family": "position",
+  "case": "single-dimension-relational",
+  "input": {
+    "contributions": {
+      "relational": 5
+    }
+  },
+  "expected": {
+    "structural": 0.0,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 1.0,
+    "dominant": "relational",
+    "basis": "planes"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "family": "triple",
+  "case": "weight-boolean-rejected",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "p",
+      "o": "b",
+      "dimension": "causal",
+      "weight": true,
+      "provenance": {}
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

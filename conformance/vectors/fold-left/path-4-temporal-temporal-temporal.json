@@ -1,0 +1,16 @@
+{
+  "family": "fold-left",
+  "case": "path-4-temporal-temporal-temporal",
+  "input": {
+    "path": [
+      "temporal",
+      "temporal",
+      "temporal"
+    ]
+  },
+  "expected": {
+    "left_fold": "temporal",
+    "right_fold": "temporal",
+    "associative": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/triple.schema.json",
+  "title": "5D triple",
+  "description": "A triple (spec/SPEC.md §11): (s, p, o, dimension, weight, provenance) plus an OPTIONAL grammar_id, exactly one dimension per edge. Mirrors five_d_nd/triple.py's triple_violations() exactly. 's'/'p'/'o' are non-empty strings; 'dimension' is one of the five (never absent); 'weight' is a JSON number (never a boolean) in [0, 1], defaulting to 1.0 when absent (the schema itself does not apply this default — it only requires the field's TYPE when present); 'provenance' is required to be PRESENT, with no further shape constraint (an nD grammar's own provenance model, e.g. factual's SourceTag, is out of this schema's scope, matching §6's own looseness); 'grammar_id' names which nD grammar produced this triple, a non-empty string when present.",
+  "type": "object",
+  "required": ["s", "p", "o", "dimension", "provenance"],
+  "properties": {
+    "s": {"type": "string", "minLength": 1},
+    "p": {"type": "string", "minLength": 1},
+    "o": {"type": "string", "minLength": 1},
+    "dimension": {
+      "type": "string",
+      "enum": ["structural", "causal", "intentional", "temporal", "relational"]
+    },
+    "weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "provenance": {},
+    "grammar_id": {"type": "string", "minLength": 1}
+  }
+}

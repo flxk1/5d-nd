@@ -1,0 +1,19 @@
+{
+  "family": "term-grammar",
+  "case": "bm25-vector-known-terms",
+  "input": {
+    "text": "The controller shall notify the supervisory authority without undue delay.",
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "vector": {
+      "controller": 0.448747,
+      "notify": 0.93647,
+      "supervisory": 0.93647,
+      "authority": 0.93647,
+      "without": 0.93647,
+      "undue": 0.93647,
+      "delay": 0.93647
+    }
+  }
+}

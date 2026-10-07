@@ -1,0 +1,16 @@
+{
+  "family": "triple",
+  "case": "unknown-dimension-rejected",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "p",
+      "o": "b",
+      "dimension": "bogus",
+      "provenance": {}
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

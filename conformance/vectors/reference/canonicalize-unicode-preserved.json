@@ -1,0 +1,12 @@
+{
+  "family": "reference",
+  "case": "canonicalize-unicode-preserved",
+  "input": {
+    "ref": {
+      "text": "café éè 中文"
+    }
+  },
+  "expected": {
+    "canonicalize_utf8": "{\"text\":\"café éè 中文\"}"
+  }
+}

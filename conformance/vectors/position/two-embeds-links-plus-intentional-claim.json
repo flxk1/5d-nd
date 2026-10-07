@@ -1,0 +1,19 @@
+{
+  "family": "position",
+  "case": "two-embeds-links-plus-intentional-claim",
+  "input": {
+    "contributions": {
+      "intentional": 1
+    },
+    "embeds_count": 2
+  },
+  "expected": {
+    "structural": 0.666667,
+    "causal": 0.0,
+    "intentional": 0.333333,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "structural",
+    "basis": "planes"
+  }
+}

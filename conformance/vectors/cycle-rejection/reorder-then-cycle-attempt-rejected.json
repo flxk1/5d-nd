@@ -1,0 +1,27 @@
+{
+  "family": "cycle-rejection",
+  "case": "reorder-then-cycle-attempt-rejected",
+  "input": {
+    "existing_edges": [
+      [
+        "C",
+        "D"
+      ],
+      [
+        "A",
+        "B"
+      ],
+      [
+        "B",
+        "C"
+      ]
+    ],
+    "add_edge": [
+      "D",
+      "A"
+    ]
+  },
+  "expected": {
+    "error": "CycleError"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "family": "staleness",
+  "case": "wide-diamond-three-branches",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": [
+        "B",
+        "C",
+        "E"
+      ],
+      "B": [
+        "D"
+      ],
+      "C": [
+        "D"
+      ],
+      "E": [
+        "D"
+      ],
+      "D": []
+    },
+    "changed": [
+      "A"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "D"
+    ]
+  }
+}

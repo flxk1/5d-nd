@@ -1,0 +1,20 @@
+{
+  "family": "nd-system",
+  "case": "invalid-vocabulary-key-present-empty-defaults-closed-and-fails",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "vocabulary": []
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

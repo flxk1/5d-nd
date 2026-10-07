@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/statement.schema.json",
+  "title": "5D typed Statement",
+  "description": "A typed-statement node (spec/SPEC.md §21, typed-triple layer). Mirrors five_d_nd/statement.py's statement_violations() exactly: 'id' is the stable instrument URI + consolidation date + a 16-hex-digit lowercase sha256 text hash, enforced to this schema's own 'id' pattern; 'subj'/'obj' are unit or entity ids; 'predicate' is one of §21's closed, versioned v3 enum; 'dimension' is one of the five (§2) and MUST agree with the predicate's own fixed dimension (checked by code, not expressible in this schema alone — see the per-predicate 'dimension' table in vocabulary/statement-predicates.json); 'layer' is one of surface/domain/deep, computed from the clause's own text position and function, independent of 'predicate'; 'weight' is in [0,1], defaulting to 1.0 when absent (schema does not apply the default, only the type); 'edge_confidence' is REQUIRED and SEPARATE from weight; 'provenance' is a span {start,end} with start >= 0 and 0 <= start < end; 'negation' reuses §18's three-state present/uncertain/absent; 'extraction_rule_id' is OPTIONAL, non-empty string or null (null is the gold convention). additionalProperties is false: an unknown field is a schema rejection, never silently ignored. This schema is, per §9's P1-P3 policy pattern, intentionally STRICTER than code on a malformed shape only (e.g. provenance.start/end as non-integers, or an id not matching the pinned shape) and MUST accept every well-formed document the code accepts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "subj", "obj", "predicate", "dimension", "layer", "edge_confidence", "provenance", "negation"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1, "pattern": "^[^#]+#[^#]+#[0-9a-f]{16}$"},
+    "subj": {"type": "string", "minLength": 1},
+    "obj": {"type": "string", "minLength": 1},
+    "predicate": {
+      "type": "string",
+      "enum": [
+        "is_a", "part_of", "applies_to", "cross_references", "except_when",
+        "enables", "requires",
+        "legislative_purpose_of", "compliance_purpose_of", "based_on",
+        "precedes", "deadline_of",
+        "predication", "competence_of", "performs"
+      ]
+    },
+    "dimension": {
+      "type": "string",
+      "enum": ["structural", "causal", "intentional", "temporal", "relational"]
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["surface", "domain", "deep"]
+    },
+    "weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "edge_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 0}
+      }
+    },
+    "negation": {
+      "type": "string",
+      "enum": ["present", "uncertain", "absent"]
+    },
+    "extraction_rule_id": {"type": ["string", "null"], "minLength": 1}
+  }
+}

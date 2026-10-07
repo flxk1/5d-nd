@@ -1,0 +1,16 @@
+{
+  "family": "is-ought",
+  "case": "embeds-link-case-variant-EMBEDS-non-structural-invalid",
+  "input": {
+    "kind": "embeds_link",
+    "link": {
+      "src_id": "norm-1",
+      "dst_id": "content-1",
+      "relation": "EMBEDS",
+      "dimension": "causal"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

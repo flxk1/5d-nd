@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/grammar-descriptor.schema.json",
+  "title": "nD grammar descriptor",
+  "description": "What an nD grammar (a 'plane') publishes to attach to 5D (spec/SPEC.md §9). This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py's _local_validator()). The JSON INTERCHANGE form (produce omitted — JSON cannot carry a callable) validates directly against this schema. The RUNTIME form additionally requires 'produce' to be present and callable, which a JSON Schema cannot express structurally — see src/five_d_nd/contract.py descriptor_violations(require_produce=True) for that half of the contract. Ported from versum src/versum/planes.py's DescriptorPlane.from_descriptor — a binding value is a BARE DIMENSION STRING, exactly matching versum's own p5.is_dimension(dim) check (5D is neutral on is/ought, §7 N1; owner design change, 2026-10-01 — supersedes an earlier mode-aware object form on this branch, see docs/decisions/0003-is-ought-in-nd-grammars.md). This specification's own additions beyond versum's own contract: the required contract_version conformance marker (§9/§10, MUST equal the spec version exactly); the optional co_dimensions list (§9 N3, each id MUST be a declared NDSystem axis); an optional, UNCHECKED context value on each example (§9, for a context-dependent grammar such as topos — versum parity: a non-mapping context, e.g. a string or null, is accepted).",
+  "type": "object",
+  "required": ["plane", "language_version", "nd_system", "binding", "contract_version"],
+  "additionalProperties": true,
+  "properties": {
+    "plane": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$" },
+    "language_version": { "type": "string", "minLength": 1 },
+    "contract_version": {
+      "description": "Conformance marker (§9/§10): MUST equal, exactly, the 5D spec version this descriptor targets — 'How a grammar declares conformance' in §9. For this draft, that value is '1.0-draft' (src/five_d_nd/contract.py SPEC_VERSION). Not part of versum's own descriptor contract.",
+      "const": "1.0-draft"
+    },
+    "co_dimensions": {
+      "description": "OPTIONAL (§9 N3 — the owner's settled rule: a grammar MAY, never MUST, mark the normative character of a relation this way). A list of axis ids FROM THIS DESCRIPTOR'S OWN nd_system.axes — each one a co-dimension the grammar is declaring. Validated only for cross-reference (each id names a declared axis); absent entirely is valid (see conformance/vectors/descriptor-binding/).",
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "nd_system": {
+      "allOf": [
+        { "$ref": "nd-system.schema.json" },
+        {
+          "description": "unknown_values: 'reject' is checked HERE, at the descriptor layer — matching versum, where this is a planes.py check, not an NDSystem.violations() check (see nd-system.schema.json's own description). This nd_system value MAY itself be wrapper-form ({\"nd_system\": {...}}, see nd-system.schema.json); versum's own descriptor-layer check reads validation.unknown_values off the SAME (unwrapped) level its NDSystem.from_dict uses. An earlier version of this allOf branch constrained the OUTER object's own 'validation' unconditionally, which is the WRONG level whenever nd_system is wrapper-form — an outer-level validation.unknown_values is not what versum or src/five_d_nd/contract.py descriptor_violations() actually read in that shape. This if/then/else mirrors nd-system.schema.json's own unwrap-first branching exactly, applied to 'validation' alone. 'validation' itself MAY be any JSON-falsy value (null, 0, false, \"\", []), not only an object — versum's own `validation = root.get(\"validation\") or {}` accepts every falsy shape (equivalent to {}, so unknown_values defaults to \"reject\") and CRASHES only on a TRUTHY non-mapping; this mirrors that exactly, same as nd-system.schema.json's own 'validation' field.",
+          "if": { "required": ["nd_system"] },
+          "then": {
+            "properties": {
+              "nd_system": {
+                "properties": {
+                  "validation": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "unknown_values": { "const": "reject" }
+                        }
+                      },
+                      { "enum": [null, 0, false, "", []] }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "validation": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "unknown_values": { "const": "reject" }
+                    }
+                  },
+                  { "enum": [null, 0, false, "", []] }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "binding": {
+      "description": "relation_or_field -> one of the five dimensions (a bare string; versum's own shape — p5.is_dimension(dim)). 5D does not inspect whether a relation is normative (§7 N1-N2): a normative relation binds exactly like any other. Whether a relation IS normative is the owning nD grammar's own knowledge, carried as a co-dimension on that grammar's own NDSystem (§9 N3) — never expressed here.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["structural", "causal", "intentional", "temporal", "relational"]
+      }
+    },
+    "produce": {
+      "description": "REQUIRED and callable in the runtime descriptor form; OMITTED in the JSON interchange form (§9). Not itself JSON-Schema-checkable for callability."
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sentence", "expected"],
+        "properties": {
+          "sentence": { "type": "string" },
+          "expected": { "type": "array" },
+          "context": {
+            "description": "OPTIONAL (§9). Passed through UNCHECKED to produce(sentence, context) when present — a context-dependent grammar (e.g. topos) needs this to reproduce its own examples. No type constraint here, by versum parity: versum accepts a non-mapping context (a bare string, null, ...) and never validates its shape."
+          }
+        }
+      }
+    }
+  }
+}

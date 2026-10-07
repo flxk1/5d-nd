@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-commission",
+  "input": {
+    "value": "commission"
+  },
+  "expected": {
+    "known": true
+  }
+}

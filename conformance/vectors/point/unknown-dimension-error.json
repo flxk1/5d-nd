@@ -1,0 +1,13 @@
+{
+  "family": "point",
+  "case": "unknown-dimension-error",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "bogus": 1
+    }
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "purpose-fronted",
+  "input": {
+    "unit_text": "For the purpose of ensuring compliance, the provider shall maintain a log."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#d6b6ced3569782e2",
+        "subj": "provider shall maintain a log",
+        "obj": "ensuring compliance",
+        "predicate": "compliance_purpose_of",
+        "dimension": "intentional",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 73
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-purpose-cue-fronted-compliance-by-modal-fallback"
+      }
+    ]
+  }
+}
