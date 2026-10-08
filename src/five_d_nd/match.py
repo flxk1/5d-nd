@@ -76,7 +76,7 @@ def _validate_score(name: str, value: Any) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise ValueError(f"{name} must be a number, got {value!r}")
     v = float(value)
-    # Fix round item 3: `0.0 <= v <= 1.0` already rejects NaN (every
+    # `0.0 <= v <= 1.0` already rejects NaN (every
     # comparison with NaN is False in IEEE-754) and +-inf, so this check
     # alone is already fail-closed on non-finite scores — `math.isfinite`
     # is asserted explicitly anyway, stated rather than left implicit.
@@ -101,7 +101,7 @@ def combine_scores(term_score: Any, structural_score: Any, weights: "Mapping | N
         raise ValueError(f"weights must be a mapping with exactly 'term'/'structural' keys, got {w!r}")
     term_w, structural_w = w["term"], w["structural"]
     for label, value in (("term", term_w), ("structural", structural_w)):
-        # fix round item 3: `math.isfinite` closes the same NaN/inf gap
+        # `math.isfinite` closes the same NaN/inf gap
         # profile.py's own weight-mapping check closes (shared concern,
         # separate code paths — `match.py` validates a bare weights
         # mapping passed directly, not only one read from a profile).

@@ -2,10 +2,9 @@
 # Copyright 2026 flxk1
 """Replay: runtime/timing NEVER enters a hashed result.
 
-Owner-approved integration step, 2026-10-02 ("runtime kept out of
-results.json"). Every function this adds
-(`five_d_nd.clause_cues`, `five_d_nd.match`, `five_d_nd.grammars.term`,
-`five_d_nd.grammars.requirement`) returns ONLY deterministic, content
+Runtime is kept out of results.json. Every function in
+`five_d_nd.clause_cues`, `five_d_nd.match`, `five_d_nd.grammars.term` and
+`five_d_nd.grammars.requirement` returns ONLY deterministic, content
 -derived values — no wall-clock time, no monotonic counter, no process id,
 anywhere in a return value that is itself digested, compared across runs,
 or stored as a conformance vector's own ``expected`` field. This module is

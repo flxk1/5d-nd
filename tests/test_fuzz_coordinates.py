@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright 2026 flxk1
-"""Coordinate round (2026-10-01; fix round) — a deterministic, seeded,
-mutation-based fuzz over this round's own validators and arithmetic
+"""A deterministic, seeded,
+mutation-based fuzz over the coordinate layer's own validators and arithmetic
 functions: the resolution profile (``five_d_nd.profile``), a triple
 (``five_d_nd.triple``), a point (``five_d_nd.point``), and the
 crash-safety of the container/depth/views functions that are NOT
@@ -14,7 +14,7 @@ baseline, mutate 1-3 keys per case from a small tagged pool of mutation
 operators, assert a healthy valid fraction, and assert no function ever
 raises an UNDOCUMENTED exception type. Stdlib ``random`` only, fixed seed.
 
-**Fix round, item 3: an ORACLE and a schema-vs-code DIFFERENTIAL, as
+**An ORACLE and a schema-vs-code DIFFERENTIAL, as
 ``test_fuzz.py`` has.** Every mutant this file generates for the profile
 and triple validators is ALSO checked against an independent ORACLE
 (:func:`_profile_oracle`/:func:`_triple_oracle` — a from-scratch
@@ -25,7 +25,7 @@ without importing or calling the module under test) and, when
 disagreement on either axis is a hard test failure, not merely a silent
 pass/skip.
 
-**Fix round, item 3: no TypeError excuse.** The earlier version of this
+**No TypeError excuse.** The earlier version of this
 file tolerated ``TypeError`` from ``trimmed_top_k_match`` on a
 non-numeric ``weight``, on the theory that a malformed weight should be
 rejected upstream. ``container.trimmed_top_k_match`` (and
@@ -87,7 +87,7 @@ _VALID_PROFILE = {
     "link_saturation": 5,
     "anchor_saturation": 2,
     "point_saturation": 5,
-    # fix round (owner-approved integration step, 2026-10-02) — §8a/§19
+    # §8a/§19
     "clause_cue_saturation": 3,
     "match_blend_weights": {"term": 0.7, "structural": 0.3},
     "relational_suppression_scale": 1,
@@ -149,7 +149,7 @@ _PROFILE_INVALID_WELL_TYPED = {
     "d_blend_weights": [
         {"links": 0.5, "nesting": 0.5, "extra": 1},
         {"links": -0.1, "nesting": 0.5},
-        # fix round item 3: NaN/inf, independently fuzzed (not only a
+        # NaN/inf, independently fuzzed (not only a
         # hand-picked vector) -- `x < 0` alone does not reject either.
         {"links": float("nan"), "nesting": 0.5},
         {"links": float("inf"), "nesting": 0.5},
@@ -289,7 +289,7 @@ def _profile_oracle(doc) -> bool:
             return False
         if not math.isfinite(v) or v <= 0:
             return False
-    # fix round, item 3: this oracle
+    # This oracle
     # must independently reject NaN/inf too — `x < 0` alone does NOT (every
     # comparison with NaN is False in IEEE-754), so a bare `x < 0` guard
     # here would silently disagree with the now-fixed real code.
@@ -473,7 +473,7 @@ def test_point_violations_never_crashes_and_has_a_healthy_valid_fraction():
         f"expected >= {_MIN_VALID_FRACTION_POINT:.0%}")
 
 
-# fix round, item 5 (SC2): a DEDICATED
+# A DEDICATED
 # boundary-value differential — every positive-integer profile field at
 # its own boundary (0, the smallest rejected value) must be rejected by
 # BOTH the code and the schema, not left to a random fuzz draw that might
@@ -487,10 +487,10 @@ def test_resolution_profile_positive_integer_boundary_zero_rejected_by_code_and_
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# Fix round (owner-approved integration step, 2026-10-02): clause_cues
+# clause_cues
 # (§8a) and match (§19) fuzz — same method (seeded, mutation-based,
-# crash-safety + an independent oracle), applied to this round's own
-# additions.
+# crash-safety + an independent oracle), applied to the clause-cue
+# layer and the matching rule.
 # ══════════════════════════════════════════════════════════════════════════
 from five_d_nd import clause_cues, match  # noqa: E402
 
@@ -519,8 +519,8 @@ def _random_sentence(rng: random.Random) -> str:
     return " ".join(rng.choice(_CLAUSE_CUE_FRAGMENTS) for _ in range(n))
 
 
-# fix round, item 4b: §20 claimed an
-# independent oracle for the clause_cues fuzz that did not exist. This is a
+# §20 requires an
+# independent oracle for the clause_cues fuzz. This is a
 # REAL one — a fresh, separately-typed transcription of §8a's own cue
 # table (one combined alternation per dimension, written by reading the
 # spec's table, never by importing or inspecting clause_cues.CUE_TABLE) —
@@ -578,7 +578,7 @@ _ORACLE_RELATIONAL_RE = re.compile(
 def _clause_cues_fires_oracle(text: str) -> dict:
     """Independent re-derivation of WHICH dimensions §8a's cue table fires
     on for ``text`` — a boolean per dimension, never calling into
-    ``clause_cues`` at all. Fix round, decided 2026-10-03: `relational`'s
+    ``clause_cues`` at all. `relational`'s
     own down-weighting formula (`relational_effective`) is `count * s /
     (s + n_other)`, which is exactly zero IFF `count == 0` (since `s /
     (s + n_other)` is always strictly positive for a finite `s > 0` and
@@ -718,7 +718,7 @@ def _match_oracle(term_score, structural_score, weights) -> "float | None":
     if not isinstance(w, dict) or set(w) != {"term", "structural"}:
         return None
     tw, sw = w["term"], w["structural"]
-    # fix round item 3: `v < 0` alone does not reject NaN/inf (IEEE-754);
+    # `v < 0` alone does not reject NaN/inf (IEEE-754);
     # `math.isfinite` closes that independently here too.
     for v in (tw, sw):
         if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v < 0:
@@ -748,7 +748,7 @@ def test_combine_scores_never_crashes_except_valueerror_and_matches_oracle():
         elif weights_choice < 0.88:
             weights = {"term": rng.choice([0.0, 0.3])}  # malformed: missing key
         else:
-            # fix round item 3: NaN/inf/negative/bool weights, fuzzed
+            # NaN/inf/negative/bool weights, fuzzed
             # independently (not only exercised by a hand-picked vector).
             weights = {"term": rng.choice([float("nan"), float("inf"), float("-inf"), -0.5, True]),
                        "structural": rng.choice([0.3, 0.7, float("nan"), -0.2])}
@@ -792,7 +792,7 @@ def test_container_position_only_raises_value_error_on_garbage_member_points():
 
 
 def test_trimmed_top_k_match_only_raises_value_error_on_garbage_members():
-    """Fix round item 3: NO exception type is excused any more — every
+    """NO exception type is excused — every
     member field (``claim_id``, ``weight``, ``operative``, ``point``) is
     now validated BEFORE ranking (``container.trimmed_top_k_match``'s own
     per-member loop), so a malformed shape is ALWAYS ``ValueError``, never
@@ -814,7 +814,7 @@ def test_trimmed_top_k_match_only_raises_value_error_on_garbage_members():
         except Exception as exc:  # noqa: BLE001
             raise AssertionError(
                 f"trimmed_top_k_match() raised undocumented {type(exc).__name__} "
-                f"on {members!r} — fix round item 3: no exception type is excused") from exc
+                f"on {members!r} — no exception type is excused") from exc
 
 
 def test_conceptual_depth_only_raises_value_error_on_garbage_input():

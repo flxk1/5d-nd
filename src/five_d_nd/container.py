@@ -426,7 +426,7 @@ def container_position(member_points: Sequence[Mapping[str, float]]) -> dict:
     a caller must not invent a position for a container with zero members),
     on any member point that is not a mapping carrying a numeric,
     FINITE value for every one of the five dimensions (NaN/±inf are
-    REJECTED, fix round item 6 — never silently folded into the mean), and
+    REJECTED — never silently folded into the mean), and
     goes through ``fixedpoint`` for the fold itself (NOT plain float
     summation) so the result does not depend on fold order even when the
     member points themselves are adversarially ordered to maximise float
@@ -467,12 +467,12 @@ def trimmed_top_k_match(
     otherwise; when PRESENT it MUST be an actual boolean). Operative
     members are ALWAYS rank-sorted by ``weight`` DESCENDING, ties broken by
     :func:`five_d_nd.fixedpoint.canonical_tiebreak_key` (ascending,
-    salted) — fix round item 6: this now applies BELOW ``n_min`` too (the
+    salted) — this applies BELOW ``n_min`` too (the
     whole-set branch), so the result (``selected_claim_ids``' own ORDER) is
     permutation-invariant in ``members``' own input order, not merely which
     members are included. When the operative count ``n`` is STRICTLY BELOW
-    ``n_min`` (``n < n_min`` — the boundary ``n == n_min`` DOES trim, fix
-    round item 3), trimming itself is skipped and EVERY operative member
+    ``n_min`` (``n < n_min`` — the boundary ``n == n_min`` DOES trim),
+    trimming itself is skipped and EVERY operative member
     contributes (``effective_k = n``).
 
     Returns ``{"match_statistic": {dim: value, ...}, "selected_claim_ids":
@@ -518,7 +518,7 @@ def trimmed_top_k_match(
 
 
 def trimmed_top_k_match_from_profile(members: Sequence[Mapping[str, Any]], profile_doc: Mapping) -> dict:
-    """Residual (fix round): wire the RESOLUTION PROFILE (§16) directly into
+    """Wires the RESOLUTION PROFILE (§16) directly into
     :func:`trimmed_top_k_match` — accepts a profile DOCUMENT (validated or
     not; call ``five_d_nd.profile.profile_violations`` first) rather than
     requiring every caller to unpack ``k``/``n_min``/``tiebreak_salt`` by

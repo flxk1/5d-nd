@@ -16,8 +16,7 @@ Public surface:
   * the owned resolver seam — ``SCHEME``, ``canonicalize``, ``digest``,
     ``validate``, ``normalize_reference``, ``resolve``, ``content_digest``
   * the clause-cue layer (§8a, additive to §8) and matching (§19) —
-    ``clause_cues``, ``match`` submodules (fix round, owner-approved
-    integration step, 2026-10-02); two EXAMPLE nD grammars demonstrating
+    ``clause_cues``, ``match`` submodules; two EXAMPLE nD grammars demonstrating
     §9 live under ``five_d_nd.grammars`` (imported separately — NOT 5D)
 
 5D is neutral on is/ought (spec/SPEC.md §7, N1 — owner design change,
@@ -149,7 +148,7 @@ __all__ = [
     "profile",
     "triple",
     "views",
-    # fix round (owner-approved integration step, 2026-10-02) — spec/SPEC.md
+    # spec/SPEC.md
     # §8a (clause-cue layer, additive to §8) and §19 (matching); EXAMPLE nD
     # grammars live under five_d_nd.grammars, imported separately (not
     # re-exported here — they are NOT 5D, see that subpackage's own docstring)

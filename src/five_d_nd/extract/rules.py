@@ -209,9 +209,8 @@ def _clause_start_before(unit_text: str, pos: int) -> int:
 
 
 #: A quoted-term character class covering BOTH ASCII and the curly/smart
-#: quote marks real legal corpora use (fix round, required fix 4: "Add
-#: ‘ and "" to the includes-swap character classes" — applied to every
-#: NP-boundary char class in this module, not just that one rule, for
+#: quote marks real legal corpora use — ‘ and "" are part of every
+#: NP-boundary char class in this module, not just one rule, for
 #: consistency).
 _QUOTE_CHARS = "‘’“”'\""
 _NP_CHARS = r"[\w\s,{q}-]".format(q=re.escape(_QUOTE_CHARS))

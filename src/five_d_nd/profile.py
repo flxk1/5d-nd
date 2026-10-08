@@ -115,9 +115,8 @@ _WEIGHT_MAPPING_FIELDS: "dict[str, tuple[str, str]]" = {
     "match_blend_weights": ("term", "structural"),
 }
 
-#: The COMPLETE, closed set of field names this document may carry (fix
-#: round item 7; widened fix round, 2026-10-02, item for
-#: ``clause_cue_saturation``/``match_blend_weights``): ``profile_id``,
+#: The COMPLETE, closed set of field names this document may carry,
+#: including ``clause_cue_saturation``/``match_blend_weights``: ``profile_id``,
 #: every field in :data:`_POSITIVE_NUMBERS_INTEGRAL`, every field in
 #: :data:`_WEIGHT_MAPPING_FIELDS`, every field in :data:`_UNIT_FLOATS` and
 #: :data:`_NON_NEGATIVE_NUMBERS`, and every field in :data:`_PLAIN_STRINGS`.
@@ -136,7 +135,7 @@ KNOWN_FIELDS: frozenset = frozenset(
 
 def _is_positive_integral(value: Any) -> bool:
     """True iff ``value`` is a positive NUMBER with NO fractional part —
-    fix round item 7: the profile schema's own ``"type": "integer"``
+    the profile schema's own ``"type": "integer"``
     keyword (per the JSON Schema spec) already accepts a JSON number with a
     zero fractional part, such as ``5.0`` — this function now agrees with
     the schema exactly (``5`` and ``5.0`` both valid; ``5.5`` and any
@@ -194,7 +193,7 @@ def profile_violations(doc: Any) -> list:
     if unknown:
         out.append(
             f"resolution profile has unknown field(s) {unknown!r} — a typo must not silently "
-            "leave a default in place while also polluting the digest (§16, fix round item 7)")
+            "leave a default in place while also polluting the digest (§16)")
     for field in _REQUIRED:
         value = doc.get(field)
         if not isinstance(value, str) or not value:
@@ -258,7 +257,7 @@ def profile_violations(doc: Any) -> list:
         if field not in doc:
             continue
         value = doc[field]
-        # fix round item 3: `value < 0` alone does not reject NaN (`nan < 0`
+        # `value < 0` alone does not reject NaN (`nan < 0`
         # is False in IEEE-754) — `math.isfinite` closes that gap here too.
         if isinstance(value, bool) or not isinstance(value, (int, float)) \
                 or not math.isfinite(value) or value < 0:

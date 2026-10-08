@@ -44,8 +44,8 @@ PLACES = 6
 def to_fixed(x: float) -> int:
     """Quantise a float leaf value, ONCE, to a scaled integer.
 
-    ``x * SCALE`` is computed in IEEE-754 binary64 (fix round item 12,
-    spec/SPEC.md §12) — Python's native ``float`` already IS binary64, so
+    ``x * SCALE`` is computed in IEEE-754 binary64 (spec/SPEC.md §12) —
+    Python's native ``float`` already IS binary64, so
     this is simply the ordinary ``*`` operator here; the point is
     normative for a REIMPLEMENTATION in another language, which MUST
     perform the SAME binary64 multiplication (not a wider/narrower float,

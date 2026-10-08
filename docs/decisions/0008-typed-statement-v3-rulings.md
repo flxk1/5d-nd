@@ -237,7 +237,7 @@ said the opposite of what this ruling now rules:
   (`typed-statements-v3`) — this addendum adds, removes, or
   reclassifies no actor role.
 
-## Addendum B — codebook fix round, v3.2 (2026-10-04)
+## Addendum B — codebook revision v3.2 (2026-10-04)
 
 ### Status
 
