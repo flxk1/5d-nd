@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "valid-version-float",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": 1.5,
+      "axes": {
+        "subject": {"value_type": "string"}
+      }
+    }
+  },
+  "expected": {"valid": true}
+}

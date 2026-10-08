@@ -1,0 +1,21 @@
+{
+  "family": "point",
+  "case": "distinctness-five-vs-seven-incoming-differ-high",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": 7,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "structural": 1.0,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0
+  }
+}

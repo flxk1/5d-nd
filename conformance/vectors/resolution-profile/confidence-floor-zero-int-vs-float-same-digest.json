@@ -1,0 +1,19 @@
+{
+  "family": "resolution-profile",
+  "case": "confidence-floor-zero-int-vs-float-same-digest",
+  "input": {
+    "doc_a": {
+      "profile_id": "x",
+      "confidence_floor": 0
+    },
+    "doc_b": {
+      "profile_id": "x",
+      "confidence_floor": 0.0
+    }
+  },
+  "expected": {
+    "valid_a": true,
+    "valid_b": true,
+    "same_digest": true
+  }
+}

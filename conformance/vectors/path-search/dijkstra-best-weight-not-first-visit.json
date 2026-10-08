@@ -1,0 +1,52 @@
+{
+  "family": "path-search",
+  "case": "dijkstra-best-weight-not-first-visit",
+  "note": "n0->n2 has two parallel edges (0.5 and 0.9); the self-loop n2->n2 (weight 0.5) composed onto the BEST arrival (0.9) gives 0.45, which clears floor=0.4 and reaches (n2, intentional); composed onto the WORSE arrival (0.5) gives 0.25, which does not. A first-visit BFS that fixed n2's weight at whichever edge it saw first could wrongly miss (n2, intentional) depending on dict iteration order.",
+  "input": {
+    "adjacency": {
+      "n0": [
+        {
+          "target": "n2",
+          "dimension": "temporal",
+          "weight": 0.5
+        },
+        {
+          "target": "n2",
+          "dimension": "temporal",
+          "weight": 0.9
+        }
+      ],
+      "n2": [
+        {
+          "target": "n2",
+          "dimension": "intentional",
+          "weight": 0.5
+        }
+      ]
+    },
+    "start": "n0",
+    "floor": 0.4
+  },
+  "expected": {
+    "reached": [
+      [
+        "n0",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "n2",
+        "intentional",
+        0.45,
+        2
+      ],
+      [
+        "n2",
+        "temporal",
+        0.9,
+        1
+      ]
+    ]
+  }
+}

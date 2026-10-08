@@ -1,0 +1,18 @@
+{
+  "family": "container-average",
+  "case": "inf-value-rejected",
+  "input": {
+    "member_points": [
+      {
+        "structural": Infinity,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      }
+    ]
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

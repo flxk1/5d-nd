@@ -1,0 +1,13 @@
+{
+  "family": "compose-identity",
+  "case": "identity-relational",
+  "input": {
+    "d": "relational",
+    "identity": "relational"
+  },
+  "expected": {
+    "left_with_identity": "relational",
+    "identity_with_right": "relational",
+    "expected_both": "relational"
+  }
+}

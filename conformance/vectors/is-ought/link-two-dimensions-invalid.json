@@ -1,0 +1,19 @@
+{
+  "family": "is-ought",
+  "case": "link-two-dimensions-invalid",
+  "input": {
+    "kind": "link",
+    "link": {
+      "src_id": "a",
+      "dst_id": "b",
+      "relation": "similar-to",
+      "dimension": [
+        "structural",
+        "causal"
+      ]
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

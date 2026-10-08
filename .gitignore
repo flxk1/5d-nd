@@ -58,3 +58,12 @@ dmypy.json
 
 # OS
 .DS_Store
+
+# Local development and evaluation scripts; not shipped
+/eval_dev.py
+/score_candidate_recall_dev.py
+/score_segmenter_dev.py
+/dev-eval-*.json
+/segmenter-dev-score*.json
+/candidate-recall-dev-*.json
+/tests/test_eval_dev_scripts.py

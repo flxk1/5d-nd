@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "empty-quantifier-forces-negation",
+  "input": {
+    "sentence": "No processor is without a contract."
+  },
+  "expected": {
+    "subject": "processor",
+    "predicate": "is",
+    "object": "without a contract",
+    "dimension": "relational",
+    "negated": true,
+    "quantification": "empty",
+    "relation": "predication",
+    "canonical": null
+  }
+}

@@ -1,10 +1,20 @@
 # 5d-nd
 
-Reference resolver for the `5d+nd` grounding scheme: canonicalises, digests and validates a dimensioned reference to a versum span.
+A 5D fingerprint/coordinate specification (draft 1.0) and reference implementation — the base coordinate system domain-specific nD grammars attach to — plus the `5d+nd` grounding-scheme resolver built on it: canonicalises, digests and validates a dimensioned reference to a versum span.
 
 ## Problem
 
 "Grounded in span X" cannot be verified after the fact. Canonical reference and digest of a span.
+
+## The spec
+
+[`spec/SPEC.md`](spec/SPEC.md) — the normative 5D specification: the closed set of five dimensions (structural, causal, intentional, temporal, relational), the composition algebra (non-commutative, non-associative, left-fold is the normative evaluation order), the 5D fingerprint of an entry, 5D's neutrality on is/ought (§7, N1-N4: a 5D link carries exactly one dimension and nothing else — no mode, one fingerprint per entry; a normative relation binds a dimension exactly like any other relation; whether a relation is normative is the owning nD grammar's own knowledge, OPTIONALLY carried as a "co-dimension" — an ordinary axis on that grammar's own NDSystem, e.g. the deontic plane's `operator` axis — never something 5D itself inspects; a norm's content still enters 5D as its own entry via a structural `embeds` link), and the contract an nD grammar (deontic, governance, mathematics, ...) publishes to attach to 5D. **5D is not "5D+nD" as extra dimensions** — nD is a separate, domain-specific grammar that attaches through that contract; it never adds a sixth dimension. No Loomground repository conforms to this spec yet — versum, solver, and the grammar planes are its PLANNED consumers.
+
+Machine-readable vocabulary: [`vocabulary/`](vocabulary/) (dimensions, composition table); schemas: [`schema/`](schema/); conformance vectors + runner: [`conformance/`](conformance/), [`tests/test_conformance.py`](tests/test_conformance.py); design decisions: [`docs/decisions/`](docs/decisions/).
+
+## Typed Statements and the extractor
+
+Spec §21-§23 adds a richer, reified edge — a **Statement** — on top of the plain triple, plus a codebook (`docs/codebook/typed-statements-v1.md`, v3.5) that defines how one is read off legal text. `src/five_d_nd/extract/` implements that codebook: a deterministic stage (`extract.segment` + `extract.rules`) segments a unit into clauses and list items and proposes candidate Statements from a closed cue-rule table — pure stdlib, no ML, same input always gives the same candidate set. `extract.hybrid` composes that with a model-assisted decision stage, per spec §23a: a model's answer for a given candidate set is recorded once into a content-addressed cache and thereafter only replayed — a cache miss raises (`CacheMissError`) rather than recomputing or calling the model again. This package ships no model and records no Decision itself. No accuracy or performance figures are published here; see `docs/decisions/` for the development-set measurements behind the design.
 
 ## Install
 
@@ -53,7 +63,7 @@ Assurance artifact, pillar "grounding" of [governance-certification](https://git
 
 ## Status
 
-0.2.0 · 35 tests · Python ≥ 3.9
+Spec draft 1.0 + resolver 0.2.0 · Python ≥ 3.9
 
 ## How this is made
 

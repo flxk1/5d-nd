@@ -1,0 +1,22 @@
+{
+  "family": "nd-system",
+  "case": "invalid-ontology-truthy-short-circuited-by-flat-fields-malformed-despite-versum-accepting",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "vocabulary_mode": "external",
+          "ontology_id": "o",
+          "ontology_version": "v",
+          "ontology": "x"
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

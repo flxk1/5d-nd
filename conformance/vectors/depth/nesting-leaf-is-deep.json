@@ -1,0 +1,32 @@
+{
+  "family": "depth",
+  "case": "nesting-leaf-is-deep",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {
+        "root": [
+          "mid"
+        ],
+        "mid": [
+          "leaf"
+        ],
+        "leaf": []
+      },
+      "order": {
+        "root": 0,
+        "mid": 1,
+        "leaf": 2
+      }
+    },
+    "entry_id": "leaf",
+    "w_links": 1e-09,
+    "w_nesting": 1.0
+  },
+  "expected": {
+    "d": 1.0
+  }
+}

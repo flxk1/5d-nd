@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "is-a-structural",
+  "input": {
+    "sentence": "A bank is a credit provider."
+  },
+  "expected": {
+    "subject": "bank",
+    "predicate": "is",
+    "object": "credit provider",
+    "dimension": "structural",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "is-a",
+    "canonical": null
+  }
+}

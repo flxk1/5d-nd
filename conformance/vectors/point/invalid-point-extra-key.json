@@ -1,0 +1,18 @@
+{
+  "family": "point",
+  "case": "invalid-point-extra-key",
+  "input": {
+    "kind": "validate",
+    "doc": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0,
+      "bogus": 0.1
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

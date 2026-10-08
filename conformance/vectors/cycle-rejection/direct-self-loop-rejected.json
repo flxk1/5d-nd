@@ -1,0 +1,14 @@
+{
+  "family": "cycle-rejection",
+  "case": "direct-self-loop-rejected",
+  "input": {
+    "existing_edges": [],
+    "add_edge": [
+      "A",
+      "A"
+    ]
+  },
+  "expected": {
+    "error": "CycleError"
+  }
+}

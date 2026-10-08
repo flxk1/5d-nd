@@ -1,0 +1,20 @@
+{
+  "family": "nd-system",
+  "case": "valid-primitives-bare-string-coerced",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "primitives": "equal"
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

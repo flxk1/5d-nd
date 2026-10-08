@@ -1,0 +1,39 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout3-s3-recital-71-safeguards",
+  "provenance": "Held-out set 3",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "In any case, such processing should be subject to suitable safeguards, which should include specific information to the data subject and the right to obtain human intervention, to express his or her point of view, to obtain an explanation of the decision reached after such assessment and to challenge the decision.",
+      "Such measure should not concern a child."
+    ]
+  },
+  "truth": {
+    "trigger": "-",
+    "human_intervention": "A",
+    "right_to_express_view": "A",
+    "right_to_contest": "A"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "uncertain": [],
+    "missing": [],
+    "all_present": null,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

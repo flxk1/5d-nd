@@ -1,0 +1,6 @@
+{
+  "family": "position",
+  "case": "negative-contribution-error",
+  "input": {"contributions": {"structural": -1}},
+  "expected": {"error": "ValueError"}
+}

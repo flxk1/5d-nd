@@ -1,0 +1,48 @@
+{
+  "$comment": "The 5x5 composition table, byte-identical to src/five_d_nd/dimensions.py COMPOSITION_TABLE. Read as table[a][b] = the dimension governing a two-step inference across a then b (LEFT-FOLD normative order for paths of length > 2; see spec/SPEC.md §3).",
+  "order": [
+    "structural",
+    "causal",
+    "intentional",
+    "temporal",
+    "relational"
+  ],
+  "identity": "relational",
+  "table": {
+    "structural": {
+      "structural": "structural",
+      "causal": "causal",
+      "intentional": "intentional",
+      "temporal": "temporal",
+      "relational": "structural"
+    },
+    "causal": {
+      "structural": "causal",
+      "causal": "causal",
+      "intentional": "intentional",
+      "temporal": "temporal",
+      "relational": "causal"
+    },
+    "intentional": {
+      "structural": "structural",
+      "causal": "causal",
+      "intentional": "intentional",
+      "temporal": "temporal",
+      "relational": "intentional"
+    },
+    "temporal": {
+      "structural": "structural",
+      "causal": "causal",
+      "intentional": "intentional",
+      "temporal": "temporal",
+      "relational": "temporal"
+    },
+    "relational": {
+      "structural": "structural",
+      "causal": "causal",
+      "intentional": "intentional",
+      "temporal": "temporal",
+      "relational": "relational"
+    }
+  }
+}

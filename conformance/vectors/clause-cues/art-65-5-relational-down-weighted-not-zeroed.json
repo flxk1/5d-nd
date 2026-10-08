@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "art-65-5-relational-down-weighted-not-zeroed",
+  "input": {
+    "text": "Where applicable, the lead supervisory authority or, as the case may be, the supervisory authority with which the complaint has been lodged, shall inform the Board of the date when its final decision is notified respectively to the controller or the processor and to the data subject.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 1,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 2.5
+    },
+    "cross_reference_targets": []
+  }
+}

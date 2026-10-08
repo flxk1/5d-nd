@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "negative-k-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "k": -1
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

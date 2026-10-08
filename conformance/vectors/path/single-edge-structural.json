@@ -1,0 +1,16 @@
+{
+  "family": "path",
+  "case": "single-edge-structural",
+  "input": {
+    "edges": [
+      {
+        "dimension": "structural",
+        "weight": 1.0
+      }
+    ]
+  },
+  "expected": {
+    "dimension": "structural",
+    "weight": 1.0
+  }
+}

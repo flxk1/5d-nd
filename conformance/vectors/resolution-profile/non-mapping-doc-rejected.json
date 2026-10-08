@@ -1,0 +1,10 @@
+{
+  "family": "resolution-profile",
+  "case": "non-mapping-doc-rejected",
+  "input": {
+    "doc": "not-a-mapping"
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "nd-system",
+  "case": "invalid-nd-system-wrapper-explicit-null",
+  "input": {
+    "doc": {
+      "nd_system": null
+    }
+  },
+  "expected": {"valid": false}
+}

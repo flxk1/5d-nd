@@ -1,0 +1,16 @@
+{
+  "family": "descriptor-binding",
+  "case": "validation-string-bare-rejected",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {"id":"x","namespace":"x","version":"1","axes":{"op":{"vocabulary":["O","P","F"]}},"validation":"x"},
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

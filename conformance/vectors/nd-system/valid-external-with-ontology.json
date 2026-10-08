@@ -1,0 +1,22 @@
+{
+  "family": "nd-system",
+  "case": "valid-external-with-ontology",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "concept_reference",
+          "vocabulary_mode": "external",
+          "ontology_id": "bfo",
+          "ontology_version": "2020"
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "family": "match-blend",
+  "case": "equal-weights-average",
+  "input": {
+    "term_score": 0.6,
+    "structural_score": 0.4,
+    "weights": {
+      "term": 0.5,
+      "structural": 0.5
+    }
+  },
+  "expected": {
+    "combined": 0.5
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "relational-fires-when-nothing-else-does",
+  "input": {
+    "text": "The controller shall cooperate with the supervisory authority.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 2.0
+    },
+    "cross_reference_targets": []
+  }
+}

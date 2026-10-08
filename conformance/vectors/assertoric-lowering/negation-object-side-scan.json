@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "negation-object-side-scan",
+  "input": {
+    "sentence": "The AI system is not a high-risk AI system."
+  },
+  "expected": {
+    "subject": "AI system",
+    "predicate": "is",
+    "object": "high-risk AI system",
+    "dimension": "structural",
+    "negated": true,
+    "quantification": "existential",
+    "relation": "is-a",
+    "canonical": null
+  }
+}

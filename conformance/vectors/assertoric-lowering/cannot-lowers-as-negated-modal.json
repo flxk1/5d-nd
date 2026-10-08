@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "cannot-lowers-as-negated-modal",
+  "input": {
+    "sentence": "The provider cannot refuse access."
+  },
+  "expected": {
+    "subject": "provider",
+    "predicate": "refuse",
+    "object": "access",
+    "dimension": "relational",
+    "negated": true,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

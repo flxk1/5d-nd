@@ -1,0 +1,15 @@
+{
+  "family": "triple",
+  "case": "missing-dimension-rejected",
+  "input": {
+    "doc": {
+      "s": "a",
+      "p": "p",
+      "o": "b",
+      "provenance": {}
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

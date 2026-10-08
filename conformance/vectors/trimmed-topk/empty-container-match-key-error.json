@@ -1,0 +1,13 @@
+{
+  "family": "trimmed-topk",
+  "case": "empty-container-match-key-error",
+  "input": {
+    "members": [],
+    "k": 5,
+    "n_min": 3,
+    "salt": "s"
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

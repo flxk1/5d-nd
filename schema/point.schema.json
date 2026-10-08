@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/point.schema.json",
+  "title": "5D point (independent coordinate)",
+  "description": "An entry or node's POINT (spec/SPEC.md §11): five INDEPENDENT values, each in [0, 1], NOT constrained to sum to 1 — compared by cosine. This is distinct from the SHARES view (schema/position.schema.json, §5), which keeps its own sum-to-1 and all-zero-default shape unchanged. A point's no-contribution floor is ALL-ZERO — the earlier 0.5 'neutral' floor was withdrawn; see five_d_nd/point.py's own docstring.",
+  "type": "object",
+  "required": ["structural", "causal", "intentional", "temporal", "relational"],
+  "additionalProperties": false,
+  "properties": {
+    "structural": {"type": "number", "minimum": 0, "maximum": 1},
+    "causal": {"type": "number", "minimum": 0, "maximum": 1},
+    "intentional": {"type": "number", "minimum": 0, "maximum": 1},
+    "temporal": {"type": "number", "minimum": 0, "maximum": 1},
+    "relational": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

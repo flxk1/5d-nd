@@ -1,0 +1,19 @@
+{
+  "family": "position",
+  "case": "normalisation-simple",
+  "input": {
+    "contributions": {
+      "structural": 2,
+      "causal": 1
+    }
+  },
+  "expected": {
+    "structural": 0.666667,
+    "causal": 0.333333,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "structural",
+    "basis": "planes"
+  }
+}

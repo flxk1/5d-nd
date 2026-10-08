@@ -1,0 +1,15 @@
+{
+  "family": "is-ought",
+  "case": "link-zero-dimensions-invalid",
+  "input": {
+    "kind": "link",
+    "link": {
+      "src_id": "a",
+      "dst_id": "b",
+      "relation": "similar-to"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

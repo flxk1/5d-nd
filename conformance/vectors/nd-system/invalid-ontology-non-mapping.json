@@ -1,0 +1,19 @@
+{
+  "family": "nd-system",
+  "case": "invalid-ontology-non-mapping",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "concept_reference",
+          "vocabulary_mode": "external",
+          "ontology": "not-a-mapping"
+        }
+      }
+    }
+  },
+  "expected": {"valid": false}
+}

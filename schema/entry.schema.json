@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/entry.schema.json",
+  "title": "5D entry",
+  "description": "A span-grounded unit (spec/SPEC.md §4): source_urn, start, end, and the exact text slice over cleaned text, plus an optional implementation-assigned id and an optional dominant dimension (schema: position.schema.json describes the full fingerprint, computed separately). 5D is neutral on is/ought (§7, N1): this schema carries no is/ought enforcement at all — whether an entry's content is normative is nD-grammar knowledge (a co-dimension on that grammar's own NDSystem, §9), never something this schema inspects. This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py).",
+  "type": "object",
+  "required": [
+    "source_urn",
+    "start",
+    "end",
+    "text"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional implementation-assigned entry id (e.g. versum's content-addressed entry_id)."
+    },
+    "source_urn": {
+      "type": "string",
+      "minLength": 1
+    },
+    "start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "text": {
+      "type": "string"
+    },
+    "dimension": {
+      "description": "Optional dominant dimension of this entry's fingerprint (§5).",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "structural",
+            "causal",
+            "intentional",
+            "temporal",
+            "relational"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

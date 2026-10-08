@@ -1,0 +1,21 @@
+{
+  "family": "nd-system",
+  "case": "valid-external-ontology-mixed-flat-id-nested-version",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "vocabulary_mode": "external",
+          "ontology_id": "o",
+          "ontology": { "version": "v" }
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

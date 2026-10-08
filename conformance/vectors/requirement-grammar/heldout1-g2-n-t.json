@@ -1,0 +1,40 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout1-g2-n-t",
+  "provenance": "Held-out set 1",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "A decision based solely on automated processing is taken.",
+      "The data subject doesn't get to contest the decision."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "N"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [
+      "right_to_contest"
+    ],
+    "missing": [
+      "human_intervention",
+      "right_to_express_view"
+    ],
+    "all_present": false,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

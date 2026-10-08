@@ -1,0 +1,25 @@
+{
+  "family": "resolution-profile",
+  "case": "d-blend-weights-int-vs-float-same-digest",
+  "input": {
+    "doc_a": {
+      "profile_id": "x",
+      "d_blend_weights": {
+        "links": 1,
+        "nesting": 0
+      }
+    },
+    "doc_b": {
+      "profile_id": "x",
+      "d_blend_weights": {
+        "links": 1.0,
+        "nesting": 0.0
+      }
+    }
+  },
+  "expected": {
+    "valid_a": true,
+    "valid_b": true,
+    "same_digest": true
+  }
+}

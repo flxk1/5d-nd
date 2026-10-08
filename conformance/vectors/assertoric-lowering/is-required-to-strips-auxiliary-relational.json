@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "is-required-to-strips-auxiliary-relational",
+  "input": {
+    "sentence": "A controller is required to notify the authority."
+  },
+  "expected": {
+    "subject": "controller",
+    "predicate": "notify",
+    "object": "authority",
+    "dimension": "relational",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

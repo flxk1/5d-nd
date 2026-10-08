@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "refers-to-structural-is-a-kind-of",
+  "input": {
+    "sentence": "All data refers to a record that is a kind of file."
+  },
+  "expected": {
+    "subject": "data",
+    "predicate": "refers to",
+    "object": "record that is a kind of file",
+    "dimension": "structural",
+    "negated": false,
+    "quantification": "universal",
+    "relation": "is-a",
+    "canonical": null
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "family": "assertoric-lowering",
+  "case": "precedes-temporal",
+  "input": {
+    "sentence": "Registration precedes processing."
+  },
+  "expected": {
+    "subject": "Registration",
+    "predicate": "precedes",
+    "object": "processing",
+    "dimension": "temporal",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "precedes",
+    "canonical": [
+      "precedes",
+      false
+    ]
+  }
+}

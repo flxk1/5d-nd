@@ -1,0 +1,24 @@
+{
+  "family": "point",
+  "case": "cosine-rounds-to-six-decimal-places-differs-at-seventh",
+  "input": {
+    "kind": "cosine",
+    "a": {
+      "structural": 0.134364,
+      "causal": 0.847434,
+      "intentional": 0.763775,
+      "temporal": 0.255069,
+      "relational": 0.495435
+    },
+    "b": {
+      "structural": 0.449491,
+      "causal": 0.651593,
+      "intentional": 0.788723,
+      "temporal": 0.09386,
+      "relational": 0.028347
+    }
+  },
+  "expected": {
+    "cosine": 0.87487
+  }
+}

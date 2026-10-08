@@ -1,0 +1,34 @@
+{
+  "family": "descriptor-binding",
+  "case": "examples-context-passthrough-accepted",
+  "input": {
+    "descriptor": {
+      "plane": "loomground-topos",
+      "language_version": "1",
+      "nd_system": {
+        "id": "loomground-topos",
+        "namespace": "loomground.topos",
+        "version": "1",
+        "axes": {
+          "subject": {
+            "value_type": "concept_reference"
+          }
+        }
+      },
+      "binding": {
+        "is-a": "structural"
+      },
+      "contract_version": "1.0-draft",
+      "examples": [
+        {
+          "sentence": "The river is a boundary.",
+          "expected": [],
+          "context": {"frame": "upstream-dispute"}
+        }
+      ]
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

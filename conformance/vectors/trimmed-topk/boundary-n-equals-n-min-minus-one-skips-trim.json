@@ -1,0 +1,48 @@
+{
+  "family": "trimmed-topk",
+  "case": "boundary-n-equals-n-min-minus-one-skips-trim",
+  "input": {
+    "members": [
+      {
+        "claim_id": "m0",
+        "weight": 1.0,
+        "point": {
+          "structural": 1.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      },
+      {
+        "claim_id": "m1",
+        "weight": 0.9,
+        "point": {
+          "structural": 1.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      }
+    ],
+    "k": 2,
+    "n_min": 3,
+    "salt": "s"
+  },
+  "expected": {
+    "match_statistic": {
+      "structural": 1.0,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "selected_claim_ids": [
+      "m0",
+      "m1"
+    ]
+  }
+}

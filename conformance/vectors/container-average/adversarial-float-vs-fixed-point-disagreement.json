@@ -1,0 +1,45 @@
+{
+  "family": "container-average",
+  "case": "adversarial-float-vs-fixed-point-disagreement",
+  "input": {
+    "member_points": [
+      {
+        "structural": 0.855318,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.866484,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.380126,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.45341,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      }
+    ]
+  },
+  "expected": {
+    "position": {
+      "structural": 0.638835,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  }
+}

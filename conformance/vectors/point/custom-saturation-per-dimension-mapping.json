@@ -1,0 +1,28 @@
+{
+  "family": "point",
+  "case": "custom-saturation-per-dimension-mapping",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": 5,
+      "causal": 5,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    },
+    "saturation": {
+      "structural": 5,
+      "causal": 10,
+      "intentional": 5,
+      "temporal": 5,
+      "relational": 5
+    }
+  },
+  "expected": {
+    "structural": 1.0,
+    "causal": 0.5,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0
+  }
+}

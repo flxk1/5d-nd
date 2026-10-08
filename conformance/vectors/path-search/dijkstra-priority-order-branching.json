@@ -1,0 +1,111 @@
+{
+  "family": "path-search",
+  "case": "dijkstra-priority-order-branching",
+  "note": "Multiple parallel/branching weighted edges into shared product-graph states, independently verified against a brute-force all-simple-paths search (not merely self-consistent with the implementation) -- exposes heap-ordering bugs such as a plain list.pop(0) substituted for heapq.heappop(), which breaks the heap invariant after repeated operations.",
+  "input": {
+    "adjacency": {
+      "n0": [
+        {
+          "target": "n1",
+          "dimension": "causal",
+          "weight": 0.9
+        },
+        {
+          "target": "n1",
+          "dimension": "causal",
+          "weight": 0.2
+        },
+        {
+          "target": "n2",
+          "dimension": "structural",
+          "weight": 0.6
+        }
+      ],
+      "n1": [
+        {
+          "target": "n2",
+          "dimension": "temporal",
+          "weight": 0.95
+        },
+        {
+          "target": "n3",
+          "dimension": "intentional",
+          "weight": 0.1
+        }
+      ],
+      "n2": [
+        {
+          "target": "n3",
+          "dimension": "causal",
+          "weight": 0.8
+        },
+        {
+          "target": "n3",
+          "dimension": "causal",
+          "weight": 0.3
+        }
+      ],
+      "n3": [
+        {
+          "target": "n4",
+          "dimension": "relational",
+          "weight": 0.99
+        }
+      ]
+    },
+    "start": "n0",
+    "floor": null
+  },
+  "expected": {
+    "reached": [
+      [
+        "n0",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "n1",
+        "causal",
+        0.9,
+        1
+      ],
+      [
+        "n2",
+        "structural",
+        0.6,
+        1
+      ],
+      [
+        "n2",
+        "temporal",
+        0.855,
+        2
+      ],
+      [
+        "n3",
+        "causal",
+        0.684,
+        3
+      ],
+      [
+        "n3",
+        "intentional",
+        0.09000000000000001,
+        2
+      ],
+      [
+        "n4",
+        "causal",
+        0.6771600000000001,
+        4
+      ],
+      [
+        "n4",
+        "intentional",
+        0.08910000000000001,
+        3
+      ]
+    ]
+  }
+}

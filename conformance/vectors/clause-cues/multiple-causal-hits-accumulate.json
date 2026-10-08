@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "multiple-causal-hits-accumulate",
+  "input": {
+    "text": "If the controller fails, because the system triggers an alert, a risk results.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 4,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.2
+    },
+    "cross_reference_targets": []
+  }
+}

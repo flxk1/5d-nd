@@ -1,0 +1,11 @@
+{
+  "family": "fixedpoint",
+  "case": "to-fixed-simple-tenth",
+  "input": {
+    "op": "to_fixed",
+    "x": 0.1
+  },
+  "expected": {
+    "result": 100000
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "family": "compose-identity",
+  "case": "identity-structural",
+  "input": {
+    "d": "structural",
+    "identity": "relational"
+  },
+  "expected": {
+    "left_with_identity": "structural",
+    "identity_with_right": "structural",
+    "expected_both": "structural"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "reference",
+  "case": "malformed-not-a-reference",
+  "input": {
+    "ref": "not-a-reference-at-all"
+  },
+  "expected": {
+    "error": "MalformedReferenceError"
+  }
+}

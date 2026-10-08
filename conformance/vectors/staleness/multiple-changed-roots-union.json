@@ -1,0 +1,27 @@
+{
+  "family": "staleness",
+  "case": "multiple-changed-roots-union",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": [
+        "C"
+      ],
+      "B": [
+        "C"
+      ],
+      "C": []
+    },
+    "changed": [
+      "A",
+      "B"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A",
+      "B",
+      "C"
+    ]
+  }
+}

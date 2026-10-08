@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-european_data_protection_board",
+  "input": {
+    "role": "european_data_protection_board"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

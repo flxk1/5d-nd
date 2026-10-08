@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/reference.schema.json",
+  "title": "5d+nd canonical span reference",
+  "description": "The canonical span-reference syntax <source_urn>#<start>-<end> (spec/SPEC.md §4). This schema describes the STRING form; grounding.normalize_reference() also accepts two read-only legacy forms and normalizes them to this shape. NOTE — 'start < end' (non-negative, non-inverted bounds) is a SEMANTIC constraint a regex pattern cannot express (it would need to compare two captured numbers): it is enforced in CODE (src/five_d_nd/grounding.py normalize_reference(), which raises MalformedReferenceError on inverted or negative-looking bounds) and covered by conformance/vectors/reference/malformed-inverted-bounds.json, NOT by this schema's pattern — a string like 'urn:x#10-1' matches this schema's pattern but is REJECTED by the code. This $id resolves once the repository is published; until then, resolve schema $refs from a local copy (see tests/test_conformance.py).",
+  "type": "string",
+  "pattern": "^.+#[0-9]+-[0-9]+$"
+}

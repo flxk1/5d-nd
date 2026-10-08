@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "host-instrument-number-near-miss-not-matched",
+  "input": {
+    "text": "Article 45 of Regulation (EU) 2016/6790 lays down an unrelated mechanism.",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

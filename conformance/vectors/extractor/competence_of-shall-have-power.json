@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "competence_of-shall-have-power",
+  "input": {
+    "unit_text": "The competent authority shall have the power to suspend a certificate pending review."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#c4c79d5d132f2bc7",
+        "subj": "competent authority",
+        "obj": "suspend a certificate pending review",
+        "predicate": "competence_of",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 84
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-competence_of-shall-have-power"
+      }
+    ]
+  }
+}

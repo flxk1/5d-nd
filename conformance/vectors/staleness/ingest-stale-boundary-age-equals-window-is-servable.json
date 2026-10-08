@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "ingest-stale-boundary-age-equals-window-is-servable",
+  "input": {
+    "kind": "ingest_window",
+    "as_of": 0,
+    "now": 3600,
+    "window_seconds": 3600
+  },
+  "expected": {
+    "servable": true,
+    "age": 3600
+  }
+}

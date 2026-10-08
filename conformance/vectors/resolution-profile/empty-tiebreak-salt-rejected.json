@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "empty-tiebreak-salt-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "tiebreak_salt": ""
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

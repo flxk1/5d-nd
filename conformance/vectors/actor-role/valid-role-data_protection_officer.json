@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-data_protection_officer",
+  "input": {
+    "value": "data_protection_officer"
+  },
+  "expected": {
+    "known": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-very_large_online_platform",
+  "input": {
+    "value": "very_large_online_platform"
+  },
+  "expected": {
+    "known": true
+  }
+}

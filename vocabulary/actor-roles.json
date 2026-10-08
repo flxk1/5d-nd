@@ -1,0 +1,39 @@
+{
+  "$comment": "Typed-statement entity/actor vocabulary — spec/SPEC.md §21. CLOSED, with one documented escape (`other(label)`) for a role this list does not yet name, so the gold protocol is never blocked on an unanticipated actor — the escape is itself logged (never silently dropped), per docs/codebook/typed-statements-v1.md's unitisation rules. The DSA/NIS2 roles below were added to the closed vocabulary before the freeze.",
+  "version": "typed-statements-v3",
+  "roles": [
+    "controller",
+    "joint_controller",
+    "processor",
+    "sub_processor",
+    "provider",
+    "deployer",
+    "importer",
+    "distributor",
+    "authorised_representative",
+    "data_subject",
+    "data_protection_officer",
+    "supervisory_authority",
+    "notified_body",
+    "market_surveillance_authority",
+    "commission",
+    "member_state",
+    "european_data_protection_board",
+    "ai_office",
+    "third_party",
+    "recipient",
+    "operator",
+    "competent_authority",
+    "digital_services_coordinator",
+    "csirt",
+    "essential_entity",
+    "important_entity",
+    "provider_of_online_platform",
+    "very_large_online_platform"
+  ],
+  "escape": {
+    "pattern": "^other\\([^()]+\\)$",
+    "example": "other(notifying_authority)",
+    "rule": "Used ONLY when none of the closed roles above fits. The label inside the parentheses MUST be logged in the gold protocol's own session notes (docs/codebook/gold-protocol-v1.md) as a candidate addition to THIS list's next version — an escape is never a silent, permanent substitute for extending the closed vocabulary."
+  }
+}

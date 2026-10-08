@@ -1,0 +1,57 @@
+{
+  "family": "depth",
+  "case": "nesting-denominator-ancestors-plus-descendants-not-descendants-plus-one",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {
+        "g1": [
+          "g2"
+        ],
+        "g2": [
+          "g3"
+        ],
+        "g3": [
+          "entry"
+        ],
+        "entry": [
+          "child1"
+        ],
+        "child1": []
+      },
+      "order": {
+        "g1": 0,
+        "g2": 1,
+        "g3": 2,
+        "entry": 3,
+        "child1": 4
+      },
+      "reverse": {
+        "g1": [],
+        "g2": [
+          "g1"
+        ],
+        "g3": [
+          "g2"
+        ],
+        "entry": [
+          "g3"
+        ],
+        "child1": [
+          "entry"
+        ]
+      },
+      "next_order": 5
+    },
+    "entry_id": "entry",
+    "r": 5,
+    "w_links": 1e-09,
+    "w_nesting": 1.0
+  },
+  "expected": {
+    "d": 0.75
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "requires-pure",
+  "input": {
+    "unit_text": "If a near-miss is detected, the operator shall record the event in the incident log."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#3eea4b7837098bda",
+        "subj": "near-miss is detected",
+        "obj": "record the event in the incident log",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 83
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-requires-where-if"
+      }
+    ]
+  }
+}

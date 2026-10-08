@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "make-view-d-kind-erasure-stale",
+  "input": {
+    "kind": "make_view",
+    "view_kind": "d",
+    "stale": true,
+    "staleness_tier": "erasure"
+  },
+  "expected": {
+    "kind": "d",
+    "staleness_tier": "erasure"
+  }
+}

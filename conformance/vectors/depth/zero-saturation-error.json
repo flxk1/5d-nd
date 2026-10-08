@@ -1,0 +1,27 @@
+{
+  "family": "depth",
+  "case": "zero-saturation-error",
+  "input": {
+    "graph": {
+      "concept_links": {
+        "X": [
+          "p0",
+          "p1",
+          "p2",
+          "p3",
+          "p4"
+        ]
+      },
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X",
+    "link_saturation": 0
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

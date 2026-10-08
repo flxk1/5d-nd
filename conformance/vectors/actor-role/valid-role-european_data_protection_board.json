@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-european_data_protection_board",
+  "input": {
+    "value": "european_data_protection_board"
+  },
+  "expected": {
+    "known": true
+  }
+}

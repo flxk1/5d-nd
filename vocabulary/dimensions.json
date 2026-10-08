@@ -1,0 +1,37 @@
+{
+  "$comment": "The closed set of five dimensions, canonical order, and their normative meanings (draft 1.0), quoted VERBATIM from the original idea5 cell kernel gloss (`idea5` commit d8a7a93, 2026-03-21, cell_algebra.py:13-17) — see spec/SPEC.md §2 and docs/decisions/0001-owner-model.md for provenance. Each dimension's `gloss` field is that verbatim parenthetical; `meaning` is this specification's own fuller prose gloss, consistent with but not a substitute for the verbatim text.",
+  "order": ["structural", "causal", "intentional", "temporal", "relational"],
+  "default": "relational",
+  "dimensions": {
+    "structural": {
+      "label": "Structural",
+      "question": "HOW is it built?",
+      "gloss": "parts, containment, dependency",
+      "meaning": "How the thing is composed: part-of, contains, depends-on, and other composition relations."
+    },
+    "causal": {
+      "label": "Causal",
+      "question": "WHY does it happen?",
+      "gloss": "triggers, enables, prevents",
+      "meaning": "Why a change propagates: triggers, causes, enables, prevents, and other causal relations."
+    },
+    "intentional": {
+      "label": "Intentional",
+      "question": "WHAT is it FOR?",
+      "gloss": "goals, justification, telos",
+      "meaning": "What the thing is for: aims-at, serves, motivates, and other purpose relations. 5D is neutral on is/ought (spec/SPEC.md §7, N1): a normative relation such as \"justifies\" binds to intentional exactly like any other purpose relation; whether it is normative is nD-grammar knowledge (a co-dimension on that grammar's own NDSystem), not something this dimension's meaning itself encodes."
+    },
+    "temporal": {
+      "label": "Temporal",
+      "question": "WHEN does it occur?",
+      "gloss": "sequence, duration, rhythm",
+      "meaning": "When it occurs: before, after, during, succeeds, and other sequencing relations."
+    },
+    "relational": {
+      "label": "Relational",
+      "question": "WHO/WHAT is connected?",
+      "gloss": "similarity, contrast, association",
+      "meaning": "How it connects to other things: similar-to, contrasts-with, associated, and the no-further-information default."
+    }
+  }
+}

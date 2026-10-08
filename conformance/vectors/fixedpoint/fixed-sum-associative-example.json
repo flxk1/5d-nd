@@ -1,0 +1,16 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-sum-associative-example",
+  "input": {
+    "op": "fixed_sum",
+    "values": [
+      100000,
+      200000,
+      300000,
+      400000
+    ]
+  },
+  "expected": {
+    "result": 1000000
+  }
+}

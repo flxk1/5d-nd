@@ -1,0 +1,17 @@
+{
+  "family": "point",
+  "case": "invalid-point-boolean-value",
+  "input": {
+    "kind": "validate",
+    "doc": {
+      "structural": true,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "family": "compose-table",
+  "case": "temporal-temporal",
+  "input": {
+    "a": "temporal",
+    "b": "temporal"
+  },
+  "expected": {
+    "result": "temporal"
+  }
+}

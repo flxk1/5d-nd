@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "part_of-includes-swap",
+  "input": {
+    "unit_text": "The compliance programme includes an internal audit function covering every site."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#700996e883c115ee",
+        "subj": "internal audit function covering every site",
+        "obj": "compliance programme",
+        "predicate": "part_of",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 80
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-part_of-includes-swap"
+      }
+    ]
+  }
+}

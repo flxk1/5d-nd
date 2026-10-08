@@ -1,0 +1,20 @@
+{
+  "family": "path",
+  "case": "commute-fail-intentional-structural-reversed",
+  "input": {
+    "edges": [
+      {
+        "dimension": "intentional",
+        "weight": 1.0
+      },
+      {
+        "dimension": "structural",
+        "weight": 1.0
+      }
+    ]
+  },
+  "expected": {
+    "dimension": "structural",
+    "weight": 1.0
+  }
+}

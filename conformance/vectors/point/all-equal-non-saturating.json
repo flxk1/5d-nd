@@ -1,0 +1,21 @@
+{
+  "family": "point",
+  "case": "all-equal-non-saturating",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": 2,
+      "causal": 2,
+      "intentional": 2,
+      "temporal": 2,
+      "relational": 2
+    }
+  },
+  "expected": {
+    "structural": 0.4,
+    "causal": 0.4,
+    "intentional": 0.4,
+    "temporal": 0.4,
+    "relational": 0.4
+  }
+}

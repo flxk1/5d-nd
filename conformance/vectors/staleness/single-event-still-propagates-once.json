@@ -1,0 +1,23 @@
+{
+  "family": "staleness",
+  "case": "single-event-still-propagates-once",
+  "input": {
+    "kind": "debounce",
+    "events": [
+      [
+        "node",
+        0
+      ]
+    ],
+    "window_seconds": 10,
+    "threshold": 5
+  },
+  "expected": {
+    "coalesced": [
+      [
+        "node",
+        1
+      ]
+    ]
+  }
+}

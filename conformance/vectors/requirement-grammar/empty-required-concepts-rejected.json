@@ -1,0 +1,24 @@
+{
+  "family": "requirement-grammar",
+  "case": "empty-required-concepts-rejected",
+  "input": {
+    "ruleset": {
+      "ruleset_id": "bad-empty-required",
+      "rules": [
+        {
+          "obligation_id": "X:1",
+          "citation": "X Art. 1",
+          "trigger_concepts": [
+            "automated_decision_making"
+          ],
+          "required_concepts": []
+        }
+      ]
+    }
+  },
+  "expected": {
+    "violations": [
+      "rules[0].required_concepts must be a non-empty list of non-empty strings"
+    ]
+  }
+}

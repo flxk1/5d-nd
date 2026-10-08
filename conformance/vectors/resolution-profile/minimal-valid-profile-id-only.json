@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "minimal-valid-profile-id-only",
+  "input": {
+    "doc": {
+      "profile_id": "default"
+    }
+  },
+  "expected": {
+    "valid": true,
+    "profile_digest": "fad36394a7ba554d6968897239fbc27b64e1d1a7f35435eca5031e4d51bb2a01"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "staleness-window-negative-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "staleness_window_seconds": -1
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

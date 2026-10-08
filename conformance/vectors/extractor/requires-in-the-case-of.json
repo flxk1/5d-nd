@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "requires-in-the-case-of",
+  "input": {
+    "unit_text": "In the case of a serious incident, the provider shall notify the authority without delay."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#9e372286f4121af7",
+        "subj": "serious incident",
+        "obj": "notify the authority without delay",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 88
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-requires-in-the-case-of"
+      }
+    ]
+  }
+}

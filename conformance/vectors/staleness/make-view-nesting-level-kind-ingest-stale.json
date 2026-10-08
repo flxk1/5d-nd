@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "make-view-nesting-level-kind-ingest-stale",
+  "input": {
+    "kind": "make_view",
+    "view_kind": "nesting_level",
+    "stale": true,
+    "staleness_tier": "ingest"
+  },
+  "expected": {
+    "kind": "nesting_level",
+    "staleness_tier": "ingest"
+  }
+}

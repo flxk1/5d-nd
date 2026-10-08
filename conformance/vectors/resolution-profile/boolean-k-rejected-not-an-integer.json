@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "boolean-k-rejected-not-an-integer",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "k": true
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

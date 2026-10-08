@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-digital_services_coordinator",
+  "input": {
+    "value": "digital_services_coordinator"
+  },
+  "expected": {
+    "known": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "means-automated-not-definitional",
+  "input": {
+    "text": "Consent may be given by automated means.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "family": "staleness",
+  "case": "empty-containers-no-parents",
+  "input": {
+    "kind": "propagate",
+    "reverse_embeds": {
+      "A": []
+    },
+    "changed": [
+      "A"
+    ]
+  },
+  "expected": {
+    "stale_order": [
+      "A"
+    ]
+  }
+}

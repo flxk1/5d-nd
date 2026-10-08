@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "plural-citation-range-matched",
+  "input": {
+    "text": "In such cases, Articles 15 to 20 shall not apply.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 6,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ]
+  }
+}

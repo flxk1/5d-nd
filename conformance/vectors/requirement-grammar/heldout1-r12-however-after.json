@@ -1,0 +1,39 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout1-r12-however-after",
+  "provenance": "Held-out set 1",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "Where the decision is not based solely on automated processing, Article 22 does not apply; however, the data subject may still contest the decision."
+    ]
+  },
+  "truth": {
+    "trigger": "N",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "A"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": true,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [
+      "right_to_contest"
+    ],
+    "missing": [
+      "human_intervention",
+      "right_to_express_view"
+    ],
+    "all_present": null,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

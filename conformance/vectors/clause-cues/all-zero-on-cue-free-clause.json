@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "all-zero-on-cue-free-clause",
+  "input": {
+    "text": "The widget is blue.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

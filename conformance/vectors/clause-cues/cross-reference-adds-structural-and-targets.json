@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "cross-reference-adds-structural-and-targets",
+  "input": {
+    "text": "This measure is referred to in Article 6(1) and Article 9.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 3,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      6,
+      9
+    ]
+  }
+}

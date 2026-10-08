@@ -1,0 +1,38 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout2-l2-bdsg-s37-exception",
+  "provenance": "Held-out set 2",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "The right pursuant to Article 22(1) of Regulation (EU) 2016/679 not to be subject to a decision based solely on automated processing shall not apply where the request of the data subject was fulfilled."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "-"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": true,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [],
+    "missing": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": null,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

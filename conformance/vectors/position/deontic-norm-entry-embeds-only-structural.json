@@ -1,0 +1,17 @@
+{
+  "family": "position",
+  "case": "deontic-norm-entry-embeds-only-structural",
+  "input": {
+    "contributions": {},
+    "embeds_count": 1
+  },
+  "expected": {
+    "structural": 1.0,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "structural",
+    "basis": "planes"
+  }
+}

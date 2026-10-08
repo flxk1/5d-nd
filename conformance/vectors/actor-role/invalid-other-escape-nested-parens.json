@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "invalid-other-escape-nested-parens",
+  "input": {
+    "value": "other(a(b))"
+  },
+  "expected": {
+    "known": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "family": "container-average",
+  "case": "all-neutral-members",
+  "input": {
+    "member_points": [
+      {
+        "structural": 0.5,
+        "causal": 0.5,
+        "intentional": 0.5,
+        "temporal": 0.5,
+        "relational": 0.5
+      },
+      {
+        "structural": 0.5,
+        "causal": 0.5,
+        "intentional": 0.5,
+        "temporal": 0.5,
+        "relational": 0.5
+      },
+      {
+        "structural": 0.5,
+        "causal": 0.5,
+        "intentional": 0.5,
+        "temporal": 0.5,
+        "relational": 0.5
+      }
+    ]
+  },
+  "expected": {
+    "position": {
+      "structural": 0.5,
+      "causal": 0.5,
+      "intentional": 0.5,
+      "temporal": 0.5,
+      "relational": 0.5
+    }
+  }
+}

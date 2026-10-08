@@ -1,0 +1,38 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout3-s4-gdpr-art13-2-f",
+  "provenance": "Held-out set 3",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "the existence of automated decision-making, including profiling, referred to in Article 22(1) and (4) and, at least in those cases, meaningful information about the logic involved."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "-",
+    "right_to_express_view": "-",
+    "right_to_contest": "-"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [],
+    "missing": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": false,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

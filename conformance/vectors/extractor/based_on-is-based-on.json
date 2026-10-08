@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "based_on-is-based-on",
+  "input": {
+    "unit_text": "The classification is based on the risk assessment carried out under Article 9."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#1a16dfc6aabf1164",
+        "subj": "classification",
+        "obj": "risk assessment carried out under Article 9",
+        "predicate": "based_on",
+        "dimension": "intentional",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 0,
+          "end": 78
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-based_on-is-based-on"
+      }
+    ]
+  }
+}

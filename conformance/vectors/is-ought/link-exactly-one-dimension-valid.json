@@ -1,0 +1,16 @@
+{
+  "family": "is-ought",
+  "case": "link-exactly-one-dimension-valid",
+  "input": {
+    "kind": "link",
+    "link": {
+      "src_id": "a",
+      "dst_id": "b",
+      "relation": "similar-to",
+      "dimension": "relational"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

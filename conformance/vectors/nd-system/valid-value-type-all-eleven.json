@@ -1,0 +1,27 @@
+{
+  "family": "nd-system",
+  "case": "valid-value-type-all-eleven",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "ax_string": {"value_type": "string"},
+        "ax_controlled_identifier": {"value_type": "controlled_identifier"},
+        "ax_concept_reference": {"value_type": "concept_reference"},
+        "ax_entity_reference": {"value_type": "entity_reference"},
+        "ax_integer": {"value_type": "integer"},
+        "ax_non_negative_integer": {"value_type": "non_negative_integer"},
+        "ax_number": {"value_type": "number"},
+        "ax_boolean": {"value_type": "boolean"},
+        "ax_date": {"value_type": "date"},
+        "ax_interval": {"value_type": "interval"},
+        "ax_quantity": {"value_type": "quantity"}
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

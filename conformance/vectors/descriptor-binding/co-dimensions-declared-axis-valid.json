@@ -1,0 +1,33 @@
+{
+  "family": "descriptor-binding",
+  "case": "co-dimensions-declared-axis-valid",
+  "input": {
+    "descriptor": {
+      "plane": "loomground-deontic",
+      "language_version": "1",
+      "nd_system": {
+        "id": "loomground-deontic",
+        "namespace": "loomground.deontic",
+        "version": "1",
+        "axes": {
+          "bearer": {
+            "value_type": "concept_reference"
+          },
+          "operator": {
+            "value_type": "controlled_identifier",
+            "vocabulary_mode": "closed",
+            "vocabulary": ["O", "P", "F"]
+          }
+        }
+      },
+      "binding": {
+        "obliges": "intentional"
+      },
+      "contract_version": "1.0-draft",
+      "co_dimensions": ["operator"]
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

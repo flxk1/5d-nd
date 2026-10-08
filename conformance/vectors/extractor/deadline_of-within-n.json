@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-within-n",
+  "input": {
+    "unit_text": "The operator shall report the incident within 72 hours after becoming aware of it."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#9b8ee60a5e92a168",
+        "subj": "operator",
+        "obj": "72 hours after becoming aware of it",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 0,
+          "end": 81
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-within-n"
+      }
+    ]
+  }
+}

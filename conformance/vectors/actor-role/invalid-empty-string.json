@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "invalid-empty-string",
+  "input": {
+    "value": ""
+  },
+  "expected": {
+    "known": false
+  }
+}

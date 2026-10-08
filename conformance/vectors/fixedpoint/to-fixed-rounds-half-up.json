@@ -1,0 +1,11 @@
+{
+  "family": "fixedpoint",
+  "case": "to-fixed-rounds-half-up",
+  "input": {
+    "op": "to_fixed",
+    "x": 0.1234565
+  },
+  "expected": {
+    "result": 123457
+  }
+}

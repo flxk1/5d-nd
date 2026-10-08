@@ -1,0 +1,20 @@
+{
+  "family": "assertoric-lowering",
+  "case": "follows-temporal",
+  "input": {
+    "sentence": "Audit follows the review."
+  },
+  "expected": {
+    "subject": "Audit",
+    "predicate": "follows",
+    "object": "review",
+    "dimension": "temporal",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "follows",
+    "canonical": [
+      "precedes",
+      true
+    ]
+  }
+}

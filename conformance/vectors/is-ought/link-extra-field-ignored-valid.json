@@ -1,0 +1,17 @@
+{
+  "family": "is-ought",
+  "case": "link-extra-field-ignored-valid",
+  "input": {
+    "kind": "link",
+    "link": {
+      "src_id": "a",
+      "dst_id": "b",
+      "relation": "similar-to",
+      "dimension": "relational",
+      "mode": "ought"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "family": "worked-example-typed",
+  "case": "gdpr-art22-statements-to-point-container-depth-tensor",
+  "comment": "Nine Statements from GDPR Art.22 and recital 71/Art.4, with real offsets into source-32016R0679.txt and real statement_id values (the real ELI, a consolidation date, and text_hash() over each clause's normalize_statement_text() output). No right, obligation, or permission is a Statement endpoint anywhere: Art.22(1)'s decision is coded via its own production mechanism (processing enables the decision, not a legal-basis claim); Art.22(3)'s safeguards are coded as MEASURES the controller performs or that are part of the measures the trigger requires, never as the rights themselves. The test DERIVES every raw count and the tensor from these nine Statements via statement.raw_contributions()/layer_tensor() -- nothing below is hand-typed.",
+  "input": {
+    "statements": [
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#4addf100622344a6",
+        "subj": "automated_processing",
+        "obj": "automated_decision",
+        "predicate": "enables",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203053,
+          "end": 203121
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#e7ee5c5473362146",
+        "subj": "art22_3_applicability_condition",
+        "obj": "implement_safeguard_measures",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203653,
+          "end": 203846
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#e7ee5c5473362146",
+        "subj": "implement_safeguard_measures",
+        "obj": "protect_data_subject_rights_and_freedoms",
+        "predicate": "compliance_purpose_of",
+        "dimension": "intentional",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203653,
+          "end": 203846
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#76e89fd73e5392c4",
+        "subj": "human_intervention_measure",
+        "obj": "implement_safeguard_measures",
+        "predicate": "part_of",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203848,
+          "end": 203925
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#8560a28c5b133469",
+        "subj": "art22_3_applicability_condition",
+        "obj": "view_expression_measure",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203927,
+          "end": 203962
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#ce262aa1c99cac96",
+        "subj": "art22_3_applicability_condition",
+        "obj": "decision_contest_measure",
+        "predicate": "requires",
+        "dimension": "causal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203967,
+          "end": 203990
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#76e89fd73e5392c4",
+        "subj": "controller",
+        "obj": "human_intervention_measure",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 203848,
+          "end": 203925
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#e105cfe8253941ae",
+        "subj": "profiling",
+        "obj": "automated_processing",
+        "predicate": "part_of",
+        "dimension": "structural",
+        "layer": "surface",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 63124,
+          "end": 63292
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      },
+      {
+        "id": "http://data.europa.eu/eli/reg/2016/679/oj#2016-05-04#574d9141dbda0567",
+        "subj": "personal_data",
+        "obj": "information_relating_to_identified_or_identifiable_natural_person",
+        "predicate": "is_a",
+        "dimension": "structural",
+        "layer": "deep",
+        "weight": 1.0,
+        "edge_confidence": 0.85,
+        "provenance": {
+          "start": 157742,
+          "end": 157840
+        },
+        "negation": "absent",
+        "extraction_rule_id": null
+      }
+    ],
+    "entry_A_id": "automated_decision",
+    "entry_B_id": "implement_safeguard_measures",
+    "entry_C_id": "automated_processing",
+    "container_id": "Article_22",
+    "nesting_dag_edge": [
+      "GDPR",
+      "Article_22"
+    ],
+    "depth_radius_r": 2,
+    "unitisation_rule_demo": "Statements 5 and 6 (requires) share the SAME subj (art22_3_applicability_condition, the trigger) and a DIFFERENT obj per listed safeguard measure (view_expression_measure / decision_contest_measure), matching Statement 2's own trigger -> measures relation -- the codebook's list-unitisation rule.",
+    "performs_parallel_note": "Statements 5 and 6 (view_expression_measure, decision_contest_measure) deliberately get NO performs parallel like statement 4's own pair with statement 7: expressing a view and contesting the decision are the DATA SUBJECT's own acts, not the controller's -- a performs Statement would misattribute the actor if it named the controller as performing them. Only human_intervention_measure, which the controller itself provides, gets its own performs Statement (7)."
+  },
+  "expected": {
+    "entry_A_raw": {
+      "structural": 0,
+      "causal": 1,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    },
+    "entry_A_point": {
+      "structural": 0.0,
+      "causal": 0.2,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "entry_A_fingerprint_dominant": "causal",
+    "entry_B_raw": {
+      "structural": 1,
+      "causal": 1,
+      "intentional": 1,
+      "temporal": 0,
+      "relational": 0
+    },
+    "entry_B_point": {
+      "structural": 0.2,
+      "causal": 0.2,
+      "intentional": 0.2,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "entry_B_fingerprint_dominant": "structural",
+    "container_position": {
+      "structural": 0.1,
+      "causal": 0.2,
+      "intentional": 0.1,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "depth_d": 0.5,
+    "depth_note": "deep_pull=0 and surface_pull=0 (no concept/anchor links in this minimal example) give raw_depth=0; nesting_relative_position(GDPR -> Article_22, r=2) = 1 ancestor / (1 ancestor + 0 descendants) = 1.0; d = (0.5*0 + 0.5*1.0)/(0.5+0.5) = 0.5.",
+    "entry_C_tensor": {
+      "surface": {
+        "structural": 0.2,
+        "causal": 0.0,
+        "intentional": 0.0,
+        "temporal": 0.0,
+        "relational": 0.0
+      },
+      "domain": {
+        "structural": 0.0,
+        "causal": 0.2,
+        "intentional": 0.0,
+        "temporal": 0.0,
+        "relational": 0.0
+      },
+      "deep": {
+        "structural": 0.0,
+        "causal": 0.0,
+        "intentional": 0.0,
+        "temporal": 0.0,
+        "relational": 0.0
+      }
+    },
+    "entry_C_tensor_note": "automated_processing is named by Statement 1 (enables, causal, layer domain -- Art.22(1), operative) and Statement 8 (part_of, structural, layer surface -- recital 71's own plain-language sentence, direction normalised part-to-whole: profiling part_of automated_processing). Its deep layer is genuinely zero: no definitional/principle-layer Statement in this example names it."
+  }
+}

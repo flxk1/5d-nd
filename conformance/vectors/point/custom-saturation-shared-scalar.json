@@ -1,0 +1,22 @@
+{
+  "family": "point",
+  "case": "custom-saturation-shared-scalar",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": 10,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    },
+    "saturation": 10
+  },
+  "expected": {
+    "structural": 1.0,
+    "causal": 0.0,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0
+  }
+}

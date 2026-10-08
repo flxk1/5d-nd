@@ -1,0 +1,12 @@
+{
+  "family": "resolution-profile",
+  "case": "missing-profile-id-rejected",
+  "input": {
+    "doc": {
+      "k": 5
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

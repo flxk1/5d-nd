@@ -1,0 +1,39 @@
+{
+  "family": "dual-split",
+  "case": "invalid-second-statement-not-intentional",
+  "input": {
+    "causal": {
+      "id": "eli:gdpr:2016-679#2016-05-04#0123456789abcdef",
+      "subj": "trigger_event",
+      "obj": "shared_middle",
+      "predicate": "requires",
+      "dimension": "causal",
+      "layer": "domain",
+      "weight": 1.0,
+      "edge_confidence": 0.8,
+      "provenance": {
+        "start": 0,
+        "end": 50
+      },
+      "negation": "absent"
+    },
+    "intentional": {
+      "id": "eli:gdpr:2016-679#2016-05-04#0123456789abcdef",
+      "subj": "shared_middle",
+      "obj": "protected_goal",
+      "predicate": "predication",
+      "dimension": "relational",
+      "layer": "domain",
+      "weight": 1.0,
+      "edge_confidence": 0.8,
+      "provenance": {
+        "start": 30,
+        "end": 80
+      },
+      "negation": "absent"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "family": "reference",
+  "case": "digest-example-matches-code",
+  "input": {
+    "ref": {
+      "dimensions": [
+        "temporal",
+        "relational"
+      ],
+      "anchor": "versum://policy/p1#span-150-240"
+    }
+  },
+  "expected": {
+    "sha256": "4da8b3468ad57b8a4e6c6d2a741876e1b3f00eb8c974df29e540c9517e2a88d2"
+  }
+}

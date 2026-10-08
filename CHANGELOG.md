@@ -1,5 +1,62 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- A 5D fingerprint/coordinate specification (draft 1.0, `spec/SPEC.md`):
+  the closed five-dimension set and canonical order, the composition algebra,
+  the 5D fingerprint of an entry, 5D's neutrality on is/ought (is and
+  ought live in nD grammars, as an optional co-dimension), the assertoric
+  (factual) lowering layer, and the nD grammar contract. No Loomground
+  repository conforms to this spec yet; versum, solver, and the grammar
+  planes are its planned consumers.
+- A stdlib reference implementation for the specification
+  (`src/five_d_nd/`): the dimension algebra, the 5D fingerprint, the
+  assertoric lowering layer, and `NDSystem`/grammar-descriptor validation.
+- Machine-readable vocabulary (`vocabulary/`) and JSON Schemas (`schema/`)
+  for the 5D layer, plus a conformance vector suite and runner
+  (`conformance/`, `tests/test_conformance.py`).
+- Typed Statements (spec §21-§23): a richer, reified edge on top of the
+  plain triple, with its own codebook (`docs/codebook/typed-statements-v1.md`,
+  v3.5) and gold-annotation protocol (`docs/codebook/gold-protocol-v1.md`).
+- A typed-Statement extractor (`src/five_d_nd/extract/`): a deterministic
+  clause/list-item segmenter and a closed cue-rule table that propose
+  candidate Statements from legal text (pure stdlib, no ML, no network —
+  the same input always gives the same candidate set). It composes with a
+  model-assisted decision stage (spec §23a): a model's answer for a given
+  candidate set is recorded once, content-addressed, and thereafter only
+  replayed — never recomputed or re-queried. A cache miss raises rather
+  than silently falling back to an unassisted result.
+- Actor-role and typed-Statement predicate vocabularies (the latter now
+  at v3.5).
+
+### Fixed
+
+- `resolve()`: same-length content tampering (a stored span edited so its
+  length is unchanged but its content differs) is no longer invisible to
+  the span check. New optional `source_text` / `expected_content_digest`
+  arguments let a caller supply independent ground truth; `resolve()`
+  fails closed (`SpanMismatchError`) against either when supplied.
+- `resolve()`: the `MissingStoreError` contract is now literal — an
+  absent, non-path, or empty `store`, and `versum` not being importable,
+  all raise `MissingStoreError`.
+- `pyproject.toml`: the `grounding` extra no longer pins a
+  `loomground-versum` tag that lacks a function this package needs; it is
+  left unpinned, with a documented local-development install path.
+- Tests needing the optional `versum` dependency now skip, with a stated
+  reason, when it is unavailable, rather than erroring.
+
+### Changed
+
+- Repository layout: `five_d_nd/` moved under `src/`; licensing moved to
+  `LICENSES/` + `NOTICE` + `REUSE.toml`; the version is single-sourced
+  from `src/five_d_nd/_version.py`.
+- `docs/model.md`, `README.md`, `llms.txt`: corrected the description of
+  `dimensions` in a `5d+nd` reference, and of `resolve()`'s own return
+  shape.
+
+
 ## [0.2.2](https://github.com/flxk1/5d-nd/compare/v0.2.1...v0.2.2) (2026-09-29)
 
 
@@ -35,36 +92,3 @@
 * README Problem + executed Example (186 words) ([5d71a78](https://github.com/flxk1/5d-nd/commit/5d71a78e34ebba1abaedf79165098ffa44bb92aa))
 * README to canon (148 words), description, Family ([72aa89e](https://github.com/flxk1/5d-nd/commit/72aa89eee1cffa647135784a1a9a1937e0b998e6))
 
-## Changelog
-
-## Unreleased
-
-- `resolve()`: same-length content tampering (e.g. a store's recorded span
-  text edited so its length is unchanged but its content changes) is no
-  longer invisible to the span check. New optional `source_text` /
-  `expected_content_digest` keyword arguments let a caller supply an
-  independent ground of truth; `resolve()` fails closed
-  (`SpanMismatchError`) against either when supplied. The prior length-only
-  check is unchanged when neither is supplied.
-- `resolve()`: the `MissingStoreError` contract is now literal and tested —
-  `store=None`, `store=42`, `store=""`, and `versum` not importable all raise
-  `MissingStoreError` (previously the "versum not importable" case raised the
-  more general `ResolutionError`).
-- `pyproject.toml`: the `grounding` extra no longer pins a `loomground-versum`
-  tag that lacks `versum.coordinates.entry_coordinates` (the newest tag,
-  `loomground-versum-v0.14.0`, predates that commit) — left unpinned, with a
-  documented local-development path/branch install note in the same file,
-  README.md, llms.txt and docs/model.md.
-- Tests needing the `versum` `coordinates` module now SKIP (with a stated
-  reason) rather than error when it is unavailable or lacks
-  `entry_coordinates`, and when the versum fixture folder is unreachable.
-- docs/model.md: corrected the description of `dimensions` in a `5d+nd`
-  reference — `resolve()` does not read, filter, or select by `dimensions`;
-  only `anchor` decides what span is returned. `dimensions` is validated and
-  canonicalized/digested, nothing more, in this module.
-- Removed two "mutation probe" tests that exercised inline stand-in functions
-  rather than the shipped `resolve()`/`canonicalize()` code paths.
-- Repository laid out on the measure skeleton: flat `five_d_nd/` → `src/five_d_nd/` (import path unchanged); `LICENSE` → `LICENSES/MIT.txt` (+ `LICENSES/Apache-2.0.txt` for the vendored `dimensions.py`) + `NOTICE` + `REUSE.toml`; version single-sourced from `src/five_d_nd/_version.py`.
-- `resolve()` wired: replaces the documented stub. One canonical span-reference syntax `<source_urn>#<start>-<end>` (over versum's own cleaned-text span offsets), plus `normalize_reference()` accepting it and two READ-ONLY legacy forms (`versum://...#span-a-b`, `{urn}#{unit}:{a}-{b}`), fail-closed (`MalformedReferenceError`) on anything else. `resolve(ref, *, store)` resolves through versum's public API only (`versum.planes.entry_id`, `versum.coordinates.entry_coordinates`) — no private readers, no direct CSV parsing — returning `{entry_id, span, dimension, nd, source_urn, content_digest}`; fails closed with a specific exception (`MissingStoreError` / `UnknownReferenceError` / `SpanMismatchError`) rather than fabricating a result. `versum` is an optional runtime dependency, imported lazily inside `resolve()` only (new `grounding` extra); importing this package otherwise remains stdlib-only.
-- Additive content-bound digest: `content_digest(ref, span_text)` — sha256 over `canonicalize(ref)` AND the resolved span text, domain-separated from `digest(ref)`. `digest(ref)` itself is byte-for-byte unchanged (literal regression test against HEAD `3ac16be`).
-- Docs (`docs/model.md`, `README.md`, `llms.txt`) updated: canonical span-reference syntax, `resolve`/`normalize_reference`/`content_digest`, and the is/ought note (5D is what IS; a deontic operator O/P/F carries no 5D dimension).

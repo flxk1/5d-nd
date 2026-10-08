@@ -1,0 +1,26 @@
+{
+  "family": "requirement-grammar",
+  "case": "unknown-concept-name-rejected",
+  "input": {
+    "ruleset": {
+      "ruleset_id": "bad-unknown-concept",
+      "rules": [
+        {
+          "obligation_id": "X:2",
+          "citation": "X Art. 2",
+          "trigger_concepts": [
+            "automated_decision_making"
+          ],
+          "required_concepts": [
+            "telepathic_consent"
+          ]
+        }
+      ]
+    }
+  },
+  "expected": {
+    "violations": [
+      "rules[0].required_concepts names concept(s) ['telepathic_consent'] not in CONCEPT_CUES ['automated_decision_making', 'human_intervention', 'right_to_contest', 'right_to_express_view']"
+    ]
+  }
+}

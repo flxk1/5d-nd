@@ -1,0 +1,40 @@
+{
+  "family": "requirement-grammar",
+  "case": "probe-f3-negation-across-and-mixed",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "A decision based solely on automated processing is taken.",
+      "The data subject can express his or her point of view and there is no human intervention."
+    ]
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [
+      "human_intervention",
+      "right_to_express_view"
+    ],
+    "missing": [
+      "right_to_contest"
+    ],
+    "all_present": false,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "X",
+    "right_to_express_view": "A",
+    "right_to_contest": "X"
+  },
+  "provenance": "Probe set, re-scored after later rule revisions"
+}

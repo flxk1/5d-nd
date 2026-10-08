@@ -1,0 +1,29 @@
+{
+  "family": "nd-system",
+  "case": "invalid-wrapper-bypass-junk-string-with-valid-bare-fields",
+  "input": {
+    "doc": {
+      "nd_system": "junk",
+      "id": "loomground-deontic",
+      "namespace": "loomground.deontic",
+      "version": "1",
+      "axes": {
+        "operator": {
+          "value_type": "controlled_identifier",
+          "vocabulary_mode": "closed",
+          "vocabulary": [
+            "O",
+            "P",
+            "F"
+          ]
+        }
+      },
+      "validation": {
+        "unknown_values": "reject"
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

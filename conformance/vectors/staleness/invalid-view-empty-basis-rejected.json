@@ -1,0 +1,18 @@
+{
+  "family": "staleness",
+  "case": "invalid-view-empty-basis-rejected",
+  "input": {
+    "kind": "validate_view",
+    "doc": {
+      "value": 1,
+      "kind": "d",
+      "position_digest": "abc",
+      "basis": "",
+      "stale": false,
+      "staleness_tier": null
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "family": "compose-identity",
+  "case": "identity-intentional",
+  "input": {
+    "d": "intentional",
+    "identity": "relational"
+  },
+  "expected": {
+    "left_with_identity": "intentional",
+    "identity_with_right": "intentional",
+    "expected_both": "intentional"
+  }
+}

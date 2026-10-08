@@ -1,0 +1,22 @@
+{
+  "family": "nd-system",
+  "case": "valid-unknown-values-not-reject-is-not-an-nd-system-level-error",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string"
+        }
+      },
+      "validation": {
+        "unknown_values": "accept"
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

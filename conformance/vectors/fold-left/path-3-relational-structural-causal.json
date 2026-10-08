@@ -1,0 +1,16 @@
+{
+  "family": "fold-left",
+  "case": "path-3-relational-structural-causal",
+  "input": {
+    "path": [
+      "relational",
+      "structural",
+      "causal"
+    ]
+  },
+  "expected": {
+    "left_fold": "causal",
+    "right_fold": "causal",
+    "associative": true
+  }
+}

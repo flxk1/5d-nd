@@ -1,0 +1,32 @@
+{
+  "family": "cycle-rejection",
+  "case": "diamond-shape-accepted-not-a-cycle",
+  "input": {
+    "existing_edges": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "A",
+        "C"
+      ]
+    ],
+    "add_edge": [
+      "B",
+      "D"
+    ]
+  },
+  "expected": {
+    "accepted": true,
+    "order": {
+      "A": 0,
+      "B": 1,
+      "C": 2,
+      "D": 3
+    },
+    "children_of_parent": [
+      "D"
+    ]
+  }
+}

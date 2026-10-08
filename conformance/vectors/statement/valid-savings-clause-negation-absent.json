@@ -1,0 +1,24 @@
+{
+  "family": "statement",
+  "case": "valid-savings-clause-negation-absent",
+  "input": {
+    "doc": {
+      "id": "http://data.europa.eu/eli/reg/2024/1689/oj#2024-07-12#621ef51390a2d546",
+      "subj": "ai_act_article_2",
+      "obj": "gdpr_and_related_instruments",
+      "predicate": "cross_references",
+      "dimension": "structural",
+      "layer": "domain",
+      "weight": 1.0,
+      "edge_confidence": 0.9,
+      "provenance": {
+        "start": 234832,
+        "end": 235023
+      },
+      "negation": "absent"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "family": "position",
+  "case": "rounding-sevenths",
+  "input": {
+    "contributions": {
+      "structural": 1,
+      "causal": 2,
+      "intentional": 4
+    }
+  },
+  "expected": {
+    "structural": 0.142857,
+    "causal": 0.285714,
+    "intentional": 0.571429,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "intentional",
+    "basis": "planes"
+  }
+}

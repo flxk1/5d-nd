@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "temporal-only-within-one-month",
+  "input": {
+    "text": "The controller shall, within one month, inform the data subject.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 1,
+      "relational": 1.0
+    },
+    "cross_reference_targets": []
+  }
+}

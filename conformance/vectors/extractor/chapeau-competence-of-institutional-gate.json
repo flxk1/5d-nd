@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "chapeau-competence-of-institutional-gate",
+  "input": {
+    "unit_text": "The supervisory authority shall have the task to—\n\n(a)\n\nmonitor and enforce the application of this Regulation\n\n(b)\n\npromote public awareness of the risks relating to processing"
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#87191fb3668b4053",
+        "subj": "supervisory authority",
+        "obj": "monitor and enforce the application of this Regulation",
+        "predicate": "competence_of",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 4,
+          "end": 110
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-competence_of-shall-have-power-chapeau-only-chapeau-inherited-item"
+      },
+      {
+        "id": "extracted-unit#n/a#2a77e1556893b5a9",
+        "subj": "supervisory authority",
+        "obj": "promote public awareness of the risks relating to processing",
+        "predicate": "competence_of",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 4,
+          "end": 177
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-competence_of-shall-have-power-chapeau-only-chapeau-inherited-item"
+      }
+    ]
+  }
+}

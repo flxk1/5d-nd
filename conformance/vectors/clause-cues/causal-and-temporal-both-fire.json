@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "causal-and-temporal-both-fire",
+  "input": {
+    "text": "Where the processing is necessary, the controller shall notify without undue delay.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 1,
+      "intentional": 0,
+      "temporal": 1,
+      "relational": 0.333333
+    },
+    "cross_reference_targets": []
+  }
+}

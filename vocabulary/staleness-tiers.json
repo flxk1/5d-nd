@@ -1,0 +1,14 @@
+{
+  "$comment": "The closed set of two staleness tiers a derived view's 'staleness_tier' field may carry (draft 1.0, coordinate round, spec/SPEC.md §15) — see five_d_nd/views.py's STALENESS_TIERS and conformance/vectors/staleness/ for the enum-coverage vectors that exercise both.",
+  "order": ["erasure", "ingest"],
+  "tiers": {
+    "erasure": {
+      "label": "Erasure-stale",
+      "meaning": "A HARD FENCE: the view MUST NOT be served (beyond placement routing) until re-derived, and that re-derivation MUST be bit-identical to a baseline that never contained the erased leaf."
+    },
+    "ingest": {
+      "label": "Ingest-stale",
+      "meaning": "A BOUNDED WINDOW: the last good view may be served with its digest and age attached, for as long as its age stays within the resolution profile's staleness_window_seconds; past the window it is no longer servable."
+    }
+  }
+}

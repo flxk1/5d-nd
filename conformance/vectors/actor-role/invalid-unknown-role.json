@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "invalid-unknown-role",
+  "input": {
+    "value": "spaceship_operator"
+  },
+  "expected": {
+    "known": false
+  }
+}

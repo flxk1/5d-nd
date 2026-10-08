@@ -1,0 +1,58 @@
+{
+  "family": "trimmed-topk",
+  "case": "n-below-n-min-with-k-smaller-than-n-uses-all-three",
+  "input": {
+    "members": [
+      {
+        "claim_id": "a",
+        "weight": 0.9,
+        "point": {
+          "structural": 1.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        }
+      },
+      {
+        "claim_id": "b",
+        "weight": 0.5,
+        "point": {
+          "structural": 0.5,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        }
+      },
+      {
+        "claim_id": "c",
+        "weight": 0.1,
+        "point": {
+          "structural": 0.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        }
+      }
+    ],
+    "k": 2,
+    "n_min": 4,
+    "salt": "s"
+  },
+  "expected": {
+    "match_statistic": {
+      "structural": 0.5,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "selected_claim_ids": [
+      "a",
+      "b",
+      "c"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "part_of-includes-swap-quoted-term",
+  "input": {
+    "unit_text": "The retention policy includes ‘archived records’ that remain subject to review."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#905e92d40b0561ed",
+        "subj": "‘archived records’ that remain subject to review",
+        "obj": "retention policy",
+        "predicate": "part_of",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 78
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-part_of-includes-swap"
+      }
+    ]
+  }
+}

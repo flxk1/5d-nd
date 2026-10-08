@@ -1,0 +1,15 @@
+{
+  "family": "nd-system",
+  "case": "invalid-version-empty-array-malformed-despite-versum-accepting",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": [],
+      "axes": {
+        "subject": {"value_type": "string"}
+      }
+    }
+  },
+  "expected": {"valid": false}
+}

@@ -1,0 +1,72 @@
+{
+  "family": "trimmed-topk",
+  "case": "tie-broken-by-canonical-salted-claim-id-order",
+  "input": {
+    "members": [
+      {
+        "claim_id": "z",
+        "weight": 0.5,
+        "point": {
+          "structural": 1.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      },
+      {
+        "claim_id": "a",
+        "weight": 0.5,
+        "point": {
+          "structural": 0.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      },
+      {
+        "claim_id": "m",
+        "weight": 0.5,
+        "point": {
+          "structural": 0.5,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      },
+      {
+        "claim_id": "b",
+        "weight": 0.1,
+        "point": {
+          "structural": 0.0,
+          "causal": 0,
+          "intentional": 0,
+          "temporal": 0,
+          "relational": 0
+        },
+        "operative": true
+      }
+    ],
+    "k": 2,
+    "n_min": 1,
+    "salt": "tiebreak-salt"
+  },
+  "expected": {
+    "match_statistic": {
+      "structural": 0.5,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    },
+    "selected_claim_ids": [
+      "z",
+      "a"
+    ]
+  }
+}

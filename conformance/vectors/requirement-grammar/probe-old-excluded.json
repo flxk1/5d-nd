@@ -1,0 +1,39 @@
+{
+  "family": "requirement-grammar",
+  "case": "probe-old-excluded",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "Decisions are taken by automated processing, and human intervention, the chance to express his or her point of view and the possibility to contest the decision are all excluded."
+    ]
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": false,
+    "trigger_uncertain": true,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [],
+    "uncertain": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "missing": [],
+    "all_present": null,
+    "needs_review": true,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  },
+  "note": "truth: triggered (the trigger concept IS affirmed in real GDPR usage of this phrasing); trigger_uncertain here is acceptable, not a confidently-wrong flip (truth=A, output=uncertain is the documented, deliberate conservative trade-off, never classified CONF-WRONG).",
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "X",
+    "right_to_express_view": "X",
+    "right_to_contest": "X"
+  },
+  "provenance": "Probe set, re-scored after later rule revisions"
+}

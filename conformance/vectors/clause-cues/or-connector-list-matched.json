@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "or-connector-list-matched",
+  "input": {
+    "text": "See Articles 9 or 10 for details.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 2,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      9,
+      10
+    ]
+  }
+}

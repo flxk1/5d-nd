@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-notified_body",
+  "input": {
+    "role": "notified_body"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

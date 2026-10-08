@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "range-boundary-not-a-time-duration",
+  "input": {
+    "text": "The request shall be processed within Article 12 to 30 days.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": [
+      12
+    ]
+  }
+}

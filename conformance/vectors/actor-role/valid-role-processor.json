@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-processor",
+  "input": {
+    "value": "processor"
+  },
+  "expected": {
+    "known": true
+  }
+}

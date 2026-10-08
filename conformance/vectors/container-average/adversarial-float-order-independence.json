@@ -1,0 +1,87 @@
+{
+  "family": "container-average",
+  "case": "adversarial-float-order-independence",
+  "input": {
+    "member_points": [
+      {
+        "structural": 0.1,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.2,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.3,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.1,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.2,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.3,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.1,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.2,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.3,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      },
+      {
+        "structural": 0.1,
+        "causal": 0,
+        "intentional": 0,
+        "temporal": 0,
+        "relational": 0
+      }
+    ]
+  },
+  "expected": {
+    "position": {
+      "structural": 0.19,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  }
+}

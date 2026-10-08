@@ -1,0 +1,21 @@
+{
+  "family": "nd-system",
+  "case": "valid-number-vocabulary",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "number",
+          "vocabulary_mode": "closed",
+          "vocabulary": [0.5, 1.0]
+        }
+      }
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

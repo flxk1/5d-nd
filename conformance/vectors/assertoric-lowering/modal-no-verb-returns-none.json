@@ -1,0 +1,8 @@
+{
+  "family": "assertoric-lowering",
+  "case": "modal-no-verb-returns-none",
+  "input": {
+    "sentence": "The provider cannot."
+  },
+  "expected": null
+}

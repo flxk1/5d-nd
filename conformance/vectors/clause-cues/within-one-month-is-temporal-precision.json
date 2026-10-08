@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "within-one-month-is-temporal-precision",
+  "input": {
+    "text": "The controller shall respond within one month of receipt.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 1,
+      "relational": 0.5
+    },
+    "cross_reference_targets": []
+  }
+}

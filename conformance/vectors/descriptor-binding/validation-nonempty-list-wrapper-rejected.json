@@ -1,0 +1,16 @@
+{
+  "family": "descriptor-binding",
+  "case": "validation-nonempty-list-wrapper-rejected",
+  "input": {
+    "descriptor": {
+      "plane": "x",
+      "language_version": "1",
+      "nd_system": {"nd_system":{"id":"x","namespace":"x","version":"1","axes":{"op":{"vocabulary":["O","P","F"]}},"validation":[1]}},
+      "binding": {},
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

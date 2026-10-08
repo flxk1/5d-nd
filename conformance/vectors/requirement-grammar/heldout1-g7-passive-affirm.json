@@ -1,0 +1,40 @@
+{
+  "family": "requirement-grammar",
+  "case": "heldout1-g7-passive-affirm",
+  "provenance": "Held-out set 1",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "A decision based solely on automated processing is taken.",
+      "Human intervention is provided by a trained officer."
+    ]
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "A",
+    "right_to_express_view": "-",
+    "right_to_contest": "-"
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [
+      "human_intervention"
+    ],
+    "uncertain": [],
+    "missing": [
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "all_present": false,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  }
+}

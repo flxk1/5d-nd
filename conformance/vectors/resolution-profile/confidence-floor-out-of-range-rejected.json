@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "confidence-floor-out-of-range-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "confidence_floor": 1.5
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

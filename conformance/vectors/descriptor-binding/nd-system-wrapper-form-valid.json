@@ -1,0 +1,34 @@
+{
+  "family": "descriptor-binding",
+  "case": "nd-system-wrapper-form-valid",
+  "input": {
+    "descriptor": {
+      "plane": "loomground-deontic",
+      "language_version": "1",
+      "nd_system": {
+        "nd_system": {
+          "id": "loomground-deontic",
+          "namespace": "loomground.deontic",
+          "version": "1",
+          "axes": {
+            "operator": {
+              "value_type": "controlled_identifier",
+              "vocabulary_mode": "closed",
+              "vocabulary": ["O", "P", "F"]
+            }
+          },
+          "validation": {
+            "unknown_values": "reject"
+          }
+        }
+      },
+      "binding": {
+        "obliges": "intentional"
+      },
+      "contract_version": "1.0-draft"
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

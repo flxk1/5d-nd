@@ -1,0 +1,34 @@
+{
+  "family": "path-search",
+  "case": "floor-equal-to-weight-not-cut",
+  "note": "floor == the edge's own composed weight (0.5 == 0.5). confidence_floor_cut() is a STRICT less-than, so this edge must NOT be cut -- (b, causal) is reached. Changing '<' to '<=' would wrongly cut it.",
+  "input": {
+    "adjacency": {
+      "a": [
+        {
+          "target": "b",
+          "dimension": "causal",
+          "weight": 0.5
+        }
+      ]
+    },
+    "start": "a",
+    "floor": 0.5
+  },
+  "expected": {
+    "reached": [
+      [
+        "a",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "b",
+        "causal",
+        0.5,
+        1
+      ]
+    ]
+  }
+}

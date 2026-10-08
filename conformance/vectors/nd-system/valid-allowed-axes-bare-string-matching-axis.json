@@ -1,0 +1,22 @@
+{
+  "family": "nd-system",
+  "case": "valid-allowed-axes-bare-string-matching-axis",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string"
+        }
+      },
+      "bindings": [
+        {"form_slot": "s", "allowed_axes": "a"}
+      ]
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

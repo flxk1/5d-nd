@@ -1,0 +1,76 @@
+{
+  "family": "composition-laws",
+  "case": "125-triple-law-check-over-composition-table",
+  "input": {},
+  "expected": {
+    "identity_two_sided": true,
+    "idempotent": {
+      "structural": true,
+      "causal": true,
+      "intentional": true,
+      "temporal": true,
+      "relational": true
+    },
+    "all_idempotent": true,
+    "commutative_failures": [
+      [
+        "structural",
+        "intentional"
+      ],
+      [
+        "structural",
+        "temporal"
+      ],
+      [
+        "causal",
+        "intentional"
+      ],
+      [
+        "causal",
+        "temporal"
+      ],
+      [
+        "intentional",
+        "structural"
+      ],
+      [
+        "intentional",
+        "causal"
+      ],
+      [
+        "intentional",
+        "temporal"
+      ],
+      [
+        "temporal",
+        "structural"
+      ],
+      [
+        "temporal",
+        "causal"
+      ],
+      [
+        "temporal",
+        "intentional"
+      ]
+    ],
+    "commutative_failure_count": 10,
+    "associative_failures": [
+      [
+        "causal",
+        "intentional",
+        "structural",
+        "structural",
+        "causal"
+      ],
+      [
+        "causal",
+        "temporal",
+        "structural",
+        "structural",
+        "causal"
+      ]
+    ],
+    "associative_failure_count": 2
+  }
+}

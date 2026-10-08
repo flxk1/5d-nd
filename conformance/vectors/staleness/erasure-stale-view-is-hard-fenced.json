@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "erasure-stale-view-is-hard-fenced",
+  "input": {
+    "kind": "erasure_fence",
+    "view": {
+      "stale": true,
+      "staleness_tier": "erasure"
+    }
+  },
+  "expected": {
+    "fenced": true
+  }
+}

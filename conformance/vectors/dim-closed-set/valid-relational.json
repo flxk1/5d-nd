@@ -1,0 +1,10 @@
+{
+  "family": "dim-closed-set",
+  "case": "valid-relational",
+  "input": {
+    "value": "relational"
+  },
+  "expected": {
+    "valid": true
+  }
+}

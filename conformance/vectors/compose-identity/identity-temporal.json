@@ -1,0 +1,13 @@
+{
+  "family": "compose-identity",
+  "case": "identity-temporal",
+  "input": {
+    "d": "temporal",
+    "identity": "relational"
+  },
+  "expected": {
+    "left_with_identity": "temporal",
+    "identity_with_right": "temporal",
+    "expected_both": "temporal"
+  }
+}

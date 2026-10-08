@@ -1,0 +1,39 @@
+{
+  "family": "staleness",
+  "case": "hub-fanout-debounce-coalesces-burst",
+  "input": {
+    "kind": "debounce",
+    "events": [
+      [
+        "hub",
+        0
+      ],
+      [
+        "hub",
+        1
+      ],
+      [
+        "hub",
+        2
+      ],
+      [
+        "hub",
+        3
+      ],
+      [
+        "hub",
+        4
+      ]
+    ],
+    "window_seconds": 10,
+    "threshold": 5
+  },
+  "expected": {
+    "coalesced": [
+      [
+        "hub",
+        1
+      ]
+    ]
+  }
+}

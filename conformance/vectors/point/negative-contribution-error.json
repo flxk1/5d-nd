@@ -1,0 +1,17 @@
+{
+  "family": "point",
+  "case": "negative-contribution-error",
+  "input": {
+    "kind": "derive",
+    "contributions": {
+      "structural": -1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-digital_services_coordinator",
+  "input": {
+    "role": "digital_services_coordinator"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "family": "extractor",
+  "case": "except_when-subject-to-chapeau-list",
+  "input": {
+    "unit_text": "The definition has effect subject to— a subsection (2), b section 209, and c section 210."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#3a3c8b491c297252",
+        "subj": "definition",
+        "obj": "section 209",
+        "predicate": "except_when",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 4,
+          "end": 69
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-except_when-subject-to-provision-chapeau-only-chapeau-inherited-item"
+      },
+      {
+        "id": "extracted-unit#n/a#86d6f6321351e218",
+        "subj": "definition",
+        "obj": "section 210",
+        "predicate": "except_when",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 4,
+          "end": 88
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-except_when-subject-to-provision-chapeau-only-chapeau-inherited-item"
+      },
+      {
+        "id": "extracted-unit#n/a#dec5e59b9f501c00",
+        "subj": "definition",
+        "obj": "subsection (2)",
+        "predicate": "except_when",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.45,
+        "provenance": {
+          "start": 4,
+          "end": 54
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-except_when-subject-to-provision-chapeau-only-chapeau-inherited-item"
+      }
+    ]
+  }
+}

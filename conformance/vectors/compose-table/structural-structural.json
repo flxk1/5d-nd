@@ -1,0 +1,11 @@
+{
+  "family": "compose-table",
+  "case": "structural-structural",
+  "input": {
+    "a": "structural",
+    "b": "structural"
+  },
+  "expected": {
+    "result": "structural"
+  }
+}

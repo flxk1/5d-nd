@@ -1,0 +1,10 @@
+{
+  "family": "triple",
+  "case": "non-mapping-rejected",
+  "input": {
+    "doc": "not-a-mapping"
+  },
+  "expected": {
+    "valid": false
+  }
+}

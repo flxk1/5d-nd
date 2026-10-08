@@ -1,0 +1,14 @@
+{
+  "family": "staleness",
+  "case": "ingest-stale-past-window-not-servable",
+  "input": {
+    "kind": "ingest_window",
+    "as_of": 0,
+    "now": 4000,
+    "window_seconds": 3600
+  },
+  "expected": {
+    "servable": false,
+    "age": 4000
+  }
+}

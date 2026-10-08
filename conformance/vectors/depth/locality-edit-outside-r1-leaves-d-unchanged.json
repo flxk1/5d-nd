@@ -1,0 +1,32 @@
+{
+  "family": "depth",
+  "case": "locality-edit-outside-r1-leaves-d-unchanged",
+  "input": {
+    "graph": {
+      "concept_links": {
+        "X": [
+          "A"
+        ],
+        "A": [
+          "B"
+        ],
+        "B": [
+          "C"
+        ],
+        "C": [
+          "D"
+        ]
+      },
+      "anchor_links": {}
+    },
+    "dag": {
+      "children": {},
+      "order": {}
+    },
+    "entry_id": "X",
+    "r": 1
+  },
+  "expected": {
+    "d": 0.083333
+  }
+}

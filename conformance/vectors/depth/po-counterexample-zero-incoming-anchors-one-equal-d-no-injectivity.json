@@ -1,0 +1,25 @@
+{
+  "family": "depth",
+  "case": "po-counterexample-zero-incoming-anchors-one-equal-d-no-injectivity",
+  "input": {
+    "graph": {
+      "concept_links": {},
+      "anchor_links": {
+        "X": [
+          "a0"
+        ]
+      }
+    },
+    "dag": {
+      "children": {},
+      "order": {},
+      "reverse": {},
+      "next_order": 0
+    },
+    "entry_id": "X",
+    "r": 2
+  },
+  "expected": {
+    "d": 0.0
+  }
+}

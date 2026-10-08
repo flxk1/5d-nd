@@ -1,0 +1,11 @@
+{
+  "family": "is-ought",
+  "case": "content-entry-no-contribution-invalid",
+  "input": {
+    "kind": "content_entry",
+    "contributions": {}
+  },
+  "expected": {
+    "valid": false
+  }
+}

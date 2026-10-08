@@ -1,0 +1,19 @@
+{
+  "family": "position",
+  "case": "tie-order-causal-wins-over-intentional",
+  "input": {
+    "contributions": {
+      "causal": 1,
+      "intentional": 1
+    }
+  },
+  "expected": {
+    "structural": 0.0,
+    "causal": 0.5,
+    "intentional": 0.5,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "causal",
+    "basis": "planes"
+  }
+}

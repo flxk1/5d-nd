@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "modal-always-relational-even-with-embedded-is-a",
+  "input": {
+    "sentence": "The controller must ensure that the system is a secure system."
+  },
+  "expected": {
+    "subject": "controller",
+    "predicate": "ensure",
+    "object": "that the system is a secure system",
+    "dimension": "relational",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "predication",
+    "canonical": null
+  }
+}

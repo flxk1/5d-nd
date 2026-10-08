@@ -1,0 +1,16 @@
+{
+  "family": "nd-system",
+  "case": "invalid-ontology-relations-string-malformed-despite-versum-accepting",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "subject": {"value_type": "string"}
+      },
+      "ontology_relations": "ab"
+    }
+  },
+  "expected": {"valid": false}
+}

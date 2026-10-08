@@ -1,0 +1,17 @@
+{
+  "family": "point",
+  "case": "valid-point-all-five-present",
+  "input": {
+    "kind": "validate",
+    "doc": {
+      "structural": 0.3,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

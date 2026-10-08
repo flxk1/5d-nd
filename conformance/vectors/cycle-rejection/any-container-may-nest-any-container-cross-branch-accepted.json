@@ -1,0 +1,32 @@
+{
+  "family": "cycle-rejection",
+  "case": "any-container-may-nest-any-container-cross-branch-accepted",
+  "input": {
+    "existing_edges": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "C",
+        "D"
+      ]
+    ],
+    "add_edge": [
+      "B",
+      "D"
+    ]
+  },
+  "expected": {
+    "accepted": true,
+    "order": {
+      "A": 0,
+      "B": 1,
+      "C": 2,
+      "D": 3
+    },
+    "children_of_parent": [
+      "D"
+    ]
+  }
+}

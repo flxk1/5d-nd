@@ -1,0 +1,24 @@
+{
+  "family": "container-average",
+  "case": "single-member-equals-member",
+  "input": {
+    "member_points": [
+      {
+        "structural": 0.4,
+        "causal": 0.6,
+        "intentional": 0.2,
+        "temporal": 0.1,
+        "relational": 0.9
+      }
+    ]
+  },
+  "expected": {
+    "position": {
+      "structural": 0.4,
+      "causal": 0.6,
+      "intentional": 0.2,
+      "temporal": 0.1,
+      "relational": 0.9
+    }
+  }
+}

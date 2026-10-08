@@ -1,0 +1,10 @@
+{
+  "family": "reference",
+  "case": "malformed-inverted-bounds",
+  "input": {
+    "ref": "urn:x#10-1"
+  },
+  "expected": {
+    "error": "MalformedReferenceError"
+  }
+}

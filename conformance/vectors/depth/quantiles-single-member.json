@@ -1,0 +1,15 @@
+{
+  "family": "depth",
+  "case": "quantiles-single-member",
+  "input": {
+    "kind": "quantiles",
+    "member_depths": {
+      "a": 0.5
+    }
+  },
+  "expected": {
+    "quantiles": {
+      "a": 0.0
+    }
+  }
+}

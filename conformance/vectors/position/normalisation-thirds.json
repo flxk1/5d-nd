@@ -1,0 +1,20 @@
+{
+  "family": "position",
+  "case": "normalisation-thirds",
+  "input": {
+    "contributions": {
+      "structural": 1,
+      "causal": 1,
+      "intentional": 1
+    }
+  },
+  "expected": {
+    "structural": 0.333333,
+    "causal": 0.333333,
+    "intentional": 0.333333,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "structural",
+    "basis": "planes"
+  }
+}

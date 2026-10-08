@@ -1,0 +1,15 @@
+{
+  "family": "resolution-profile",
+  "case": "d-blend-weights-missing-key-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "d_blend_weights": {
+        "links": 0.5
+      }
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

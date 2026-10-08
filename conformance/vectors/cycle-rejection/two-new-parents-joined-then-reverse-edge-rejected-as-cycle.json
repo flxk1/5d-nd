@@ -1,0 +1,31 @@
+{
+  "family": "cycle-rejection",
+  "case": "two-new-parents-joined-then-reverse-edge-rejected-as-cycle",
+  "input": {
+    "existing_edges": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "p1",
+        "a"
+      ],
+      [
+        "p2",
+        "b"
+      ],
+      [
+        "p1",
+        "p2"
+      ]
+    ],
+    "add_edge": [
+      "p2",
+      "p1"
+    ]
+  },
+  "expected": {
+    "error": "CycleError"
+  }
+}

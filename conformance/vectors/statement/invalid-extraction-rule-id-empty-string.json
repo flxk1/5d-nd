@@ -1,0 +1,24 @@
+{
+  "family": "statement",
+  "case": "invalid-extraction-rule-id-empty-string",
+  "input": {
+    "doc": {
+      "id": "x#y#0123456789abcdef",
+      "subj": "a",
+      "obj": "b",
+      "predicate": "enables",
+      "dimension": "causal",
+      "edge_confidence": 0.5,
+      "provenance": {
+        "start": 0,
+        "end": 1
+      },
+      "negation": "absent",
+      "extraction_rule_id": "",
+      "layer": "domain"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

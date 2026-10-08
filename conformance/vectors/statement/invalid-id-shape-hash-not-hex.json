@@ -1,0 +1,24 @@
+{
+  "family": "statement",
+  "case": "invalid-id-shape-hash-not-hex",
+  "input": {
+    "doc": {
+      "id": "eli:gdpr:2016-679#2016-05-04#not-a-hash-string",
+      "subj": "a_entity",
+      "obj": "b_entity",
+      "predicate": "enables",
+      "dimension": "causal",
+      "layer": "domain",
+      "weight": 1.0,
+      "edge_confidence": 0.8,
+      "provenance": {
+        "start": 0,
+        "end": 10
+      },
+      "negation": "absent"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "dim-closed-set",
+  "case": "rejected-hyperbolic",
+  "input": {
+    "value": "hyperbolic"
+  },
+  "expected": {
+    "valid": false
+  }
+}

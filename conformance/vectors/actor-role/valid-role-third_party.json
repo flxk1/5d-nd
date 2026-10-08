@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "valid-role-third_party",
+  "input": {
+    "value": "third_party"
+  },
+  "expected": {
+    "known": true
+  }
+}

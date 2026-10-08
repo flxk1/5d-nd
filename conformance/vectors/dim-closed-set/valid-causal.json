@@ -1,0 +1,10 @@
+{
+  "family": "dim-closed-set",
+  "case": "valid-causal",
+  "input": {
+    "value": "causal"
+  },
+  "expected": {
+    "valid": true
+  }
+}

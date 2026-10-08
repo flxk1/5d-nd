@@ -1,0 +1,12 @@
+{
+  "family": "fixedpoint",
+  "case": "fixed-mean-zero-n-error",
+  "input": {
+    "op": "fixed_mean",
+    "total": 1000000,
+    "n": 0
+  },
+  "expected": {
+    "error": "ValueError"
+  }
+}

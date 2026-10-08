@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "intentional-for-the-purposes-of",
+  "input": {
+    "text": "The data is processed for the purposes of compliance.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 1,
+      "temporal": 0,
+      "relational": 0.0
+    },
+    "cross_reference_targets": []
+  }
+}

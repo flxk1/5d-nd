@@ -1,0 +1,18 @@
+{
+  "family": "nd-system",
+  "case": "valid-validation-empty-list-coerced-empty",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "op": { "vocabulary": ["O", "P", "F"] }
+      },
+      "validation": []
+    }
+  },
+  "expected": {
+    "valid": true
+  }
+}

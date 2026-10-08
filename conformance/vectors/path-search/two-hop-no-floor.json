@@ -1,0 +1,47 @@
+{
+  "family": "path-search",
+  "case": "two-hop-no-floor",
+  "note": "",
+  "input": {
+    "adjacency": {
+      "a": [
+        {
+          "target": "b",
+          "dimension": "causal",
+          "weight": 0.9
+        }
+      ],
+      "b": [
+        {
+          "target": "c",
+          "dimension": "intentional",
+          "weight": 0.8
+        }
+      ]
+    },
+    "start": "a",
+    "floor": null
+  },
+  "expected": {
+    "reached": [
+      [
+        "a",
+        "relational",
+        1.0,
+        0
+      ],
+      [
+        "b",
+        "causal",
+        0.9,
+        1
+      ],
+      [
+        "c",
+        "intentional",
+        0.7200000000000001,
+        2
+      ]
+    ]
+  }
+}

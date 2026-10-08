@@ -1,0 +1,15 @@
+{
+  "family": "term-grammar",
+  "case": "profile-digest-deterministic",
+  "input": {
+    "doc_texts": {
+      "a": "The controller shall notify the supervisory authority without undue delay.",
+      "b": "The processor shall assist the controller in responding to requests.",
+      "c": "The data subject has the right to obtain a copy of personal data."
+    },
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "profile_digest": "dc0830774abc4b20b17a0b931e93502b3cc3b1c0332d7056b8ef50734a8aeb78"
+  }
+}

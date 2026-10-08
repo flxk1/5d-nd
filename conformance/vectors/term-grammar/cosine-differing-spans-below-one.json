@@ -1,0 +1,13 @@
+{
+  "family": "term-grammar",
+  "case": "cosine-differing-spans-below-one",
+  "input": {
+    "text_a": "The controller shall notify the supervisory authority without undue delay.",
+    "text_b": "The data subject has the right to obtain a copy of personal data.",
+    "profile_id": "term-nd-conformance-fixture"
+  },
+  "expected": {
+    "cosine": 0.0,
+    "below_one": true
+  }
+}

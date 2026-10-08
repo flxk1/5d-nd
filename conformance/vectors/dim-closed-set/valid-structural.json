@@ -1,0 +1,10 @@
+{
+  "family": "dim-closed-set",
+  "case": "valid-structural",
+  "input": {
+    "value": "structural"
+  },
+  "expected": {
+    "valid": true
+  }
+}

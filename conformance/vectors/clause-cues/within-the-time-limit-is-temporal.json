@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "within-the-time-limit-is-temporal",
+  "input": {
+    "text": "The controller shall respond within the time limit set by the supervisory authority.",
+    "self_article_number": null
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 1,
+      "relational": 1.0
+    },
+    "cross_reference_targets": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "family": "assertoric-lowering",
+  "case": "has-part-structural",
+  "input": {
+    "sentence": "The board is comprised of five members."
+  },
+  "expected": {
+    "subject": "board",
+    "predicate": "comprised of",
+    "object": "five members",
+    "dimension": "structural",
+    "negated": false,
+    "quantification": "existential",
+    "relation": "has-part",
+    "canonical": null
+  }
+}

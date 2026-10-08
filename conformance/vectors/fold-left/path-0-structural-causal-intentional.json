@@ -1,0 +1,16 @@
+{
+  "family": "fold-left",
+  "case": "path-0-structural-causal-intentional",
+  "input": {
+    "path": [
+      "structural",
+      "causal",
+      "intentional"
+    ]
+  },
+  "expected": {
+    "left_fold": "intentional",
+    "right_fold": "intentional",
+    "associative": true
+  }
+}

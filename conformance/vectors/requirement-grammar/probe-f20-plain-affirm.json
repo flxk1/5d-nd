@@ -1,0 +1,39 @@
+{
+  "family": "requirement-grammar",
+  "case": "probe-f20-plain-affirm",
+  "input": {
+    "obligation_id": "GDPR:Art22(3)",
+    "texts": [
+      "A decision based solely on automated processing is taken.",
+      "The data subject may obtain human intervention, express his or her point of view and contest the decision."
+    ]
+  },
+  "expected": {
+    "obligation_id": "GDPR:Art22(3)",
+    "citation": "GDPR Article 22(3)",
+    "triggered": true,
+    "trigger_uncertain": false,
+    "required_concepts": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "present": [
+      "human_intervention",
+      "right_to_contest",
+      "right_to_express_view"
+    ],
+    "uncertain": [],
+    "missing": [],
+    "all_present": true,
+    "needs_review": false,
+    "ruleset_digest": "4fa56bfba1635d0f409a0315deb8034ad42c0b72c6a6c12c4ddfab5ee8b6846e"
+  },
+  "truth": {
+    "trigger": "A",
+    "human_intervention": "A",
+    "right_to_express_view": "A",
+    "right_to_contest": "A"
+  },
+  "provenance": "Probe set, re-scored after later rule revisions"
+}

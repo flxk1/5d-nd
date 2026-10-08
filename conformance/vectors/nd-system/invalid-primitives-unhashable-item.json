@@ -1,0 +1,18 @@
+{
+  "family": "nd-system",
+  "case": "invalid-primitives-unhashable-item",
+  "input": {
+    "doc": {
+      "id": "x",
+      "namespace": "x",
+      "version": "1",
+      "axes": {
+        "a": {
+          "value_type": "string",
+          "primitives": ["equal", ["nested", "list"]]
+        }
+      }
+    }
+  },
+  "expected": {"valid": false}
+}

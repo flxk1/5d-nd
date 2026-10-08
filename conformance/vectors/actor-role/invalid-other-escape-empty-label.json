@@ -1,0 +1,10 @@
+{
+  "family": "actor-role",
+  "case": "invalid-other-escape-empty-label",
+  "input": {
+    "value": "other()"
+  },
+  "expected": {
+    "known": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "reference",
+  "case": "legacy-unit-form-normalises-dropping-unit",
+  "input": {
+    "ref": "urn:dls:sha256:abc123#sentence:11-88"
+  },
+  "expected": {
+    "canonical": "urn:dls:sha256:abc123#11-88"
+  }
+}

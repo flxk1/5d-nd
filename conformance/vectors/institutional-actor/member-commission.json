@@ -1,0 +1,10 @@
+{
+  "family": "institutional-actor",
+  "case": "member-commission",
+  "input": {
+    "role": "commission"
+  },
+  "expected": {
+    "institutional": true
+  }
+}

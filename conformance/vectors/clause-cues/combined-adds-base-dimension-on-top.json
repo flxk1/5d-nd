@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "combined-adds-base-dimension-on-top",
+  "input": {
+    "text": "The controller shall notify the authority.",
+    "base_fact": {
+      "dimension": "relational"
+    },
+    "self_article_number": null
+  },
+  "expected": {
+    "combined": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 2.0
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "family": "position",
+  "case": "tie-order-structural-wins",
+  "input": {
+    "contributions": {
+      "structural": 1,
+      "causal": 1
+    }
+  },
+  "expected": {
+    "structural": 0.5,
+    "causal": 0.5,
+    "intentional": 0.0,
+    "temporal": 0.0,
+    "relational": 0.0,
+    "dominant": "structural",
+    "basis": "planes"
+  }
+}

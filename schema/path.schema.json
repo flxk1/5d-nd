@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/flxk1/5d-nd/blob/main/schema/path.schema.json",
+  "title": "5D typed path",
+  "description": "A typed PATH over §21 Statements (spec/SPEC.md §22): an ORDERED list of 1+ edges, each carrying at minimum a 'dimension' and a 'weight' (mirrors a §21 Statement's own fields; a full Statement document is also valid here, since this schema requires only the two fields the fold itself reads). 'edges' order is the path's own TRAVERSAL order — the strict left-fold order (§3/§22); it is never re-sorted. 'composed' is OPTIONAL: when present, it records the expected result of five_d_nd.path.fold_statements(edges) for this exact edge list, i.e. the dimension the LEFT-FOLD (never right-fold) produces and the MULTIPLICATIVE weight product — a vector fixture's own 'expected' field typically supplies this rather than the document itself.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["edges"],
+  "properties": {
+    "edges": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["dimension"],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "enum": ["structural", "causal", "intentional", "temporal", "relational"]
+          },
+          "weight": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "composed": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "type": "string",
+          "enum": ["structural", "causal", "intentional", "temporal", "relational"]
+        },
+        "weight": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  }
+}
