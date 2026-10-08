@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-outer-first-paragraph-of-part-of-schedule",
+  "input": {
+    "text": "The condition in paragraph 9 of Part 3 of Schedule 3 applies.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 9 of Part 3 of Schedule 3",
+        "literal_start": 17,
+        "literal_end": 52,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 3, Part 3, paragraph 9",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

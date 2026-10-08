@@ -1,0 +1,63 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m3-range-multiple-switches-a",
+  "input": {
+    "text": "Example text with sections 6501 through 6504 of this title included.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6503",
+      "6510"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 18,
+        "literal_end": 31,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "",
+        "literal_start": 32,
+        "literal_end": 32,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6502"
+      },
+      {
+        "literal": "",
+        "literal_start": 32,
+        "literal_end": 32,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "through 6504 of this title",
+        "literal_start": 32,
+        "literal_end": 58,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504"
+      }
+    ]
+  },
+  "_note": "A RANGE with MORE than one in-file/out-of-file switch -- host_section_numbers {6501, 6503, 6510}, 'sections 6501 through 6504 of this title' switches twice (6501 in, 6502 out, 6503 in, 6504 out) -- must emit all four members separately, not collapse to a two-group-only limit. The two INTERIOR flips (6502, 6503) have no WRITTEN textual anchor of their own (documented synthetic zero-width span, spec/SPEC.md §8a.1 KNOWN LIMITS); nothing is dropped. Constructed wording."
+}

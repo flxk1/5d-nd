@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-host-matched-by-number-not-by-exact-name",
+  "input": {
+    "text": "Article 4 of that Regulation applies.",
+    "preceding_text": "Regulation (EU) No 2016/679 lays down further rules. ",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2016/679",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of that Regulation",
+        "literal_start": 0,
+        "literal_end": 28,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "mutant proof (b): the host's own NUMBER-match branch of _is_host_mention is load-bearing on its own — a differently-worded mention sharing the host number and kind (\"Regulation (EU) No 2016/679\", not loose-name-equal to the bare host name) must still be recognised as the host so \"that Regulation\" resolves INTERNAL. Constructed wording."
+}

@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12a-quoted-substitution-two-different-externals",
+  "input": {
+    "text": "For “Schedule 1 of the Example Registration Act 1990” substitute “Article 5(1) of the Example Convention 1995”.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Schedule 1 of the Example Registration Act 1990",
+        "literal_start": 5,
+        "literal_end": 52,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Registration Act 1990",
+        "targets": [],
+        "external_target": "Schedule 1"
+      },
+      {
+        "literal": "Article 5(1) of the Example Convention 1995",
+        "literal_start": 66,
+        "literal_end": 109,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Convention 1995",
+        "targets": [],
+        "external_target": "Article 5(1)"
+      }
+    ]
+  },
+  "_note": "'Schedule 1' names NO trailing instrument of its own through a chain-aware pattern -- only the bare UK Schedule scan reaches it -- so its own explicit trailing 'of the Example Registration Act 1990' must still win over the (absent) quote/chapeau context, EXTERNAL to the 1990 Act; the NEW quoted text explicitly names a THIRD, different instrument (the Example Convention 1995), also EXTERNAL to IT, never echoing the OLD text's own 1990 Act. Constructed wording."
+}

@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b1-of-that-title-us-code-kind-match",
+  "input": {
+    "text": "A person may seek relief under section 2201 of title 9 if the conduct also violates section 2203 of that title.",
+    "numbering_family": "us",
+    "host_title_instrument": "47 U.S.C.",
+    "enclosing_unit": "§ 230"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 2201 of title 9",
+        "literal_start": 31,
+        "literal_end": 54,
+        "kind": "EXTERNAL",
+        "external_instrument": "9 U.S.C.",
+        "targets": [],
+        "external_target": "§ 2201"
+      },
+      {
+        "literal": "section 2203 of that title",
+        "literal_start": 84,
+        "literal_end": 110,
+        "kind": "EXTERNAL",
+        "external_instrument": "9 U.S.C.",
+        "targets": [],
+        "external_target": "§ 2203"
+      }
+    ]
+  },
+  "_note": "A mapped US title name ('9 U.S.C.') contains NO substring 'title'. _classify_instrument_kind() derives the KIND from the name's own structural shape (a trailing 'U.S.C.' -> kind 'title'), so 'of that title' resolves to the US title just named by number, regardless of what the mapped name string contains. Wording constructed for this vector, not copied from any real source/gold sentence."
+}

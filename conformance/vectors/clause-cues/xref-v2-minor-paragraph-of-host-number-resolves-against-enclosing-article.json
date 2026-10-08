@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-paragraph-of-host-number-resolves-against-enclosing-article",
+  "input": {
+    "text": "paragraph 2, of Regulation (EU) 2024/1689 applies.",
+    "host_instrument_number": "2024/1689",
+    "enclosing_unit": "Article 9"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 2, of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 41,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 9(2)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "A RELATIVE reference ('paragraph 2') followed by 'of <host name/number>' must resolve against enclosing_unit the same way it already does with no 'of X' suffix -- 'paragraph 2, of Regulation (EU) 2024/1689' inside Article 9 resolves to 'Article 9(2)', never the bare 'paragraph 2'."
+}

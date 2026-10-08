@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-verordnung-ueber-full-name-not-truncated",
+  "input": {
+    "text": "§ 2 Absatz 3 der Verordnung über die Vergabe öffentlicher Aufträge gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 2 Absatz 3 der Verordnung über die Vergabe öffentlicher Aufträge",
+        "literal_start": 0,
+        "literal_end": 66,
+        "kind": "EXTERNAL",
+        "external_instrument": "Verordnung über die Vergabe öffentlicher Aufträge",
+        "targets": [],
+        "external_target": "§ 2 Abs. 3"
+      }
+    ]
+  },
+  "_note": "'der Verordnung über die Vergabe öffentlicher Aufträge' must resolve to the FULL title, never the bare generic word 'Verordnung' truncated at the keyword -- 'Verordnung' (German for Regulation/Ordinance) is excluded from the fused '-ordnung'-suffix alternative (its own 'Ver' stem is not a real qualifying prefix) and instead requires the SAME mandatory ueber/gegen qualifying phrase every other bare suffix word needs."
+}

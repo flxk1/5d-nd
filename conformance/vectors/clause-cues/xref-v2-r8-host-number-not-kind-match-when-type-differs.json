@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-host-number-not-kind-match-when-type-differs",
+  "input": {
+    "text": "Article 4 of that Directive applies.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2016/679",
+    "host_instrument_number": "2016/679",
+    "preceding_text": "Directive 2016/679 lays down rules. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of that Directive",
+        "literal_start": 0,
+        "literal_end": 27,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2016/679",
+        "targets": [],
+        "external_target": "Article 4"
+      }
+    ]
+  },
+  "_note": "The SAME number under a DIFFERENT instrument TYPE (Directive, not Regulation) is a different mention — ‘that Directive’ resolves EXTERNAL to it, never to the Regulation host sharing the number. Constructed wording."
+}

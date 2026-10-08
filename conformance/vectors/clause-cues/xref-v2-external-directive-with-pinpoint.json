@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-directive-with-pinpoint",
+  "input": {
+    "text": "The exemption is defined in Article 9, point (3), of Directive 2099/14/EU."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 9, point (3), of Directive 2099/14/EU",
+        "literal_start": 28,
+        "literal_end": 73,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2099/14/EU",
+        "targets": [],
+        "external_target": "Article 9, point (3)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-eu-subparagraph",
+  "input": {
+    "text": "The exemption in Article 23(1), first subparagraph, applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 23(1), first subparagraph",
+        "literal_start": 17,
+        "literal_end": 50,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 23(1), first subparagraph",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

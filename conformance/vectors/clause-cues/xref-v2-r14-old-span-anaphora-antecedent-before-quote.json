@@ -1,0 +1,50 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-old-span-anaphora-antecedent-before-quote",
+  "input": {
+    "text": "In section 12 of the Example Licensing Act 2015, for “that Act or under any direction given pursuant to section 44(3) or section 51(2) of the Act” substitute “this Act”.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 12 of the Example Licensing Act 2015",
+        "literal_start": 3,
+        "literal_end": 47,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Licensing Act 2015",
+        "targets": [],
+        "external_target": "section 12"
+      },
+      {
+        "literal": "that Act",
+        "literal_start": 54,
+        "literal_end": 62,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Licensing Act 2015",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "section 44(3)",
+        "literal_start": 104,
+        "literal_end": 117,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Licensing Act 2015",
+        "targets": [],
+        "external_target": "section 44(3)"
+      },
+      {
+        "literal": "section 51(2)",
+        "literal_start": 121,
+        "literal_end": 134,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Licensing Act 2015",
+        "targets": [],
+        "external_target": "section 51(2)"
+      }
+    ]
+  },
+  "_note": "'that Act' opens the struck ('for “...” substitute') quoted span with its own antecedent BEFORE the quote ('the Example Licensing Act 2015'), so it resolves there, never to the host 'Example Protection Act 2020'. The trailing 'section 44(3)' / 'section 51(2) of the Act' inside the SAME struck span designate (R2) the instrument being amended -- the Example Licensing Act 2015 -- and stay EXTERNAL, never INTERNAL host pinpoints. Constructed wording; entirely invented frame (never the literal corpus amendment text)."
+}

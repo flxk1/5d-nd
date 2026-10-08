@@ -1,0 +1,10 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-bare-self-reference-not-item",
+  "input": {
+    "text": "This Regulation applies from the date of entry into force."
+  },
+  "expected": {
+    "references": []
+  }
+}

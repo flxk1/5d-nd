@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-de-statute-multiword-genitive",
+  "input": {
+    "text": "Die Vorschrift verweist auf § 823 des Bürgerlichen Gesetzbuchs.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 823 des Bürgerlichen Gesetzbuchs",
+        "literal_start": 28,
+        "literal_end": 62,
+        "kind": "EXTERNAL",
+        "external_instrument": "Bürgerliches Gesetzbuch",
+        "targets": [],
+        "external_target": "§ 823"
+      }
+    ]
+  }
+}

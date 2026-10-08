@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-eu-point",
+  "input": {
+    "text": "This obligation follows from Article 6(1), point (c)."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6(1), point (c)",
+        "literal_start": 29,
+        "literal_end": 52,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6(1), point (c)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

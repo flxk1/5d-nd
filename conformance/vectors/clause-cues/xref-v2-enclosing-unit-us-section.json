@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-us-section",
+  "input": {
+    "source_text": "Some preamble. \n §230. Protection for private blocking \n (a) Findings \n The Congress finds the following.",
+    "offset": 70,
+    "numbering_family": "us"
+  },
+  "expected": {
+    "enclosing_unit": "§ 230"
+  }
+}

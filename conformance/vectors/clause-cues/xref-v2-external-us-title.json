@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-us-title",
+  "input": {
+    "text": "The exemption is defined in section 702(2) of title 44.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 702(2) of title 44",
+        "literal_start": 28,
+        "literal_end": 54,
+        "kind": "EXTERNAL",
+        "external_instrument": "44 U.S.C.",
+        "targets": [],
+        "external_target": "§ 702(2)"
+      }
+    ]
+  }
+}

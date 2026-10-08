@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-generic-section-sign",
+  "input": {
+    "text": "The duty in § 230 applies.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 230",
+        "literal_start": 12,
+        "literal_end": 17,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 230",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

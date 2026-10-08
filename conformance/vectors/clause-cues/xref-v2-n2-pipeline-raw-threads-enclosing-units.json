@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-pipeline-raw-threads-enclosing-units",
+  "input": {
+    "text": "This Chapter applies.",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "part": "Part 7"
+    }
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  },
+  "_note": "N2 pipeline threading: with enclosing_units={'part': 'Part 7'} (no 'chapter' key open), 'this Chapter' resolves to NO item at all (R4: the caller attempted ancestor derivation and this level is not open -- never a wrong/bare guess), so structural stays 0. If clause_cue_contributions() silently dropped enclosing_units (forwarding None instead), the bare-word fallback would fire instead and structural would be 1 -- see the mutation table."
+}

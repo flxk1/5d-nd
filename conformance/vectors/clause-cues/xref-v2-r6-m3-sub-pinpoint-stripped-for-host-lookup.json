@@ -1,0 +1,41 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m3-sub-pinpoint-stripped-for-host-lookup",
+  "input": {
+    "text": "sections 6502(a) and 45(b) of this title",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6502(a)",
+        "literal_start": 0,
+        "literal_end": 16,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502(a)",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "and 45(b) of this title",
+        "literal_start": 17,
+        "literal_end": 40,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 45(b)"
+      }
+    ]
+  },
+  "_note": "The in-file/out-of-file lookup for a mixed-plural member must strip the member's OWN sub-pinpoint ('(a)'/'(b)') before checking host_section_numbers — '6502(a)' is section 6502's own sub-pinpoint, not a different section number; comparing the UNSTRIPPED string found no match and wrongly classified 6502(a) EXTERNAL. 6502(a) is INTERNAL (6502 is a host section); 45(b) is EXTERNAL (45 is not)."
+}

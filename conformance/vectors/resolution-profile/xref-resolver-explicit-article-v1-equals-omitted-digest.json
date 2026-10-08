@@ -1,0 +1,18 @@
+{
+  "family": "resolution-profile",
+  "case": "xref-resolver-explicit-article-v1-equals-omitted-digest",
+  "input": {
+    "doc_a": {
+      "profile_id": "x"
+    },
+    "doc_b": {
+      "profile_id": "x",
+      "xref_resolver": "article-v1"
+    }
+  },
+  "expected": {
+    "valid_a": true,
+    "valid_b": true,
+    "same_digest": true
+  }
+}

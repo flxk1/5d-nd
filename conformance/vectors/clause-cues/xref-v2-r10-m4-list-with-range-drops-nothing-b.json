@@ -1,0 +1,54 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m4-list-with-range-drops-nothing-b",
+  "input": {
+    "text": "The provisions of sections 6501 and 6503 through 6505 of this title apply.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 18,
+        "literal_end": 31,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "and 6503",
+        "literal_start": 32,
+        "literal_end": 40,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "through 6505 of this title",
+        "literal_start": 41,
+        "literal_end": 67,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504 to § 6505"
+      }
+    ]
+  },
+  "_note": "'sections 6501 and 6503 through 6505 of this title' — the range member ('6503 through 6505') expands fully (6504, 6505 implied) and classifies each; nothing is dropped. host_section_numbers {6501, 6502, 6503}: 6501 and 6503 INTERNAL (each its own listed member, no range-expansion of its own so no expanded_from), 6504-6505 EXTERNAL. Constructed wording."
+}

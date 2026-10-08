@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-treaty-name-stops-before-and-article",
+  "input": {
+    "text": "Article 11 of the Treaty establishing the Example Community and Article 14 thereof apply."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 11 of the Treaty establishing the Example Community",
+        "literal_start": 0,
+        "literal_end": 59,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty establishing the Example Community",
+        "targets": [],
+        "external_target": "Article 11"
+      },
+      {
+        "literal": "Article 14 thereof",
+        "literal_start": 64,
+        "literal_end": 82,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty establishing the Example Community",
+        "targets": [],
+        "external_target": "Article 14"
+      }
+    ]
+  },
+  "_note": "'and' is a treaty-name continuation connector (:data:`_TREATY_CONTINUATION_UNIT`), and 'Article' is Title-Case; the name must stop before 'and Article'/'and Articles', never swallowing it into the treaty's own name and merging the second citation into the first."
+}

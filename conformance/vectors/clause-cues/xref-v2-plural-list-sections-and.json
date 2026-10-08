@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-plural-list-sections-and",
+  "input": {
+    "text": "The duties in sections 14 and 15 apply.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 14 and 15",
+        "literal_start": 14,
+        "literal_end": 32,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 14",
+            "expanded_from": "sections 14 and 15"
+          },
+          {
+            "pinpoint": "section 15",
+            "expanded_from": "sections 14 and 15"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n3-comma-before-of-bare-article-host-number",
+  "input": {
+    "text": "This applies to Article 6, of Regulation (EU) 2024/1689.",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6, of Regulation (EU) 2024/1689",
+        "literal_start": 16,
+        "literal_end": 55,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

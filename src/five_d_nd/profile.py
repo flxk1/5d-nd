@@ -87,6 +87,27 @@ _POSITIVE_NUMBERS = ("relational_suppression_scale",)
 _UNIT_FLOATS = ("confidence_floor",)
 _NON_NEGATIVE_NUMBERS = ("staleness_window_seconds",)
 _PLAIN_STRINGS = ("tiebreak_salt", "schema_version", "segmenter_digest", "table_digest")
+#: Which cross-reference resolver ``five_d_nd.clause_cues`` dispatches
+#: to — spec/SPEC.md §8a.
+#: ``"article-v1"`` (the unchanged, pre-existing ``Article N``-only
+#: resolver) or ``"shared-v2"`` (the new shared resolver,
+#: :func:`five_d_nd.clause_cues.resolve_references`). Deliberately NOT
+#: added to :data:`DEFAULTS` — see the module-level note below this
+#: constant's own definition for why: adding it to DEFAULTS would widen
+#: EVERY existing profile's own resolved document (and therefore its
+#: digest), which existing digest-stability precedent forbids for a
+#: document that never opted in. When the field is ABSENT
+#: from a profile document, :func:`resolve_profile` leaves it ABSENT from
+#: the resolved document too (not silently defaulted to "article-v1" by
+#: this module) — the ONE place "absent means article-v1" is asserted is
+#: the consuming code's own dispatch (``clause_cues`` / a caller), via
+#: ``resolved.get("xref_resolver", "article-v1")``, never here.
+_XREF_RESOLVER_VALUES = frozenset({"article-v1", "shared-v2"})
+#: the field's own DEFAULT value (never placed in :data:`DEFAULTS`
+#: itself — see that constant's note) — used ONLY by
+#: :func:`resolve_profile` to drop an EXPLICIT ``"article-v1"`` so it
+#: resolves identically to the field being absent (§16 invariant).
+_XREF_RESOLVER_DEFAULT = "article-v1"
 #: Mapping fields shaped like ``d_blend_weights``: a 2-key mapping of
 #: non-negative numbers summing strictly positive. ``field -> (key_a, key_b)``.
 _WEIGHT_MAPPING_FIELDS: "dict[str, tuple[str, str]]" = {
@@ -109,7 +130,7 @@ _WEIGHT_MAPPING_FIELDS: "dict[str, tuple[str, str]]" = {
 #: either silently dropping or silently digesting an unknown key).
 KNOWN_FIELDS: frozenset = frozenset(
     _REQUIRED + _POSITIVE_NUMBERS_INTEGRAL + _POSITIVE_NUMBERS + tuple(_WEIGHT_MAPPING_FIELDS)
-    + _UNIT_FLOATS + _NON_NEGATIVE_NUMBERS + _PLAIN_STRINGS
+    + _UNIT_FLOATS + _NON_NEGATIVE_NUMBERS + _PLAIN_STRINGS + ("xref_resolver",)
 )
 
 
@@ -248,6 +269,18 @@ def profile_violations(doc: Any) -> list:
         value = doc[field]
         if not isinstance(value, str) or not value:
             out.append(f"resolution profile field {field!r} must be a non-empty string, got {value!r}")
+    if "xref_resolver" in doc:
+        value = doc["xref_resolver"]
+        # A non-string (e.g. a list/dict) is
+        # UNHASHABLE — ``value not in _XREF_RESOLVER_VALUES`` (a
+        # frozenset) would RAISE ``TypeError`` instead of reporting a
+        # violation, breaking this function's own "never raises, only
+        # reports" contract. Checked explicitly, before the membership
+        # test.
+        if not isinstance(value, str) or value not in _XREF_RESOLVER_VALUES:
+            out.append(
+                f"resolution profile field 'xref_resolver' must be one of "
+                f"{sorted(_XREF_RESOLVER_VALUES)!r}, got {value!r}")
     return out
 
 
@@ -325,6 +358,18 @@ def resolve_profile(doc: Mapping) -> dict:
     for field_name in _WEIGHT_MAPPING_FIELDS:
         if field_name in doc:
             out[field_name] = {**DEFAULTS[field_name], **doc[field_name]}
+    # §16 invariant: a document that OMITS a field and
+    # one that sets it EXPLICITLY to that field's own default value MUST
+    # resolve, and therefore digest, IDENTICALLY — "omitted means
+    # default" and "explicit default" are the SAME effective profile.
+    # ``xref_resolver`` is deliberately NOT in :data:`DEFAULTS` (see that
+    # constant's own note — widening DEFAULTS would recompute every
+    # pre-existing profile's digest), so an explicit `"article-v1"` is
+    # dropped HERE, after the overlay, rather than defaulted there: the
+    # two paths ("never set" and "set to its own default") converge on
+    # the identical resolved dict before canonicalisation/digesting.
+    if out.get("xref_resolver") == _XREF_RESOLVER_DEFAULT:
+        del out["xref_resolver"]
     return _canonicalize_integral_fields(out)
 
 

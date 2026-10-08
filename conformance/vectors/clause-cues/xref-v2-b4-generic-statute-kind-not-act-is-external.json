@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b4-generic-statute-kind-not-act-is-external",
+  "input": {
+    "text": "This measure complies with section 5(1) of the Bogus Widget Code of 1998.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 5(1) of the Bogus Widget Code of 1998",
+        "literal_start": 27,
+        "literal_end": 72,
+        "kind": "EXTERNAL",
+        "external_instrument": "Bogus Widget Code of 1998",
+        "targets": [],
+        "external_target": "section 5(1)"
+      }
+    ]
+  }
+}

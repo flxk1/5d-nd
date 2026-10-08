@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-nbsp-article-number",
+  "input": {
+    "text": "This measure complies with Article 6(1) of this Regulation."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6(1)",
+        "literal_start": 27,
+        "literal_end": 39,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6(1)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-hard-negative-article-5-days",
+  "input": {
+    "text": "The grace period is Article 5 days from notification."
+  },
+  "expected": {
+    "references": []
+  }
+}

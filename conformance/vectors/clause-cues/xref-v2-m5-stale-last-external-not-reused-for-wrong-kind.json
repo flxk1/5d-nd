@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m5-stale-last-external-not-reused-for-wrong-kind",
+  "input": {
+    "text": "Article 1 of the Example Act 2000 applies. Article 4 of that Directive applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 1 of the Example Act 2000",
+        "literal_start": 0,
+        "literal_end": 33,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Act 2000",
+        "targets": [],
+        "external_target": "Article 1"
+      },
+      {
+        "literal": "Article 4 of that Directive",
+        "literal_start": 43,
+        "literal_end": 70,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": "Article 4",
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "By the time Pass 2's own chain loop reaches 'Article 4 of that Directive', the nonlocal last_external already holds 'Example Act 2000' (set moments earlier, within the SAME loop, by 'Article 1 of the Example Act 2000'). The typed 'of that Directive' lookup must NEVER fall back to this stale, kind-mismatched value -- it must report 'unnamed (see note)' since no Directive was ever named."
+}

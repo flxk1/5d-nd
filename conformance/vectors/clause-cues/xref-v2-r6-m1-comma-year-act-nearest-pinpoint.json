@@ -1,0 +1,66 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m1-comma-year-act-nearest-pinpoint",
+  "input": {
+    "text": "No provision in this part applies to a body regulated under the Example Fisheries Act, 1955 (20 U.S.C. 500 et seq.) (except as provided in section 812 of that Act (20 U.S.C. 560, 561)), by the Example Harbour Authority with regard to any conduct subject to that Act; and the Example Hatchery Act of 1994 (21 U.S.C. 700 et seq.) by the Example Hatchery Commission with regard to licensed facilities.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "this part",
+        "literal_start": 16,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part",
+            "expanded_from": null
+          }
+        ],
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      },
+      {
+        "literal": "the Example Fisheries Act, 1955",
+        "literal_start": 60,
+        "literal_end": 91,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Fisheries Act, 1955",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "section 812 of that Act",
+        "literal_start": 139,
+        "literal_end": 162,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Fisheries Act, 1955",
+        "targets": [],
+        "external_target": "§ 812"
+      },
+      {
+        "literal": "that Act",
+        "literal_start": 257,
+        "literal_end": 265,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Fisheries Act, 1955",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "the Example Hatchery Act of 1994",
+        "literal_start": 271,
+        "literal_end": 303,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Hatchery Act of 1994",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "Entirely constructed Act names, section numbers, and agency names; invented sentence frame ('No provision in this part applies to a body regulated under ... by the ... with regard to ...'). _EXT_ACT_WITH_YEAR must accept the comma-year shape ('Act, 1955'), and 'section 812 of that Act' plus the later bare 'that Act' must both resolve to the NEARER comma-year Act, never to the farther 'Act of 1994' named later in the sentence."
+}

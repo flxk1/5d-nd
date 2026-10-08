@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-de-neue-ordnung-no-pinpoint-no-item",
+  "input": {
+    "text": "Dies erfolgt nach der Neuen Ordnung.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'der Neuen Ordnung' ('the new order') -- an adjective-qualified generic phrase, no pinpoint attached -- no item."
+}

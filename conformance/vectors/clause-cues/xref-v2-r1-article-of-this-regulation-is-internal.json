@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-article-of-this-regulation-is-internal",
+  "input": {
+    "text": "The obligations in Article 6 of this Regulation apply.",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6",
+        "literal_start": 19,
+        "literal_end": 28,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

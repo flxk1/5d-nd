@@ -1,0 +1,32 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12a-explicit-naming-both-members-internal",
+  "input": {
+    "text": "Section 27(3) or (5) of the Example Registration Act 2018 applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 27(3) or (5) of the Example Registration Act 2018",
+        "literal_start": 0,
+        "literal_end": 57,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 27(3)",
+            "expanded_from": "Section 27(3) or (5)"
+          },
+          {
+            "pinpoint": "section 27(5)",
+            "expanded_from": "Section 27(3) or (5)"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'section 27(3) or (5) of the Example Registration Act 2018' (that host) is INTERNAL for BOTH or-listed members -- it never designates an EXTERNAL Act just because it is spelled out explicitly rather than by anaphora. Constructed wording."
+}

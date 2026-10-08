@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-recital-treaty-establishing-thereof",
+  "input": {
+    "text": "Having regard to the Treaty Instituting the Example Partnership, and in particular Article 44 thereof,"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 44 thereof",
+        "literal_start": 83,
+        "literal_end": 101,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty Instituting the Example Partnership",
+        "targets": [],
+        "external_target": "Article 44"
+      }
+    ]
+  },
+  "_note": "The recital convention names a treaty with NO pinpoint attached to itself ('Having regard to the Treaty ..., and in particular Article N thereof,'); the recital-gated mention scan lets 'thereof' find that Treaty as its antecedent, so 'Article 44' resolves EXTERNAL to the Treaty named in the SAME recital, never INTERNAL to the host. Constructed wording; no real instrument name."
+}

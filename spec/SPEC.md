@@ -619,6 +619,919 @@ validate.
 See `src/five_d_nd/clause_cues.py`,
 `conformance/vectors/clause-cues/`.
 
+### §8a.1 The shared cross-reference resolver
+
+**Status: ships as ONE versioned 5d-nd change** (this spec text,
+`conformance/vectors/clause-cues/xref-v2-*.json` and
+`conformance/vectors/resolution-profile/xref-resolver-field-*.json`, and a
+new resolution-profile field/digest below) — a precondition of the signed
+5D benchmark (benchmark protocol §8), applied identically to both arms.
+**ADDITIVE ONLY**: `cross_reference_targets`/`cross_reference_links`
+("article-v1" below) are UNCHANGED, forever, for exact replay of every
+pre-existing vector and digest. This section adds a NEW entry point,
+`five_d_nd.clause_cues.resolve_references()` ("shared-v2"), selected by a
+NEW resolution-profile field, never a silent change to the old one.
+
+**Scope.** `article-v1` matches only `Article N` (and its plural/ranged/
+listed form) and DROPS every other instrument's citation outright.
+`shared-v2` resolves (a) EXTERNAL citations — of ANY jurisdiction's
+instrument the text names, not only EU ones — to `(instrument,
+provision)`, and (b) INTERNAL references in the numbering families
+listed below, including ranges, plurals, or-lists (one target per
+expanded member) and reference resolved against the ENCLOSING unit. It
+is built against a hand-annotation contract's rulings R1-R7 — mapped
+below — and is a PURE, deterministic function of the clause text plus
+caller-supplied document metadata; it never reads gold, never reads
+anything the caller did not pass in.
+
+**Input/output contract.** `resolve_references(text, enclosing_unit=None,
+numbering_family="eu", host_instrument_name=None,
+host_instrument_number=None, whole_host_unit=None, preceding_text="",
+quoted_amending_target=None)` returns a list of reference dicts, each:
+
+```
+{
+  "literal": str,              # the exact cited substring, as written
+  "literal_start": int,        # offsets into TEXT (caller adds its own
+  "literal_end": int,          #   document-level base offset itself)
+  "kind": "INTERNAL" | "EXTERNAL",
+  "external_instrument": str | None,   # R7's exact-as-named string on
+                                        # EXTERNAL; None on INTERNAL
+  "targets": [ {"pinpoint": str, "expanded_from": str | None}, ... ],
+                                # [] on EXTERNAL (R7); one entry per
+                                # expanded range/plural/or-list member
+                                # on INTERNAL
+  "hard_case_tags": [str, ...] # OPTIONAL — currently only
+                                # ["ambiguous_reference"] (R6, or a
+                                # relative reference resolved with no
+                                # enclosing_unit)
+}
+```
+
+Every metadata parameter is document-level, caller-supplied, exactly
+like `host_instrument_number` already was for `article-v1` (§8a above) —
+never a resolution-profile field:
+
+* `enclosing_unit` — the pinpoint prefix ("Article 7", "§ 230") a
+  RELATIVE reference ("paragraph 1", "point (a)", "subsection (b)")
+  resolves against. The CALLER derives it from the source text (e.g. the
+  nearest preceding numbered-heading before the clause's own offset) —
+  this module never reads it from gold and never guesses past what is
+  passed in; with none given, a relative reference resolves to its own
+  bare suffix, flagged `ambiguous_reference`.
+* `numbering_family` — `"eu"`/`"uk"`/`"us"`/`"de"`: which family's
+  absolute-pinpoint grammar is tried first (every family's EXTERNAL and
+  anaphora rules apply regardless, since any host document can still
+  cite another family's instrument).
+* `host_instrument_name` / `host_instrument_number` — the host's own
+  name/number, for R1 (self-naming is INTERNAL) and R2 (a quoted-
+  amending pinpoint that NAMES the host designates the host).
+* `whole_host_unit` — the unit TYPE the file equals IN FULL, if any (R5).
+* `preceding_text` / `quoted_amending_target` — anaphora antecedents and
+  R2's "amended instrument" name for a bare pinpoint inside quoted text.
+
+**R1-R7, mapped to behaviour:**
+
+* **R1** (bare self-reference). "this Regulation/Act/Directive" is
+  dropped — NOT an item. "this Article/paragraph/subparagraph", used
+  deictically, is also dropped. "Article 6 of this Regulation" IS an
+  item, INTERNAL, pinpoint `"Article 6"`. A citation giving the HOST's
+  OWN number ("Article 45 of Regulation (EU) 2016/679", with
+  `host_instrument_number="2016/679"`) is INTERNAL to the pinpoint, not
+  external — the whole chain+host-name span is consumed as ONE
+  reference so the host's own name is never ALSO reported as a second,
+  standalone EXTERNAL mention.
+* **R2** (quoted amending text, classified by what it DESIGNATES). A
+  bare pinpoint inside quoted text that names NEITHER the host nor any
+  other instrument is EXTERNAL to `quoted_amending_target` (the amended
+  instrument the caller names). A pinpoint-bearing mention that NAMES
+  the host (`host_instrument_name`) is INTERNAL, pinpoint `"Instrument"`
+  (the host-instrument pinpoint format) — and a following "..., of that
+  Regulation" chain stays INTERNAL to ITS OWN (more specific) pinpoint,
+  never falling back to `"Instrument"` again. An EXPLICIT naming at the
+  span itself — a pinpoint chain immediately followed by "of"/"to
+  <instrument name>", optionally past one short, length-capped,
+  one-level parenthetical gloss ("section 52B (data-sharing code) of
+  the Example Statute 1990") — ALWAYS wins over whatever instrument a
+  surrounding quote or unquoted chapeau context would otherwise supply;
+  the mention list never overrides an explicit naming the text carries
+  at that exact point FOR A SINGULAR chain ("section N of <name>"). A
+  PLURAL/RANGED chain naming the host this same way ("Parts N to M of
+  <host name>") does NOT yet get this same protection — see this
+  section's own KNOWN LIMITS. An amendment's OLD (struck) quoted span — the
+  quoted text immediately preceded by "for"/"omit" before the opening
+  quote mark, the SAME quote-span machinery this paragraph already uses
+  — excludes its own mentions as an antecedent for anaphora whose OWN
+  POSITION lies OUTSIDE that span (the exclusion is position-relative,
+  not global): the span is being
+  replaced, not cited, from outside it. An anaphor found INSIDE the
+  same OLD span instead resolves against the ordinary
+  nearest-preceding-mention rule over mentions inside that span (and
+  before it) — the struck text is read as ordinary prose from inside
+  itself, even though it is never reachable as a live antecedent from
+  outside it. A BARE mention (no pinpoint of its own) found inside
+  that OLD span is not a reference item at all, while a pinpoint-bearing
+  mention inside it still is. **Consequence for recall:** a BARE
+  instrument mention inside struck (OLD) text is dropped silently — no
+  EXTERNAL item is ever emitted for it — which LOWERS recall wherever a
+  human annotator would mark that bare mention EXTERNAL in its own
+  right; the rule trades that recall loss for never promoting a
+  replaced span into a live citation.
+* **R4** ("this Section/Chapter/Title/Part"). INTERNAL to the
+  caller-derived `enclosing_unit` naming that larger unit (e.g. `"Part
+  7, Chapter 2"`); with no `enclosing_unit` given, a bare capitalised
+  word, flagged `ambiguous_reference`. "that Schedule"/"that Part"/
+  "that Chapter" (a sub-unit word, not an instrument-level word)
+  resolves against the NEAREST preceding mention of the SAME sub-unit
+  word — never the nearest INTERNAL pinpoint of any kind. A trailing
+  "of that Schedule" on a plural/ranged Part chain ("Parts 1 and 2 of
+  that Schedule") is ONE reference, each member combined with the
+  named Schedule's own number ("Schedule 3, Part 1"). **Known limit:**
+  "Part 3" and "Schedule 3" in "See Part 3 of Schedule 3 and Parts 1
+  and 2 of that Schedule." read as TWO separate pinpoints (no "<Part>
+  of <Schedule>" combining chain for this word order); only the SECOND
+  citation, via the sub-unit anaphora above, combines "Schedule 3" with
+  "Part 1"/"Part 2".
+* **R5** ("this <unit>" naming the WHOLE host). When `whole_host_unit`
+  names the SAME unit type, R1 wins over R4 — dropped, not an item.
+* **R6** ("So in original" footnotes). Resolved LITERALLY; every
+  reference inside the footnote's own nearby span is flagged
+  `ambiguous_reference` — never silently "corrected" to a probably
+  -intended target.
+* **R7** (EXTERNAL shape). `targets` is always `[]`. `external_instrument`
+  is the instrument exactly as the text names it — no pinpoint, no
+  gloss; the pinpoint stays in `literal`. "title N" (US Code) is mapped
+  to its instrument name, `"N U.S.C."` (e.g. `"title 5"` ->
+  `"5 U.S.C."`) — the ONE mapping this module performs on an
+  otherwise-verbatim name.
+
+**Numbering families covered:** EU (`Article N(M)`, `point (x)`,
+subparagraph, `Annex`, `Chapter`/`Section`); generic `section N`/`s.
+N`/`§ N`; DE `§ N Abs. M Satz K` (and `Nr. J`) — **vector-only: no
+vertical's gold carries a DE item**, so these vectors are the ONLY
+conformance check this family has; UK `Schedule M, paragraph N` /
+`paragraph N of Schedule M` (reformatted outer-unit-first, per the
+contract's own pinpoint-order rule), `Part N`, `Chapter N`; US
+`subsection (a)(1)(A)`, `§ 6502(b)(1)`, `section 230(c)`, `this title`
+(EXTERNAL, per the contract). Ranges ("Articles 15 to 20", "sections 3
+to 5"), plurals and or-lists expand to one target per member, each
+carrying `expanded_from` set to the citation's own literal. A bare
+"Article N" (or any family's absolute chain) immediately followed by a
+time-duration word ("Article 5 days") is a hard-negative decoy, never a
+citation — matching `article-v1`'s own treatment of a continuation-list
+decoy, now applied to the first number too. A named treaty's Title-Case
+continuation stops before "and Article", "and Articles", "and Section",
+"and Annex", "and Chapter", or "and Part" — "and" continues the treaty's
+own name only when the following capitalised word is not itself one of
+these pinpoint keywords, so a second, separate citation right after it
+("... Article 5 of the Example Convention and Article 6 of the Example
+Protocol ...") is never merged into the first treaty's own name.
+
+**Anaphora — ONE ordered mention list.**
+"that Regulation"/"that Directive"/"that Act"/"that title"/"such Act"/
+"thereof" resolves through a SINGLE ordered list of instrument
+MENTIONS, built over `preceding_text + text` (never scanned
+separately per pass, never filtered). Each mention records its own
+POSITION, its KIND (`_classify_instrument_kind`, the name's own HEAD
+noun — "regulation"/"directive"/"act"/"title"/"treaty"/"other", the
+FIRST instrument keyword not itself inside an "of"/"on"/"to"/
+"implementing …" complement (see this section's own KNOWN LIMITS for
+the one "<kind> YEAR" exception and five worked
+examples) — never a caller-supplied type word matched by substring),
+and whether it IS THE HOST:
+
+* by NAME — a whitespace/NBSP-tolerant, word-boundaried match against
+  `host_instrument_name`, exact (never a bare substring: a shorter
+  host name is never treated as a PREFIX match of a longer, different
+  instrument's name); or
+* by NUMBER — `host_instrument_number` found in the mention's own name
+  on TOKEN boundaries ("2016/6790" is never "2016/679") AND the
+  mention's own KIND equals the host's KIND ("Directive 2016/679" is
+  never "Regulation (EU) 2016/679", even sharing the number).
+
+Host mentions are NEVER removed from the list — they compete on
+RECENCY exactly like any other mention. An anaphor takes the NEAREST
+PRECEDING mention of the matching KIND (or any kind, for the untyped
+"thereof"): the host -> INTERNAL, with the pinpoint resolved IN the
+host (the chain's own pinpoint when the anaphor carries one — "section
+5 of that Act" — or, for a BARE anaphor with no pinpoint of its own,
+NO ITEM AT ALL, R1's bare-self-reference rule, never an INTERNAL echo
+of an unrelated earlier pinpoint); another instrument -> EXTERNAL to
+that instrument; no mention of the matching kind at all -> EXTERNAL
+"unnamed (see note)". A PINPOINT-BEARING anaphora ("Parts 5 to 7 of
+that Act") is never the BARE, no-pinpoint-of-its-own case R1 drops
+entirely — it is consumed into the same reference and always emitted
+as an item (INTERNAL to the host, or EXTERNAL "unnamed (see note)"
+when the nearest same-kind mention is not the host), whether or not
+the nearest mention of that type is the host. The untyped "thereof"/
+"thereto" lookup additionally scans, as a mention, an EXTERNAL
+reference this SAME call has already emitted into its own output —
+not only a bare instrument name in `preceding_text + text` — so a
+treaty only reachable through a pinpoint-gated chain match ("Article
+12 of the Example Convention on Cybercrime") still serves as "thereof"'s
+antecedent later in the same text; a TYPED lookup ("that Directive")
+is unaffected by this widening. The EU preamble convention "Having
+regard to <Treaty NAME>, and in particular Article N thereof," names
+the treaty with no pinpoint of its own; "thereof" resolves to that
+SAME recital's named treaty, never to the host, even though the bare
+mention carries no pinpoint by itself — this is narrower than the
+general bare-treaty-name exclusion below (gated on the fixed phrase
+"Having regard to", not a general relaxation of it). A nested "Chapter
+M of Part N" chain claims a trailing named external instrument ("...
+of the Example Companies Act 2015") the same way the bare Part/Chapter
+form already does, as one EXTERNAL reference spanning the whole
+nested chain plus the instrument's name.
+
+This REPLACES an earlier approach that filtered host self-namings OUT
+of a separate "external candidate" list before an anaphor's lookup
+ran. That mechanism only ever relabelled the HOST's own filtered-out
+occurrence; every OTHER anaphor that fell back PAST a removed host
+mention still landed on whichever OTHER instrument happened to be
+named earlier in the text — a sweep over the 12-source corpus found 61
+references relabelled to a wrong, unrelated instrument, and 20 given
+the wrong KIND (EXTERNAL where INTERNAL was correct, or vice versa).
+The ONE ordered mention list has no separate "candidate list" to
+filter at all, closing this class of bug at the mechanism level
+rather than patching each symptom.
+
+**`+1 structural` and `cross_references` links — THROUGH THE PIPELINE,
+on BOTH arms.** `clause_cue_contributions` and
+`cross_reference_links` both dispatch on a `xref_resolver` keyword
+(`"article-v1"` default) via one shared seam, `_xref_count_and_objects`.
+`"article-v1"` calls `cross_reference_targets` exactly as before —
+BYTE-IDENTICAL `+1 structural`-per-target count and link objects for
+every existing document/vector, regardless of whether a resolution
+profile even carries the new field. `"shared-v2"` calls
+`resolve_references` instead and derives the SAME two things from its
+richer output: an INTERNAL reference contributes `+1 structural` AND one
+`cross_references` link PER target pinpoint (`o = "Article 7(1), point
+(b)"`, etc., same shape as `article-v1`'s own `"Article <n>"` link); an
+EXTERNAL reference contributes `+1 structural` and ONE link whose object
+is `"<instrument>|<external_target>"` — e.g., for "Article 9, paragraph
+4, of Directive 2011/83/EU", `"Directive 2011/83/EU|Article 9(4)"` (the
+PARSED pinpoint, R7's own `external_target`, not the raw literal) — so
+an external citation is now visible as a link AND as a structural count
+too. `article-v1` does NOT recognise this comma-pinpoint-chain shape as
+EXTERNAL at all: it emits `{"o": "Article 9", ...}`, treating the
+citation as if it were an internal "Article 9" of its own numbering,
+losing both the external instrument and the sub-pinpoint. This
+reaches `combined_contributions`/`clause_cue_point` as well (they thread
+the same `xref_resolver` keyword straight through to
+`clause_cue_contributions`), so the §11 POINT itself differs between the
+two resolvers on a document that carries citations `article-v1` cannot
+see — this is the INTENDED effect of the profile field selecting a
+resolver, not a side channel around it. `xref_resolver` ITSELF is
+CALLER-THREADED from the resolved profile (exactly like
+`relational_suppression_scale` already is) — two convenience wrappers,
+`clause_cue_point_from_profile`/`cross_reference_links_from_profile`,
+unpack a profile DOCUMENT directly, mirroring
+`five_d_nd.match.combine_scores_from_profile`'s own shape. The
+pinpoint-free `external_instrument` string alone (R7) remains what is
+GOLD-SCORED; the link's own object string is checked by conformance
+vectors and a spot-check only, never reported as a gold P/R.
+
+**Enclosing-unit derivation is PART of this module** —
+`enclosing_unit_at(source_text, offset, numbering_family)`. A
+pure function of exactly those three inputs: the nearest preceding
+numbered-unit heading in `source_text` strictly BEFORE `offset`, or
+`None` when none is found. `"eu"`: the nearest preceding standalone
+`"Article N"` heading LINE. `"us"`: the nearest preceding `"§N."`
+marker. `"uk"`: the nearest preceding ALL-CAPS `"SCHEDULE N"`/`"PART
+N"`/`"CHAPTER N"` heading — a GENERAL pattern verified directly against
+the UK verticals' own source text (legislation.gov.uk plain-text dumps
+reliably distinguish an outer-unit HEADING, all-caps, from an ordinary
+mixed-case body-text REFERENCE to the same unit, "SCHEDULE 1" vs.
+"Schedule 1"); an ORDINARY SECTION-level heading is NOT detected (the
+UK layout sandwiches the bare section number between a repeated
+section-title phrase and the section's own first substantive word —
+e.g., in a flattened dump, a running header repeats a section's own
+title immediately before its bare number, which then runs straight
+into the section's first substantive sentence with no separating
+markup — no general, low-false-positive pattern for "the digit run
+that IS this marker, not a date or a cross-reference" was found over
+that flattened layout; left `None` rather than guessed at). `"de"`: not
+attempted (no DE gold; vector-only). The benchmark harness now calls
+THIS function (both arms share the identical implementation) rather than
+carrying its own copy, closing the earlier "lives outside the versioned
+change" finding.
+
+**R2's quoted-amending-text span is SELF-DETECTED.**
+`resolve_references` finds quote SPANS in `text` itself — EU
+drafting's single curly quotes (`‘…’`, straight `'` as a fallback);
+UK/US drafting's double curly quotes (`"…"`, straight `"` as a
+fallback) — and classifies a bare pinpoint found STRICTLY INSIDE one of
+these spans by DESIGNATION, per R2: if it names the host
+(`host_instrument_name`, passes 0-2, unaffected by quoting at all) it
+stays INTERNAL; otherwise it is EXTERNAL to whichever instrument was
+named most recently BEFORE the quote's own opening mark (reusing the
+SAME nearest-antecedent lookup "thereof" already uses) — covering BOTH
+directions the contract names (a quoted pinpoint naming the host stays
+internal; a quoted BARE pinpoint, naming neither the host nor anything
+else, goes external to the amended instrument named in the surrounding
+chapeau). `quoted_amending_target` is kept ONLY as an explicit override
+for a caller that wants to force the designation on text with no actual
+quote marks (e.g. a pre-segmented clause that already had its quotes
+stripped) — the PRIMARY mechanism is the resolver's own quote-span
+detection, never a caller flag nobody is obliged to supply.
+
+**KNOWN LIMITS** (stated, not hidden):
+
+* **Beyond the ONE-ordered-mention-list anaphora mechanism above**:
+  the host's own flexible NAME match now
+  carries a trailing word-boundary assertion (a host number is never
+  matched as a bare prefix of a longer, different number); "Article N
+  GDPR" (bare, no "of") is no item at all rather than a wrong-kind
+  INTERNAL pinpoint (bare "GDPR" stays an under-recall gap, per the
+  bullet below); a short-year-only Act name ("the 1998 Act") is
+  pinpoint-gated EXTERNAL, UNLESS the year equals
+  `host_instrument_number` ("Section 5 of the 2018 Act" resolves
+  INTERNAL with its own pinpoint when the host's own number is "2018";
+  a different year stays EXTERNAL as before) — or equals the host's
+  own short year DERIVED from `host_instrument_name` when the caller
+  passes no `host_instrument_number` at all: when `host_instrument_name`
+  ends "... Act YYYY",
+  the resolver derives YYYY as the host's short year for THIS rule
+  ONLY; that derived value is never written back into
+  `host_instrument_number` itself, which keeps its own narrower
+  meaning (gating the EU NUMBER-shaped host-mention match elsewhere in
+  this section); "Treaty
+  establishing …" joined the NAMED-
+  treaty keyword set; a trailing ordinal suffix ("second sentence") and
+  the EU "Article N, paragraph M[, subparagraph][, point]" comma-chain
+  each resolve as ONE reference with their own "of <host/other>" wrap;
+  "Parts N to M" (previously singular-only) and sibling-subsection
+  or-lists ("section N(x) or (y)") each expand to one target per
+  member; a statutory instrument whose own name EXTENDS the host's
+  name ("the <host Act> (Commencement No. M) Regulations <year>") is
+  EXTERNAL, never INTERNAL merely because it starts with the host's
+  own name; and a BARE anaphor with no pinpoint of its own, resolving
+  to the host, is R1's bare self-reference (no item), never an
+  INTERNAL echo of an unrelated earlier pinpoint.
+* The comma-year drafting allowance
+  ("Act, 1921") is attested ONLY for "Act" — `_EXT_ACT_WITH_YEAR`
+  restricted it to that one keyword, so a page-header line such as
+  "United States Code, 2022 Edition" is no longer read as naming an
+  EXTERNAL "Code"; every other statute-kind word (Code/Ordinance/
+  Statute/Law/Convention/Treaty) keeps only the pre-existing "of YYYY"
+  convention. `_section_plural_range_groups` now walks EVERY written
+  token (list member or range) and fully expands EVERY range token to
+  its implied members before grouping into contiguous same-status
+  runs — any number of in-file/out-of-file switches inside one range
+  ("sections 6501 through 6504" against `{6501, 6503}` splits into
+  four runs: 6501 in, 6502 out, 6503 in, 6504 out), and a range member
+  INSIDE a list ("sections 6501 to 6505 and 45") is expanded the same
+  way rather than collapsed to its two written endpoints. A run that
+  is its own token's one-and-only run, or that token's LAST run, keeps
+  that token's own written literal span; an INTERIOR run with no
+  written anchor of its own (a second-or-later status flip strictly
+  inside one range token) is reported at a SYNTHETIC ZERO-WIDTH
+  position — its token's own start offset, `literal: ""` — carrying
+  every member that run holds in its own `targets`/`external_target`
+  either way; no member is ever dropped, only its `literal` span is
+  synthetic. "through" now works as BOTH the `SECTION_PLURAL` list
+  connector (so "section 100 through 105" is recognised as one plural
+  match at all) and a range word (so 101-104 are fully expanded, not
+  dropped) — the same keyword in two different roles, each checked by
+  its own constant. `_classify_instrument_kind`'s head-noun rule: the
+  head is the FIRST instrument keyword in the name that is not itself inside an "of"/"on"/"to"/
+  "implementing …" complement, with ONE narrow exception — an "of"
+  complement that is ITSELF shaped like a complete title ending in
+  "<kind> YEAR" promotes that trailing keyword instead (the real UK
+  convention a name like this follows: "Regulation of Investigatory
+  Powers" is the Act's own subject-matter title, not a second,
+  competing instrument name). Five examples, each run through
+  `_classify_instrument_kind` directly: "Convention on the Law of the
+  Sea" -> `treaty` (the LATER "of" belongs to "the Law of the Sea", a
+  complement of "Convention", never a second keyword occurrence that
+  wins); "Protocol to the Children Act 1989" -> `treaty` (the "to"
+  complement ends in "Act 1989", but a `to` complement never overrides
+  the first keyword); "Regulation (EU) 2016/679 implementing Directive
+  95/46/EC" -> `regulation` (an "implementing" complement never
+  overrides the first keyword either); "Recommendation on the
+  Protocol" -> `recommendation` (an "on" complement, same rule);
+  "Regulation of Investigatory Powers Act 2000" -> `act` (the ONE
+  exception: the "of" complement "Investigatory Powers Act 2000" is
+  itself a complete "<kind> YEAR" title, so its trailing "Act" is
+  promoted over the leading "Regulation").
+* `enclosing_unit_at`'s own UK section-level heading gap, above — the
+  biggest remaining lever for held-out recall on `uk-dpa2018`/
+  `uk-osa2023`.
+* External-instrument NAME recognition is a closed set of drafting
+  SHAPES (EU Regulation/Directive/Recommendation numbers, TFEU/TEU/
+  Charter, a NAMED Convention/Protocol/Accord — "European Convention
+  for the Protection of Human Rights and Fundamental Freedoms",
+  "Protocol No 21" — "the X Act YYYY" and its sibling statute-kind
+  words, "title N" U.S.C., "UK GDPR", the German statute/EU-act
+  shapes) — an instrument named in a shape outside this set is USUALLY
+  not recognised as EXTERNAL at all (under-recall, not a wrong name),
+  but **this is not a universal guarantee.** A WRONG external name (as
+  opposed to a merely MISSED one) is known to occur under these
+  conditions — the first still open, the others documented separately
+  below in their own bullets: (a) a German qualifying-phrase
+  continuation absorbing a following finite-verb predicate into the
+  name, this bullet; (b) a "Protocol to the <Act Name> <year>"
+  continuation losing its own trailing year (the run-on-names bullet
+  further below). Beyond (a)/(b), measured directly against the
+  current HEAD: (ii) a name beginning with a lower-case or connector
+  word gets truncated to the portion after it, with the chain's own
+  leading pinpoint reported as a separate, disconnected bare INTERNAL
+  reference. Constructed: `resolve_references("Section 4 of the
+  Representation of the Example Act 1983 applies.")` at HEAD returns
+  TWO references — "Section 4" bare INTERNAL (no instrument attached)
+  and a separate EXTERNAL reference, `external_instrument: "the
+  Example Act 1983"` — "Representation of" is dropped from the name
+  entirely (the same truncation occurs, run directly, for "the
+  Promotion of the Example Act 1983" and "the Prevention of the
+  Example Act 1983"). (iii) the Title-Case continuation's "and" stop
+  (see below) is a NARROW, closed list — only "and
+  Article"/"and Articles"/"and Section"/"and Annex"/"and Chapter"/"and
+  Part" stop it; every OTHER capitalised continuation word after "and"
+  is still absorbed into the first treaty's own name — this condition
+  is narrowed, not closed. Constructed, each
+  run directly: `resolve_references("Article 5 of the Example
+  Convention and Title II of the Example Protocol apply.")` at HEAD
+  resolves ONE EXTERNAL reference, `external_instrument: "Example
+  Convention and Title II of the Example Protocol"` ("and Title" is
+  absorbed); "and Annexes II of the Example Protocol" gives "Example
+  Convention and Annexes II of the Example Protocol"; "and Regulation
+  2020/1 of the Example Protocol" gives "Example Convention and
+  Regulation"; "and Member States of the Example Protocol" gives
+  "Example Convention and Member States of the Example Protocol" — all
+  four absorbed into one wrong, merged name rather than split into two
+  references. (iv) a bare pinpoint naming a RECOGNISED external shape
+  ("Article 82 of the GDPR") found INSIDE a quoted substitution's NEW
+  text takes the surrounding chapeau's own Act instead of the name it
+  actually carries. Constructed: `resolve_references('In section 5 of
+  the Example Other Act 1990, for "x" substitute "see Article 82 of
+  the GDPR for further detail.".', host_instrument_name="Example
+  Protection Act 2020", numbering_family="uk")` at HEAD resolves
+  "Article 82" EXTERNAL to `"the Example Other Act 1990"` (the
+  chapeau's Act) — "of the GDPR" is dropped from both the literal and
+  the resolution entirely. (v) a bare pinpoint in the amendment's
+  INSERTED (NEW) quoted text takes the Act named in the amendment's own
+  OLD (struck) text, when no `quoted_amending_target` is passed — R2
+  expects the NEW text's bare pinpoint to resolve against the amended
+  instrument, not the OLD text's own Act. Constructed:
+  `resolve_references('for "section 9 of the Example Data Act 1990"
+  substitute "section 9".', numbering_family="uk")` at HEAD resolves
+  the NEW text's "section 9" EXTERNAL to `"Example Data Act 1990"` —
+  the OLD (struck) span's own Act — because the self-detected
+  antecedent lookup finds the nearest PRECEDING named instrument before
+  the NEW quote's own opening mark, which is the OLD span's Act;
+  passing `quoted_amending_target="Example Protection Act 2020"`
+  explicitly overrides this and resolves the NEW text's "section 9"
+  correctly, to that target. (vi) an INLINE-DEFINED short form of a
+  NON-HOST Act gets the truncated label instead of the FULL name the
+  surrounding text just defined it as — this happens WHETHER OR NOT
+  host metadata reaches the derivation at all, as long as the short
+  form's own year differs from the host's own derived/supplied short
+  year. Constructed, host metadata present:
+  `resolve_references('The Example Data Act 1990 (the "1990 Act")
+  governs retention. Section 4 of the 1990 Act applies.',
+  host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` at HEAD resolves the first mention EXTERNAL
+  to `"The Example Data Act 1990"` (correct) and "Section 4 of the
+  1990 Act" EXTERNAL to `"1990 Act"` — the truncated short form, not
+  the full name the text defined three words earlier; the identical
+  truncation occurs with NO host metadata passed at all. **Opposite
+  risk: a NON-host Act whose short form shares the SAME year as the
+  host resolves INTERNAL instead.** Constructed: `resolve_references('The
+  Example Other Act 2020 (the "2020 Act") governs retention. Section 4
+  of the 2020 Act applies.', host_instrument_name="Example Protection
+  Act 2020", numbering_family="uk")` at HEAD resolves the first mention
+  EXTERNAL to `"The Example Other Act 2020"` (correct), but "Section 4
+  of the 2020 Act" resolves INTERNAL with pinpoint `"section 4"` — the
+  short-year rule matches the host's own derived year against ANY Act
+  sharing that year, not only the host itself. **A host name written
+  with a comma ("Example Protection Act, 2020") or a trailing chapter
+  citation ("Example Protection Act 2020 (c. 12)") derives NO year at
+  all** — the derivation anchors on "... Act YYYY" at the EXACT end of
+  `host_instrument_name`; either suffix breaks that anchor, so a
+  short-year Act reference against such a host always stays EXTERNAL,
+  truncated, under neither risk above. Constructed, each run directly:
+  `resolve_references("Section 4 of the 2020 Act applies.",
+  host_instrument_name="Example Protection Act, 2020",
+  numbering_family="uk")` and the same text with
+  `host_instrument_name="Example Protection Act 2020 (c. 12)"` both
+  resolve EXTERNAL to `"2020 Act"` at HEAD — the NAME alone derives no
+  year in either case. **This is a NAME-derivation gap only, not a gap
+  in the short-year rule itself:** when the CALLER
+  passes `host_instrument_number` explicitly, the short-year rule reads
+  that value directly and never attempts the name-ending derivation at
+  all, so the short form DOES resolve INTERNAL — for BOTH host-name
+  shapes above. Constructed, each run directly: `resolve_references(
+  "Section 4 of the 2020 Act applies.", host_instrument_name="Example
+  Protection Act, 2020", host_instrument_number="2020",
+  numbering_family="uk")` and the same text with `host_instrument_name
+  ="Example Protection Act 2020 (c. 12)"` and the same
+  `host_instrument_number="2020"` both resolve INTERNAL with pinpoint
+  `"section 4"` at HEAD. This claim is false as stated, under a
+  condition NARROWED, not closed — see (iii) above. **German name
+  over-extension through a finite verb.** The
+  qualifying-phrase continuation after "über"/"gegen" (`_DE_PHRASE_WORD`)
+  accepts up to 3 lower-case words immediately followed by a
+  capitalised (German-noun) word, to admit genuine adjective/genitive
+  runs ("öffentlicher Aufträge") — but German also capitalises every
+  common noun, so a finite verb plus a pronoun immediately followed by
+  a capitalised noun OBJECT fits the same shape. "Artikel 101 des
+  Vertrags über die Arbeitsweise der Europäischen Union finden keine
+  Anwendung." (constructed) resolves `external_instrument: "Vertrag
+  über die Arbeitsweise der Europäischen Union finden keine
+  Anwendung"` at HEAD — the predicate "finden keine Anwendung" ("do not
+  apply") is absorbed into the name, a WRONG name, not under-recall.
+  **The second, previously-open condition (item (iii) above) is
+  narrowed, but not closed** — a treaty name's Title-Case continuation
+  now stops before "and
+  Article", "and Articles", "and Section", "and Annex", "and Chapter",
+  or "and Part" (see the numbering-families paragraph above): "Article
+  6 of the Example Cooperation Convention and Article 7 of the Example
+  Transit Convention apply." (constructed) resolves at HEAD to TWO
+  separate EXTERNAL references, one per treaty, rather than merging the
+  second citation into the first treaty's own name. An earlier,
+  different breach of this claim is also corrected: a bare, UNNAMED
+  "Convention"/"Protocol"/"Accord" — added (§20a.2 item 80) on the
+  theory that ANY bare
+  occurrence of these words was a citation — fired on ordinary prose
+  ("Convention rights", "Transmission Control Protocol/Internet
+  Protocol", "Refugee Convention") and truncated genuinely named
+  treaties ("European Convention for the Protection of Human Rights
+  and Fundamental Freedoms" -> "Convention"; "Protocol No 21" ->
+  "Protocol") to their bare generic type word — a WRONG name, not
+  under-recall. That alternative is REMOVED; a treaty-type word is now
+  EXTERNAL only when (a) it is part of a genuinely NAMED instrument —
+  a Title-Case qualifying phrase attached to the keyword — (b) it is
+  "Protocol No N" (the EU drafting convention's own numbered-instance
+  form), or (c) it is "Article N of this/the Convention/Protocol/
+  Treaty/Accord" with a pinpoint EXPLICITLY attached, resolved R1
+  -style against the host when the host genuinely IS that treaty type,
+  else `external_instrument: "unnamed (see note)"` (R7) — never a bare
+  truncated type word. Measured directly over all 12 benchmark source
+  texts (`_results/xref-resolver/harness/`, the 8 signed verticals plus
+  eprivacy/us-cfaa/de-bdsg/de-tdddg): 0 EXTERNAL names are a single
+  generic word ("Act"/"Convention"/"Protocol"/"Gesetz"/"Verordnung"/
+  "Ordnung"/"Vertrag") after this fix, down from 94 before it (80
+  bare "Convention"/"Protocol" hits across gdpr (3), ai-act (5),
+  us-coppa (5), uk-dpa2018 (57), uk-osa2023 (6) and eprivacy (4) that
+  the bare alternative introduced, plus 14 bare German
+  "des Gesetzes"/"der Ordnung" false fires (de-bdsg 7, de-tdddg 7)
+  that the German naming patterns' own missing word-boundary and
+  empty-stem guards let through — the ordinary-prose false fires
+  were present independently of the Convention/Protocol/Accord
+  breach above and are fixed by the SAME change; measured directly,
+  before and after, over all 12 source texts).
+* The quote-span detector (F3c) is a SIMPLE matching-quote-mark scan —
+  it does not track NESTED quotes of the same style, and a
+  quotation spanning MULTIPLE sentences (rare; amending text is usually
+  one paragraph) would need `text` to include all of it.
+* A relative reference combining a NUMBER list AND a point/letter list
+  in the SAME citation ("Article 5(3), points (c) to (f)") resolves to
+  the number only, ONE target — the cross-product expansion (one target
+  per `(number, point)` pair) is not implemented.
+* **A Schedule's own Chapter level is NOT reset when a new PART starts
+  inside that Schedule** (`enclosing_units_at`'s "uk" branch: a new
+  top-level PART resets `main` to a fresh dict, but a PART heading
+  found WHILE `in_schedule` only adds/overwrites the `"part"` key of
+  `schedule_state`, never clearing a stale `"chapter"` carried over
+  from an earlier Part of the SAME Schedule). Constructed source text
+  `"SCHEDULE 3\nPART 1\nCHAPTER 2\n...\nPART 2\n..."`, offset inside
+  "PART 2"'s own body: `enclosing_units_at(text, offset, "uk")` returns
+  `{"schedule": "Schedule 3", "part": "Part 2", "chapter": "Chapter
+  2"}` at HEAD — "Chapter 2" belongs to "Part 1", not "Part 2", and is
+  stale.
+* **"such Directive"/"that Protocol"/"that Treaty" with NO antecedent
+  instrument of the matching kind in the text** do not fail the same
+  way. Constructed: `resolve_references("Article 4 of such Directive
+  applies.")` at HEAD returns TWO references — "Article 4" wrongly
+  INTERNAL (split off from its own "of such Directive"), plus a
+  separate "such Directive" EXTERNAL `"unnamed (see note)"`, tagged
+  `ambiguous_reference`. `resolve_references("Article 4 of that
+  Protocol applies.")` at HEAD returns only ONE reference, "Article 4"
+  INTERNAL — the "of that Protocol" external reference is DROPPED
+  entirely, not even emitted as ambiguous; "that Treaty" behaves the
+  same way as "that Protocol" (the "of that Treaty" tail is dropped,
+  not even with an earlier same-kind antecedent present, since "Treaty"
+  is not one of the typed anaphora keywords this mechanism recognises
+  at all — only "that Regulation"/"that Directive"/"that Act"/"that
+  title"/"such Act"/"thereof" are). Neither shape has a dedicated
+  antecedent-free path. **"the said Act"** (the traditional
+  UK drafting synonym for "that Act") is not a recognised anaphora
+  keyword at all: `resolve_references("The Example Act 1990 governs
+  this. Section 4 of the said Act applies.", host_instrument_name="Other
+  Act 2000", numbering_family="uk")` at HEAD returns "Section 4" bare
+  INTERNAL with its own pinpoint — the "of the said Act" tail is not
+  parsed as an anaphoric trailer at all, so the citation never picks up
+  any instrument affiliation, right or wrong.
+* **A plain "N U.S.C. M" citation does not count as a designation
+  event for a LATER "that title".** Constructed:
+  `resolve_references("Nothing in 15 U.S.C. 45 limits the authority
+  under that title.", numbering_family="us")` at HEAD resolves "that
+  title" to `external_instrument: "unnamed (see note)"`
+  (`ambiguous_reference`) rather than to "15 U.S.C." — the bare
+  "N U.S.C. M" shape is not tracked as an antecedent the way a named
+  EU/UK instrument is.
+* **List markers are kept verbatim in the reference's own `literal`
+  span, by design (R7)** — only `external_instrument` strips a leading
+  list marker. `resolve_references("This is amended by (b) The
+  Consumer Rights Act 2015.", numbering_family="uk")` at HEAD returns
+  `literal: "(b) The Consumer Rights Act 2015"` (marker kept) but
+  `external_instrument: "The Consumer Rights Act 2015"` (marker
+  stripped) — see
+  `conformance/vectors/clause-cues/xref-v2-minor-leading-list-marker-stripped-from-name.json`.
+* **Super-linear time on thousands of repeated host-name/heading
+  citations.** `enclosing_unit_at`/`enclosing_units_at` each re-scan
+  `source_text` from its own start on EVERY call (no memoised
+  heading-position index) — each call is O(n) in the LENGTH of
+  `source_text`, so a caller invoking either once per citation over a
+  file with n characters and k citations pays O(n·k) total. Measured
+  directly: a synthetic EU source of n "Article N" headings, called
+  once at the LAST heading's own offset, scales roughly LINEARLY in n
+  (n=1000: ~0.28 ms/call; n=2000: ~0.54 ms/call; n=4000: ~1.0 ms/call;
+  n=8000: ~1.9 ms/call) — confirming the O(n·k) bound stated in
+  §20a.2's own KNOWN LIMIT; not optimised (no caching/bisect index
+  added).
+* **Pre-existing: a recognised instrument's SHORT NAME, used inside a
+  DIFFERENT host that does not itself carry that short name, resolves
+  INTERNAL.** Constructed: `resolve_references("Article 4 of the GDPR
+  applies for the purposes of this Act.", host_instrument_name="Data
+  Protection Act 2018", numbering_family="uk")` at HEAD returns ONE
+  reference, "Article 4" INTERNAL, `external_instrument: null` — "of
+  the GDPR" is dropped from the literal and from the resolution
+  entirely; "UK GDPR" is a recognised external shape, but bare "GDPR"
+  on its own (as distinct from "UK GDPR") is not.
+* **Pre-existing: a multi-level TFEU tail does not propagate EXTERNAL
+  to every member of a preceding plural/"or" list.** Constructed:
+  `resolve_references("Chapter 4 or Chapter 5 of Title V of Part Three
+  of the TFEU applies.")` at HEAD returns THREE references — "Chapter
+  4" INTERNAL, "Chapter 5" INTERNAL, and a separate bare "TFEU"
+  EXTERNAL mention with no pinpoint — rather than two EXTERNAL
+  references to TFEU with "Chapter 4"/"Chapter 5" as their own
+  `external_target`s.
+* **Pre-existing: a bare self-naming of the host OUTSIDE any quote
+  span, with no further pinpoint chain, emits `pinpoint: "Instrument"`**
+  rather than omitting a target. See
+  `conformance/vectors/clause-cues/xref-v2-r2-quoted-host-name-is-internal.json`
+  for a worked example (`"Regulation (EU) <n> of the European
+  Parliament and of the Council"`, no pinpoint chain attached, resolves
+  INTERNAL with `targets: [{"pinpoint": "Instrument", ...}]`).
+* **"that section" after an absolute "section N of the <year> Act"
+  chain does not inherit the named Act — it is read as a RELATIVE
+  reference against `enclosing_unit` instead.** Constructed:
+  `resolve_references("Section 12 of the 1990 Act applies. That section
+  is further explained below.", numbering_family="uk")` at HEAD returns
+  "Section 12 of the 1990 Act" EXTERNAL (correct), then "That section"
+  INTERNAL with `pinpoint: "Section"`, tagged `ambiguous_reference` —
+  the wrong KIND (should be EXTERNAL to "1990 Act") and the wrong
+  pinpoint (bare "Section", not "section 12"); R4's relative-reference
+  path, not the typed-anaphora mechanism, claims "that section" first.
+* **A pinpoint chain immediately before a statutory instrument whose
+  own name extends the host's name loses its own pinpoint.** Constructed:
+  `resolve_references("Regulation 2 of the Example Act 2023
+  (Commencement No. 2) Regulations 2024 applies.",
+  host_instrument_name="Example Act 2023", numbering_family="uk")` at
+  HEAD returns ONE reference, EXTERNAL to "the Example Act 2023
+  (Commencement No. 2) Regulations 2024" (the instrument name itself is
+  correctly recognised, per the addition above), but
+  `external_target: null` and `literal` starting only at "the Example
+  Act..." — the leading "Regulation 2 of" pinpoint is dropped from both
+  the literal span and the resolution entirely.
+* **A PLURAL/RANGED chain explicitly naming the host inside amending
+  text does not get the EXPLICIT-naming-wins protection R2 gives a
+  SINGULAR chain ("section N of <name>") — it falls back to some OTHER
+  instrument instead of the host, but NOT always the SAME other
+  instrument.** Measured directly over the UK DPA 2018 benchmark source
+  (`_results/xref-resolver/harness/`): the "host-literal-but-other-
+  label" count — an EXTERNAL reference whose `literal` names the host
+  by its own full name, but whose `external_instrument` is some OTHER
+  instrument — is 7, every one inside a consequential-amendment
+  schedule's REPLACEMENT quoted text naming the host by a plural/ranged
+  chain. The chapeau before that quoted text MAY OR MAY NOT itself name
+  an Act — an earlier wording's "immediately after a chapeau naming
+  the Act being amended" overstated this: four of the 7 rows have a
+  chapeau that names no Act at all; in
+  those rows, the Act in play instead comes from an earlier sentence
+  announcing that an Act is being amended, or from whichever Act was
+  last named before that point). Of the 7 rows, the chapeau names an
+  Act in 3 and names none in the other 4. By label: 3 rows carry the
+  nearest earlier non-struck Act — in 2 of them that is the Act the
+  chapeau names, in 1 it is the Act announced by an earlier sentence
+  stating that an Act is amended as follows, because that row's
+  chapeau names none — and 4 rows carry the struck text's own Act. (The
+  struck-text-labelled rows are 4 in total either way: 2 reach it
+  through (b) alone, 1 through (b)+(c) together, 1 through (c) alone.)
+  (a) BARE-mention exclusion (nearest-earlier-Act label). A BARE Act mention in
+  the struck (OLD) text — no pinpoint chain of its own — is excluded
+  from the anaphora lookup entirely (R2, above), so the plural
+  host-chain falls through to the nearest EARLIER non-struck Act
+  mention instead. That is usually the chapeau's own Act, when the
+  chapeau names one; when it does not, it is whatever Act was named
+  before the struck span, by ordinary position. Constructed, the
+  a struck text that is itself a BARE Act
+  mention: `resolve_references('In section 5 of the Example Other Act
+  1990, for "the Example Data Act 1990" substitute "Parts 5 to 7 of the
+  Example Protection Act 2020".', host_instrument_name="Example
+  Protection Act 2020", numbering_family="uk")` at HEAD returns the
+  plural chain EXTERNAL to `"the Example Other Act 1990"` — the
+  CHAPEAU's own Act, not the host the chain's own literal explicitly
+  names, and not the struck text's own Act ("the Example Data Act
+  1990") either, since that struck mention is bare — while the SAME
+  construct with a SINGULAR chain ("section 7 of the Example Protection
+  Act 2020") correctly resolves INTERNAL. A trailing pinpoint-carried
+  anaphora on the SAME struck text still resolves to the host
+  correctly: `resolve_references('In section 5 of the Example Other Act
+  1990, for "the Example Data Act 1990" substitute "Parts 5 to 7 of the
+  Example Protection Act 2020 (see paragraph 9 of that Act)".',
+  host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` at HEAD resolves "paragraph 9 of that Act"
+  INTERNAL with pinpoint `"paragraph 9"`. (b) PINPOINT-carried struck
+  Act (struck-text-labelled). A struck Act carried by a PINPOINT chain
+  is NOT excluded from the anaphora lookup — only a BARE mention is,
+  per (a) above — so the plural host-chain picks up the STRUCK TEXT's
+  own Act instead of the host it actually names. Constructed: `resolve_
+  references('for "section 1 of the Example Data Act 1990" substitute
+  "Parts 5 to 7 of the Example Protection Act 2020 apply.".',
+  host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` at HEAD returns the plural chain EXTERNAL to
+  `"Example Data Act 1990"` — the OLD (struck) text's own Act, a
+  DIFFERENT wrong label from (a)'s. (c) Sentence-splitting (a
+  CALLER-segmentation effect, not a resolver defect). When the struck
+  text is immediately followed by a chapter citation such as "(c.
+  29)", a caller's sentence splitter that breaks the text right after
+  "(c." (misreading the abbreviation period as a sentence boundary)
+  pushes the struck quote's own opening AND closing marks entirely into
+  the half the caller passes as `preceding_text`. `resolve_references`'s
+  own OLD-span detector scans ONLY `text`, never `preceding_text` — so
+  from inside THIS call the struck quote is not recognised as struck AT
+  ALL, and its Act becomes an ordinary, unexcluded mention: the
+  nearest-antecedent lookup picks it up as if it had never been struck,
+  and the row gets the struck text's own label even though the struck
+  mention is itself BARE (mechanism (a)'s own exclusion never runs,
+  because there is no complete quote left in `text` to classify as
+  struck in the first place). This depends on the CALLER's own
+  segmentation, not on anything `resolve_references` does differently —
+  the same underlying sentence resolves two different ways depending on
+  where the caller cuts it. Constructed, run directly, both halves of
+  the SAME sentence: UNDIVIDED — `resolve_references('In section 9 of
+  the Example Other Act 1990, for "the Example Data Act 1990" (c. 29)
+  substitute "Parts 5 to 7 of the Example Protection Act 2020".',
+  host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` at HEAD resolves the plural chain EXTERNAL to
+  `"the Example Other Act 1990"` — the chapeau's own Act, mechanism (a),
+  since the struck mention is bare and no split has happened. SPLIT —
+  calling `resolve_references` on the SECOND half as `text`, with the
+  FIRST half (ending in "(c.") as `preceding_text`: `resolve_references(
+  ' 29) substitute "Parts 5 to 7 of the Example Protection Act 2020".',
+  preceding_text='In section 9 of the Example Other Act 1990, for "the
+  Example Data Act 1990" (c.', host_instrument_name="Example Protection
+  Act 2020", numbering_family="uk")` at HEAD resolves the SAME plural
+  chain EXTERNAL to `"the Example Data Act 1990"` instead — the STRUCK
+  TEXT's own Act, mechanism (c) — purely because the caller split the
+  sentence at that point; nothing in `resolve_references` itself
+  changed between the two calls. (d) A related bug fires on the
+  "paragraphs N and M of Schedule K to <host>" shape, not only "Parts N
+  to M of <host>" — here the struck text names no Act at all, yet the
+  output still carries the chapeau's own label, and it additionally
+  SPLITS the pinpoint from the host-naming "to <host>" tail into two
+  separate references rather than keeping them together. Constructed: `resolve_
+  references('In section 9 of the Example Other Act 1990, for "x"
+  substitute "paragraphs 3 and 4 of Schedule 2 to the Example
+  Protection Act 2020 apply.".', host_instrument_name="Example
+  Protection Act 2020", numbering_family="uk")` at HEAD returns TWO
+  EXTERNAL references, both labelled `"the Example Other Act 1990"`
+  (the chapeau's Act): "paragraphs 3 and 4" and, separately, "Schedule 2
+  to the Example Protection Act 2020" — the "paragraph ... of Schedule
+  ... to <host>" chain is never recognised as ONE reference the way
+  "Parts N to M of <host>" is. (e) A quoted multi-member OR-LIST whose
+  members each carry their OWN sub-pinpoint, found inside a
+  substitution whose struck text names a DIFFERENT Act by a pinpoint
+  chain, keeps only the FIRST member AND takes the STRUCK TEXT's Act for
+  it (the (b)-shaped bug) — the or-list's own under-recall limit
+  (further below) combines with the struck-text mislabelling above.
+  Constructed: `resolve_references('for "section 1 of the Example Data
+  Act 1990" substitute "section 27(3) or (5), 79(5) of the Example
+  Protection Act 2020 apply.".', host_instrument_name="Example
+  Protection Act 2020", numbering_family="uk")` at HEAD returns ONE
+  reference for the or-list, "section 27(3)" EXTERNAL to `"Example Data
+  Act 1990"` — the struck text's own Act — with every other member
+  ("(5)", "79(5)") lost.
+* **A treaty name followed directly by a different instrument's
+  "<kind> YEAR" tail is silently dropped rather than split into two
+  references.** Constructed: `resolve_references("Treaty on European
+  Union Act 2011 applies.", numbering_family="uk")` at HEAD returns ONE
+  reference, `external_instrument: "Treaty on European Union"` — "Act
+  2011" is absorbed into neither the treaty's own name nor a second,
+  separate reference; it is simply lost. **A "Protocol to the <Act
+  Name>" name loses its own year.** Constructed:
+  `resolve_references("Section 4 of the Protocol to the Example Act
+  1989 applies.", numbering_family="uk")` at HEAD returns
+  `external_instrument: "Protocol to the Example Act"` — "1989" is
+  dropped from the name. (The sibling shapes "Human Rights Act 1998
+  Commencement Order" and "the <host Act> (Commencement No. M)
+  Regulations <year>" are UNAFFECTED — each resolves with its own full,
+  correct name at HEAD, the latter per the addition above.)
+* **A multi-section or-list with a descriptive parenthetical on each
+  member loses every member but the first, and the trailing external
+  instrument.** Constructed: `resolve_references("Section 12 (false
+  statements) or 14 (threats) of the Example Act 2020 applies.",
+  host_instrument_name="Other Act 1990", numbering_family="uk")` at
+  HEAD returns TWO references — "Section 12" bare INTERNAL (its own
+  parenthetical gloss and the "or 14 (threats)" member both lost, and
+  the trailing "of the Example Act 2020" never attaches to it at all)
+  and a separate, disconnected EXTERNAL "the Example Act 2020" with no
+  pinpoint — rather than one EXTERNAL reference with two targets.
+* **A plural/range EXTERNAL citation's `external_target` is a SINGLE
+  string, truncated to the FIRST expanded member, unlike `targets` on
+  the INTERNAL side (which carries one entry per member).** Constructed:
+  `resolve_references("Sections 6501 and 6502a of the Example Commerce
+  Act 1990 apply.", numbering_family="us")` at HEAD returns ONE
+  reference, `external_target: "§ 6501"` — "6502a" (itself correctly
+  resolved when it is the ONLY member, letter suffix and all) is
+  dropped from the output entirely once it is the second member of a
+  plural/range citation. The same truncation applies to a written range
+  ("Sections 10 to 12 of the Example Commerce Act 1990 apply." resolves
+  `external_target: "§ 10"`, dropping "11" and "12"). **The EU form is
+  covered by the same limit, explicitly.**
+  Constructed: `resolve_references("Articles 12 to 15 of Directive
+  2031/58/EU apply.")` at HEAD returns ONE EXTERNAL reference,
+  `external_target: "Article 12"` only — "13" through "15" are
+  dropped. `resolve_references("Articles 12 and 14 of Directive
+  2031/58/EU apply.")` at HEAD likewise returns ONE EXTERNAL
+  reference, `external_target: "Article 12"` only — "14" is dropped.
+  A consumer that rolls an EXTERNAL reference up to the article level
+  using `external_target` alone therefore loses every member but the
+  first of a plural/ranged EU citation too, not only the US form
+  above.
+* **A multi-member or-list whose members each carry their OWN
+  sub-pinpoint drops every member but the first, and mislabels even
+  that one.** Constructed: `resolve_references("Section 27(3) or (5),
+  79(5) or (7) of the Example Act 1990 applies.",
+  host_instrument_name="Other Act 2000", numbering_family="uk")` at
+  HEAD returns TWO references — "Section 27(3)" bare INTERNAL (its own
+  "or (5)" sibling, the second member "79(5) or (7)", and the trailing
+  "of the Example Act 1990" are all lost) and a separate, disconnected
+  EXTERNAL "the Example Act 1990" with no pinpoint — the same failure
+  mode the descriptive-parenthetical or-list limit above documents,
+  confirmed here for a sub-pinpoint-bearing or-list too.
+* **A bare relative "paragraph N", resolved against an `enclosing_unit`
+  that is itself a bare "Part M" (not a Schedule), is formatted with
+  the EU comma-chain's own "(N)" sub-pinpoint convention instead of a
+  UK "Schedule, paragraph" convention** — `_resolve_relative`'s
+  `label == "paragraph"` branch applies regardless of
+  `numbering_family`. Constructed: `resolve_references('for "x"
+  substitute "paragraph 9".', enclosing_unit="Part 1",
+  numbering_family="uk")` at HEAD resolves "paragraph 9" INTERNAL with
+  `pinpoint: "Part 1(9)"` — a malformed UK pinpoint (no such form
+  exists in UK drafting); the EU reading treats "Part 1" as if it were
+  an EU Article and "paragraph 9" as its own numbered paragraph.
+* **Once a "Schedule" mention has itself been swallowed into a
+  WRONGLY-labelled EXTERNAL reference (the plural/ranged
+  host-naming-chain limit above), a LATER "that Schedule" no longer
+  finds it as an antecedent at all** — R4's sub-unit anaphora looks for
+  the nearest preceding mention of the SAME sub-unit word among the
+  mentions this module tracks for that purpose, and a mention already
+  consumed into another reference's own `literal` is not among them.
+  Constructed, compare the two runs directly: with no chapeau,
+  `resolve_references("Schedule 2 to the Example Protection Act 2020
+  applies. Paragraph 9 of that Schedule also applies.",
+  host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` at HEAD resolves "that Schedule" correctly,
+  `pinpoint: "Schedule 2"`; the SAME two sentences placed inside a
+  chapeau'd amendment — `resolve_references('In section 9 of the
+  Example Other Act 1990, for "x" substitute "Schedule 2 to the
+  Example Protection Act 2020 applies. Paragraph 9 of that Schedule
+  also applies.".', host_instrument_name="Example Protection Act 2020",
+  numbering_family="uk")` — resolves "that Schedule" to a bare,
+  disconnected `pinpoint: "Schedule"`, tagged `ambiguous_reference`,
+  because the host-literal-but-other-label bug above has already
+  pulled "Schedule 2" into a separate EXTERNAL reference's own literal
+  rather than leaving it as a trackable INTERNAL "Schedule" mention.
+* **A chain-attached "thereof" ("<pinpoint> thereof", as distinct from
+  the bare, untyped "thereof" on its own) is recognised ONLY inside the
+  gated EU preamble convention ("Having regard to <Treaty>, ...
+  Article N thereof") — everywhere else, the chain resolves on its own
+  (bare INTERNAL to the host, ignoring whatever instrument "thereof"
+  was meant to name) and "thereof" itself is silently dropped, never
+  emitted as its own item or attached to the chain's own reference.**
+  Constructed, each run directly: `resolve_references("The Example
+  Regulation applies. The second subparagraph thereof governs
+  enforcement.")` at HEAD returns NO reference at all for the second
+  sentence (empty list) — "subparagraph" alone carries no recognised
+  numbering keyword, so nothing matches and "thereof" is lost with it.
+  `resolve_references("The Example Regulation applies. Point (h)(iii)
+  thereof governs enforcement.")` at HEAD returns ONE reference, "Point
+  (h)" bare INTERNAL tagged `ambiguous_reference` — the "(iii) thereof"
+  tail is dropped entirely, never attached. `resolve_references("The
+  Example Regulation applies. Section 5 thereof governs
+  enforcement.")` at HEAD returns ONE reference, "Section 5" bare
+  INTERNAL with its own pinpoint — "thereof" is simply ignored, the
+  reference is never made EXTERNAL to "The Example Regulation" the way
+  "that Act"/"thereof" anaphora elsewhere in this section is.
+
+See `src/five_d_nd/clause_cues.py` (`resolve_references`,
+`enclosing_unit_at`, `_xref_count_and_objects`,
+`clause_cue_point_from_profile`, `cross_reference_links_from_profile`),
+`conformance/vectors/clause-cues/xref-v2-*.json`,
+`conformance/vectors/resolution-profile/xref-resolver-field-*.json`.
+
 ## §9 The nD grammar contract
 
 An nD grammar publishes, to attach to 5D:
@@ -1523,6 +2436,58 @@ two things are tightened further, below):
   silently, and (b) pollute `profile_digest()`'s own canonical JSON with
   an unresolved extra key — rejecting it outright avoids both failure
   modes.
+- `xref_resolver` (§8a.1): one of the two
+  closed string values `"article-v1"` / `"shared-v2"`, selecting which
+  cross-reference resolver a consumer dispatches to. **Deliberately NOT
+  added to `DEFAULTS`** (unlike every field above): `resolve_profile()`
+  merges a document onto `DEFAULTS` and digests the FULLY RESOLVED
+  result, so widening `DEFAULTS` itself would change EVERY existing
+  profile's own resolved document — and therefore its digest — even for
+  a document that never mentions the new field at all. Added instead to
+  `KNOWN_FIELDS` (so the field validates, round-trips through
+  `resolve_profile()`'s generic top-level overlay, and is rejected on an
+  unrecognised value) but left ABSENT from `DEFAULTS`: a profile
+  document that never sets it resolves to the IDENTICAL dict, and
+  therefore the IDENTICAL digest, it always had (verified directly:
+  `minimal-valid-profile-id-only.json`'s own pinned digest is
+  UNCHANGED). "Absent means `article-v1`" is asserted exactly ONCE, by
+  the CONSUMING code's own dispatch (`resolved.get("xref_resolver",
+  "article-v1")`), never by this module silently defaulting it. A
+  profile that DOES set `"xref_resolver": "shared-v2"` gets a NEW,
+  DISTINCT digest (its resolved document is now wider by one key) —
+  exactly the `article-v1`/`shared-v2` split §8a.1 and the benchmark
+  protocol need. This is a DELIBERATE DEPARTURE from the precedent set by
+  `relational_suppression_scale`, which WAS added to `DEFAULTS` and
+  did recompute every pre-existing
+  resolution-profile vector's own pinned digest — that precedent is
+  valid for a field whose DEFAULT value changes every resolved document's
+  behaviour anyway (a new formula parameter with a real default), but is
+  the WRONG precedent for a field selecting between TWO ALREADY-EXISTING
+  code paths where one path (`article-v1`) must stay byte-identical,
+  digest included, for every document that never opts in.
+
+**The §16 "omitted means default" invariant, made explicit, and
+EXPLICIT-default canonicalisation.** §16 has always
+meant: two profile documents differing ONLY in whether a field is
+present at its own default value, or absent altogether, MUST resolve —
+and therefore digest — IDENTICALLY (`resolve_profile()`'s own docstring:
+"two profile documents that differ only in which fields they leave to
+default still produce the SAME digest"). Every field already in
+`DEFAULTS` gets this for free, because `resolve_profile()` starts from
+`DEFAULTS` and overlays `doc` on top — an explicit value equal to the
+default overlays onto itself, a no-op. `xref_resolver` is deliberately
+NOT in `DEFAULTS` (above), so it does NOT get this for free: without a
+further step, `{"profile_id": "x"}` and `{"profile_id": "x",
+"xref_resolver": "article-v1"}` would resolve to DIFFERENT dicts (one
+lacking the key, one carrying it) and therefore digest differently,
+breaking the invariant for this one field. `resolve_profile()` closes
+this explicitly: AFTER the overlay, if the resolved document's own
+`xref_resolver` equals its field default (`"article-v1"`), the key is
+DELETED from the resolved document before canonicalisation/digesting —
+so "never set" and "set to its own default" converge on the identical
+resolved dict, and therefore the identical digest, while "set to
+`shared-v2`" still diverges (verified directly:
+`xref-resolver-explicit-article-v1-equals-omitted-digest.json`).
 
 **`confidence_floor` is STAGE 2 (a residual item).** This profile
 document carries the FIELD (a number in `[0, 1]`, validated the same as
@@ -2300,6 +3265,272 @@ exceptions — the "hardly ever" idiom, six out-of-lexicon synonyms, and
 the cross-sentence pattern) and a property/oracle test for
 `relational_effective`
 (`test_relational_effective_agrees_with_an_independent_oracle_and_properties`).
+
+## §20a Conformance
+
+An implementation conforms to this addition (§8a.1 — the shared
+cross-reference resolver) when it, IN ADDITION to §10/§17/§20's existing
+criteria (all unchanged, including every `clause-cues` vector built for
+`article-v1`):
+
+55. Keeps `cross_reference_targets`/`cross_reference_links`
+    (`article-v1`) byte-identical for every existing caller and vector —
+    this addition adds a NEW function, `resolve_references`, never edits
+    the old one.
+56. Resolves EXTERNAL citations to `(instrument, pinpoint)` per R7 (§8a.1)
+    across EU/UK/US/DE drafting shapes, and INTERNAL references across
+    every numbering family §8a.1 lists, including ranges/plurals/or-lists
+    (one target per expanded member, `expanded_from` set) and relative
+    references resolved against a caller-derived `enclosing_unit`.
+57. Implements R1-R7, exactly as mapped in §8a.1 — a bare self-reference is never an item
+    (R1); a quoted-amending pinpoint is classified by what it designates
+    (R2); "this Section/Chapter/Title/Part" is internal to that unit
+    unless it IS the whole host (R4/R5); a "So in original" footnote is
+    read literally and flagged `ambiguous_reference` (R6); an EXTERNAL
+    reference's `targets` is always `[]` and `external_instrument` is
+    never null (R7).
+58. Validates and resolves the new resolution-profile field
+    (`xref_resolver`, `"article-v1"` | `"shared-v2"`) per §16's
+    field-type discipline, WITHOUT changing the resolved document (and
+    therefore the digest) of any profile document that does not set it —
+    checked directly by `two-profiles-same-resolved-fields-same-digest`
+    -style vectors and by comparing `minimal-valid-profile-id-only.json`'s
+    own pinned digest before and after this addition (unchanged).
+
+AND passes every vector added here:
+`conformance/vectors/clause-cues/xref-v2-*.json` (every numbering family,
+external-with-pinpoint, anaphora including "that Regulation"/"thereof",
+R1/R2/R4/R5/R6, ranges, or-lists, plurals, NBSP, hard negatives, and a
+savings-clause example), plus
+`conformance/vectors/resolution-profile/xref-resolver-field-*.json`.
+
+**No P1-P3 (versum/schema parity) differential, for the same reason
+§20's own note gives:** neither versum nor loomground-factual has a
+cross-reference-resolver counterpart. The resolution-profile schema
+(`schema/resolution-profile.schema.json`) DOES gain the new field's
+enum, checked by the existing differential test exactly as every other
+profile field is.
+
+**Benchmark pinning.** The signed 5D benchmark (benchmark protocol §8)
+pins a resolution profile with `"xref_resolver": "shared-v2"`
+(`888f219701d54ab5c592b803fd11d06cb145ad60f5fda26d05949ea3ec3256c3`) for
+BOTH arms — see `_results/xref-resolver/harness/bench-profile.json` (the
+benchmark harness's own copy; not part of this package) and
+`conformance/vectors/resolution-profile/xref-resolver-field-shared-v2-accepted.json`
+for the same digest, recorded as a conformance vector too.
+
+### §20a.1 Resolver naming and anaphora corrections
+
+Folded into §8a.1/§16 above; listed here for conformance, per the same
+discipline §20's own conformance items use:
+
+59. **Dispatch now fails CLOSED and counts DISTINCT targets only.**
+    `_xref_count_and_objects` raises `ValueError` on an unrecognised
+    `xref_resolver` value; `shared-v2` counts distinct target
+    pinpoints/instrument-pairs only — a repeated identical citation
+    contributes `+1 structural` and ONE link, never one per occurrence.
+60. **R1 by NAME, not only by EU number.** "`<chain> of/to the <host's
+    own name>`" (e.g. UK "paragraph N of Schedule M to the Data
+    Protection Act 2018" inside that Act's own file) resolves INTERNAL
+    the SAME way the EU "Article N of Regulation (EU) `<host number>`"
+    case already did (`_loose_name_match`, casefolded, a leading "the "
+    stripped). A LATER anaphoric "of/to that Act"/standalone "that Act"
+    is resolved INTERNAL too whenever the host was named MORE
+    RECENTLY, BY POSITION, than any genuinely external instrument —
+    never defaulting to EXTERNAL merely because the surface word is
+    "Act"/"Regulation". Verified by a property test over EVERY sentence
+    of all 8 source texts: ZERO overlapping output spans
+    (`_results/xref-resolver/harness/test_no_overlap.py`).
+61. **R4 resolves to the ANCESTOR AT THE NAMED LEVEL**, not the
+    Article/Section-level `enclosing_unit` — `enclosing_units_at`
+    returns an independent ancestor chain (`chapter`/`section` for EU;
+    `part`/`chapter`/`schedule` for UK), and "this Chapter"/"this
+    Section"/"this Part" builds an outer-first pinpoint from it. "this
+    title" is EXTERNAL (R1/the contract's own US Code example), never
+    R4-internal; R5 (the named unit IS the whole host) still wins first.
+62. **Outer-first nested chains** written inner-first in the text
+    ("Section 3 of Chapter IV", "Chapter 4 of Part 5", "paragraph 9 of
+    Part 3 of Schedule 3") are reformatted outer-unit-first.
+63. **Plurals/ranges beyond EU Articles**: "sections 3 to 5", "sections
+    14 and 15", "paragraphs 1 and 2"/"1 to 3", "§§ 3 bis 5"/"§§ 3 und 4"
+    (German plural sign, "bis"/"und" connectors) — one target per
+    member, `expanded_from` set, via a shared generic list/range
+    expander (`_expand_generic_list`).
+64. **Anaphoric EXTERNAL with its own pinpoint** — "Article 5 of that
+    Regulation", "Articles 55 or 56 of that Regulation", "section 406 of
+    that Act" — is ONE EXTERNAL reference per listed member (never an
+    INTERNAL pinpoint plus a separate EXTERNAL mention), instrument the
+    antecedent, `external_target` the member's own pinpoint.
+65. **R2 extended to UNQUOTED amending chapeaux**: "In Regulation (EU)
+    2018/1139, Article 17 is replaced by the following:" designates
+    Article 17 to 2018/1139 even with no quote marks at all, via a
+    chapeau-span detector parallel to the quote-span one (and deferring
+    to R1 when the chapeau names the host itself).
+66. **The quote-span detector excludes apostrophes**: a straight `'` is
+    an opening/closing quote mark only when NOT adjacent to a letter on
+    the quote side (never a possessive/contraction apostrophe);
+    typographic quotes (`'…'`/`"…"`) are unambiguous and always count.
+67. **TFEU/TEU's spelled-out names**, German statute names (genitive
+    "der"/"des" plus a compound or multi-word Title-Case run ending in
+    "-gesetz(es)"/"-gesetzbuch(es/s)"/"-ordnung"/a standalone capitalised
+    suffix word), and a wider closed set of statute-KIND words beyond
+    "Act" (Code/Ordinance/Statute/Law/Convention/Treaty, each with a
+    trailing year) are EXTERNAL — closing the §8a.1 KNOWN LIMIT that
+    previously stated (incorrectly) that an unrecognised shape was
+    "under-recall only, never a wrong name": for every shape added here,
+    that claim is now true; shapes outside even this widened set
+    remain the stated, narrower limit. **Accuracy note:** an earlier,
+    wider German statute pattern, together with an unrelated bare
+    "Convention"/"Protocol"/"Accord" alternative (§20a.2 item 80), had
+    reopened the "never a wrong name" claim — the bare alternative
+    produced WRONG names on ordinary prose, and the German pattern's own
+    missing word-boundary/empty-stem guards produced wrong names on "im
+    Sinne des Gesetzes"-shaped prose too. Both are removed/tightened:
+    the bare alternative is gone, the German pattern is tightened, and
+    the count is re-measured at 0 generic-single-word EXTERNAL names
+    over all 12 sources (§8a.1's own KNOWN LIMIT paragraph has the
+    count). This item's claim holds for item 67's own shapes.
+68. Several formatting bugs, fixed with their own vectors: the pinpoint
+    PREFIX now follows the numbering FAMILY, not the literal keyword
+    ("section 6502(b)(1)(A)" in the US family -> `"§ 6502(b)(1)(A)"`);
+    `_format_schedule_paragraph`'s number extraction no longer scrapes
+    digits out of a sub-pinpoint bracket; `_format_annex_pinpoint` keeps
+    "point" lower-case; the DE chain pattern requires "Abs."/"Absatz" so
+    it never mis-claims a bare US "§ N" chain first.
+69. **`external_target`** — a PARSED pinpoint field on every EXTERNAL
+    reference (the "(instrument, target provision)" requirement),
+    `None` when no pinpoint chain could be parsed. The `cross_references`
+    link object for an EXTERNAL reference is now `"<instrument>|
+    <external_target or literal>"`, not `"<instrument>|<literal>"`.
+70. **R6's editorial-note bracket** ("`[So in original. Probably should
+    be section 5(a)(3).]`") is excluded ENTIRELY — any reference whose
+    span falls inside the bracket is dropped, never emitted (never `+1
+    structural`); only the REAL literal reference in the operative
+    sentence, outside the bracket, is an item, flagged
+    `ambiguous_reference`.
+71. `profile_violations()` REPORTS (never raises) on a non-string
+    `xref_resolver` value (an unhashable value no longer hits a bare
+    frozenset membership test unguarded).
+
+AND passes every vector added here
+(`conformance/vectors/clause-cues/xref-v2-*.json`, covering all three
+resolver corrections passes, plus the pre-existing `clause-cues/` family)
+plus the harness's own
+`test_no_overlap.py` (zero violations over all 8 sources) and
+`test_score.py` (the scorer's own self-test, synthetic fixtures only).
+
+### §20a.2 German supplement and naming corrections
+
+**German supplement.** The resolver's DE-family naming rules (R7-DE's
+nominative-form rule, "der/des/dem" article handling, the
+EU-act-literal-ends-at-its-number cross-vertical rule applied in
+German, the statute-kind word set) follow the German-supplement
+contract (sha256
+`6c4bf7232367169c71cf34baf13bca4deabe916f4c297de2fac966eb4f831709`)
+§1/§2 (external naming, nominative conversion) only — §0
+(non-operative-zone detection), §3-§8 (literal extent, pinpoint
+depth/Satz-counting, elided-parent expansion, list-splitting) and
+R-DE1-5 are NOT implemented (no DE gold exists to score against; the
+supplement's own deep structural rules are a KNOWN LIMIT, stated
+rather than silently assumed).
+
+72. **R1 by-name/by-number are INDEPENDENT checks**: a chain followed
+    by ", of"/"of" + the host's own
+    name OR number resolves INTERNAL either way, never only when the
+    FIRST-tried check happens to match; tolerant of a comma before
+    "of" ("Chapter IV, Section 3, of Regulation (EU) <host number>").
+73. **Anaphora resolves to the most recent INSTRUMENT-DESIGNATION
+    event**: "that X"/"thereof" never resolve to a plain internal
+    citation (e.g. "Article 7") that
+    designates no instrument at all — only an EXTERNAL reference
+    already in `out`, or an INTERNAL reference whose own literal
+    contains the host's name, counts as a designation.
+74. **R4's ancestor chain is THREADED through the whole pipeline**
+    (`resolve_references`, `_xref_count_and_objects`,
+    `clause_cue_contributions`, `combined_contributions`,
+    `clause_cue_point`, `cross_reference_links`, both `_from_profile`
+    wrappers, and the benchmark harness's own `predict_v2`), and
+    `enclosing_units_at` now RESETS every lower level when a higher
+    one opens (a new CHAPTER clears Section; a new PART clears Chapter
+    and Section; entering a SCHEDULE clears the main-body Part/Chapter
+    and starts the Schedule's OWN Part/Chapter afresh). When a level
+    cannot be derived, R4 emits NO item (never a wrong/bare guess).
+75. **A plural/ranged/
+    anaphoric chain followed by one instrument (EXTERNAL) or the host's
+    own name/number (INTERNAL) is ONE reference — "Articles 55 to 58
+    of that Regulation", "sections 61 to 66 of the Example Security Act
+    2001", "§§ 3 bis 5 des Strafgesetzbuches" are each ONE EXTERNAL
+    reference; "sections 121 and 122 of the Data Protection Act 2018"
+    (host) is ONE INTERNAL reference with every member as its own
+    target. Plural Schedules/Annexes ("Schedules 9, 10 and 11",
+    "Annexes III and IV") now expand the same way. KNOWN LIMIT:
+    "Sections 7, 8 and 9 of Chapter III" still resolves as TWO
+    references (the plural section list, and
+    a separate bare "Chapter III" mention) rather than ONE nested
+    reference with targets "Chapter III, Section 7/8/9" — the
+    outer-first nested-PLURAL case is not implemented.
+76. **"section N of this title"** (M8) is ONE reference: INTERNAL (no
+    separate "this title" item) when `host_section_numbers` says N is
+    in this file; otherwise EXTERNAL to `host_title_instrument` (or the
+    literal "this title" when the title number is not known).
+77. **The amending chapeau span ends at ";" too** (not only "."), and
+    an EXPLICIT "of this Regulation/Directive/Act" immediately after a
+    citation overrides BOTH the chapeau and the quote-span reroute —
+    the text's own, more specific self-naming always wins (M9).
+78. **"this section" (lower-case) is R1-style deictic, not an item** —
+    distinct from "this Section" (capitalised, the EU/UK "group of
+    Articles" sense, R4) by the ORIGINAL case of the matched word.
+79. German nominative conversion (`_de_nominative`) undoes the head
+    noun's case inflection only ("des Bürgerlichen Gesetzbuchs" ->
+    "Bürgerliches Gesetzbuch", "des BSI-Gesetzes" -> "BSI-Gesetz"); a
+    "der/des/dem Verordnung/Richtlinie (EU) …" keeps the EU act's own
+    literal number, per the cross-vertical "ends at the last character
+    of its number" rule, with only the leading German article dropped.
+80. **A bare capitalised "the Convention"/"the Protocol"/"the
+    Accord" is NOT recognised as EXTERNAL** — an earlier version of
+    this item claimed it was; that was wrong on the benchmark's own
+    sources: the bare alternative fired on
+    ordinary prose with no citation at all ("Convention rights",
+    "Transmission Control Protocol/Internet Protocol", "non-Convention
+    countries", "Refugee Convention" — 57 spurious hits on uk-dpa2018
+    alone) and truncated genuinely NAMED treaties to their bare generic
+    type word — "European Convention for the Protection of Human
+    Rights and Fundamental Freedoms" (gdpr) -> "Convention"; "Protocol
+    No 21" (ai-act) -> "Protocol" — a WRONG name, not the claimed
+    narrower recognition. The bare alternative is REMOVED; a
+    treaty-type word is EXTERNAL only when genuinely NAMED (a
+    Title-Case qualifying phrase attached), cited as "Protocol No N",
+    or pinpoint-attached ("Article N of this/the Convention/Protocol/
+    Treaty/Accord", resolved per R1/R7 — see §8a.1's own KNOWN LIMIT
+    paragraph for the corrected rule and the measured count). The
+    US-style "the X Act (N U.S.C. … et seq.)" parenthetical-
+    codification half of this item is UNAFFECTED by this correction and
+    remains as originally stated.
+81. **US host metadata root-cause fix**: the benchmark harness no
+    longer sets `host_instrument_name` to the US TITLE number
+    ("15 U.S.C.") for `us-coppa`/`us-s230` — the host is the one
+    chapter/section set actually in the file, not the whole title; the
+    title number is kept ONLY as `host_title_instrument`, used solely
+    for "this title"'s own EXTERNAL naming (item 76).
+82. `profile_violations()` is unaffected here (already fixed
+    earlier); a dedicated resolution-profile vector now exercises a
+    non-string `xref_resolver` value directly.
+
+**KNOWN LIMIT (stated, not optimized): quadratic-ish time on repeated
+large-file calls.** `enclosing_unit_at`/`enclosing_units_at` each
+re-scan `source_text` from its own start on EVERY call; a caller
+invoking either once per sentence over one large file (as the
+benchmark harness and `test_no_overlap.py` both do) pays O(n) per call,
+O(n·k) total for k sentences — on a ~1.1MB source with several thousand
+sentences this is measured at several minutes for the full 8-source
+no-overlap property test. Not optimised (no caching/bisect
+index added); a caller with its own performance budget should memoise
+the heading-position lists per source text itself.
+
+See `src/five_d_nd/clause_cues.py`,
+`conformance/vectors/clause-cues/xref-v2-*.json`,
+`_results/xref-resolver/harness/test_no_overlap.py`,
+`_results/xref-resolver/harness/test_score.py`.
 
 ## §21 Typed Statements (typed-triple layer)
 

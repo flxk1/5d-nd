@@ -1,0 +1,34 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-oxford-comma-list-of-host-number-three-targets",
+  "input": {
+    "text": "Articles 8, 9, and 10, of Regulation (EU) 2024/1689 apply.",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Articles 8, 9, and 10, of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 51,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 8",
+            "expanded_from": "Articles 8, 9, and 10"
+          },
+          {
+            "pinpoint": "Article 9",
+            "expanded_from": "Articles 8, 9, and 10"
+          },
+          {
+            "pinpoint": "Article 10",
+            "expanded_from": "Articles 8, 9, and 10"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The comma directly before 'and' on the LAST listed member ('9, and 10') was not matched by the old connector alternation (?:,|and|or|to), which only ever consumes ONE connector per continuation -- the chain match stopped at '9', leaving '10' and the host name unconsumed and producing a separate, wrong EXTERNAL item. _EU_CHAIN_CONNECTOR now accepts an optional and/or directly after a comma, so the whole Oxford-comma list is ONE INTERNAL reference with all 3 targets."
+}

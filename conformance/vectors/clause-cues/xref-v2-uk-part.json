@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-uk-part",
+  "input": {
+    "text": "The duties in Part 7 apply.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Part 7",
+        "literal_start": 14,
+        "literal_end": 20,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 7",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m8-section-of-this-title-not-in-file-external",
+  "input": {
+    "text": "This duty arises under section 230 of this title.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 230 of this title",
+        "literal_start": 23,
+        "literal_end": 48,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 230"
+      }
+    ]
+  }
+}

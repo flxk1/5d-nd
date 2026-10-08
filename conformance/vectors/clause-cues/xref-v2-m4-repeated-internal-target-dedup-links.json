@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m4-repeated-internal-target-dedup-links",
+  "input": {
+    "text": "Article 6 and Article 6 apply.",
+    "source_id": "sidD",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "links": [
+      {
+        "s": "sidD",
+        "p": "cross_references",
+        "o": "Article 6",
+        "dimension": "structural",
+        "weight": 1.0,
+        "provenance": {
+          "layer": "clause_cues",
+          "source_text": "Article 6 and Article 6 apply."
+        }
+      }
+    ]
+  },
+  "_note": "'Article 6 and Article 6' resolves as TWO separate reference objects (distinct literal spans), both targeting the SAME pinpoint 'Article 6' -- _xref_count_and_objects()'s shared-v2 branch counts DISTINCT targets only, so this is ONE link, not two."
+}

@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-mut-d-repeated-external-dedup-links",
+  "input": {
+    "text": "Article 5 of Directive 2011/83/EU applies, and Article 5 of Directive 2011/83/EU applies again.",
+    "source_id": "sidE",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "links": [
+      {
+        "s": "sidE",
+        "p": "cross_references",
+        "o": "Directive 2011/83/EU|Article 5",
+        "dimension": "structural",
+        "weight": 1.0,
+        "provenance": {
+          "layer": "clause_cues",
+          "source_text": "Article 5 of Directive 2011/83/EU applies, and Article 5 of Directive 2011/83/EU applies again."
+        }
+      }
+    ]
+  },
+  "_note": "The SAME EXTERNAL (instrument, target) cited TWICE ('Article 5 of Directive 2011/83/EU' named twice) resolves as two separate reference objects (distinct literal spans) but must dedup to ONE link in _xref_count_and_objects()'s own 'distinct_external' set, never two identical links."
+}

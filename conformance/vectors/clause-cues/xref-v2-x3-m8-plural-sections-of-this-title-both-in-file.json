@@ -1,0 +1,35 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-x3-m8-plural-sections-of-this-title-both-in-file",
+  "input": {
+    "text": "A controller shall comply with sections 9815 and 9816 of this title.",
+    "numbering_family": "us",
+    "host_title_instrument": "31 U.S.C.",
+    "host_section_numbers": [
+      "9815",
+      "9816"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 9815 and 9816 of this title",
+        "literal_start": 31,
+        "literal_end": 67,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 9815",
+            "expanded_from": "sections 9815 and 9816"
+          },
+          {
+            "pinpoint": "§ 9816",
+            "expanded_from": "sections 9815 and 9816"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'sections 9815 and 9816 of this title' (both in host_section_numbers) must be ONE INTERNAL reference with 2 targets, not a single target checked/formatted against only the FIRST listed number. Numbers invented (not from any DEV source text) to avoid the leakage this contract forbids."
+}

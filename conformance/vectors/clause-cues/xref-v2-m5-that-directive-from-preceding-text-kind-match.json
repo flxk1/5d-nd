@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m5-that-directive-from-preceding-text-kind-match",
+  "input": {
+    "text": "Article 4 of that Directive applies.",
+    "preceding_text": "Directive 2011/93/EU applies. Regulation (EU) 2019/1020 applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of that Directive",
+        "literal_start": 0,
+        "literal_end": 27,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2011/93/EU",
+        "targets": [],
+        "external_target": "Article 4"
+      }
+    ]
+  },
+  "_note": "With nothing named in the CURRENT sentence, the lookup falls back to preceding_text -- filtered by KIND, not merely 'the last thing named'. 'that Directive' resolves to 'Directive 2011/93/EU' even though 'Regulation (EU) 2019/1020' was named MORE RECENTLY in preceding_text (wrong kind)."
+}

@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-anaphoric-that-act",
+  "input": {
+    "text": "Nothing in this section restricts the Secure Communications Act of 1991, or any amendments made by such Act.",
+    "whole_host_unit": "section"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "the Secure Communications Act of 1991",
+        "literal_start": 34,
+        "literal_end": 71,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Secure Communications Act of 1991",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "such Act",
+        "literal_start": 99,
+        "literal_end": 107,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Secure Communications Act of 1991",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-uk-part-resets-main-body-chapter",
+  "input": {
+    "source_text": "PART 1\n\nfoo\n\nCHAPTER 2\n\nbar. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\nPART 2\n\nbaz\n\nSection 40\n\nqux\n\n",
+    "offset": 94,
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "enclosing_units": {
+      "part": "Part 2"
+    }
+  },
+  "_note": "A new PART in the UK main body must RESET the Chapter opened under the PREVIOUS Part -- the ancestor chain at offset 94 (at 'Section 40', inside 'Part 2') must be {'part': 'Part 2'} only, never carrying forward 'chapter': 'Chapter 2' from the earlier Part."
+}

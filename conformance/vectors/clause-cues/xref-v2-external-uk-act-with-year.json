@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-uk-act-with-year",
+  "input": {
+    "text": "Section 12 of the Consumer Credit Act 1974 applies to this transaction.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 12 of the Consumer Credit Act 1974",
+        "literal_start": 0,
+        "literal_end": 42,
+        "kind": "EXTERNAL",
+        "external_instrument": "Consumer Credit Act 1974",
+        "targets": [],
+        "external_target": "section 12"
+      }
+    ]
+  }
+}

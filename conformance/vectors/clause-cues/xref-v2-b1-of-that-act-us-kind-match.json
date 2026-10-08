@@ -1,0 +1,31 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b1-of-that-act-us-kind-match",
+  "input": {
+    "text": "The agency shall comply with the requirements of the Consumer Safety Act of 1986. Separately, the agency must satisfy section 406 of that Act.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "the Consumer Safety Act of 1986",
+        "literal_start": 49,
+        "literal_end": 80,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Consumer Safety Act of 1986",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "section 406 of that Act",
+        "literal_start": 118,
+        "literal_end": 141,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Consumer Safety Act of 1986",
+        "targets": [],
+        "external_target": "§ 406"
+      }
+    ]
+  },
+  "_note": "'of that Act' must resolve by KIND ('act') to the previously-named Act, not fail to match merely because of substring quirks in how the name was captured. Wording constructed for this vector."
+}

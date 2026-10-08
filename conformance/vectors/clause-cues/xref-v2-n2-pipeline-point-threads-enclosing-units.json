@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-pipeline-point-threads-enclosing-units",
+  "input": {
+    "text": "This Chapter applies.",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "part": "Part 7"
+    }
+  },
+  "expected": {
+    "point": {
+      "structural": 0.0,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  },
+  "_note": "N2 pipeline threading: clause_cue_point() must thread enclosing_units through to resolve_references() via combined_contributions()/clause_cue_contributions() -- with 'chapter' absent from the ancestor chain, structural stays 0.0 (not 0.333333, which is what a silently-dropped enclosing_units would produce via the bare-word ambiguous-reference fallback)."
+}

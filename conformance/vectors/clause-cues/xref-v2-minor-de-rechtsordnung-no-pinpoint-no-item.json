@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-de-rechtsordnung-no-pinpoint-no-item",
+  "input": {
+    "text": "Dies richtet sich nach der Rechtsordnung des Mitgliedstaats.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'der Rechtsordnung des Mitgliedstaats' ('the legal order of the Member State') is ordinary prose with NO pinpoint attached -- the SAME 'no pinpoint attached -> no item' rule X2 applies to Convention/Protocol now also applies to _EXT_DE_STATUTE, which is excluded from the standalone (pinpoint-free) scan entirely."
+}

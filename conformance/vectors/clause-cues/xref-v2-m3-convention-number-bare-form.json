@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m3-convention-number-bare-form",
+  "input": {
+    "text": "Article 7 of Convention 108 applies.",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 7 of Convention 108",
+        "literal_start": 0,
+        "literal_end": 27,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention 108",
+        "targets": [],
+        "external_target": "Article 7"
+      }
+    ]
+  },
+  "_note": "'Convention 108' (the Council of Europe's own numbered-instance naming, the SAME self-identifying shape as 'Protocol No N') must resolve to its FULL name, never INTERNAL."
+}

@@ -1,0 +1,28 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b1-pinpoint-chain-of-host-no-overlap",
+  "input": {
+    "text": "Article 6(1), first subparagraph, of Regulation (EU) 2024/1689 applies.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6(1), first subparagraph, of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 62,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6(1), first subparagraph",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "Pass 1's deferral now generalises beyond 'ends in a digit or )' -- a chain ending in a named sub-unit word ('first subparagraph', 'second sentence'; 'point (a)' already ends in ')') directly followed by ', of <host>' is consumed as ONE INTERNAL reference, never split into an INTERNAL chain plus a second, overlapping bare 'Instrument' reference."
+}

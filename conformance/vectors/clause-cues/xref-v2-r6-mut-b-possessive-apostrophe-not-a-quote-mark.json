@@ -1,0 +1,36 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-mut-b-possessive-apostrophe-not-a-quote-mark",
+  "input": {
+    "text": "The Agency's mandate is amended as follows: 'Article 5 shall apply.' Article 7 remains unaffected.",
+    "numbering_family": "eu",
+    "quoted_amending_target": "Example Regulation (EU) 2099/1"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 5",
+        "literal_start": 45,
+        "literal_end": 54,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Regulation (EU) 2099/1",
+        "targets": [],
+        "external_target": "Article 5"
+      },
+      {
+        "literal": "Article 7",
+        "literal_start": 69,
+        "literal_end": 78,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 7",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The possessive apostrophe in \"Agency's\" must NOT be read as an opening straight single quote mark by the quote-span detector. 'Article 5' (genuinely inside the quoted amending text) must be detected as inside it and rerouted EXTERNAL; 'Article 7' (genuinely outside, after the quote closes) must stay INTERNAL either way."
+}

@@ -1,0 +1,58 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m4-list-with-range-drops-nothing-a",
+  "input": {
+    "text": "The provisions of sections 6501 to 6505 and 45 of this title apply.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 18,
+        "literal_end": 31,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": "sections 6501 to 6505 and 45"
+          },
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": "sections 6501 to 6505 and 45"
+          },
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": "sections 6501 to 6505 and 45"
+          }
+        ]
+      },
+      {
+        "literal": "to 6505",
+        "literal_start": 32,
+        "literal_end": 39,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504 to § 6505"
+      },
+      {
+        "literal": "and 45 of this title",
+        "literal_start": 40,
+        "literal_end": 60,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 45"
+      }
+    ]
+  },
+  "_note": "A LIST that contains a RANGE member ('sections 6501 to 6505 and 45 of this title') must expand the range's IMPLIED members (6502-6504) too, not just its two written endpoints, and must not drop the separately-listed '45'. host_section_numbers {6501, 6502, 6503}: 6501-6503 INTERNAL (merged into the leading list member's span since they share its status), 6504-6505 EXTERNAL, 45 EXTERNAL. Constructed wording."
+}

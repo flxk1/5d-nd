@@ -1,0 +1,17 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-shared-v2-external-citation-adds-structural",
+  "input": {
+    "text": "This measure complies with Article 4(2) of Council Regulation (EC) No 1/2003.",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  }
+}

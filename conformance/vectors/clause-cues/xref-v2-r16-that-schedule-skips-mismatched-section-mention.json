@@ -1,0 +1,53 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r16-that-schedule-skips-mismatched-section-mention",
+  "input": {
+    "text": "Schedule 2 applies. Section 5 applies to that Schedule.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Schedule 2",
+        "literal_start": 0,
+        "literal_end": 10,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 2",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Section 5",
+        "literal_start": 20,
+        "literal_end": 29,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 5",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "that Schedule",
+        "literal_start": 41,
+        "literal_end": 54,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 2",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'that Schedule' skips the NEARER mention 'Section 5' (a mismatched sub-unit word) and resolves to the earlier 'Schedule 2' mention instead, proving the sub-unit type-word filter (the antecedent's own unit word must equal the anaphor's word) is load-bearing, not a no-op on this shape. Constructed wording."
+}

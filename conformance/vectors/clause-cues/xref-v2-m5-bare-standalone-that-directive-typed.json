@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m5-bare-standalone-that-directive-typed",
+  "input": {
+    "text": "Regulation (EU) 2019/1020 applies. That Directive also applies to the same conduct."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "That Directive",
+        "literal_start": 35,
+        "literal_end": 49,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": null,
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "The BARE standalone anaphora path ('That Directive', with no pinpoint chain attached at all -- handled entirely separately from the chain+anaphora path) must ALSO be typed. _nearest_designation() now takes the anaphora's own type word and filters EXTERNAL candidates by KIND; with no Directive ever named, 'unnamed (see note)' is used, never the nearer Regulation."
+}

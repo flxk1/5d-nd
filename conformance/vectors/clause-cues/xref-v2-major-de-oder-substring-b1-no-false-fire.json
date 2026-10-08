@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-oder-substring-b1-no-false-fire",
+  "input": {
+    "text": "Wir handeln oder Bürgerlichen Gesetzbuchs wegen fahrlässig.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "Without the \\\\b word-boundary guard on EVERY (?:der|des|dem) alternative in _EXT_DE_STATUTE (not only the fused-compound one), 'oder Bürgerlichen Gesetzbuchs' -- 'oder' ('or') ending in the substring 'der' -- could be misread as 'der Bürgerlichen Gesetzbuchs' (a real, adjective-qualified statute name) even though no genuine 'der/des/dem' article word is present."
+}

@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-eu-none-before-first-heading",
+  "input": {
+    "source_text": "Recital text with no heading yet.\n\nArticle 1\n\nSubject matter\n\n1. Text.",
+    "offset": 10,
+    "numbering_family": "eu"
+  },
+  "expected": {
+    "enclosing_unit": null
+  }
+}

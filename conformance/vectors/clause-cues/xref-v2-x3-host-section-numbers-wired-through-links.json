@@ -1,0 +1,31 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-x3-host-section-numbers-wired-through-links",
+  "input": {
+    "text": "This duty arises under section 9815 of this title.",
+    "source_id": "entry-m8-wire",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "us",
+    "host_title_instrument": "31 U.S.C.",
+    "host_section_numbers": [
+      "9815",
+      "9816"
+    ]
+  },
+  "expected": {
+    "links": [
+      {
+        "s": "entry-m8-wire",
+        "p": "cross_references",
+        "o": "§ 9815",
+        "dimension": "structural",
+        "weight": 1.0,
+        "provenance": {
+          "layer": "clause_cues",
+          "source_text": "This duty arises under section 9815 of this title."
+        }
+      }
+    ]
+  },
+  "_note": "Proves host_section_numbers is actually threaded through cross_reference_links() (not only resolve_references() directly) — section 9815 IS in host_section_numbers, so the link's own object is the INTERNAL pinpoint '§ 9815'. Without the wiring, cross_reference_links() silently drops host_section_numbers (it is never a parameter), so the resolver falls back to host_section_numbers=None and produces the EXTERNAL object '31 U.S.C.|§ 9815' instead."
+}

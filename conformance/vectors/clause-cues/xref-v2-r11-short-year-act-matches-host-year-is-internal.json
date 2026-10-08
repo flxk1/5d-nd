@@ -1,0 +1,28 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-short-year-act-matches-host-year-is-internal",
+  "input": {
+    "text": "Section 5 of the 2018 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 5 of the 2018 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 5",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'the <year> Act' IS the host when the year equals the host's own host_instrument_number (UK convention: the host's number is its year). Constructed wording."
+}

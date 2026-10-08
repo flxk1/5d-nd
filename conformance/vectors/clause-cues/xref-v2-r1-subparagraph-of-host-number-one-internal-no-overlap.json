@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-subparagraph-of-host-number-one-internal-no-overlap",
+  "input": {
+    "text": "Article 6(1), first subparagraph, of Regulation (EU) 2024/1689 applies.",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6(1), first subparagraph, of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 62,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6(1), first subparagraph",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'Article 6(1), first subparagraph, of Regulation (EU) 2024/1689' is ONE INTERNAL reference (host self-naming by number) covering the WHOLE span -- never a split INTERNAL pinpoint plus a separate overlapping EXTERNAL/Instrument mention."
+}

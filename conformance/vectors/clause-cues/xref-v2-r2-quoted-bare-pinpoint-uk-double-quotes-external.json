@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r2-quoted-bare-pinpoint-uk-double-quotes-external",
+  "input": {
+    "text": "In section 22(3) of the Consumer Rights Act 2015, the words are replaced by the following: “ the authority may rely on paragraph 6 of this Schedule. ”",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 22(3) of the Consumer Rights Act 2015",
+        "literal_start": 3,
+        "literal_end": 48,
+        "kind": "EXTERNAL",
+        "external_instrument": "Consumer Rights Act 2015",
+        "targets": [],
+        "external_target": "section 22(3)"
+      },
+      {
+        "literal": "paragraph 6",
+        "literal_start": 119,
+        "literal_end": 130,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Consumer Rights Act 2015",
+        "targets": [],
+        "external_target": "paragraph 6"
+      }
+    ]
+  }
+}

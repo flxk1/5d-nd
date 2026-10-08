@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r2-quoted-bare-pinpoint-is-external",
+  "input": {
+    "text": "In Article 9(2) of Regulation (EU) 2019/943, point 2 is replaced by the following: ‘ 2.   In exercising powers delegated under paragraph 4, the committee shall act. ’"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 9(2) of Regulation (EU) 2019/943",
+        "literal_start": 3,
+        "literal_end": 43,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/943",
+        "targets": [],
+        "external_target": "Article 9(2)"
+      },
+      {
+        "literal": "paragraph 4",
+        "literal_start": 127,
+        "literal_end": 138,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/943",
+        "targets": [],
+        "external_target": "paragraph 4"
+      }
+    ]
+  },
+  "_note": "Rephrased, same quoted-bare-pinpoint shape (expected recomputed by running resolve_references() at HEAD). Regulation (EU) 2019/943 is a bare real instrument number and is left unchanged."
+}

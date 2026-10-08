@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-deutschen-vertrags-no-false-fire",
+  "input": {
+    "text": "Dies betrifft des Deutschen Vertrags wegen nichts.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'des Deutschen Vertrags' -- one bare adjective plus the common noun 'Vertrag' ('contract/treaty'), with no trailing ueber/gegen qualifying phrase, is NOT a named instrument (unlike 'des Bürgerlichen Gesetzbuchs', where Gesetzbuch is a specific, unambiguous statute-type word). Vertrag/Abkommen are excluded from the 'one bare adjective is enough' path and require the mandatory qualifying phrase instead."
+}

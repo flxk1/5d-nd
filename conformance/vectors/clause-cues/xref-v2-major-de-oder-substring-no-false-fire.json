@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-oder-substring-no-false-fire",
+  "input": {
+    "text": "Dies gilt oder Ordnung halber wegen nichts.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "Without a \\\\b word boundary before (?:der|des|dem), the regex engine could match the literal substring 'der' at the TAIL of an unrelated word like 'oder' ('or'), then treat 'oder Ordnung' as a false 'der Ordnung' citation. The \\\\b guard requires der/des/dem to be a WHOLE word."
+}

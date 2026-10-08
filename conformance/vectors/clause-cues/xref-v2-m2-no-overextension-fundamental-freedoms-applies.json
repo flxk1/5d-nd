@@ -1,0 +1,11 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m2-no-overextension-fundamental-freedoms-applies",
+  "input": {
+    "text": "The European Convention for the Protection of Human Rights and Fundamental Freedoms applies."
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "This full treaty name has NO pinpoint attached anywhere (a bare mention, standalone) -- per R7/X2's own rule, a bare treaty mention with no pinpoint is not a reference item at all (Pass 3's standalone scan never includes _EXT_NAMED_TREATY). Also confirms the continuation correctly stops BEFORE the finite verb 'applies', never swallowing it into the (unused, here) name."
+}

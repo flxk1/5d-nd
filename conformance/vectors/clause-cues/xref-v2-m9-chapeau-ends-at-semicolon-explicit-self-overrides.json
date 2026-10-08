@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m9-chapeau-ends-at-semicolon-explicit-self-overrides",
+  "input": {
+    "text": "In Regulation (EU) 2019/1020, market surveillance is defined; Article 14 of this Regulation applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 3,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 14",
+        "literal_start": 62,
+        "literal_end": 72,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 14",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-uk-schedule",
+  "input": {
+    "source_text": "Some body text. SCHEDULE 1 Example categories of registration records and processing notices etc 1 This paragraph applies.",
+    "offset": 101,
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "enclosing_unit": "Schedule 1"
+  }
+}

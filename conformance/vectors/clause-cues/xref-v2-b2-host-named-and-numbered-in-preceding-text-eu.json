@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b2-host-named-and-numbered-in-preceding-text-eu",
+  "input": {
+    "text": "Article 4 of that Regulation applies.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "host_instrument_number": "2024/1689",
+    "preceding_text": "Regulation (EU) 2019/1020 applies. Regulation (EU) 2024/1689 applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of that Regulation",
+        "literal_start": 0,
+        "literal_end": 28,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "Both the host (2024/1689) and a genuinely different Regulation (2019/1020) are named in preceding_text, the host named LAST. 'that Regulation' must designate the HOST (INTERNAL), not fall back to the generic kind-typed scan picking up the host's own name as if it were an external antecedent."
+}

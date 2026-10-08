@@ -1,0 +1,39 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-anaphora-respects-instrument-type",
+  "input": {
+    "text": "Under Directive 2011/93/EU and Regulation (EU) 2019/1020, Article 4 of that Directive applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Directive 2011/93/EU",
+        "literal_start": 6,
+        "literal_end": 26,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2011/93/EU",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 31,
+        "literal_end": 56,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 4 of that Directive",
+        "literal_start": 58,
+        "literal_end": 85,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2011/93/EU",
+        "targets": [],
+        "external_target": "Article 4"
+      }
+    ]
+  },
+  "_note": "'that Directive' must resolve to the most recently named instrument of THAT TYPE, not merely the most recently named instrument of ANY type. Before this fix, _nearest_external_before() ignored the anaphora's own type word, so 'that Directive' wrongly resolved to 'Regulation (EU) 2019/1020' (the nearer mention) instead of 'Directive 2011/93/EU' (the nearer mention of the DECLARED type)."
+}

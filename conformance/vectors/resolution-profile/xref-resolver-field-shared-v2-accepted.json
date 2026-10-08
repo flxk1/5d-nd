@@ -1,0 +1,14 @@
+{
+  "family": "resolution-profile",
+  "case": "xref-resolver-field-shared-v2-accepted",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "xref_resolver": "shared-v2"
+    }
+  },
+  "expected": {
+    "valid": true,
+    "profile_digest": "e2043ee8f55469bcec97a8024c6cf3731332d6b0dac4e40d0e81e904fc05c1c9"
+  }
+}

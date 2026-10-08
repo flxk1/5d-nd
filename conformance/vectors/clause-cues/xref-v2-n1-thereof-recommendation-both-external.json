@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n1-thereof-recommendation-both-external",
+  "input": {
+    "text": "Article 5 of Recommendation 2014/777/EU and Article 9(3) thereof apply.",
+    "host_instrument_name": "Regulation (EU) 2022/2065"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 5 of Recommendation 2014/777/EU",
+        "literal_start": 0,
+        "literal_end": 39,
+        "kind": "EXTERNAL",
+        "external_instrument": "Recommendation 2014/777/EU",
+        "targets": [],
+        "external_target": "Article 5"
+      },
+      {
+        "literal": "Article 9(3) thereof",
+        "literal_start": 44,
+        "literal_end": 64,
+        "kind": "EXTERNAL",
+        "external_instrument": "Recommendation 2014/777/EU",
+        "targets": [],
+        "external_target": "Article 9(3)"
+      }
+    ]
+  }
+}

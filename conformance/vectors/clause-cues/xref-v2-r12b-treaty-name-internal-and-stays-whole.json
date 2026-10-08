@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-treaty-name-internal-and-stays-whole",
+  "input": {
+    "text": "Article 5 of the Convention on the Protection of Example Rights and Fundamental Freedoms applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 5 of the Convention on the Protection of Example Rights and Fundamental Freedoms",
+        "literal_start": 0,
+        "literal_end": 88,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention on the Protection of Example Rights and Fundamental Freedoms",
+        "targets": [],
+        "external_target": "Article 5"
+      }
+    ]
+  },
+  "_note": "The 'and Article/Articles/Section/Annex/Chapter/Part' continuation stop must not fire on a genuine internal title conjunction -- 'and Fundamental Freedoms' continues the name because 'Fundamental' is not in the closed pinpoint-keyword stop list."
+}

@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-us-subsection-chain",
+  "input": {
+    "text": "The exception in subsection (a)(1)(A) applies.",
+    "numbering_family": "us",
+    "enclosing_unit": "§ 6502"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "subsection (a)(1)(A)",
+        "literal_start": 17,
+        "literal_end": 37,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502(a)(1)(A)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

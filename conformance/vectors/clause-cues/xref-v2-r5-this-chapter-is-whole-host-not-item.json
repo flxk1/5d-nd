@@ -1,0 +1,11 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r5-this-chapter-is-whole-host-not-item",
+  "input": {
+    "text": "In this chapter, the following definitions apply.",
+    "whole_host_unit": "chapter"
+  },
+  "expected": {
+    "references": []
+  }
+}

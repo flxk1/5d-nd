@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-recital-treaty-on-functioning-thereof",
+  "input": {
+    "text": "Having regard to the Treaty Concerning the Example Alliance, and in particular Article 12 thereof,"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 12 thereof",
+        "literal_start": 79,
+        "literal_end": 97,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty Concerning the Example Alliance",
+        "targets": [],
+        "external_target": "Article 12"
+      }
+    ]
+  },
+  "_note": "The same recital-gated mention scan as the sibling vector, exercised on a second invented treaty-name shape. Constructed wording; no real instrument name."
+}

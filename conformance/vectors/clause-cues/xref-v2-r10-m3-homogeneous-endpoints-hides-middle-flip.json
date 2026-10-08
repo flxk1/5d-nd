@@ -1,0 +1,54 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m3-homogeneous-endpoints-hides-middle-flip",
+  "input": {
+    "text": "Example text with sections 6501 through 6503 of this title included.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6503",
+      "6510"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 18,
+        "literal_end": 31,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "",
+        "literal_start": 32,
+        "literal_end": 32,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6502"
+      },
+      {
+        "literal": "through 6503 of this title",
+        "literal_start": 32,
+        "literal_end": 58,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "Both endpoints (6501, 6503) are in host_section_numbers {6501, 6503, 6510}; the fast path must not read the WHOLE range as INTERNAL merely because both endpoints match. 6502 is NOT in host_section_numbers and must be its own EXTERNAL reference. Constructed wording."
+}

@@ -1,0 +1,35 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n1-anaphora-that-directive-not-fooled-by-internal-article",
+  "input": {
+    "text": "Article 7 and that Directive apply.",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "preceding_text": "Directive 2011/93/EU applies. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 7",
+        "literal_start": 0,
+        "literal_end": 9,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 7",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "that Directive",
+        "literal_start": 14,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2011/93/EU",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  }
+}

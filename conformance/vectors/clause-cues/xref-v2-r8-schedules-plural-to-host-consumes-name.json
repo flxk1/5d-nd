@@ -1,0 +1,31 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-schedules-plural-to-host-consumes-name",
+  "input": {
+    "text": "Schedules 5 and 6 to the Online Safety Act 2023 apply.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Online Safety Act 2023"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Schedules 5 and 6 to the Online Safety Act 2023",
+        "literal_start": 0,
+        "literal_end": 47,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 5",
+            "expanded_from": "Schedules 5 and 6"
+          },
+          {
+            "pinpoint": "Schedule 6",
+            "expanded_from": "Schedules 5 and 6"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The Schedule plural loop now consumes the trailing host naming too, matching every sibling bare/plural chain loop. Constructed wording."
+}

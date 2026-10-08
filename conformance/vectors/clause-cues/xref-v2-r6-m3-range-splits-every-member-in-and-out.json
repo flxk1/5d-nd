@@ -1,0 +1,49 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m3-range-splits-every-member-in-and-out",
+  "input": {
+    "text": "sections 6501 to 6510 of this title",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 0,
+        "literal_end": 13,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": "sections 6501 to 6510"
+          },
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": "sections 6501 to 6510"
+          },
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": "sections 6501 to 6510"
+          }
+        ]
+      },
+      {
+        "literal": "to 6510 of this title",
+        "literal_start": 14,
+        "literal_end": 35,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504 to § 6510"
+      }
+    ]
+  },
+  "_note": "A RANGE whose two WRITTEN endpoints have DIFFERENT host_section_numbers status must expand EVERY implied member (6502-6509, not only the two written endpoints) and classify each one, not just the written pair — 6501-6503 are INTERNAL (host_section_numbers), carrying their own expanded_from (the matched range text, same convention as the homogeneous all-INTERNAL range case); 6504-6510 are EXTERNAL, reported as one combined pinpoint range string since EXTERNAL carries no targets list (R7)."
+}

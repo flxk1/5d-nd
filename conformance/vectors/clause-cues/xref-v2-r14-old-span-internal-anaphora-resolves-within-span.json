@@ -1,0 +1,50 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-old-span-internal-anaphora-resolves-within-span",
+  "input": {
+    "text": "In section 9 of the Example Transport Act 2014, for “section 22 of the Example Hazard Act 1985 (penalty for failing to comply with that Act)” substitute “section 18”.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 9 of the Example Transport Act 2014",
+        "literal_start": 3,
+        "literal_end": 46,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Transport Act 2014",
+        "targets": [],
+        "external_target": "section 9"
+      },
+      {
+        "literal": "section 22 of the Example Hazard Act 1985",
+        "literal_start": 53,
+        "literal_end": 94,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Hazard Act 1985",
+        "targets": [],
+        "external_target": "section 22"
+      },
+      {
+        "literal": "that Act",
+        "literal_start": 131,
+        "literal_end": 139,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Hazard Act 1985",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "section 18",
+        "literal_start": 154,
+        "literal_end": 164,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Hazard Act 1985",
+        "targets": [],
+        "external_target": "section 18"
+      }
+    ]
+  },
+  "_note": "The OLD-span filter excludes a struck span's mentions from the ANAPHORA mention list ONLY for an anaphor OUTSIDE that span. 'that Act' here is INSIDE the same struck ('for “...” substitute') quoted span as its antecedent 'the Example Hazard Act 1985' -- it must still resolve to that EXTERNAL antecedent, never fall through to the host-naming 'Example Transport Act 2014' that merely precedes the quote. Constructed wording; entirely invented frame."
+}

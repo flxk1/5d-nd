@@ -1,0 +1,15 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-bare-host-anaphora-particular-provision-no-item",
+  "input": {
+    "text": "Any mention of a specific provision of that Act is to be read as a mention of the provision as currently in force.",
+    "preceding_text": "The Example Registration Act 2018 applies. ",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'that Act' inside 'a specific provision of that Act' with the host as the nearest Act -- no item, carries no pinpoint of its own. Constructed wording."
+}

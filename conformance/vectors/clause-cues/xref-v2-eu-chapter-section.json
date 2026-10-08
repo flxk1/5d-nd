@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-eu-chapter-section",
+  "input": {
+    "text": "The procedure in Chapter IV, Section 3 applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Chapter IV, Section 3",
+        "literal_start": 17,
+        "literal_end": 38,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Chapter IV, Section 3",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

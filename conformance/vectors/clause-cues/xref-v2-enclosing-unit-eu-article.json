@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-eu-article",
+  "input": {
+    "source_text": "Preamble text.\n\nArticle 5\n\nPrinciples\n\n1. Personal data shall be processed lawfully.\n\nArticle 6\n\nLawfulness\n\n1. Processing shall be lawful.",
+    "offset": 55,
+    "numbering_family": "eu"
+  },
+  "expected": {
+    "enclosing_unit": "Article 5"
+  }
+}

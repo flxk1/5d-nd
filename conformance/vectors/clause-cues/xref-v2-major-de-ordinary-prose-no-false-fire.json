@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-ordinary-prose-no-false-fire",
+  "input": {
+    "text": "im Sinne des Gesetzes gilt dies entsprechend.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'im Sinne des Gesetzes' has no named instrument attached (no stem, no preceding adjective, no trailing ueber/gegen phrase) -- it is ordinary prose self-reference, not a citation. Before the fix, the bare suffix word 'Gesetzes' matched _EXT_DE_STATUTE's (b) alternative with zero preceding words and no mandatory qualifying phrase."
+}

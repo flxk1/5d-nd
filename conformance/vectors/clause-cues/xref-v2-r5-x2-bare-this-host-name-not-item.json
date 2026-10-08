@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r5-x2-bare-this-host-name-not-item",
+  "input": {
+    "text": "This Example Regulation applies generally.",
+    "host_instrument_name": "Example Regulation"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "resolver : a bare deictic 'this <host name>' (no pinpoint of its own) is R1's own bare self-reference shape and must produce NO item, the SAME way a bare 'this Regulation' already does -- never a second, separate INTERNAL 'Instrument' mention alongside whatever pinpoint-bearing citations are nearby. Constructed wording, not drawn from any gold/dev extract."
+}

@@ -1,0 +1,13 @@
+{
+  "family": "resolution-profile",
+  "case": "xref-resolver-field-bogus-value-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "xref_resolver": "bogus"
+    }
+  },
+  "expected": {
+    "valid": false
+  }
+}

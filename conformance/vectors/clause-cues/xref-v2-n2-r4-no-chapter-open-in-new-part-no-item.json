@@ -1,0 +1,14 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-r4-no-chapter-open-in-new-part-no-item",
+  "input": {
+    "text": "This Chapter applies.",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "part": "Part 3"
+    }
+  },
+  "expected": {
+    "references": []
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-us-section-pinpoint",
+  "input": {
+    "text": "No claim may proceed under section 230(c).",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 230(c)",
+        "literal_start": 27,
+        "literal_end": 41,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 230(c)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

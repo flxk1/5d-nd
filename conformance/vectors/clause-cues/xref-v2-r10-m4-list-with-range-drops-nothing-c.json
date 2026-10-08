@@ -1,0 +1,71 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m4-list-with-range-drops-nothing-c",
+  "input": {
+    "text": "The provisions of sections 45, 6501 through 6505, and 6502 of this title apply.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 45",
+        "literal_start": 18,
+        "literal_end": 29,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 45"
+      },
+      {
+        "literal": ", 6501",
+        "literal_start": 29,
+        "literal_end": 35,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": "sections 45, 6501 through 6505, and 6502"
+          },
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": "sections 45, 6501 through 6505, and 6502"
+          },
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": "sections 45, 6501 through 6505, and 6502"
+          }
+        ]
+      },
+      {
+        "literal": "through 6505",
+        "literal_start": 36,
+        "literal_end": 48,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504 to § 6505"
+      },
+      {
+        "literal": ", and 6502 of this title",
+        "literal_start": 48,
+        "literal_end": 72,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "A list that leads with a plain member (45), continues with a RANGE ('6501 through 6505'), then trails with another plain member (6502, already covered once by the range's own expansion — the sentence itself repeats it, not a resolver bug) must drop nothing from any of its three list members including the range's own implied members. host_section_numbers {6501, 6502, 6503}: 45 EXTERNAL; 6501-6503 INTERNAL (merged into the '6501' member's own span); 6504-6505 EXTERNAL; the trailing repeated '6502' INTERNAL on its own. Constructed wording."
+}

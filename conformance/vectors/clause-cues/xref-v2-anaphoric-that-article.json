@@ -1,0 +1,37 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-anaphoric-that-article",
+  "input": {
+    "text": "The duty under Article 21 applies; that Article also governs training obligations."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 21",
+        "literal_start": 15,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 21",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "that Article",
+        "literal_start": 35,
+        "literal_end": 47,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 21",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

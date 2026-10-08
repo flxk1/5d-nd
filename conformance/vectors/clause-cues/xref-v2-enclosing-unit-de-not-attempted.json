@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-de-not-attempted",
+  "input": {
+    "source_text": "Irrelevant text ohne Gliederung.",
+    "offset": 5,
+    "numbering_family": "de"
+  },
+  "expected": {
+    "enclosing_unit": null
+  }
+}

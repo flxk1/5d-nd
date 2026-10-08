@@ -1,0 +1,23 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r17-short-year-host-chapter-cite-no-number-external",
+  "input": {
+    "text": "Section 4 of the 2020 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020 (c. 12)"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 4 of the 2020 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "EXTERNAL",
+        "external_instrument": "2020 Act",
+        "targets": [],
+        "external_target": "section 4"
+      }
+    ]
+  },
+  "_note": "Pins the year-anchor rule (item (vi)'s KNOWN LIMIT paragraph): a host name with a trailing chapter citation ('Example Protection Act 2020 (c. 12)') derives NO year at all, because the anchor requires '... Act YYYY' at the EXACT end of host_instrument_name and the chapter-citation suffix breaks that anchor. With no host_instrument_number passed, a short-year reference stays EXTERNAL, truncated. Constructed wording; this vector goes red under the mutant that derives the year from the last 4-digit number anywhere in the name (y_last4) and under the mutant that derives it from an 'Act YYYY' match anywhere in the name (y_act_any_pos) — the year sits mid-string with no comma breaking that adjacency, so both mutants wrongly recover it. It stays green under the mutant that derives the year from any trailing 4-digit number (y_last4_anywhere_end), since the chapter-citation suffix means the string no longer ends in the year itself. Paired with the comma-no-number-external sibling vector (which catches y_last4 and y_last4_anywhere_end but not y_act_any_pos), the two vectors together kill all three mutants."
+}

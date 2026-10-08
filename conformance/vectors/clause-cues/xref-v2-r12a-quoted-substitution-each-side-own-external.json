@@ -1,0 +1,37 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12a-quoted-substitution-each-side-own-external",
+  "input": {
+    "text": "For “section 52B (data-sharing code) of the Example Registration Act 1990” substitute “section 9 of this Act”.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 52B (data-sharing code) of the Example Registration Act 1990",
+        "literal_start": 5,
+        "literal_end": 73,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Registration Act 1990",
+        "targets": [],
+        "external_target": "section 52B"
+      },
+      {
+        "literal": "section 9",
+        "literal_start": 87,
+        "literal_end": 96,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 9",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The OLD quoted text's own explicit naming (R7, with a parenthetical gloss between the pinpoint and its 'of') stays EXTERNAL to the Example Registration Act 1990, a DIFFERENT instrument from the host; the NEW quoted text's bare 'section 9 of this Act' designates the host (R1) and stays INTERNAL. Each side of the substitution keeps its OWN designation, never the other side's. Constructed wording."
+}

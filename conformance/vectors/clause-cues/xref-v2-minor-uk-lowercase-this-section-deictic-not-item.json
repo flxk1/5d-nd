@@ -1,0 +1,11 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-uk-lowercase-this-section-deictic-not-item",
+  "input": {
+    "text": "In this section, ‘ controller ’ means the responsible party.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": []
+  }
+}

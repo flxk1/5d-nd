@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m4-strasbourg-convention-full-name-stops-at-comma",
+  "input": {
+    "text": "Article 6 of the Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data, signed in Strasbourg, applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6 of the Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data",
+        "literal_start": 0,
+        "literal_end": 114,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data",
+        "targets": [],
+        "external_target": "Article 6"
+      }
+    ]
+  },
+  "_note": "This bare-keyword treaty name (no Title-Case word BEFORE 'Convention', only a qualifying phrase AFTER it) must resolve to its FULL name, bounded at the comma before 'signed in Strasbourg' (a finite verb clause, never part of the title)."
+}

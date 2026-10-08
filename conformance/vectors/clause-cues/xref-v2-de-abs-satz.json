@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-de-abs-satz",
+  "input": {
+    "text": "Die Frist nach § 37 Abs. 1 Satz 2 gilt entsprechend.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 37 Abs. 1 Satz 2",
+        "literal_start": 15,
+        "literal_end": 33,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 37 Abs. 1 Satz 2",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

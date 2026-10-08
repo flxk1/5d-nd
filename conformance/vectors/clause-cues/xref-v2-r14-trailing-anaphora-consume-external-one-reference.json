@@ -1,0 +1,32 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-trailing-anaphora-consume-external-one-reference",
+  "input": {
+    "text": "The Other Example Act 2000 applies. Parts 5 to 7 of that Act apply.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Main Example Act 2019"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "The Other Example Act 2000",
+        "literal_start": 0,
+        "literal_end": 26,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Other Example Act 2000",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Parts 5 to 7 of that Act",
+        "literal_start": 36,
+        "literal_end": 60,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Other Example Act 2000",
+        "targets": [],
+        "external_target": "Part 5, Part 6, Part 7"
+      }
+    ]
+  },
+  "_note": "The trailing-anaphora consume keeps 'of that Act' folded into ONE reference with its own 'Parts 5 to 7' pinpoint list, EXTERNAL to the nearest named Act (Other Example Act 2000), never split into a bare pinpoint plus a stranded anaphor. Constructed wording."
+}

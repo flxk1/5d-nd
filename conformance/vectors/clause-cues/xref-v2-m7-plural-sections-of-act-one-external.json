@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m7-plural-sections-of-act-one-external",
+  "input": {
+    "text": "This applies under sections 71 to 76 of the Consumer Rights Act 2015.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 71 to 76 of the Consumer Rights Act 2015",
+        "literal_start": 19,
+        "literal_end": 68,
+        "kind": "EXTERNAL",
+        "external_instrument": "Consumer Rights Act 2015",
+        "targets": [],
+        "external_target": "section 71"
+      }
+    ]
+  }
+}

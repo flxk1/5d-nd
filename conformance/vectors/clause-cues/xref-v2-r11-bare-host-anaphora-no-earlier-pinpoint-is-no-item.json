@@ -1,0 +1,15 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-bare-host-anaphora-no-earlier-pinpoint-is-no-item",
+  "input": {
+    "text": "That Act applies.",
+    "preceding_text": "The Example Registration Act 2018 applies. ",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "When the nearest same-kind mention is the HOST and no earlier explicit host pinpoint exists to adopt, a bare 'That Act' with no pinpoint of its own is still R1's bare self-reference -- no item, never an EXTERNAL 'unnamed (see note)'. Constructed wording."
+}

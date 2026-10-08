@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m6-section-of-this-title-no-host-title-instrument-unnamed",
+  "input": {
+    "text": "A controller shall comply with section 8821 of this title.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 8821 of this title",
+        "literal_start": 31,
+        "literal_end": 57,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": "§ 8821",
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "M6/R7: the SAME fallback fix, for M8's own 'section N of this title' shape -- with no host_title_instrument and the section not known to be in this file, external_instrument is 'unnamed (see note)', never the gloss 'this title'."
+}

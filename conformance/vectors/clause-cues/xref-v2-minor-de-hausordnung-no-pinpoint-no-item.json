@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-de-hausordnung-no-pinpoint-no-item",
+  "input": {
+    "text": "Dies betrifft der Hausordnung wegen nichts.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'der Hausordnung' ('the house rules') -- a fused compound word matching the '-ordnung' suffix shape, but with no pinpoint attached -- no item."
+}

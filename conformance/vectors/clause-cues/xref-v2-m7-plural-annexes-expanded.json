@@ -1,0 +1,28 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m7-plural-annexes-expanded",
+  "input": {
+    "text": "Annexes IV and V apply."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Annexes IV and V",
+        "literal_start": 0,
+        "literal_end": 16,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Annex IV",
+            "expanded_from": "Annexes IV and V"
+          },
+          {
+            "pinpoint": "Annex V",
+            "expanded_from": "Annexes IV and V"
+          }
+        ]
+      }
+    ]
+  }
+}

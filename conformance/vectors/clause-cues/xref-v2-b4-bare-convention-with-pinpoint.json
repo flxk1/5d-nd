@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b4-bare-convention-with-pinpoint",
+  "input": {
+    "text": "Article 5 of the Convention applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 5 of the Convention",
+        "literal_start": 0,
+        "literal_end": 27,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": "Article 5",
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "'the Convention' here names NO instrument the text has actually identified (no Named Convention, no host match), so R7 requires 'unnamed (see note)', never a bare generic instrument-type word truncated from no named instrument; see spec/SPEC.md §8a.1 KNOWN LIMITS."
+}

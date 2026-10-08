@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-so-in-original-ambiguous",
+  "input": {
+    "text": "The deadline in subsection (a)(1) still applies. [So in original. Probably should be section 5(a)(3).]",
+    "numbering_family": "us",
+    "enclosing_unit": "§ 101"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "subsection (a)(1)",
+        "literal_start": 16,
+        "literal_end": 33,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 101(a)(1)",
+            "expanded_from": null
+          }
+        ],
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  }
+}

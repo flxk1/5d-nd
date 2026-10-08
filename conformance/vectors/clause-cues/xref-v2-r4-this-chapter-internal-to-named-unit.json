@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r4-this-chapter-internal-to-named-unit",
+  "input": {
+    "text": "In this Chapter, the threshold conditions are defined.",
+    "enclosing_unit": "Part 5, Chapter 4"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "this Chapter",
+        "literal_start": 3,
+        "literal_end": 15,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 5, Chapter 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

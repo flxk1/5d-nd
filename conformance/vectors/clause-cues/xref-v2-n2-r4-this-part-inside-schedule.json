@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-r4-this-part-inside-schedule",
+  "input": {
+    "text": "This Part applies.",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "schedule": "Schedule 4",
+      "part": "Part 1"
+    }
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "This Part",
+        "literal_start": 0,
+        "literal_end": 9,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 4, Part 1",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

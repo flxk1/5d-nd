@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-uk-schedule-to-the-act-chain-single-reference",
+  "input": {
+    "text": "This exemption rests on paragraph 4(1) of Schedule 6 to the Secure Communications Act 1991.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Secure Communications Act 1991"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 4(1) of Schedule 6 to the Secure Communications Act 1991",
+        "literal_start": 24,
+        "literal_end": 90,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 6, paragraph 4(1)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

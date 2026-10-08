@@ -1,0 +1,13 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m2-code-edition-header-not-external",
+  "input": {
+    "text": "This excerpt is reproduced from United States Code, 2022 Edition, for background only.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C."
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "A page-header line such as 'United States Code, 2022 Edition' must NOT become an EXTERNAL reference. The cause was the comma-year allowance (_EXT_ACT_WITH_YEAR) applying to every statute keyword, including 'Code' — restricted to 'Act' alone. A real reference also needs a pinpoint or an explicit citation shape; a bare 'Code, YYYY' with neither is not one. Constructed wording; no source-text sentence."
+}

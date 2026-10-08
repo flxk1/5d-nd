@@ -1,0 +1,32 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-eu-plural-or-list",
+  "input": {
+    "text": "The rights in Articles 15, 16 or 17 apply."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Articles 15, 16 or 17",
+        "literal_start": 14,
+        "literal_end": 35,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 15",
+            "expanded_from": "Articles 15, 16 or 17"
+          },
+          {
+            "pinpoint": "Article 16",
+            "expanded_from": "Articles 15, 16 or 17"
+          },
+          {
+            "pinpoint": "Article 17",
+            "expanded_from": "Articles 15, 16 or 17"
+          }
+        ]
+      }
+    ]
+  }
+}

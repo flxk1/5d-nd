@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-mut-d-repeated-external-dedup-raw",
+  "input": {
+    "text": "Article 5 of Directive 2011/83/EU applies, and Article 5 of Directive 2011/83/EU applies again.",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  },
+  "_note": "The same distinct-EXTERNAL dedup, measured via clause_cue_contributions()'s own structural count -- +1, not +2, for the SAME (instrument, target) named twice."
+}

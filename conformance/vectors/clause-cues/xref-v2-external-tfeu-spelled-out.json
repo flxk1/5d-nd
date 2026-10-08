@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-tfeu-spelled-out",
+  "input": {
+    "text": "This measure derives from Article 16 of the Treaty on the Functioning of the European Union."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 16 of the Treaty on the Functioning of the European Union",
+        "literal_start": 26,
+        "literal_end": 91,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty on the Functioning of the European Union",
+        "targets": [],
+        "external_target": "Article 16"
+      }
+    ]
+  }
+}

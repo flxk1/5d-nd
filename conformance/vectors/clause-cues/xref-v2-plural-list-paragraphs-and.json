@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-plural-list-paragraphs-and",
+  "input": {
+    "text": "The conditions in paragraphs 1 and 2 apply.",
+    "enclosing_unit": "Article 7"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraphs 1 and 2",
+        "literal_start": 18,
+        "literal_end": 36,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 7(1)",
+            "expanded_from": "paragraphs 1 and 2"
+          },
+          {
+            "pinpoint": "Article 7(2)",
+            "expanded_from": "paragraphs 1 and 2"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-eu-article-paragraph",
+  "input": {
+    "text": "The controller shall comply with Article 6(1)."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6(1)",
+        "literal_start": 33,
+        "literal_end": 45,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6(1)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}
