@@ -1,0 +1,5776 @@
+{
+ "commit": "d0ee57b606641494b6a6a414aa8f778c82a4be4a",
+ "dirty": false,
+ "generated_utc": "2026-10-07T21:55:31.011450+00:00",
+ "gold_integrity_branch": {
+  "ai-act": "exact",
+  "dsa": "reconstructed:id+indent=1",
+  "gdpr": "exact",
+  "nis2": "reconstructed:id+indent=2",
+  "uk-dpa2018": "exact",
+  "uk-osa2023": "exact",
+  "us-coppa": "exact",
+  "us-s230": "exact"
+ },
+ "gold_sha256": {
+  "ai-act": "a6a7f835965b3cad4032f7fd983b53268ef8a3c98bd305f8e2994f083a0d0303",
+  "dsa": "d64d3aecdcc4fdfc5063218e81e6e6736400f75457af1d07a33fa9bc32307cce",
+  "gdpr": "9021faccdb43a95c041298cbc46cec48329aec9cf97f95e78d7aa4e0a4b8b314",
+  "nis2": "c549ebd4fb2a2d2923d13afbe32e393a8761cb41727fae1af6fbbcef32053ae6",
+  "uk-dpa2018": "8fe556ab5a41e14c90d45507ce044a6de3cf2dbb3a6123bfe76735fe52827ac8",
+  "uk-osa2023": "c52d627f4b5e594ca8ea14d1199f6cc64e8c447cb96952e0f8cd240be0ff482b",
+  "us-coppa": "d5553881efa89577ccadd32af7c79f421f4c1a02ab5f28561173280fbe7bfc3a",
+  "us-s230": "ca148ef730c8f432ef0a013315e17651e8c6624eb6540bb5a5f98917ae40f141"
+ },
+ "old_resolver_pooled": {
+  "by_kind": {
+   "EXTERNAL": {
+    "F1": 0.2571,
+    "P": 1.0,
+    "R": 0.1475,
+    "fn": 52,
+    "fp": 0,
+    "tp": 9
+   },
+   "INTERNAL": {
+    "F1": 0.3011,
+    "P": 0.4828,
+    "R": 0.2188,
+    "fn": 100,
+    "fp": 30,
+    "tp": 28
+   }
+  },
+  "by_tag_detection": {
+   "ambiguous_reference": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 10,
+    "fp": 0,
+    "n": 10,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "anaphoric_external": {
+    "F1": 0.1875,
+    "P": 1.0,
+    "R": 0.1034,
+    "fn": 26,
+    "fp": 0,
+    "n": 29,
+    "n_lt_5": false,
+    "tp": 3
+   },
+   "anaphoric_internal": {
+    "F1": 0.1935,
+    "P": 1.0,
+    "R": 0.1071,
+    "fn": 25,
+    "fp": 0,
+    "n": 28,
+    "n_lt_5": false,
+    "tp": 3
+   },
+   "annex": {
+    "F1": 0.0909,
+    "P": 1.0,
+    "R": 0.0476,
+    "fn": 20,
+    "fp": 0,
+    "n": 21,
+    "n_lt_5": false,
+    "tp": 1
+   },
+   "article": {
+    "F1": 0.5263,
+    "P": 0.625,
+    "R": 0.4545,
+    "fn": 18,
+    "fp": 9,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 15
+   },
+   "chapter_section": {
+    "F1": 0.1923,
+    "P": 1.0,
+    "R": 0.1064,
+    "fn": 42,
+    "fp": 0,
+    "n": 47,
+    "n_lt_5": false,
+    "tp": 5
+   },
+   "external_instrument": {
+    "F1": 0.2472,
+    "P": 0.7333,
+    "R": 0.1486,
+    "fn": 63,
+    "fp": 4,
+    "n": 74,
+    "n_lt_5": false,
+    "tp": 11
+   },
+   "hard_negative": {
+    "F1": 0.2609,
+    "P": 0.75,
+    "R": 0.1579,
+    "fn": 16,
+    "fp": 1,
+    "n": 19,
+    "n_lt_5": false,
+    "tp": 3
+   },
+   "paragraph_same_article": {
+    "F1": 0.1143,
+    "P": 1.0,
+    "R": 0.0606,
+    "fn": 31,
+    "fp": 0,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 2
+   },
+   "plural_or_list": {
+    "F1": 0.2759,
+    "P": 0.6667,
+    "R": 0.1739,
+    "fn": 57,
+    "fp": 6,
+    "n": 69,
+    "n_lt_5": false,
+    "tp": 12
+   },
+   "point": {
+    "F1": 0.3158,
+    "P": 1.0,
+    "R": 0.1875,
+    "fn": 13,
+    "fp": 0,
+    "n": 16,
+    "n_lt_5": false,
+    "tp": 3
+   },
+   "quoted_amending_text": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 7,
+    "fp": 0,
+    "n": 7,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "range": {
+    "F1": 0.2333,
+    "P": 0.2059,
+    "R": 0.2692,
+    "fn": 19,
+    "fp": 27,
+    "n": 26,
+    "n_lt_5": false,
+    "tp": 7
+   }
+  },
+  "by_tag_e2e": {
+   "ambiguous_reference": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 10,
+    "fp": 0,
+    "n": 10,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "anaphoric_external": {
+    "F1": 0.0625,
+    "P": 0.3333,
+    "R": 0.0345,
+    "fn": 28,
+    "fp": 2,
+    "n": 29,
+    "n_lt_5": false,
+    "tp": 1
+   },
+   "anaphoric_internal": {
+    "F1": 0.0645,
+    "P": 0.3333,
+    "R": 0.0357,
+    "fn": 27,
+    "fp": 2,
+    "n": 28,
+    "n_lt_5": false,
+    "tp": 1
+   },
+   "annex": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 21,
+    "fp": 1,
+    "n": 21,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "article": {
+    "F1": 0.2105,
+    "P": 0.25,
+    "R": 0.1818,
+    "fn": 27,
+    "fp": 18,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 6
+   },
+   "chapter_section": {
+    "F1": 0.1154,
+    "P": 0.6,
+    "R": 0.0638,
+    "fn": 44,
+    "fp": 2,
+    "n": 47,
+    "n_lt_5": false,
+    "tp": 3
+   },
+   "external_instrument": {
+    "F1": 0.0225,
+    "P": 0.0667,
+    "R": 0.0135,
+    "fn": 73,
+    "fp": 14,
+    "n": 74,
+    "n_lt_5": false,
+    "tp": 1
+   },
+   "hard_negative": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 19,
+    "fp": 4,
+    "n": 19,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "paragraph_same_article": {
+    "F1": 0.0571,
+    "P": 0.5,
+    "R": 0.0303,
+    "fn": 32,
+    "fp": 1,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 1
+   },
+   "plural_or_list": {
+    "F1": 0.046,
+    "P": 0.1111,
+    "R": 0.029,
+    "fn": 67,
+    "fp": 16,
+    "n": 69,
+    "n_lt_5": false,
+    "tp": 2
+   },
+   "point": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 16,
+    "fp": 3,
+    "n": 16,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "quoted_amending_text": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 7,
+    "fp": 0,
+    "n": 7,
+    "n_lt_5": false,
+    "tp": 0
+   },
+   "range": {
+    "F1": 0.0333,
+    "P": 0.0294,
+    "R": 0.0385,
+    "fn": 25,
+    "fp": 33,
+    "n": 26,
+    "n_lt_5": false,
+    "tp": 1
+   }
+  },
+  "detection": {
+   "F1": 0.2891,
+   "P": 0.5522,
+   "R": 0.1958,
+   "fn": 152,
+   "fp": 30,
+   "tp": 37
+  },
+  "e2e": {
+   "F1": 0.0859,
+   "P": 0.1642,
+   "R": 0.0582,
+   "fn": 178,
+   "fp": 56,
+   "tp": 11
+  },
+  "external_instrument_level": {
+   "F1": 0.0,
+   "P": 0.0,
+   "R": 0.0,
+   "fn": 50,
+   "fp": 0,
+   "tp": 0
+  },
+  "internal_target_level": {
+   "F1": 0.3406,
+   "P": 0.7015,
+   "R": 0.2249,
+   "fn": 162,
+   "fp": 20,
+   "tp": 47
+  },
+  "kind_accuracy": 0.7568
+ },
+ "old_resolver_reference_row": {
+  "ai-act": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.25,
+     "P": 1.0,
+     "R": 0.1429,
+     "fn": 6,
+     "fp": 0,
+     "tp": 1
+    },
+    "INTERNAL": {
+     "F1": 0.4348,
+     "P": 0.5882,
+     "R": 0.3448,
+     "fn": 19,
+     "fp": 7,
+     "tp": 10
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.4,
+     "P": 1.0,
+     "R": 0.25,
+     "fn": 9,
+     "fp": 0,
+     "n": 12,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.5,
+     "P": 1.0,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "chapter_section": {
+     "F1": 0.75,
+     "P": 1.0,
+     "R": 0.6,
+     "fn": 2,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "external_instrument": {
+     "F1": 0.2222,
+     "P": 1.0,
+     "R": 0.125,
+     "fn": 7,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.5263,
+     "P": 1.0,
+     "R": 0.3571,
+     "fn": 9,
+     "fp": 0,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.3333,
+     "P": 0.2222,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 7,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.1333,
+     "P": 0.3333,
+     "R": 0.0833,
+     "fn": 11,
+     "fp": 2,
+     "n": 12,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.5,
+     "P": 1.0,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "chapter_section": {
+     "F1": 0.5,
+     "P": 0.6667,
+     "R": 0.4,
+     "fn": 3,
+     "fp": 1,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 1,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 2,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.1053,
+     "P": 0.2,
+     "R": 0.0714,
+     "fn": 13,
+     "fp": 4,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 1,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.1667,
+     "P": 0.1111,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 8,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    }
+   },
+   "detection": {
+    "F1": 0.4074,
+    "P": 0.6111,
+    "R": 0.3056,
+    "fn": 25,
+    "fp": 7,
+    "tp": 11
+   },
+   "e2e": {
+    "F1": 0.1481,
+    "P": 0.2222,
+    "R": 0.1111,
+    "fn": 32,
+    "fp": 14,
+    "tp": 4
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 5,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.3939,
+    "P": 0.7222,
+    "R": 0.2708,
+    "fn": 35,
+    "fp": 5,
+    "tp": 13
+   },
+   "kind_accuracy": 0.9091,
+   "kind_total_matched": 11
+  },
+  "dsa": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.3333,
+     "P": 1.0,
+     "R": 0.2,
+     "fn": 8,
+     "fp": 0,
+     "tp": 2
+    },
+    "INTERNAL": {
+     "F1": 0.5385,
+     "P": 0.7,
+     "R": 0.4375,
+     "fn": 9,
+     "fp": 3,
+     "tp": 7
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.6667,
+     "P": 1.0,
+     "R": 0.5,
+     "fn": 2,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.5,
+     "P": 1.0,
+     "R": 0.3333,
+     "fn": 4,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "external_instrument": {
+     "F1": 0.4,
+     "P": 0.5714,
+     "R": 0.3077,
+     "fn": 9,
+     "fp": 3,
+     "n": 13,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.4,
+     "P": 1.0,
+     "R": 0.25,
+     "fn": 6,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "plural_or_list": {
+     "F1": 0.3529,
+     "P": 0.5,
+     "R": 0.2727,
+     "fn": 8,
+     "fp": 3,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "point": {
+     "F1": 0.5,
+     "P": 1.0,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.2,
+     "P": 0.25,
+     "R": 0.1667,
+     "fn": 5,
+     "fp": 3,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 1
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.3333,
+     "P": 0.5,
+     "R": 0.25,
+     "fn": 3,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.25,
+     "P": 0.5,
+     "R": 0.1667,
+     "fn": 5,
+     "fp": 1,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "external_instrument": {
+     "F1": 0.1,
+     "P": 0.1429,
+     "R": 0.0769,
+     "fn": 12,
+     "fp": 6,
+     "n": 13,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.2,
+     "P": 0.5,
+     "R": 0.125,
+     "fn": 7,
+     "fp": 1,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "plural_or_list": {
+     "F1": 0.1176,
+     "P": 0.1667,
+     "R": 0.0909,
+     "fn": 10,
+     "fp": 5,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 4,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.4737,
+    "P": 0.75,
+    "R": 0.3462,
+    "fn": 17,
+    "fp": 3,
+    "tp": 9
+   },
+   "e2e": {
+    "F1": 0.2632,
+    "P": 0.4167,
+    "R": 0.1923,
+    "fn": 21,
+    "fp": 7,
+    "tp": 5
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 9,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.4865,
+    "P": 0.75,
+    "R": 0.36,
+    "fn": 16,
+    "fp": 3,
+    "tp": 9
+   },
+   "kind_accuracy": 0.7778,
+   "kind_total_matched": 9
+  },
+  "gdpr": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "tp": 0
+    },
+    "INTERNAL": {
+     "F1": 0.3111,
+     "P": 0.28,
+     "R": 0.35,
+     "fn": 13,
+     "fp": 18,
+     "tp": 7
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.5882,
+     "P": 0.4167,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 7,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.1538,
+     "P": 0.5,
+     "R": 0.0909,
+     "fn": 10,
+     "fp": 1,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.25,
+     "P": 0.15,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 17,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.2353,
+     "P": 0.1667,
+     "R": 0.4,
+     "fn": 3,
+     "fp": 10,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 20,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.2917,
+    "P": 0.28,
+    "R": 0.3043,
+    "fn": 16,
+    "fp": 18,
+    "tp": 7
+   },
+   "e2e": {
+    "F1": 0.0833,
+    "P": 0.08,
+    "R": 0.087,
+    "fn": 21,
+    "fp": 23,
+    "tp": 2
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 3,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.6667,
+    "P": 0.92,
+    "R": 0.5227,
+    "fn": 21,
+    "fp": 2,
+    "tp": 23
+   },
+   "kind_accuracy": 1.0,
+   "kind_total_matched": 7
+  },
+  "nis2": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.3333,
+     "P": 1.0,
+     "R": 0.2,
+     "fn": 12,
+     "fp": 0,
+     "tp": 3
+    },
+    "INTERNAL": {
+     "F1": 0.4706,
+     "P": 0.6667,
+     "R": 0.3636,
+     "fn": 7,
+     "fp": 2,
+     "tp": 4
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.25,
+     "P": 1.0,
+     "R": 0.1429,
+     "fn": 6,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.3333,
+     "P": 1.0,
+     "R": 0.2,
+     "fn": 4,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "article": {
+     "F1": 0.6316,
+     "P": 0.75,
+     "R": 0.5455,
+     "fn": 5,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.3158,
+     "P": 0.75,
+     "R": 0.2,
+     "fn": 12,
+     "fp": 1,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "hard_negative": {
+     "F1": 0.4,
+     "P": 0.5,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.375,
+     "P": 0.6,
+     "R": 0.2727,
+     "fn": 8,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 1,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 1,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 8,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 15,
+     "fp": 4,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 2,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 5,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 1,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.4,
+    "P": 0.7778,
+    "R": 0.2692,
+    "fn": 19,
+    "fp": 2,
+    "tp": 7
+   },
+   "e2e": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 26,
+    "fp": 9,
+    "tp": 0
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 11,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.1818,
+    "P": 0.2222,
+    "R": 0.1538,
+    "fn": 11,
+    "fp": 7,
+    "tp": 2
+   },
+   "kind_accuracy": 0.5714,
+   "kind_total_matched": 7
+  },
+  "uk-dpa2018": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.4,
+     "P": 1.0,
+     "R": 0.25,
+     "fn": 9,
+     "fp": 0,
+     "tp": 3
+    },
+    "INTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 22,
+     "fp": 0,
+     "tp": 0
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 15,
+     "fp": 0,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.3529,
+     "P": 1.0,
+     "R": 0.2143,
+     "fn": 11,
+     "fp": 0,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.1667,
+     "P": 1.0,
+     "R": 0.0909,
+     "fn": 10,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 1
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 15,
+     "fp": 0,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 14,
+     "fp": 3,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 1,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.1622,
+    "P": 1.0,
+    "R": 0.0882,
+    "fn": 31,
+    "fp": 0,
+    "tp": 3
+   },
+   "e2e": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 34,
+    "fp": 3,
+    "tp": 0
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 9,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 37,
+    "fp": 3,
+    "tp": 0
+   },
+   "kind_accuracy": 0.0,
+   "kind_total_matched": 3
+  },
+  "uk-osa2023": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "tp": 0
+    },
+    "INTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 19,
+     "fp": 0,
+     "tp": 0
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 10,
+     "fp": 0,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 10,
+     "fp": 0,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 7,
+     "fp": 0,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 10,
+     "fp": 0,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 10,
+     "fp": 0,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 11,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 24,
+    "fp": 0,
+    "tp": 0
+   },
+   "e2e": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 24,
+    "fp": 0,
+    "tp": 0
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 4,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 30,
+    "fp": 0,
+    "tp": 0
+   },
+   "kind_accuracy": null,
+   "kind_total_matched": 0
+  },
+  "us-coppa": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "tp": 0
+    },
+    "INTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 10,
+     "fp": 0,
+     "tp": 0
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 5,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 6,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 8,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 15,
+    "fp": 0,
+    "tp": 0
+   },
+   "e2e": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 15,
+    "fp": 0,
+    "tp": 0
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 5,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 11,
+    "fp": 0,
+    "tp": 0
+   },
+   "kind_accuracy": null,
+   "kind_total_matched": 0
+  },
+  "us-s230": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "tp": 0
+    },
+    "INTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "tp": 0
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 4,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 5,
+    "fp": 0,
+    "tp": 0
+   },
+   "e2e": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 5,
+    "fp": 0,
+    "tp": 0
+   },
+   "external_instrument_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 4,
+    "fp": 0,
+    "tp": 0
+   },
+   "internal_target_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 1,
+    "fp": 0,
+    "tp": 0
+   },
+   "kind_accuracy": null,
+   "kind_total_matched": 0
+  }
+ },
+ "part": "held_out",
+ "per_vertical": {
+  "ai-act": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "tp": 7
+    },
+    "INTERNAL": {
+     "F1": 0.9,
+     "P": 0.871,
+     "R": 0.931,
+     "fn": 2,
+     "fp": 4,
+     "tp": 27
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "anaphoric_internal": {
+     "F1": 0.9091,
+     "P": 1.0,
+     "R": 0.8333,
+     "fn": 2,
+     "fp": 0,
+     "n": 12,
+     "n_lt_5": false,
+     "tp": 10
+    },
+    "annex": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "article": {
+     "F1": 0.8,
+     "P": 1.0,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "chapter_section": {
+     "F1": 0.7143,
+     "P": 0.5556,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 4,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "external_instrument": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 8
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "plural_or_list": {
+     "F1": 0.8387,
+     "P": 0.7647,
+     "R": 0.9286,
+     "fn": 1,
+     "fp": 4,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 13
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "anaphoric_internal": {
+     "F1": 0.5455,
+     "P": 0.6,
+     "R": 0.5,
+     "fn": 6,
+     "fp": 4,
+     "n": 12,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "annex": {
+     "F1": 0.6667,
+     "P": 0.6667,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "article": {
+     "F1": 0.8,
+     "P": 1.0,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "chapter_section": {
+     "F1": 0.5714,
+     "P": 0.4444,
+     "R": 0.8,
+     "fn": 1,
+     "fp": 5,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "external_instrument": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 8
+    },
+    "hard_negative": {
+     "F1": 0.5,
+     "P": 0.5,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "plural_or_list": {
+     "F1": 0.3871,
+     "P": 0.3529,
+     "R": 0.4286,
+     "fn": 8,
+     "fp": 11,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.6667,
+     "P": 0.6667,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    }
+   },
+   "detection": {
+    "F1": 0.9189,
+    "P": 0.8947,
+    "R": 0.9444,
+    "fn": 2,
+    "fp": 4,
+    "tp": 34
+   },
+   "e2e": {
+    "F1": 0.7027,
+    "P": 0.6842,
+    "R": 0.7222,
+    "fn": 10,
+    "fp": 12,
+    "tp": 26
+   },
+   "external_instrument_level": {
+    "F1": 1.0,
+    "P": 1.0,
+    "R": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "tp": 5
+   },
+   "internal_target_level": {
+    "F1": 0.7619,
+    "P": 0.8889,
+    "R": 0.6667,
+    "fn": 16,
+    "fp": 4,
+    "tp": 32
+   },
+   "kind_accuracy": 1.0,
+   "kind_total_matched": 34,
+   "n_items": 17
+  },
+  "dsa": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.75,
+     "P": 1.0,
+     "R": 0.6,
+     "fn": 4,
+     "fp": 0,
+     "tp": 6
+    },
+    "INTERNAL": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "tp": 16
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "external_instrument": {
+     "F1": 0.8182,
+     "P": 1.0,
+     "R": 0.6923,
+     "fn": 4,
+     "fp": 0,
+     "n": 13,
+     "n_lt_5": false,
+     "tp": 9
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 8
+    },
+    "plural_or_list": {
+     "F1": 0.7778,
+     "P": 1.0,
+     "R": 0.6364,
+     "fn": 4,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.5,
+     "P": 0.5,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.8333,
+     "P": 0.8333,
+     "R": 0.8333,
+     "fn": 1,
+     "fp": 1,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "external_instrument": {
+     "F1": 0.8182,
+     "P": 1.0,
+     "R": 0.6923,
+     "fn": 4,
+     "fp": 0,
+     "n": 13,
+     "n_lt_5": false,
+     "tp": 9
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "paragraph_same_article": {
+     "F1": 0.875,
+     "P": 0.875,
+     "R": 0.875,
+     "fn": 1,
+     "fp": 1,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "plural_or_list": {
+     "F1": 0.6667,
+     "P": 0.8571,
+     "R": 0.5455,
+     "fn": 5,
+     "fp": 1,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "point": {
+     "F1": 0.6667,
+     "P": 0.6667,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.8333,
+     "P": 0.8333,
+     "R": 0.8333,
+     "fn": 1,
+     "fp": 1,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 5
+    }
+   },
+   "detection": {
+    "F1": 0.9167,
+    "P": 1.0,
+    "R": 0.8462,
+    "fn": 4,
+    "fp": 0,
+    "tp": 22
+   },
+   "e2e": {
+    "F1": 0.8333,
+    "P": 0.9091,
+    "R": 0.7692,
+    "fn": 6,
+    "fp": 2,
+    "tp": 20
+   },
+   "external_instrument_level": {
+    "F1": 0.7143,
+    "P": 1.0,
+    "R": 0.5556,
+    "fn": 4,
+    "fp": 0,
+    "tp": 5
+   },
+   "internal_target_level": {
+    "F1": 0.8444,
+    "P": 0.95,
+    "R": 0.76,
+    "fn": 6,
+    "fp": 1,
+    "tp": 19
+   },
+   "kind_accuracy": 1.0,
+   "kind_total_matched": 22,
+   "n_items": 15
+  },
+  "gdpr": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "tp": 3
+    },
+    "INTERNAL": {
+     "F1": 0.9744,
+     "P": 1.0,
+     "R": 0.95,
+     "fn": 1,
+     "fp": 0,
+     "tp": 19
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 8
+    },
+    "external_instrument": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "plural_or_list": {
+     "F1": 0.9524,
+     "P": 1.0,
+     "R": 0.9091,
+     "fn": 1,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 10
+    },
+    "point": {
+     "F1": 0.6667,
+     "P": 1.0,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.8571,
+     "P": 1.0,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 8
+    },
+    "external_instrument": {
+     "F1": 0.75,
+     "P": 0.75,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.75,
+     "P": 0.75,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "plural_or_list": {
+     "F1": 0.8571,
+     "P": 0.9,
+     "R": 0.8182,
+     "fn": 2,
+     "fp": 1,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 9
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 2,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.8571,
+     "P": 1.0,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    }
+   },
+   "detection": {
+    "F1": 0.9778,
+    "P": 1.0,
+    "R": 0.9565,
+    "fn": 1,
+    "fp": 0,
+    "tp": 22
+   },
+   "e2e": {
+    "F1": 0.8889,
+    "P": 0.9091,
+    "R": 0.8696,
+    "fn": 3,
+    "fp": 2,
+    "tp": 20
+   },
+   "external_instrument_level": {
+    "F1": 1.0,
+    "P": 1.0,
+    "R": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "tp": 3
+   },
+   "internal_target_level": {
+    "F1": 0.8889,
+    "P": 0.973,
+    "R": 0.8182,
+    "fn": 8,
+    "fp": 1,
+    "tp": 36
+   },
+   "kind_accuracy": 1.0,
+   "kind_total_matched": 22,
+   "n_items": 15
+  },
+  "nis2": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.8889,
+     "P": 1.0,
+     "R": 0.8,
+     "fn": 3,
+     "fp": 0,
+     "tp": 12
+    },
+    "INTERNAL": {
+     "F1": 0.9167,
+     "P": 0.8462,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "tp": 11
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.8,
+     "P": 0.75,
+     "R": 0.8571,
+     "fn": 1,
+     "fp": 2,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.7273,
+     "P": 0.6667,
+     "R": 0.8,
+     "fn": 1,
+     "fp": 2,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 11
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "external_instrument": {
+     "F1": 0.8667,
+     "P": 0.8667,
+     "R": 0.8667,
+     "fn": 2,
+     "fp": 2,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 13
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "plural_or_list": {
+     "F1": 0.8182,
+     "P": 0.8182,
+     "R": 0.8182,
+     "fn": 2,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 9
+    },
+    "point": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.4,
+     "P": 0.375,
+     "R": 0.4286,
+     "fn": 4,
+     "fp": 5,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.1818,
+     "P": 0.1667,
+     "R": 0.2,
+     "fn": 4,
+     "fp": 5,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "article": {
+     "F1": 0.9091,
+     "P": 0.9091,
+     "R": 0.9091,
+     "fn": 1,
+     "fp": 1,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 10
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "external_instrument": {
+     "F1": 0.6667,
+     "P": 0.6667,
+     "R": 0.6667,
+     "fn": 5,
+     "fp": 5,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 10
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "plural_or_list": {
+     "F1": 0.5455,
+     "P": 0.5455,
+     "R": 0.5455,
+     "fn": 5,
+     "fp": 5,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 1,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.902,
+    "P": 0.92,
+    "R": 0.8846,
+    "fn": 3,
+    "fp": 2,
+    "tp": 23
+   },
+   "e2e": {
+    "F1": 0.7451,
+    "P": 0.76,
+    "R": 0.7308,
+    "fn": 7,
+    "fp": 6,
+    "tp": 19
+   },
+   "external_instrument_level": {
+    "F1": 0.7368,
+    "P": 0.875,
+    "R": 0.6364,
+    "fn": 4,
+    "fp": 1,
+    "tp": 7
+   },
+   "internal_target_level": {
+    "F1": 0.8148,
+    "P": 0.7857,
+    "R": 0.8462,
+    "fn": 2,
+    "fp": 3,
+    "tp": 11
+   },
+   "kind_accuracy": 0.9565,
+   "kind_total_matched": 23,
+   "n_items": 15
+  },
+  "uk-dpa2018": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.9231,
+     "P": 0.8571,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "tp": 12
+    },
+    "INTERNAL": {
+     "F1": 0.9333,
+     "P": 0.913,
+     "R": 0.9545,
+     "fn": 1,
+     "fp": 2,
+     "tp": 21
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.8571,
+     "P": 0.8571,
+     "R": 0.8571,
+     "fn": 1,
+     "fp": 1,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "anaphoric_internal": {
+     "F1": 0.9333,
+     "P": 0.875,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "annex": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 15
+    },
+    "external_instrument": {
+     "F1": 0.8667,
+     "P": 0.8125,
+     "R": 0.9286,
+     "fn": 1,
+     "fp": 3,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 13
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "paragraph_same_article": {
+     "F1": 0.7273,
+     "P": 0.6667,
+     "R": 0.8,
+     "fn": 1,
+     "fp": 2,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "plural_or_list": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.8889,
+     "P": 0.8,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "range": {
+     "F1": 0.9167,
+     "P": 0.8462,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 11
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.1429,
+     "P": 0.1429,
+     "R": 0.1429,
+     "fn": 6,
+     "fp": 6,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 1
+    },
+    "anaphoric_external": {
+     "F1": 0.5,
+     "P": 0.5,
+     "R": 0.5,
+     "fn": 3,
+     "fp": 3,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "anaphoric_internal": {
+     "F1": 0.9333,
+     "P": 0.875,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "annex": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.7333,
+     "P": 0.7333,
+     "R": 0.7333,
+     "fn": 4,
+     "fp": 4,
+     "n": 15,
+     "n_lt_5": false,
+     "tp": 11
+    },
+    "external_instrument": {
+     "F1": 0.3333,
+     "P": 0.3125,
+     "R": 0.3571,
+     "fn": 9,
+     "fp": 11,
+     "n": 14,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "hard_negative": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "paragraph_same_article": {
+     "F1": 0.3636,
+     "P": 0.3333,
+     "R": 0.4,
+     "fn": 3,
+     "fp": 4,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "plural_or_list": {
+     "F1": 0.8333,
+     "P": 0.8333,
+     "R": 0.8333,
+     "fn": 1,
+     "fp": 1,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.8889,
+     "P": 0.8,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "range": {
+     "F1": 0.6667,
+     "P": 0.6154,
+     "R": 0.7273,
+     "fn": 3,
+     "fp": 5,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 8
+    }
+   },
+   "detection": {
+    "F1": 0.9296,
+    "P": 0.8919,
+    "R": 0.9706,
+    "fn": 1,
+    "fp": 4,
+    "tp": 33
+   },
+   "e2e": {
+    "F1": 0.6761,
+    "P": 0.6486,
+    "R": 0.7059,
+    "fn": 10,
+    "fp": 13,
+    "tp": 24
+   },
+   "external_instrument_level": {
+    "F1": 0.7778,
+    "P": 0.7778,
+    "R": 0.7778,
+    "fn": 2,
+    "fp": 2,
+    "tp": 7
+   },
+   "internal_target_level": {
+    "F1": 0.7632,
+    "P": 0.7436,
+    "R": 0.7838,
+    "fn": 8,
+    "fp": 10,
+    "tp": 29
+   },
+   "kind_accuracy": 0.9091,
+   "kind_total_matched": 33,
+   "n_items": 15
+  },
+  "uk-osa2023": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.8889,
+     "P": 1.0,
+     "R": 0.8,
+     "fn": 1,
+     "fp": 0,
+     "tp": 4
+    },
+    "INTERNAL": {
+     "F1": 0.9048,
+     "P": 0.8261,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 4,
+     "tp": 19
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.8,
+     "P": 1.0,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "anaphoric_internal": {
+     "F1": 0.8235,
+     "P": 0.7,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 3,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "annex": {
+     "F1": 0.8333,
+     "P": 0.7143,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 4,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 10
+    },
+    "article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.9333,
+     "P": 1.0,
+     "R": 0.875,
+     "fn": 1,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "external_instrument": {
+     "F1": 0.8571,
+     "P": 0.8182,
+     "R": 0.9,
+     "fn": 1,
+     "fp": 2,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 9
+    },
+    "hard_negative": {
+     "F1": 0.7273,
+     "P": 0.5714,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 3,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "paragraph_same_article": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "plural_or_list": {
+     "F1": 0.9167,
+     "P": 0.8462,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 11
+    },
+    "point": {
+     "F1": 0.8571,
+     "P": 0.75,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "quoted_amending_text": {
+     "F1": 0.75,
+     "P": 0.6,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 2,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "range": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.4,
+     "P": 0.5,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "anaphoric_internal": {
+     "F1": 0.2353,
+     "P": 0.2,
+     "R": 0.2857,
+     "fn": 5,
+     "fp": 8,
+     "n": 7,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "annex": {
+     "F1": 0.3333,
+     "P": 0.2857,
+     "R": 0.4,
+     "fn": 6,
+     "fp": 10,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "article": {
+     "F1": 0.3333,
+     "P": 0.3333,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 2,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "chapter_section": {
+     "F1": 0.5333,
+     "P": 0.5714,
+     "R": 0.5,
+     "fn": 4,
+     "fp": 3,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 4
+    },
+    "external_instrument": {
+     "F1": 0.1905,
+     "P": 0.1818,
+     "R": 0.2,
+     "fn": 8,
+     "fp": 9,
+     "n": 10,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "hard_negative": {
+     "F1": 0.1818,
+     "P": 0.1429,
+     "R": 0.25,
+     "fn": 3,
+     "fp": 6,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "paragraph_same_article": {
+     "F1": 0.3333,
+     "P": 0.3333,
+     "R": 0.3333,
+     "fn": 2,
+     "fp": 2,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "plural_or_list": {
+     "F1": 0.25,
+     "P": 0.2308,
+     "R": 0.2727,
+     "fn": 8,
+     "fp": 10,
+     "n": 11,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "point": {
+     "F1": 0.2857,
+     "P": 0.25,
+     "R": 0.3333,
+     "fn": 4,
+     "fp": 6,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 2
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 3,
+     "fp": 5,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    }
+   },
+   "detection": {
+    "F1": 0.902,
+    "P": 0.8519,
+    "R": 0.9583,
+    "fn": 1,
+    "fp": 4,
+    "tp": 23
+   },
+   "e2e": {
+    "F1": 0.3922,
+    "P": 0.3704,
+    "R": 0.4167,
+    "fn": 14,
+    "fp": 17,
+    "tp": 10
+   },
+   "external_instrument_level": {
+    "F1": 0.2857,
+    "P": 0.3333,
+    "R": 0.25,
+    "fn": 3,
+    "fp": 2,
+    "tp": 1
+   },
+   "internal_target_level": {
+    "F1": 0.5091,
+    "P": 0.56,
+    "R": 0.4667,
+    "fn": 16,
+    "fp": 11,
+    "tp": 14
+   },
+   "kind_accuracy": 0.9565,
+   "kind_total_matched": 23,
+   "n_items": 13
+  },
+  "us-coppa": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "tp": 5
+    },
+    "INTERNAL": {
+     "F1": 0.8421,
+     "P": 0.8889,
+     "R": 0.8,
+     "fn": 2,
+     "fp": 1,
+     "tp": 8
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "anaphoric_internal": {
+     "F1": 0.8,
+     "P": 0.6667,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.9091,
+     "P": 0.8333,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 5
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.9333,
+     "P": 1.0,
+     "R": 0.875,
+     "fn": 1,
+     "fp": 0,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 7
+    },
+    "plural_or_list": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "point": {
+     "F1": 0.6667,
+     "P": 1.0,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.6667,
+     "P": 0.6667,
+     "R": 0.6667,
+     "fn": 1,
+     "fp": 1,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "anaphoric_internal": {
+     "F1": 0.4,
+     "P": 0.3333,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 2,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.5455,
+     "P": 0.5,
+     "R": 0.6,
+     "fn": 2,
+     "fp": 3,
+     "n": 5,
+     "n_lt_5": false,
+     "tp": 3
+    },
+    "chapter_section": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "external_instrument": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 6,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "hard_negative": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "paragraph_same_article": {
+     "F1": 0.8,
+     "P": 0.8571,
+     "R": 0.75,
+     "fn": 2,
+     "fp": 1,
+     "n": 8,
+     "n_lt_5": false,
+     "tp": 6
+    },
+    "plural_or_list": {
+     "F1": 1.0,
+     "P": 1.0,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 3,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "point": {
+     "F1": 0.6667,
+     "P": 1.0,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 0,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.8966,
+    "P": 0.9286,
+    "R": 0.8667,
+    "fn": 2,
+    "fp": 1,
+    "tp": 13
+   },
+   "e2e": {
+    "F1": 0.7586,
+    "P": 0.7857,
+    "R": 0.7333,
+    "fn": 4,
+    "fp": 3,
+    "tp": 11
+   },
+   "external_instrument_level": {
+    "F1": 0.8,
+    "P": 0.8,
+    "R": 0.8,
+    "fn": 1,
+    "fp": 1,
+    "tp": 4
+   },
+   "internal_target_level": {
+    "F1": 0.7619,
+    "P": 0.8,
+    "R": 0.7273,
+    "fn": 3,
+    "fp": 2,
+    "tp": 8
+   },
+   "kind_accuracy": 1.0,
+   "kind_total_matched": 13,
+   "n_items": 10
+  },
+  "us-s230": {
+   "by_kind": {
+    "EXTERNAL": {
+     "F1": 0.8889,
+     "P": 0.8,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "tp": 4
+    },
+    "INTERNAL": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "tp": 0
+    }
+   },
+   "by_tag_detection": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.8,
+     "P": 0.6667,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "external_instrument": {
+     "F1": 0.8889,
+     "P": 0.8,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "hard_negative": {
+     "F1": 0.8889,
+     "P": 0.8,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 4
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.8,
+     "P": 0.6667,
+     "R": 1.0,
+     "fn": 0,
+     "fp": 1,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 2
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "by_tag_e2e": {
+    "ambiguous_reference": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_external": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "anaphoric_internal": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "annex": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "chapter_section": {
+     "F1": 0.4,
+     "P": 0.3333,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 2,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "external_instrument": {
+     "F1": 0.6667,
+     "P": 0.6,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 2,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "hard_negative": {
+     "F1": 0.6667,
+     "P": 0.6,
+     "R": 0.75,
+     "fn": 1,
+     "fp": 2,
+     "n": 4,
+     "n_lt_5": true,
+     "tp": 3
+    },
+    "paragraph_same_article": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "plural_or_list": {
+     "F1": 0.4,
+     "P": 0.3333,
+     "R": 0.5,
+     "fn": 1,
+     "fp": 2,
+     "n": 2,
+     "n_lt_5": true,
+     "tp": 1
+    },
+    "point": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 1,
+     "fp": 0,
+     "n": 1,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "quoted_amending_text": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    },
+    "range": {
+     "F1": 0.0,
+     "P": 0.0,
+     "R": 0.0,
+     "fn": 0,
+     "fp": 0,
+     "n": 0,
+     "n_lt_5": true,
+     "tp": 0
+    }
+   },
+   "detection": {
+    "F1": 0.8,
+    "P": 0.8,
+    "R": 0.8,
+    "fn": 1,
+    "fp": 1,
+    "tp": 4
+   },
+   "e2e": {
+    "F1": 0.6,
+    "P": 0.6,
+    "R": 0.6,
+    "fn": 2,
+    "fp": 2,
+    "tp": 3
+   },
+   "external_instrument_level": {
+    "F1": 1.0,
+    "P": 1.0,
+    "R": 1.0,
+    "fn": 0,
+    "fp": 0,
+    "tp": 4
+   },
+   "internal_target_level": {
+    "F1": 0.0,
+    "P": 0.0,
+    "R": 0.0,
+    "fn": 1,
+    "fp": 1,
+    "tp": 0
+   },
+   "kind_accuracy": 0.75,
+   "kind_total_matched": 4,
+   "n_items": 4
+  }
+ },
+ "pooled": {
+  "by_kind": {
+   "EXTERNAL": {
+    "F1": 0.906,
+    "P": 0.9464,
+    "R": 0.8689,
+    "fn": 8,
+    "fp": 3,
+    "tp": 53
+   },
+   "INTERNAL": {
+    "F1": 0.9237,
+    "P": 0.903,
+    "R": 0.9453,
+    "fn": 7,
+    "fp": 13,
+    "tp": 121
+   }
+  },
+  "by_tag_detection": {
+   "ambiguous_reference": {
+    "F1": 0.8421,
+    "P": 0.8889,
+    "R": 0.8,
+    "fn": 2,
+    "fp": 1,
+    "n": 10,
+    "n_lt_5": false,
+    "tp": 8
+   },
+   "anaphoric_external": {
+    "F1": 0.931,
+    "P": 0.931,
+    "R": 0.931,
+    "fn": 2,
+    "fp": 2,
+    "n": 29,
+    "n_lt_5": false,
+    "tp": 27
+   },
+   "anaphoric_internal": {
+    "F1": 0.8814,
+    "P": 0.8387,
+    "R": 0.9286,
+    "fn": 2,
+    "fp": 5,
+    "n": 28,
+    "n_lt_5": false,
+    "tp": 26
+   },
+   "annex": {
+    "F1": 0.8511,
+    "P": 0.7692,
+    "R": 0.9524,
+    "fn": 1,
+    "fp": 6,
+    "n": 21,
+    "n_lt_5": false,
+    "tp": 20
+   },
+   "article": {
+    "F1": 0.9697,
+    "P": 0.9697,
+    "R": 0.9697,
+    "fn": 1,
+    "fp": 1,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 32
+   },
+   "chapter_section": {
+    "F1": 0.9388,
+    "P": 0.902,
+    "R": 0.9787,
+    "fn": 1,
+    "fp": 5,
+    "n": 47,
+    "n_lt_5": false,
+    "tp": 46
+   },
+   "external_instrument": {
+    "F1": 0.8919,
+    "P": 0.8919,
+    "R": 0.8919,
+    "fn": 8,
+    "fp": 8,
+    "n": 74,
+    "n_lt_5": false,
+    "tp": 66
+   },
+   "hard_negative": {
+    "F1": 0.9048,
+    "P": 0.8261,
+    "R": 1.0,
+    "fn": 0,
+    "fp": 4,
+    "n": 19,
+    "n_lt_5": false,
+    "tp": 19
+   },
+   "paragraph_same_article": {
+    "F1": 0.9394,
+    "P": 0.9394,
+    "R": 0.9394,
+    "fn": 2,
+    "fp": 2,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 31
+   },
+   "plural_or_list": {
+    "F1": 0.8777,
+    "P": 0.8714,
+    "R": 0.8841,
+    "fn": 8,
+    "fp": 9,
+    "n": 69,
+    "n_lt_5": false,
+    "tp": 61
+   },
+   "point": {
+    "F1": 0.8387,
+    "P": 0.8667,
+    "R": 0.8125,
+    "fn": 3,
+    "fp": 2,
+    "n": 16,
+    "n_lt_5": false,
+    "tp": 13
+   },
+   "quoted_amending_text": {
+    "F1": 0.8235,
+    "P": 0.7,
+    "R": 1.0,
+    "fn": 0,
+    "fp": 3,
+    "n": 7,
+    "n_lt_5": false,
+    "tp": 7
+   },
+   "range": {
+    "F1": 0.9434,
+    "P": 0.9259,
+    "R": 0.9615,
+    "fn": 1,
+    "fp": 2,
+    "n": 26,
+    "n_lt_5": false,
+    "tp": 25
+   }
+  },
+  "by_tag_e2e": {
+   "ambiguous_reference": {
+    "F1": 0.2105,
+    "P": 0.2222,
+    "R": 0.2,
+    "fn": 8,
+    "fp": 7,
+    "n": 10,
+    "n_lt_5": false,
+    "tp": 2
+   },
+   "anaphoric_external": {
+    "F1": 0.6552,
+    "P": 0.6552,
+    "R": 0.6552,
+    "fn": 10,
+    "fp": 10,
+    "n": 29,
+    "n_lt_5": false,
+    "tp": 19
+   },
+   "anaphoric_internal": {
+    "F1": 0.5424,
+    "P": 0.5161,
+    "R": 0.5714,
+    "fn": 12,
+    "fp": 15,
+    "n": 28,
+    "n_lt_5": false,
+    "tp": 16
+   },
+   "annex": {
+    "F1": 0.4255,
+    "P": 0.3846,
+    "R": 0.4762,
+    "fn": 11,
+    "fp": 16,
+    "n": 21,
+    "n_lt_5": false,
+    "tp": 10
+   },
+   "article": {
+    "F1": 0.8182,
+    "P": 0.8182,
+    "R": 0.8182,
+    "fn": 6,
+    "fp": 6,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 27
+   },
+   "chapter_section": {
+    "F1": 0.7347,
+    "P": 0.7059,
+    "R": 0.766,
+    "fn": 11,
+    "fp": 15,
+    "n": 47,
+    "n_lt_5": false,
+    "tp": 36
+   },
+   "external_instrument": {
+    "F1": 0.6216,
+    "P": 0.6216,
+    "R": 0.6216,
+    "fn": 28,
+    "fp": 28,
+    "n": 74,
+    "n_lt_5": false,
+    "tp": 46
+   },
+   "hard_negative": {
+    "F1": 0.6667,
+    "P": 0.6087,
+    "R": 0.7368,
+    "fn": 5,
+    "fp": 9,
+    "n": 19,
+    "n_lt_5": false,
+    "tp": 14
+   },
+   "paragraph_same_article": {
+    "F1": 0.7273,
+    "P": 0.7273,
+    "R": 0.7273,
+    "fn": 9,
+    "fp": 9,
+    "n": 33,
+    "n_lt_5": false,
+    "tp": 24
+   },
+   "plural_or_list": {
+    "F1": 0.5612,
+    "P": 0.5571,
+    "R": 0.5652,
+    "fn": 30,
+    "fp": 31,
+    "n": 69,
+    "n_lt_5": false,
+    "tp": 39
+   },
+   "point": {
+    "F1": 0.3871,
+    "P": 0.4,
+    "R": 0.375,
+    "fn": 10,
+    "fp": 9,
+    "n": 16,
+    "n_lt_5": false,
+    "tp": 6
+   },
+   "quoted_amending_text": {
+    "F1": 0.4706,
+    "P": 0.4,
+    "R": 0.5714,
+    "fn": 3,
+    "fp": 6,
+    "n": 7,
+    "n_lt_5": false,
+    "tp": 4
+   },
+   "range": {
+    "F1": 0.7547,
+    "P": 0.7407,
+    "R": 0.7692,
+    "fn": 6,
+    "fp": 7,
+    "n": 26,
+    "n_lt_5": false,
+    "tp": 20
+   }
+  },
+  "detection": {
+   "F1": 0.9182,
+   "P": 0.9158,
+   "R": 0.9206,
+   "fn": 15,
+   "fp": 16,
+   "tp": 174
+  },
+  "e2e": {
+   "F1": 0.7018,
+   "P": 0.7,
+   "R": 0.7037,
+   "fn": 56,
+   "fp": 57,
+   "tp": 133
+  },
+  "external_instrument_level": {
+   "F1": 0.7826,
+   "P": 0.8571,
+   "R": 0.72,
+   "fn": 14,
+   "fp": 6,
+   "tp": 36
+  },
+  "internal_target_level": {
+   "F1": 0.7621,
+   "P": 0.8187,
+   "R": 0.7129,
+   "fn": 60,
+   "fp": 33,
+   "tp": 149
+  },
+  "kind_accuracy": 0.9655
+ },
+ "profile_digest": "888f219701d54ab5c592b803fd11d06cb145ad60f5fda26d05949ea3ec3256c3",
+ "scorer_sha256": "0474dce5eac109328ab5bdcc3af917fc89e27487ae7de113486000ba5df7bdac",
+ "scoring_sha256": "dade8ffc13f40451a584103bd301e8ae7497c9502ad71dfc0db6f5b147942a5e",
+ "split_sha256": "c96e12133100db8cbb09de3cba736fd25b2f624fe02c72f56c83a2e341ab1010",
+ "xref_resolver": "shared-v2",
+ "excluded_ids": [
+  "us-coppa-xref-026",
+  "us-coppa-xref-009",
+  "us-coppa-xref-010",
+  "us-coppa-xref-012",
+  "us-coppa-xref-024",
+  "us-coppa-xref-029",
+  "uk-osa2023-xref-006",
+  "uk-osa2023-xref-025"
+ ],
+ "exclusion_source": "CONTAMINATION.md (owner decision 2026-10-06)"
+}

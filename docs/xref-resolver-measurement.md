@@ -325,6 +325,11 @@ cited section for the worked example and exact condition.
 
 ## 7. Reproducibility
 
+The locked split, the scoring rules, the run log and the result files are
+published byte for byte in `docs/xref-resolver-evidence/`, with their sha256
+values. Its README lists what stays private: the gold, the contamination
+record, and the scorer.
+
 Scorer commands (held-out part, run once; see `CONTAMINATION.md`'s
 "Exact run procedure" note for the full preconditions):
 
