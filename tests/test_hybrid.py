@@ -621,7 +621,7 @@ def test_prompt_template_sha_is_stable():
 
 
 def test_decision_json_schema_rejects_an_extra_field():
-    import jsonschema
+    jsonschema = pytest.importorskip("jsonschema")
     good = {
         "candidate_set_sha": "a", "coder_view_sha": "b", "model_id": "c",
         "prompt_template_sha": "d", "selections": [],
