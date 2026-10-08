@@ -1,0 +1,28 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b2-host-named-in-preceding-text-uk",
+  "input": {
+    "text": "Section 5 of that Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Data Protection Act 2018",
+    "preceding_text": "This is the Data Protection Act 2018."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 5 of that Act",
+        "literal_start": 0,
+        "literal_end": 21,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 5",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The host is named only in preceding_text, not in text. The designation-resolution scan for 'of that Act' must cover the same span the kind-typed fallback scans (preceding_text and text together), and a naming that matches the host must be read as the HOST, never as a genuinely external Act."
+}

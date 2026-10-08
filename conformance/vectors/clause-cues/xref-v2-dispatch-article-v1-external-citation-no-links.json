@@ -1,0 +1,11 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-article-v1-external-citation-no-links",
+  "input": {
+    "text": "This measure complies with Article 4(2) of Council Regulation (EC) No 1/2003.",
+    "source_id": "entry-x"
+  },
+  "expected": {
+    "links": []
+  }
+}

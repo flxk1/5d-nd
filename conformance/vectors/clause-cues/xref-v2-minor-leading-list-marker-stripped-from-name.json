@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-leading-list-marker-stripped-from-name",
+  "input": {
+    "text": "This is amended by (b) The Consumer Rights Act 2015.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "(b) The Consumer Rights Act 2015",
+        "literal_start": 19,
+        "literal_end": 51,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Consumer Rights Act 2015",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "A UK plain-text dump's own list marker ('(b) ') sitting immediately before the real instrument name is NOT part of that name -- _EXT_ACT_WITH_YEAR's own 'optionally with a parenthetical' support (for an Act name like 'The Example Procedure (Highlands) Act 1995') also matches a leading list-marker bracket; external_instrument strips it (the literal itself keeps it, per R7 verbatim)."
+}

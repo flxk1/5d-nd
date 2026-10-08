@@ -1,0 +1,50 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-range-sections-of-this-title-all-members",
+  "input": {
+    "text": "A controller shall comply with sections 7744 to 7748 of this title.",
+    "numbering_family": "us",
+    "host_title_instrument": "31 U.S.C.",
+    "host_section_numbers": [
+      "7744",
+      "7745",
+      "7746",
+      "7747",
+      "7748"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 7744 to 7748 of this title",
+        "literal_start": 31,
+        "literal_end": 66,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 7744",
+            "expanded_from": "sections 7744 to 7748"
+          },
+          {
+            "pinpoint": "§ 7745",
+            "expanded_from": "sections 7744 to 7748"
+          },
+          {
+            "pinpoint": "§ 7746",
+            "expanded_from": "sections 7744 to 7748"
+          },
+          {
+            "pinpoint": "§ 7747",
+            "expanded_from": "sections 7744 to 7748"
+          },
+          {
+            "pinpoint": "§ 7748",
+            "expanded_from": "sections 7744 to 7748"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "A RANGE 'sections N to M of this title' with EVERY member in host_section_numbers expands to all 5 targets, one reference, INTERNAL."
+}

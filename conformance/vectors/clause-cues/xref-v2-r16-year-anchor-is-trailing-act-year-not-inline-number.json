@@ -1,0 +1,36 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r16-year-anchor-is-trailing-act-year-not-inline-number",
+  "input": {
+    "text": "Section 4 of the 2020 Act applies. Section 4 of the 1999 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example 1999 Reform Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 4 of the 2020 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 4",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Section 4 of the 1999 Act",
+        "literal_start": 35,
+        "literal_end": 60,
+        "kind": "EXTERNAL",
+        "external_instrument": "1999 Act",
+        "targets": [],
+        "external_target": "section 4"
+      }
+    ]
+  },
+  "_note": "The host name 'Example 1999 Reform Act 2020' carries ANOTHER 4-digit number (1999) besides the trailing Act year (2020). The derived short year MUST come only from the TRAILING '... Act YYYY' anchor: 'the 2020 Act' resolves INTERNAL (matches the host's own derived year), 'the 1999 Act' stays EXTERNAL (a different year, even though 1999 appears literally inside the host's own name). Constructed wording."
+}

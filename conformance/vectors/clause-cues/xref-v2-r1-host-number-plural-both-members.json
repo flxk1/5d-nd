@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-host-number-plural-both-members",
+  "input": {
+    "text": "Articles 6 and 7 of Regulation (EU) 2016/679 apply.",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Articles 6 and 7 of Regulation (EU) 2016/679",
+        "literal_start": 0,
+        "literal_end": 44,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6",
+            "expanded_from": "Articles 6 and 7"
+          },
+          {
+            "pinpoint": "Article 7",
+            "expanded_from": "Articles 6 and 7"
+          }
+        ]
+      }
+    ]
+  }
+}

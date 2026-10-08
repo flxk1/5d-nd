@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-uk-chapter",
+  "input": {
+    "text": "The duties in Chapter 2 apply.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Chapter 2",
+        "literal_start": 14,
+        "literal_end": 23,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Chapter 2",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

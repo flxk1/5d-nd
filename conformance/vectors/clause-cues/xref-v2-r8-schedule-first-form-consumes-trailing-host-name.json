@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-schedule-first-form-consumes-trailing-host-name",
+  "input": {
+    "text": "Schedule 6, paragraph 4 of the Processing Rules applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Processing Rules"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Schedule 6, paragraph 4 of the Processing Rules",
+        "literal_start": 0,
+        "literal_end": 47,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 6, paragraph 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "mutant proof (_consume_trailing_host_name call site, _UK_SCHEDULE_FIRST_RE): the Schedule-first pinpoint order (\"Schedule N, paragraph M\") followed by a bare host naming consumes it into the SAME reference, not a dropped or orphaned second match. Constructed wording."
+}

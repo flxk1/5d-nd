@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m7-plural-schedules-expanded",
+  "input": {
+    "text": "Schedules 11, 12 and 13 apply.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Schedules 11, 12 and 13",
+        "literal_start": 0,
+        "literal_end": 23,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 11",
+            "expanded_from": "Schedules 11, 12 and 13"
+          },
+          {
+            "pinpoint": "Schedule 12",
+            "expanded_from": "Schedules 11, 12 and 13"
+          },
+          {
+            "pinpoint": "Schedule 13",
+            "expanded_from": "Schedules 11, 12 and 13"
+          }
+        ]
+      }
+    ]
+  }
+}

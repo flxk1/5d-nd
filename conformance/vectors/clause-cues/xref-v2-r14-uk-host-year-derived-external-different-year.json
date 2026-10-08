@@ -1,0 +1,23 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-uk-host-year-derived-external-different-year",
+  "input": {
+    "text": "Section 5 of the 1990 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 5 of the 1990 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "EXTERNAL",
+        "external_instrument": "1990 Act",
+        "targets": [],
+        "external_target": "section 5"
+      }
+    ]
+  },
+  "_note": "With the host's year derived from host_instrument_name ('Example Protection Act 2020' -> 2020), a DIFFERENT short year ('the 1990 Act') is still a different, EXTERNAL Act. Constructed wording."
+}

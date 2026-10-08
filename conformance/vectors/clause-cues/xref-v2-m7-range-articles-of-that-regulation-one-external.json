@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m7-range-articles-of-that-regulation-one-external",
+  "input": {
+    "text": "Articles 55 to 58 of that Regulation apply.",
+    "preceding_text": "Regulation (EU) 2019/1020 applies. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Articles 55 to 58 of that Regulation",
+        "literal_start": 0,
+        "literal_end": 36,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": "Article 55"
+      }
+    ]
+  }
+}

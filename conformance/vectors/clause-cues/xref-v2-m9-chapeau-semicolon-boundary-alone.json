@@ -1,0 +1,43 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m9-chapeau-semicolon-boundary-alone",
+  "input": {
+    "text": "In Regulation (EU) 2019/1020, Article 10 is defined; Article 14 applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 3,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 10",
+        "literal_start": 30,
+        "literal_end": 40,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": "Article 10"
+      },
+      {
+        "literal": "Article 14",
+        "literal_start": 53,
+        "literal_end": 63,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 14",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The chapeau span ends at the semicolon -- 'Article 10' (before it) is redirected EXTERNAL; 'Article 14' (after it, no self-naming suffix of its own) is OUTSIDE the chapeau's span and resolves ordinary INTERNAL. Neither reference uses 'of this Regulation', so this vector is redundant with neither the period-only chapeau case nor the explicit-self-override vector."
+}

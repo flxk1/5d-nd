@@ -1,0 +1,13 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-mut-a-this-that-host-deferral-no-item",
+  "input": {
+    "text": "That Example Convention on Certain Procedural Matters governs disputes between the parties.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Example Convention on Certain Procedural Matters"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "A deictic 'this <host name>'/'that <host name>' with NO pinpoint of its own is R1's bare self-reference shape and produces NO item -- never an INTERNAL 'Instrument' reference for this bare mention."
+}

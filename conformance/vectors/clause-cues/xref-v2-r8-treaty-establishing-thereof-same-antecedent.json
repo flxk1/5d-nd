@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-treaty-establishing-thereof-same-antecedent",
+  "input": {
+    "text": "Article 44 of the Treaty establishing the Interplanetary Postal Union, and in particular Article 44 thereof, applies.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Directive 2031/77/EU",
+    "host_instrument_number": "2031/77"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 44 of the Treaty establishing the Interplanetary Postal Union",
+        "literal_start": 0,
+        "literal_end": 69,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty establishing the Interplanetary Postal Union",
+        "targets": [],
+        "external_target": "Article 44"
+      },
+      {
+        "literal": "Article 44 thereof",
+        "literal_start": 89,
+        "literal_end": 107,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty establishing the Interplanetary Postal Union",
+        "targets": [],
+        "external_target": "Article 44"
+      }
+    ]
+  },
+  "_note": "‘Treaty establishing …’ is a recognised NAMED treaty; a later ‘thereof’ in the same sentence resolves to the SAME EXTERNAL antecedent, never an extra/wrong-kind item. Constructed wording."
+}

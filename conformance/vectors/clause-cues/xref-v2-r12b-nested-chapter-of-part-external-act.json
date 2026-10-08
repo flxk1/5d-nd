@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-nested-chapter-of-part-external-act",
+  "input": {
+    "text": "Chapter 2 of Part 3 of the Example Act 1996 applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Chapter 2 of Part 3 of the Example Act 1996",
+        "literal_start": 0,
+        "literal_end": 43,
+        "kind": "EXTERNAL",
+        "external_instrument": "Example Act 1996",
+        "targets": [],
+        "external_target": "Part 3, Chapter 2"
+      }
+    ]
+  },
+  "_note": "The Chapter-of-Part loop has no 'of <NAMED instrument>' claim of its own (unlike the bare Part/Chapter loop), and Pass 3's bare-name scan does NOT defer for this nested shape; the whole nested chain plus the named Act must be ONE EXTERNAL reference, never a bare name claim stranding the Chapter-of-Part pinpoint as a separate, un-hosted INTERNAL reference."
+}

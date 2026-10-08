@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-pipeline-combined-threads-enclosing-units",
+  "input": {
+    "text": "This Chapter applies.",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "part": "Part 7"
+    }
+  },
+  "expected": {
+    "combined": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  },
+  "_note": "N2 pipeline threading: combined_contributions() must thread enclosing_units through to clause_cue_contributions()/resolve_references() -- structural stays 0, not 1."
+}

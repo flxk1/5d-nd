@@ -1,0 +1,41 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b2-nbsp-host-naming-both-internal",
+  "input": {
+    "text": "Article 6 of Regulation (EU) 2024/1689 and Article 8 of that Regulation apply.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6 of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 38,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Article 8 of that Regulation",
+        "literal_start": 43,
+        "literal_end": 71,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 8",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The host's own name is written with NBSP between its tokens ('Regulation\\xa0(EU)\\xa02024/1689'). The host-naming scan must be whitespace/NBSP-tolerant, not a plain re.escape over an ordinary-space literal, so both Article 6 (direct self-naming) and Article 8 (anaphoric 'that Regulation') resolve INTERNAL."
+}

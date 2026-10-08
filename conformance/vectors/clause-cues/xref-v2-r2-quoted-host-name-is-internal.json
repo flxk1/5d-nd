@@ -1,0 +1,38 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r2-quoted-host-name-is-internal",
+  "input": {
+    "text": "Autonomous vehicles as referred to in Regulation (EU) 2031/4487 of the European Parliament and of the Council are governed by Chapter VII, Section 3, of that Regulation.",
+    "host_instrument_name": "Regulation (EU) 2031/4487"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2031/4487 of the European Parliament and of the Council",
+        "literal_start": 38,
+        "literal_end": 109,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Instrument",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Chapter VII, Section 3, of that Regulation",
+        "literal_start": 126,
+        "literal_end": 168,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Chapter VII, Section 3",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-oder-ordnung-no-substring-false-fire",
+  "input": {
+    "text": "Dies erfolgt der Ordnung halber.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'der Ordnung halber' (idiom, 'for the sake of order') has a real whole-word 'der' immediately before 'Ordnung', but with no stem and no trailing ueber/gegen phrase it is still ordinary prose, not a citation. This also protects against the related substring bug (missing \\\\b before der/des/dem, which could otherwise match 'der' inside 'oDER Ordnung')."
+}

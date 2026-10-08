@@ -1,0 +1,55 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m5-through-connector-and-range-word",
+  "input": {
+    "text": "The requirements of section 100 through 105 of this title shall apply.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "100",
+      "101",
+      "102",
+      "103",
+      "104",
+      "105"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 100 through 105 of this title",
+        "literal_start": 20,
+        "literal_end": 57,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 100",
+            "expanded_from": "section 100 through 105"
+          },
+          {
+            "pinpoint": "§ 101",
+            "expanded_from": "section 100 through 105"
+          },
+          {
+            "pinpoint": "§ 102",
+            "expanded_from": "section 100 through 105"
+          },
+          {
+            "pinpoint": "§ 103",
+            "expanded_from": "section 100 through 105"
+          },
+          {
+            "pinpoint": "§ 104",
+            "expanded_from": "section 100 through 105"
+          },
+          {
+            "pinpoint": "§ 105",
+            "expanded_from": "section 100 through 105"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'through' must work as BOTH a SECTION_PLURAL list connector (so 'section 100 through 105' is recognised as one plural match at all) and as a RANGE word (so 101-104 are fully EXPANDED, not dropped). Kills two separate mutants: removing 'through' from _SECTION_LIST_CONNECTOR (the match would then only capture 'section 100', leaving 'through 105 of this title' as unmatched plain text, producing a different reference set entirely) and removing it from _RANGE_CONNECTOR_WORDS (101-104 would never be expanded as implied members). Constructed wording."
+}

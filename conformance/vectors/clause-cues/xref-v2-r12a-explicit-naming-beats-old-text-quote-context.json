@@ -1,0 +1,69 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12a-explicit-naming-beats-old-text-quote-context",
+  "input": {
+    "text": "In paragraph 9(5), for “the Example Registration Act 1990” substitute “Parts 2 to 4 of the Example Registration Act 2018 (see section 11(1) and (6) of that Act)”.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 9(5)",
+        "literal_start": 3,
+        "literal_end": 17,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "paragraph 9(5)",
+            "expanded_from": null
+          }
+        ],
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      },
+      {
+        "literal": "Parts 2 to 4 of the Example Registration Act 2018",
+        "literal_start": 71,
+        "literal_end": 120,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 2",
+            "expanded_from": "Parts 2 to 4"
+          },
+          {
+            "pinpoint": "Part 3",
+            "expanded_from": "Parts 2 to 4"
+          },
+          {
+            "pinpoint": "Part 4",
+            "expanded_from": "Parts 2 to 4"
+          }
+        ]
+      },
+      {
+        "literal": "section 11(1) and (6) of that Act",
+        "literal_start": 126,
+        "literal_end": 159,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 11(1)",
+            "expanded_from": "section 11(1) and (6)"
+          },
+          {
+            "pinpoint": "section 11(6)",
+            "expanded_from": "section 11(1) and (6)"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "An explicit naming inside the NEW (inserted) quoted text that matches the HOST ('the Example Registration Act 2018') is INTERNAL, never rerouted EXTERNAL to whatever instrument happened to be named inside the OLD (struck) quoted text ('the Example Registration Act 1990') that precedes it -- a mention inside the OLD span is never an antecedent. The 1990 Act, carrying no pinpoint of its own inside the OLD text, gives no item at all. Constructed wording."
+}

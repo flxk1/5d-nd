@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-generic-s-dot",
+  "input": {
+    "text": "The duty in s. 14 applies.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "s. 14",
+        "literal_start": 12,
+        "literal_end": 17,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 14",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

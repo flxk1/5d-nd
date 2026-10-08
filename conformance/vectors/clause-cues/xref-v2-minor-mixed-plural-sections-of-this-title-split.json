@@ -1,0 +1,40 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-mixed-plural-sections-of-this-title-split",
+  "input": {
+    "text": "A controller shall comply with sections 7744 and 7750 of this title.",
+    "numbering_family": "us",
+    "host_title_instrument": "31 U.S.C.",
+    "host_section_numbers": [
+      "7744",
+      "7745"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 7744",
+        "literal_start": 31,
+        "literal_end": 44,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 7744",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "and 7750 of this title",
+        "literal_start": 45,
+        "literal_end": 67,
+        "kind": "EXTERNAL",
+        "external_instrument": "31 U.S.C.",
+        "targets": [],
+        "external_target": "§ 7750"
+      }
+    ]
+  },
+  "_note": "'sections 7744 and 7750 of this title' with 7744 in host_section_numbers and 7750 not must SPLIT into an INTERNAL member and an EXTERNAL member, never truncate to a single target or classify the whole list by only the first member's status."
+}

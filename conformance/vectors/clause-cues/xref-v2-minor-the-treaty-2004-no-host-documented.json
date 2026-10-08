@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-the-treaty-2004-no-host-documented",
+  "input": {
+    "text": "The Treaty 2004 applies to all member states."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "The Treaty 2004",
+        "literal_start": 0,
+        "literal_end": 15,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Treaty 2004",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "With NO host name, a sentence-INITIAL 'The X Act/Treaty/... YYYY' is matched by _EXT_ACT_WITH_YEAR's own standalone scan (Pass 3), whose own leading '(?:the )?' group becomes PART of the captured name here ('The Treaty 2004') -- unlike the 'of (the) X Act YYYY' form (see xref-v2-m7-plural-sections-of-act-one-external.json), where the SAME word 'the' is stripped by _OF_EXTERNAL_RE's own separate optional group before the Act-with-year pattern ever sees it. This is an inconsistency in how 'the'/'The' is captured depending on which code path reaches the name, recorded here as the TRUE, current behaviour, and in spec/SPEC.md's own KNOWN LIMITS."
+}

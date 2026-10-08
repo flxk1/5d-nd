@@ -1,0 +1,70 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-that-schedule-skips-paragraph-sub-unit",
+  "input": {
+    "text": "See Part 3 of Schedule 3, paragraph 4 of Schedule 2, and Parts 1 and 2 of that Schedule.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Part 3",
+        "literal_start": 4,
+        "literal_end": 10,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 3",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Schedule 3, paragraph 4",
+        "literal_start": 14,
+        "literal_end": 37,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 3, paragraph 4",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Schedule 2",
+        "literal_start": 41,
+        "literal_end": 51,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 2",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Parts 1 and 2 of that Schedule",
+        "literal_start": 57,
+        "literal_end": 87,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 2, Part 1",
+            "expanded_from": "Parts 1 and 2"
+          },
+          {
+            "pinpoint": "Schedule 2, Part 2",
+            "expanded_from": "Parts 1 and 2"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The r12a sub-unit-anaphora type-word filter restricts 'that Schedule' to the NEAREST mention of KIND Schedule -- 'paragraph 4' is a sub-unit, never itself a Schedule-kind mention, so 'that Schedule' skips past it to 'Schedule 2', never to the paragraph. Constructed wording."
+}

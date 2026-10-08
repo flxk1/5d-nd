@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-second-treaty-citation-not-lost",
+  "input": {
+    "text": "Article 6 of the Convention on Example Matters and Article 7 of the Budapest Example Convention apply."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6 of the Convention on Example Matters",
+        "literal_start": 0,
+        "literal_end": 46,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention on Example Matters",
+        "targets": [],
+        "external_target": "Article 6"
+      },
+      {
+        "literal": "Article 7 of the Budapest Example Convention",
+        "literal_start": 51,
+        "literal_end": 95,
+        "kind": "EXTERNAL",
+        "external_instrument": "Budapest Example Convention",
+        "targets": [],
+        "external_target": "Article 7"
+      }
+    ]
+  },
+  "_note": "The 'and Article' continuation-stop guard, checked where the first treaty name itself has its OWN internal connector ('Convention on Example Matters') so the guard must not just happen to work because the first name was short; the second citation's own name and pinpoint must both survive intact."
+}

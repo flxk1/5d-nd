@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-adjective-compound-statute-full-name",
+  "input": {
+    "text": "§ 22 Absatz 1 des Allgemeinen Gleichbehandlungsgesetzes gilt entsprechend.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 22 Absatz 1 des Allgemeinen Gleichbehandlungsgesetzes",
+        "literal_start": 0,
+        "literal_end": 55,
+        "kind": "EXTERNAL",
+        "external_instrument": "Allgemeines Gleichbehandlungsgesetz",
+        "targets": [],
+        "external_target": "§ 22 Abs. 1"
+      }
+    ]
+  },
+  "_note": "'des Allgemeinen Gleichbehandlungsgesetzes' must resolve to the FULL name 'Allgemeines Gleichbehandlungsgesetz', not be missed entirely (the compound suffix 'gesetzes' is fused, lower-case, mid-word -- it needs an adjective+fused-compound alternative, not only the standalone-suffix-word (b) alternative). The trailing 'gilt entsprechend' stays OUTSIDE the literal (supplement Sec3)."
+}

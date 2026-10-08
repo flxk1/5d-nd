@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-major-de-vertrag-entsprechend-no-false-fire",
+  "input": {
+    "text": "Dies erfolgt dem Vertrag entsprechend.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'dem Vertrag entsprechend' -- a bare 'Vertrag' with no stem, no preceding adjective and no trailing ueber/gegen phrase is ordinary prose ('in accordance with the contract'), not a named treaty."
+}

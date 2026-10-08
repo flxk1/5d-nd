@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-outer-first-chapter-of-part",
+  "input": {
+    "text": "The obligation in Chapter 4 of Part 5 applies.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Chapter 4 of Part 5",
+        "literal_start": 18,
+        "literal_end": 37,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 5, Chapter 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

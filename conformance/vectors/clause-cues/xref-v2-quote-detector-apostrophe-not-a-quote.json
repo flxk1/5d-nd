@@ -1,0 +1,38 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-quote-detector-apostrophe-not-a-quote",
+  "input": {
+    "text": "The Commissioner's duty under section 7 and the person's rights under section 8 both apply.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 7",
+        "literal_start": 30,
+        "literal_end": 39,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 7",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "section 8",
+        "literal_start": 70,
+        "literal_end": 79,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 8",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m3-oxford-and-list-mixed-no-drop",
+  "input": {
+    "text": "sections 6501, 6502, and 45 of this title",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6501",
+        "literal_start": 0,
+        "literal_end": 13,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6501",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": ", 6502",
+        "literal_start": 13,
+        "literal_end": 19,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": ", and 45 of this title",
+        "literal_start": 19,
+        "literal_end": 41,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 45"
+      }
+    ]
+  },
+  "_note": "The Oxford-comma ', and' connector before the LAST listed member must not drop that member either; 6501 and 6502 are INTERNAL, 45 is EXTERNAL."
+}

@@ -1,0 +1,40 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m6-head-noun-regulation-implementing-directive",
+  "input": {
+    "text": "Article 3 of Regulation (EU) 2016/679 implementing Directive 95/46/EC applies, and that Regulation also governs retention.",
+    "numbering_family": "eu"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 3 of Regulation (EU) 2016/679",
+        "literal_start": 0,
+        "literal_end": 37,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2016/679",
+        "targets": [],
+        "external_target": "Article 3"
+      },
+      {
+        "literal": "Directive 95/46/EC",
+        "literal_start": 51,
+        "literal_end": 69,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 95/46/EC",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "that Regulation",
+        "literal_start": 83,
+        "literal_end": 98,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2016/679",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "'Regulation (EU) 2016/679 implementing Directive 95/46/EC' is a REGULATION — the head is the FIRST instrument keyword ('Regulation'), never the LATER 'Directive' inside the 'implementing ...' complement; 'that Regulation' correctly picks the Regulation as its antecedent by KIND, not the nearer-mentioned Directive. Constructed wording (no source-text sentence; both instrument numbers are invented-adjacent but structurally generic EU citation shapes)."
+}

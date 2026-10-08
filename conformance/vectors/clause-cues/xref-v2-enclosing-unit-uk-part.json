@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-enclosing-unit-uk-part",
+  "input": {
+    "source_text": "Introductory text. PART 1 General provisions. Section 1 applies to everyone in this Part.",
+    "offset": 60,
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "enclosing_unit": "Part 1"
+  }
+}

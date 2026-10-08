@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-eu-regulation-with-pinpoint",
+  "input": {
+    "text": "This measure complies with Article 11(2) of Council Regulation (EC) No 275/2009."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 11(2) of Council Regulation (EC) No 275/2009",
+        "literal_start": 27,
+        "literal_end": 79,
+        "kind": "EXTERNAL",
+        "external_instrument": "Council Regulation (EC) No 275/2009",
+        "targets": [],
+        "external_target": "Article 11(2)"
+      }
+    ]
+  }
+}

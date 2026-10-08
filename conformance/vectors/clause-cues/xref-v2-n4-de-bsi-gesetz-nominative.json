@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n4-de-bsi-gesetz-nominative",
+  "input": {
+    "text": "§ 3 Absatz 2 des BSI-Gesetzes gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 3 Absatz 2 des BSI-Gesetzes",
+        "literal_start": 0,
+        "literal_end": 29,
+        "kind": "EXTERNAL",
+        "external_instrument": "BSI-Gesetz",
+        "targets": [],
+        "external_target": "§ 3 Abs. 2"
+      }
+    ]
+  }
+}

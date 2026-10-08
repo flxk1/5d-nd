@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b4-sherman-act-usc-parenthetical-one-reference",
+  "input": {
+    "text": "This duty rests on the Sherman Act (15 U.S.C. 1 et seq.)."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "the Sherman Act",
+        "literal_start": 19,
+        "literal_end": 34,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Sherman Act",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  }
+}

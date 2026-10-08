@@ -1588,34 +1588,123 @@ def test_resolution_profile_non_negative_number_fields_reject_nan():
 
 
 # ── clause-cues (§8a) ───────────────────────────────────────────────────────
+#: resolve_references()'s own keyword set — a "raw"/"point"/"links"/
+#: "combined" vector MAY carry any of these — the dispatch reaches
+#: these entry points — to exercise
+#: ``xref_resolver="shared-v2"`` through the pipeline, not only through
+#: ``resolve_references`` directly.
+_XREF_DISPATCH_KEYS = (
+    "xref_resolver", "enclosing_unit", "numbering_family",
+    "host_instrument_name", "whole_host_unit", "preceding_text",
+    "enclosing_units", "host_title_instrument", "host_section_numbers",
+)
+
+
 @pytest.mark.parametrize("path", _load("clause-cues"), ids=lambda p: p.stem)
 def test_clause_cues(path):
     v = _case(path)
     inp = v["input"]
     host = inp.get("host_instrument_number")
+    xref_kwargs = {k: inp[k] for k in _XREF_DISPATCH_KEYS if k in inp}
     if "raw" in v["expected"]:
         raw = clause_cues.clause_cue_contributions(
             inp["text"], inp.get("self_article_number"),
-            host_instrument_number=host)
-        cross = clause_cues.cross_reference_targets(
-            inp["text"], inp.get("self_article_number"), host_instrument_number=host)
+            host_instrument_number=host, **xref_kwargs)
         assert raw == v["expected"]["raw"], v["case"]
-        assert cross == v["expected"]["cross_reference_targets"], v["case"]
+        if "cross_reference_targets" in v["expected"]:
+            cross = clause_cues.cross_reference_targets(
+                inp["text"], inp.get("self_article_number"), host_instrument_number=host)
+            assert cross == v["expected"]["cross_reference_targets"], v["case"]
     elif "point" in v["expected"]:
         point = clause_cues.clause_cue_point(
             inp["text"], inp.get("base_fact"), self_article_number=inp.get("self_article_number"),
-            host_instrument_number=host)
+            host_instrument_number=host, **xref_kwargs)
         assert point == v["expected"]["point"], v["case"]
     elif "links" in v["expected"]:
         links = clause_cues.cross_reference_links(
             inp["text"], inp["source_id"], inp.get("self_article_number"),
-            host_instrument_number=host)
+            host_instrument_number=host, **xref_kwargs)
         assert links == v["expected"]["links"], v["case"]
+    elif "references" in v["expected"]:
+        # the SHARED cross-reference resolver (spec/SPEC.md §8a.1,
+        # profile field "xref_resolver": "shared-v2") —
+        # :func:`clause_cues.resolve_references`. ``inp`` carries every
+        # keyword :func:`resolve_references` accepts besides ``text``.
+        kwargs = {k: v for k, v in inp.items() if k != "text"}
+        refs = clause_cues.resolve_references(inp["text"], **kwargs)
+        assert refs == v["expected"]["references"], v["case"]
+    elif "enclosing_units" in v["expected"]:
+        # The ancestor-chain derivation.
+        got = clause_cues.enclosing_units_at(
+            inp["source_text"], inp["offset"], inp.get("numbering_family", "eu"))
+        assert got == v["expected"]["enclosing_units"], v["case"]
+    elif "enclosing_unit" in v["expected"]:
+        # Enclosing-unit derivation, moved INTO 5d-nd.
+        got = clause_cues.enclosing_unit_at(
+            inp["source_text"], inp["offset"], inp.get("numbering_family", "eu"))
+        assert got == v["expected"]["enclosing_unit"], v["case"]
     else:
         combined = clause_cues.combined_contributions(
             inp["text"], inp.get("base_fact"), inp.get("self_article_number"),
-            host_instrument_number=host)
+            host_instrument_number=host, **xref_kwargs)
         assert combined == v["expected"]["combined"], v["case"]
+
+
+# Dispatch fails CLOSED on every direct entry point an unrecognised
+# xref_resolver value can reach — not just
+# resolve_references()/_xref_count_and_objects() in isolation.
+def test_clause_cues_xref_resolver_fails_closed_on_every_entry_point():
+    bad_text = "Article 5 applies."
+    for fn, kwargs in (
+        (clause_cues.cross_reference_links,
+         dict(text=bad_text, source_id="s1", xref_resolver="bogus")),
+        (clause_cues.clause_cue_contributions, dict(text=bad_text, xref_resolver="bogus")),
+        (clause_cues.combined_contributions, dict(sentence=bad_text, xref_resolver="bogus")),
+        (clause_cues.clause_cue_point, dict(sentence=bad_text, xref_resolver="bogus")),
+    ):
+        with pytest.raises(ValueError):
+            fn(**kwargs)
+
+
+# The two *_from_profile wrappers must thread enclosing_units through to
+# resolve_references() exactly the same way their own underlying
+# function does — a DIRECT test, since the generic vector runner above
+# has no "..._from_profile" dispatch branch.
+def test_clause_cue_point_from_profile_threads_enclosing_units():
+    profile_doc = {"profile_id": "x", "xref_resolver": "shared-v2"}
+    text = "This Chapter applies."
+    with_units = clause_cues.clause_cue_point_from_profile(
+        text, profile_doc=profile_doc, numbering_family="uk",
+        enclosing_units={"part": "Part 7"})
+    without_units = clause_cues.clause_cue_point_from_profile(
+        text, profile_doc=profile_doc, numbering_family="uk")
+    assert with_units["structural"] == 0.0
+    assert without_units["structural"] == pytest.approx(0.333333)
+    assert with_units != without_units
+
+
+def test_cross_reference_links_from_profile_threads_enclosing_units():
+    profile_doc = {"profile_id": "x", "xref_resolver": "shared-v2"}
+    text = "This Chapter applies."
+    with_units = clause_cues.cross_reference_links_from_profile(
+        text, "sid-from-profile", profile_doc=profile_doc, numbering_family="uk",
+        enclosing_units={"part": "Part 7"})
+    without_units = clause_cues.cross_reference_links_from_profile(
+        text, "sid-from-profile", profile_doc=profile_doc, numbering_family="uk")
+    assert with_units == []
+    assert without_units and without_units[0]["o"] == "Chapter"
+
+
+# A DIRECT test of host_section_numbers_in() itself — kills a mutant
+# that always returns set() (never derives anything), and one that
+# returns a kind of non-US family's own section numbers.
+def test_host_section_numbers_in_derives_us_section_headings():
+    source = "§ 9815. Scope.\n(a) In general.\nSomething.\n§ 9816. Other.\nText.\n"
+    assert clause_cues.host_section_numbers_in(source, "us") == {"9815", "9816"}
+    # A non-"us" family is NOT attempted — always empty, never a wrong
+    # guess.
+    assert clause_cues.host_section_numbers_in(source, "eu") == set()
+    assert clause_cues.host_section_numbers_in("", "us") == set()
 
 
 # fix round, item 5: kill CC6/CC7/CC8 directly.

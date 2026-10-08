@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-generic-section",
+  "input": {
+    "text": "The duty in section 14(2)(b) applies.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 14(2)(b)",
+        "literal_start": 12,
+        "literal_end": 28,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 14(2)(b)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

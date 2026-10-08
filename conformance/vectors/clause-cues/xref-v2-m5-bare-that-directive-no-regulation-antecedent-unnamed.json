@@ -1,0 +1,33 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m5-bare-that-directive-no-regulation-antecedent-unnamed",
+  "input": {
+    "text": "Under Regulation (EU) 2019/1020, Article 4 of that Directive applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 6,
+        "literal_end": 31,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 4 of that Directive",
+        "literal_start": 33,
+        "literal_end": 60,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": "Article 4",
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "'of that Directive' must NEVER resolve to a Regulation (wrong kind) just because it is the nearest named instrument of ANY kind. With no Directive ever named, the text identifies no instrument at all -- R7's 'unnamed (see note)', never a silent fall-through that splits the chain+anaphora span into two unrelated matches (a bare INTERNAL Article 4 plus a separately-resolved standalone anaphora)."
+}

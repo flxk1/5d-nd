@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-paragraph-of-schedule-consumes-trailing-host-name",
+  "input": {
+    "text": "paragraph 4 of Schedule 6 of the Processing Rules applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Processing Rules"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 4 of Schedule 6 of the Processing Rules",
+        "literal_start": 0,
+        "literal_end": 49,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 6, paragraph 4",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "mutant proof (_consume_trailing_host_name call site, _UK_PARAGRAPH_OF_SCHEDULE_RE): a host name NOT matching any _EXT_ACT_WITH_YEAR shape ('Processing Rules') reaches the bare Pass 6 loop, making this call site genuinely load-bearing. Constructed wording."
+}

@@ -1,0 +1,16 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-article-v1-us-section-unchanged",
+  "input": {
+    "text": "No claim may proceed under section 230(c)."
+  },
+  "expected": {
+    "raw": {
+      "structural": 0,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  }
+}

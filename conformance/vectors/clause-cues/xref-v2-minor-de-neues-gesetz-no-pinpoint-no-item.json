@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-de-neues-gesetz-no-pinpoint-no-item",
+  "input": {
+    "text": "Im Sinne des Neuen Gesetzes gilt dies entsprechend.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'des Neuen Gesetzes' ('of the new law') is a GENERIC adjective-qualified phrase, not a NAMED statute, and carries no pinpoint attached -- no item."
+}

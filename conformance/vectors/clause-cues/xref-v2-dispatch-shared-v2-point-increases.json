@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-shared-v2-point-increases",
+  "input": {
+    "text": "No claim may proceed under section 230(c).",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "point": {
+      "structural": 0.333333,
+      "causal": 0.0,
+      "intentional": 0.0,
+      "temporal": 0.0,
+      "relational": 0.0
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12b-parts-plural-of-that-act-stays-one-reference",
+  "input": {
+    "text": "The schedule continues Parts 5 to 7 of that Act."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Parts 5 to 7 of that Act",
+        "literal_start": 23,
+        "literal_end": 47,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": "Part 5, Part 6, Part 7",
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "The trailing-anaphora consumer must extend the span even when the nearest mention of the declared type is NOT the host, so a non-host 'of that Act' right after a pinpoint-bearing plural chain stays in the SAME reference as its own 'Parts 5 to 7' pinpoint, never a SECOND, separate item with no pinpoint of its own."
+}

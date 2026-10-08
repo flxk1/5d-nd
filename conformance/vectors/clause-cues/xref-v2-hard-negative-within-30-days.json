@@ -1,0 +1,10 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-hard-negative-within-30-days",
+  "input": {
+    "text": "The controller shall respond within 30 days of the request."
+  },
+  "expected": {
+    "references": []
+  }
+}

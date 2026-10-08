@@ -1,0 +1,16 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-article-v1-uk-schedule-unchanged",
+  "input": {
+    "text": "The condition in Schedule 2, paragraph 3 applies."
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  }
+}

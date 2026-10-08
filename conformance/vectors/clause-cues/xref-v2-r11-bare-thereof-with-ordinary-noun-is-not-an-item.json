@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-bare-thereof-with-ordinary-noun-is-not-an-item",
+  "input": {
+    "text": "The property and the proceeds thereof must be forfeited.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "A bare 'thereof' directly after an ordinary noun, with NO instrument mentioned anywhere before it, is not an item -- it resolves only when the immediately preceding citation designates an instrument. Constructed wording."
+}

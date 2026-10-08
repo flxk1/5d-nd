@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m6-this-title-no-host-title-instrument-unnamed",
+  "input": {
+    "text": "This title applies.",
+    "numbering_family": "us"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "This title",
+        "literal_start": 0,
+        "literal_end": 10,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": null,
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "M6/R7: 'this title' with NO host_title_instrument names no identifiable instrument -- external_instrument must be the R7 fallback 'unnamed (see note)', never the resolver's own fallback GLOSS 'this title' (that string describes the CODE's fallback, not anything the text itself named)."
+}

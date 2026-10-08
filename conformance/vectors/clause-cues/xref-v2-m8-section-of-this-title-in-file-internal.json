@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m8-section-of-this-title-in-file-internal",
+  "input": {
+    "text": "This duty arises under section 7744 of this title.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "7744",
+      "7745"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 7744 of this title",
+        "literal_start": 23,
+        "literal_end": 49,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 7744",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

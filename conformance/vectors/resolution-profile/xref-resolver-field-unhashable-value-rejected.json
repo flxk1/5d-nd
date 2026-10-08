@@ -1,0 +1,16 @@
+{
+  "family": "resolution-profile",
+  "case": "xref-resolver-field-unhashable-value-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "xref_resolver": [
+        "shared-v2"
+      ]
+    }
+  },
+  "expected": {
+    "valid": false
+  },
+  "_note": "A list value is UNHASHABLE -- a bare frozenset membership test on it would raise TypeError instead of returning False, breaking profile_violations()'s own 'never raises, only reports' contract. This vector uses a list specifically to exercise that guard."
+}

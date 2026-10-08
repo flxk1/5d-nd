@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m10-de-grundgesetz-with-pinpoint",
+  "input": {
+    "text": "Artikel 10 Absatz 1 des Grundgesetzes gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Artikel 10 Absatz 1 des Grundgesetzes",
+        "literal_start": 0,
+        "literal_end": 37,
+        "kind": "EXTERNAL",
+        "external_instrument": "Grundgesetz",
+        "targets": [],
+        "external_target": "Artikel 10 Abs. 1"
+      }
+    ]
+  },
+  "_note": "German drafting cites an act's own numbering with the word 'Artikel', never '§'. _DE_ARTIKEL_CHAIN_RE recognises it, so the whole span (pinpoint + instrument name) is ONE EXTERNAL reference with the pinpoint parsed into external_target."
+}

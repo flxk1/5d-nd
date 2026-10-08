@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-de-abs-satz-nr",
+  "input": {
+    "text": "Die Ausnahme nach § 15 Abs. 2 Satz 1 Nr. 3 gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 15 Abs. 2 Satz 1 Nr. 3",
+        "literal_start": 18,
+        "literal_end": 42,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 15 Abs. 2 Satz 1 Nr. 3",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

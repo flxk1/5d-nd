@@ -1,0 +1,23 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r17-short-year-host-comma-no-number-external",
+  "input": {
+    "text": "Section 4 of the 2020 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act, 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 4 of the 2020 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "EXTERNAL",
+        "external_instrument": "2020 Act",
+        "targets": [],
+        "external_target": "section 4"
+      }
+    ]
+  },
+  "_note": "Pins the year-anchor rule (item (vi)'s KNOWN LIMIT paragraph): a host name written with a comma before the year ('Example Protection Act, 2020') derives NO year at all, because the anchor requires '... Act YYYY' at the EXACT end of host_instrument_name. With no host_instrument_number passed, a short-year reference stays EXTERNAL, truncated. Constructed wording; this vector goes red under the mutant that derives the year from the last 4-digit number anywhere in the name (y_last4) and under the mutant that derives it from any trailing 4-digit number (y_last4_anywhere_end) — the comma keeps the year as the string's own last 4-digit number, and also trailing, so both mutants wrongly recover it. It stays green under the mutant that derives the year from an 'Act YYYY' match anywhere in the name (y_act_any_pos), since the comma breaks that exact adjacency. Paired with the chapter-cite-no-number-external sibling vector (which catches y_act_any_pos and y_last4 but not y_last4_anywhere_end), the two vectors together kill all three mutants."
+}

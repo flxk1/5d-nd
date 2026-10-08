@@ -1,0 +1,40 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-b1-of-that-act-not-a-treaty-kind-match",
+  "input": {
+    "text": "This is subject to Protocol No 7. The Consumer Credit Act 1998 applies generally. Separately, section 7 of that Act applies.",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Protocol No 7",
+        "literal_start": 19,
+        "literal_end": 32,
+        "kind": "EXTERNAL",
+        "external_instrument": "Protocol No 7",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "The Consumer Credit Act 1998",
+        "literal_start": 34,
+        "literal_end": 62,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Consumer Credit Act 1998",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "section 7 of that Act",
+        "literal_start": 94,
+        "literal_end": 115,
+        "kind": "EXTERNAL",
+        "external_instrument": "The Consumer Credit Act 1998",
+        "targets": [],
+        "external_target": "section 7"
+      }
+    ]
+  },
+  "_note": "With a treaty (kind 'treaty') named more recently than the Act in SURFACE position terms is not the issue here -- the Act is the MOST RECENT mention of kind 'act', and 'that Act' must resolve to it, never to the nearer-in-some-other-ordering Protocol of a DIFFERENT kind."
+}

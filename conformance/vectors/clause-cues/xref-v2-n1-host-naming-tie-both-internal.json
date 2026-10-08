@@ -1,0 +1,40 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n1-host-naming-tie-both-internal",
+  "input": {
+    "text": "Article 6 of Regulation (EU) 2024/1689 and Article 8 of that Regulation apply.",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "host_instrument_number": "2024/1689"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6 of Regulation (EU) 2024/1689",
+        "literal_start": 0,
+        "literal_end": 38,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 6",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Article 8 of that Regulation",
+        "literal_start": 43,
+        "literal_end": 71,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 8",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "MAJOR N1 ordering: 'Article 8 of that Regulation' must resolve INTERNAL (the host was named, by number, in the SAME sentence as the host's own name-shaped text) -- not EXTERNAL to the host's own name read as a 'genuinely external instrument'. _host_named_more_recently_than_external() used a strict '>' between the most recent host-naming position and the most recent bare-external-shaped-mention position; when the host's own name ALSO matches the generic external-instrument-name shape, both positions tie at the SAME offset, and '>' lost every such tie to 'external'. Fixed to '>=' (guarded against the -1/-1 degenerate tie when neither was named in `text` at all, which must still fall through to preceding_text)."
+}

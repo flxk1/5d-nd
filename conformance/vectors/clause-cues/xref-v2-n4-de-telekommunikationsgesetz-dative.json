@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n4-de-telekommunikationsgesetz-dative",
+  "input": {
+    "text": "§ 3 Absatz 2 dem Telekommunikationsgesetz gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 3 Absatz 2 dem Telekommunikationsgesetz",
+        "literal_start": 0,
+        "literal_end": 41,
+        "kind": "EXTERNAL",
+        "external_instrument": "Telekommunikationsgesetz",
+        "targets": [],
+        "external_target": "§ 3 Abs. 2"
+      }
+    ]
+  }
+}

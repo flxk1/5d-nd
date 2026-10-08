@@ -1,0 +1,28 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n3-name-match-independent-of-number-mismatch",
+  "input": {
+    "text": "This applies under section 121 of the Data Protection Act 2018.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Data Protection Act 2018",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 121 of the Data Protection Act 2018",
+        "literal_start": 19,
+        "literal_end": 62,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 121",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "Host_instrument_number is given here (deliberately a non-matching, irrelevant EU-shaped number -- this is a UK Act) but host_instrument_name genuinely matches. The by-NAME check must run and resolve INTERNAL regardless of the number mismatch. Fix 's own bug nested the by-name elif UNDER the outer 'if host_instrument_number:' gate, so whenever a number was given at all -- matching or not -- the by-name check never even ran; this text would then have wrongly become EXTERNAL to 'Data Protection Act 2018'."
+}

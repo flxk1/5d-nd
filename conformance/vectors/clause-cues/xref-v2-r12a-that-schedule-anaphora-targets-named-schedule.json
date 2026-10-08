@@ -1,0 +1,58 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r12a-that-schedule-anaphora-targets-named-schedule",
+  "input": {
+    "text": "See Part 3 of Schedule 3 and Parts 1 and 2 of that Schedule.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Part 3",
+        "literal_start": 4,
+        "literal_end": 10,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 3",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Schedule 3",
+        "literal_start": 14,
+        "literal_end": 24,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 3",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Parts 1 and 2 of that Schedule",
+        "literal_start": 29,
+        "literal_end": 59,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 3, Part 1",
+            "expanded_from": "Parts 1 and 2"
+          },
+          {
+            "pinpoint": "Schedule 3, Part 2",
+            "expanded_from": "Parts 1 and 2"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'Parts 1 and 2 of that Schedule' is ONE INTERNAL reference, both members combined with the NEAREST preceding Schedule mention's own number (Schedule 3) -- never the host's own bare Parts, and 'that Schedule' is never read as if it were itself 'Part 2' (the sub-unit anaphor resolves against the nearest mention of the SAME sub-unit word, not the nearest INTERNAL pinpoint of any kind). Constructed wording."
+}

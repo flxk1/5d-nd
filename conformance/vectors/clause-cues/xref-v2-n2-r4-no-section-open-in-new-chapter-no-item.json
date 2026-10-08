@@ -1,0 +1,14 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-r4-no-section-open-in-new-chapter-no-item",
+  "input": {
+    "text": "This Section applies.",
+    "numbering_family": "eu",
+    "enclosing_units": {
+      "chapter": "Chapter IV"
+    }
+  },
+  "expected": {
+    "references": []
+  }
+}

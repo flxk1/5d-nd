@@ -1,0 +1,30 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m2-unquoted-chapeau-redirects-bare-pinpoint",
+  "input": {
+    "text": "In Regulation (EU) 2018/1139, Article 17 is replaced by the following text."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2018/1139",
+        "literal_start": 3,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2018/1139",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 17",
+        "literal_start": 30,
+        "literal_end": 40,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2018/1139",
+        "targets": [],
+        "external_target": "Article 17"
+      }
+    ]
+  },
+  "_note": "A bare pinpoint with NO self-naming suffix of its own ('Article 17', no 'of this Regulation') sitting inside an UNQUOTED amending chapeau ('In <instrument>, ...') must be redirected EXTERNAL to the chapeau's own named instrument. Unlike xref-v2-m9-chapeau-ends-at-semicolon-explicit-self-overrides.json (which tests the explicit-self override INSTEAD of the chapeau), this vector genuinely exercises the chapeau redirect itself: disabling the chapeau-span construction turns 'Article 17' INTERNAL (wrong) instead of EXTERNAL."
+}

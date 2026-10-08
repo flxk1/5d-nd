@@ -1,0 +1,14 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-enclosing-units-at-chapter-resets-section",
+  "input": {
+    "source_text": "CHAPTER III\n\nfoo\n\nSection 2\n\nbar. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n\nCHAPTER IV\n\nbaz\n\nArticle 40\n\nqux\n\n",
+    "offset": 120,
+    "numbering_family": "eu"
+  },
+  "expected": {
+    "enclosing_units": {
+      "chapter": "Chapter IV"
+    }
+  }
+}

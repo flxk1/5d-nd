@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-host-number-not-prefix-of-different-number",
+  "input": {
+    "text": "Article 4 of that Regulation applies.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2016/679",
+    "host_instrument_number": "2016/679",
+    "preceding_text": "Regulation (EU) 2016/6790 lays down rules. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of that Regulation",
+        "literal_start": 0,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2016/6790",
+        "targets": [],
+        "external_target": "Article 4"
+      }
+    ]
+  },
+  "_note": "The host's own number must never match as a bare PREFIX of a DIFFERENT instrument's longer number — ‘that Regulation’ resolves EXTERNAL to the other Regulation. Constructed wording."
+}

@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-relative-paragraph-point-against-enclosing-article",
+  "input": {
+    "text": "Before granting the exemption under paragraph 2, point (c), the committee shall consult stakeholders.",
+    "enclosing_unit": "Article 11"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 2, point (c)",
+        "literal_start": 36,
+        "literal_end": 58,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 11(2), point (c)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

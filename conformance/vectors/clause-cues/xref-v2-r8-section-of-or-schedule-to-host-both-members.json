@@ -1,0 +1,31 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-section-of-or-schedule-to-host-both-members",
+  "input": {
+    "text": "Section 212 of or Schedule 9 to the Online Safety Act 2023 applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Online Safety Act 2023"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 212 of or Schedule 9 to the Online Safety Act 2023",
+        "literal_start": 0,
+        "literal_end": 58,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 212",
+            "expanded_from": "Section 212 of or Schedule 9"
+          },
+          {
+            "pinpoint": "Schedule 9",
+            "expanded_from": "Section 212 of or Schedule 9"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The UK drafting idiom citing a section AND a Schedule of the SAME host together resolves as ONE INTERNAL reference, not two unrelated matches. Constructed wording."
+}

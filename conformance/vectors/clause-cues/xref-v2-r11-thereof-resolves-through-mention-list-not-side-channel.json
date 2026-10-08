@@ -1,0 +1,50 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-thereof-resolves-through-mention-list-not-side-channel",
+  "input": {
+    "text": "Article 9 of Directive 2002/58/EC and Regulation (EU) 2016/679, in particular Article 12 thereof, apply.",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2016/679",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 9 of Directive 2002/58/EC",
+        "literal_start": 0,
+        "literal_end": 33,
+        "kind": "EXTERNAL",
+        "external_instrument": "Directive 2002/58/EC",
+        "targets": [],
+        "external_target": "Article 9"
+      },
+      {
+        "literal": "Regulation (EU) 2016/679",
+        "literal_start": 38,
+        "literal_end": 62,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Instrument",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Article 12 thereof",
+        "literal_start": 78,
+        "literal_end": 96,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 12",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'thereof' resolves through the ordered mention list. Here the host (GDPR, Regulation (EU) 2016/679) is the NEAREST mention before 'thereof' -- 'Article 12 thereof' is INTERNAL, not an echo of the earlier Directive. Constructed wording."
+}

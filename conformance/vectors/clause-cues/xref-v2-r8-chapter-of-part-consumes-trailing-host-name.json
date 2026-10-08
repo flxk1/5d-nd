@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-chapter-of-part-consumes-trailing-host-name",
+  "input": {
+    "text": "Chapter 2 of Part 7 of the Processing Rules applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Processing Rules"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Chapter 2 of Part 7 of the Processing Rules",
+        "literal_start": 0,
+        "literal_end": 43,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 7, Chapter 2",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "mutant proof (_consume_trailing_host_name call site, _UK_CHAPTER_OF_PART_RE): a host name NOT matching any _EXT_ACT_WITH_YEAR shape ('Processing Rules') reaches the bare Pass 6 loop, making this call site genuinely load-bearing. Constructed wording."
+}

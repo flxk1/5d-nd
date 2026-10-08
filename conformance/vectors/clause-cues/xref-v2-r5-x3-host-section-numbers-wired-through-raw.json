@@ -1,0 +1,23 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r5-x3-host-section-numbers-wired-through-raw",
+  "input": {
+    "text": "A controller shall comply with sections 9815 and 9816 of this title.",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "us",
+    "host_title_instrument": "31 U.S.C.",
+    "host_section_numbers": [
+      "1234"
+    ]
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.5
+    }
+  },
+  "_note": "resolver : proves host_section_numbers is threaded through clause_cue_contributions() itself (not only cross_reference_links()/resolve_references() called directly). With a KNOWN but non-matching host_section_numbers set ({'1234'}), neither member of 'sections 9815 and 9816' is in the file, so the whole plural chain is ONE EXTERNAL reference ('all_out' branch) -> structural=1. If clause_cue_contributions() silently dropped host_section_numbers to None internally, the resolver cannot distinguish 'known not in file' from 'unknown', falls into the mixed-split branch, and splits the SAME text into TWO separate EXTERNAL references -> structural=2 -- a different raw count for the identical input. Numbers invented, not drawn from any gold/dev extract."
+}

@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m4-repeated-internal-target-dedup-raw",
+  "input": {
+    "text": "Article 6 and Article 6 apply.",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "raw": {
+      "structural": 1,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  },
+  "_note": "The SAME distinct-target dedup, measured via clause_cue_contributions()'s own structural count -- +1, not +2, for 'Article 6 and Article 6'."
+}

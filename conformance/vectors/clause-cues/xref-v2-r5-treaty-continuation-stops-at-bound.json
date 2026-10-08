@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r5-treaty-continuation-stops-at-bound",
+  "input": {
+    "text": "Article 4 of the Convention for the Protection of Alfa and Bravo and Charlie and Delta and Echo and Foxtrot and Golf and Hotel and India and Juliet and Kilo and Lima and Mike and November and Oscar and Papa and Quebec and Romeo and Sierra and Tango Uniform applies.",
+    "host_instrument_name": "Something Else"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 4 of the Convention for the Protection of Alfa and Bravo and Charlie and Delta and Echo and Foxtrot and Golf and Hotel and India and Juliet and Kilo and Lima and Mike",
+        "literal_start": 0,
+        "literal_end": 174,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention for the Protection of Alfa and Bravo and Charlie and Delta and Echo and Foxtrot and Golf and Hotel and India and Juliet and Kilo and Lima and Mike",
+        "targets": [],
+        "external_target": "Article 4"
+      }
+    ]
+  },
+  "_note": "resolver : the treaty-name continuation unit (_TREATY_CONTINUATION_UNIT, used by both _EXT_NAMED_TREATY alternatives) is bounded, not unbounded -- the title stops at its 14th continuation unit ('... and Mike') and does NOT keep absorbing further 'and <Word>' units ('and November' onward, up through 'Tango Uniform') even though each one, in isolation, matches the unit's own shape. Kills an unbounded-continuation mutation of _TREATY_CONTINUATION_UNIT / _EXT_NAMED_TREATY (constructed wording, not drawn from any gold extract)."
+}

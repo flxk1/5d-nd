@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-anaphoric-that-regulation-thereof",
+  "input": {
+    "text": "The procedure under Article 11(3) of Regulation (EU) No 679/2033 is extended, read together with Article 6(5) thereof."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 11(3) of Regulation (EU) No 679/2033",
+        "literal_start": 20,
+        "literal_end": 64,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) No 679/2033",
+        "targets": [],
+        "external_target": "Article 11(3)"
+      },
+      {
+        "literal": "Article 6(5) thereof",
+        "literal_start": 97,
+        "literal_end": 117,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) No 679/2033",
+        "targets": [],
+        "external_target": "Article 6(5)"
+      }
+    ]
+  }
+}

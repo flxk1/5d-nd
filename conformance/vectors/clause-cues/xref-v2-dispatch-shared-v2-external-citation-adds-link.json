@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-shared-v2-external-citation-adds-link",
+  "input": {
+    "text": "This measure complies with Article 4(2) of Council Regulation (EC) No 1/2003.",
+    "source_id": "entry-x",
+    "xref_resolver": "shared-v2"
+  },
+  "expected": {
+    "links": [
+      {
+        "s": "entry-x",
+        "p": "cross_references",
+        "o": "Council Regulation (EC) No 1/2003|Article 4(2)",
+        "dimension": "structural",
+        "weight": 1.0,
+        "provenance": {
+          "layer": "clause_cues",
+          "source_text": "This measure complies with Article 4(2) of Council Regulation (EC) No 1/2003."
+        }
+      }
+    ]
+  }
+}

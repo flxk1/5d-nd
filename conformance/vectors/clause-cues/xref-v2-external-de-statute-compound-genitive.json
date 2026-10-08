@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-de-statute-compound-genitive",
+  "input": {
+    "text": "Die Vorschrift verweist auf § 33 der Abgabenordnung.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 33 der Abgabenordnung",
+        "literal_start": 28,
+        "literal_end": 51,
+        "kind": "EXTERNAL",
+        "external_instrument": "Abgabenordnung",
+        "targets": [],
+        "external_target": "§ 33"
+      }
+    ]
+  }
+}

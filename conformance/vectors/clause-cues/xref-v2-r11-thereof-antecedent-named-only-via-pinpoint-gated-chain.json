@@ -1,0 +1,32 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-thereof-antecedent-named-only-via-pinpoint-gated-chain",
+  "input": {
+    "text": "Article 12 of the Convention on the Settlement of Example Disputes applies, and Article 13 thereof also applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 12 of the Convention on the Settlement of Example Disputes",
+        "literal_start": 0,
+        "literal_end": 66,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention on the Settlement of Example Disputes",
+        "targets": [],
+        "external_target": "Article 12"
+      },
+      {
+        "literal": "Article 13 thereof",
+        "literal_start": 80,
+        "literal_end": 98,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention on the Settlement of Example Disputes",
+        "targets": [],
+        "external_target": "Article 13"
+      }
+    ]
+  },
+  "_note": "A named treaty reachable only through the PINPOINT-GATED chain match (never the bare standalone-name scan) is still a real mention 'thereof' can resolve to -- the mention list is widened with EXTERNAL references already emitted in this same call, never a last_external-shaped stateful side channel. Constructed wording."
+}

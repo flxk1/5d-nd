@@ -1,0 +1,39 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-uk-schedule-to-that-act-anaphora-stays-internal",
+  "input": {
+    "text": "This exemption rests on paragraph 4(1) of Schedule 6 to the Secure Communications Act 1991 and paragraph 2(3) of Schedule 9 to that Act.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Secure Communications Act 1991"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "paragraph 4(1) of Schedule 6 to the Secure Communications Act 1991",
+        "literal_start": 24,
+        "literal_end": 90,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 6, paragraph 4(1)",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "paragraph 2(3) of Schedule 9 to that Act",
+        "literal_start": 95,
+        "literal_end": 135,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Schedule 9, paragraph 2(3)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

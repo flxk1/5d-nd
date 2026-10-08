@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m7-de-ss-plural-of-statute-one-external",
+  "input": {
+    "text": "Dies gilt nach §§ 3 bis 5 des Strafgesetzbuches.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§§ 3 bis 5 des Strafgesetzbuches",
+        "literal_start": 15,
+        "literal_end": 47,
+        "kind": "EXTERNAL",
+        "external_instrument": "Strafgesetzbuch",
+        "targets": [],
+        "external_target": "§ 3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-de-host-by-name-one-internal-no-overlap",
+  "input": {
+    "text": "§ 4 Absatz 1 des Bundesdatenschutzgesetzes gilt.",
+    "numbering_family": "de",
+    "host_instrument_name": "Bundesdatenschutzgesetz"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 4 Absatz 1 des Bundesdatenschutzgesetzes",
+        "literal_start": 0,
+        "literal_end": 42,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 4 Abs. 1",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The German genitive introduction 'des <host name>' must be deferred by Pass 1's bare host-name scan the SAME way the English 'of (the) <host name>' already was -- without the fix, Pass 1 claimed 'Bundesdatenschutzgesetzes' bare FIRST (as a standalone 'Instrument' item) before Pass 2's chain-aware by-name branch could extend the chain's own span to cover it, producing two OVERLAPPING references for the same text."
+}

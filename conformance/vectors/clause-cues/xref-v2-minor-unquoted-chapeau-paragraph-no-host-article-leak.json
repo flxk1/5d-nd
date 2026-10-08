@@ -1,0 +1,31 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-unquoted-chapeau-paragraph-no-host-article-leak",
+  "input": {
+    "text": "In Regulation (EU) 2019/1020, paragraph 2 applies.",
+    "enclosing_unit": "Article 9"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 3,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "paragraph 2",
+        "literal_start": 30,
+        "literal_end": 41,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": "paragraph 2"
+      }
+    ]
+  },
+  "_note": "A bare relative 'paragraph 2' redirected EXTERNAL by an unquoted chapeau must NOT get an external_target borrowed from the HOST's own enclosing_unit ('Article 9(2)') -- that Article number belongs to THIS host document, not Regulation (EU) 2019/1020. external_target must be the bare, instrument-agnostic literal 'paragraph 2' instead."
+}

@@ -1,0 +1,34 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m1-section-of-this-title-subpinpoint-digits-not-section-numbers",
+  "input": {
+    "text": "A controller shall comply with section 6502(b)(1)(A) of this title.",
+    "numbering_family": "us",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503",
+      "6504",
+      "6505",
+      "6506"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 6502(b)(1)(A) of this title",
+        "literal_start": 31,
+        "literal_end": 66,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502(b)(1)(A)",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "A bracketed sub-pinpoint ('(b)', '(1)', '(A)') carries its OWN digits -- '1' -- that are NOT a second section number. Parenthesised groups are stripped before extracting section numbers, so a perfectly in-file citation with a sub-pinpoint is not wrongly classified EXTERNAL."
+}

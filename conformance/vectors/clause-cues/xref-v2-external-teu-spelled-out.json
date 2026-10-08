@@ -1,0 +1,20 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-external-teu-spelled-out",
+  "input": {
+    "text": "This measure derives from Article 6 of the Treaty on European Union."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 6 of the Treaty on European Union",
+        "literal_start": 26,
+        "literal_end": 67,
+        "kind": "EXTERNAL",
+        "external_instrument": "Treaty on European Union",
+        "targets": [],
+        "external_target": "Article 6"
+      }
+    ]
+  }
+}

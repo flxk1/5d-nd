@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-host-by-name-chain-wrap-single-reference",
+  "input": {
+    "text": "This duty is prepared under section 81 of the Secure Communications Act 1991 (notice requirements).",
+    "numbering_family": "uk",
+    "host_instrument_name": "Secure Communications Act 1991"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 81 of the Secure Communications Act 1991",
+        "literal_start": 28,
+        "literal_end": 76,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 81",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

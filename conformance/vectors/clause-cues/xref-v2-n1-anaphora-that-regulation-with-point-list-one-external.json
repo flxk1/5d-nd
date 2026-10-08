@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n1-anaphora-that-regulation-with-point-list-one-external",
+  "input": {
+    "text": "Market surveillance under Article 9(2), points (a) and (c), of that Regulation applies.",
+    "host_instrument_name": "Regulation (EU) 2024/1689",
+    "preceding_text": "Regulation (EU) 2019/1020 applies. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 9(2), points (a) and (c), of that Regulation",
+        "literal_start": 26,
+        "literal_end": 78,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": "Article 9(2)"
+      }
+    ]
+  }
+}

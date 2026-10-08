@@ -1,0 +1,48 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-trailing-anaphora-consume-host-is-internal",
+  "input": {
+    "text": "The Other Example Act 2000 applies. Parts 5 to 7 of that Act apply.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Other Example Act 2000"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Other Example Act 2000",
+        "literal_start": 4,
+        "literal_end": 26,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Instrument",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Parts 5 to 7 of that Act",
+        "literal_start": 36,
+        "literal_end": 60,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 5",
+            "expanded_from": "Parts 5 to 7"
+          },
+          {
+            "pinpoint": "Part 6",
+            "expanded_from": "Parts 5 to 7"
+          },
+          {
+            "pinpoint": "Part 7",
+            "expanded_from": "Parts 5 to 7"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "When the HOST itself is 'Other Example Act 2000', 'of that Act' designates the host, so 'Parts 5 to 7 of that Act' is INTERNAL to the host, never EXTERNAL. Constructed wording."
+}

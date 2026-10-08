@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-short-year-act-different-year-is-external",
+  "input": {
+    "text": "Section 5 of the 1990 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Registration Act 2018",
+    "host_instrument_number": "2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 5 of the 1990 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "EXTERNAL",
+        "external_instrument": "1990 Act",
+        "targets": [],
+        "external_target": "section 5"
+      }
+    ]
+  },
+  "_note": "'the <year> Act' with a DIFFERENT year than the host stays EXTERNAL to that other Act (unchanged behaviour, re-asserted here alongside the matching-year case). Constructed wording."
+}

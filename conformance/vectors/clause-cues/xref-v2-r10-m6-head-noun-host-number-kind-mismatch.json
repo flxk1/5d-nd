@@ -1,0 +1,42 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m6-head-noun-host-number-kind-mismatch",
+  "input": {
+    "text": "Article 9 of the Convention on the Law of the Sea 1982 applies. Article 3 of the Harbour Act 1982 applies, and that Act also applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Convention on the Law of the Sea 1982",
+    "host_instrument_number": "1982"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 9 of the Convention on the Law of the Sea",
+        "literal_start": 0,
+        "literal_end": 49,
+        "kind": "EXTERNAL",
+        "external_instrument": "Convention on the Law of the Sea",
+        "targets": [],
+        "external_target": "Article 9"
+      },
+      {
+        "literal": "Article 3 of the Harbour Act 1982",
+        "literal_start": 64,
+        "literal_end": 97,
+        "kind": "EXTERNAL",
+        "external_instrument": "Harbour Act 1982",
+        "targets": [],
+        "external_target": "Article 3"
+      },
+      {
+        "literal": "that Act",
+        "literal_start": 111,
+        "literal_end": 119,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Harbour Act 1982",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "host_instrument_name 'Convention on the Law of the Sea 1982' is a TREATY (head noun 'Convention'), never an 'Act' merely because the ordinary English word 'Law' also happens to sit inside the _EXT_ACT_WITH_YEAR keyword list. _is_host_mention()'s NUMBER-based branch compares KIND via _classify_instrument_kind -- a host wrongly classified as 'act' would match the SAME bare year number '1982' on 'Harbour Act 1982' and get treated as host, hijacking 'that Act' into an ambiguous unnamed host designation instead of correctly resolving it to the real, nearer 'Harbour Act 1982'. Constructed wording."
+}

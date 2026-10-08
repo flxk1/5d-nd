@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m4-protocol-on-the-statute-full-name",
+  "input": {
+    "text": "Article 3 of the Protocol on the Statute of the Court of Justice of the European Union applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 3 of the Protocol on the Statute of the Court of Justice of the European Union",
+        "literal_start": 0,
+        "literal_end": 86,
+        "kind": "EXTERNAL",
+        "external_instrument": "Protocol on the Statute of the Court of Justice of the European Union",
+        "targets": [],
+        "external_target": "Article 3"
+      }
+    ]
+  },
+  "_note": "A bare-keyword treaty name ('Protocol' with no preceding Title-Case word) fully named by its own following qualifying phrase must resolve to the FULL name. The name itself is the real, invariant title of this Protocol ('the Court of Justice of the European Union'), a bare real instrument/organ name, not a content leak."
+}

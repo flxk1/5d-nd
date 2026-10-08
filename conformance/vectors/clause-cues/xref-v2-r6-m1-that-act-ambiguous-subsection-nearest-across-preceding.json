@@ -1,0 +1,56 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m1-that-act-ambiguous-subsection-nearest-across-preceding",
+  "input": {
+    "text": "Whenever a regulator described in subsection (b) applies a power granted under any Act mentioned in that subsection, a breach of any duty created under this chapter is treated as a breach of a duty created under that Act.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "preceding_text": "No provision in this part applies to a body regulated under the Example Fisheries Act, 1955 (20 U.S.C. 500 et seq.), by the Example Harbour Authority with regard to any conduct subject to that Act; and the Example Hatchery Act of 1994 (21 U.S.C. 700 et seq.) by the Example Hatchery Commission with regard to licensed facilities. "
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "subsection (b)",
+        "literal_start": 34,
+        "literal_end": 48,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "subsection (b)",
+            "expanded_from": null
+          }
+        ],
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      },
+      {
+        "literal": "this chapter",
+        "literal_start": 152,
+        "literal_end": 164,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Chapter",
+            "expanded_from": null
+          }
+        ],
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      },
+      {
+        "literal": "that Act",
+        "literal_start": 212,
+        "literal_end": 220,
+        "kind": "EXTERNAL",
+        "external_instrument": "the Example Hatchery Act of 1994",
+        "targets": [],
+        "external_target": null
+      }
+    ]
+  },
+  "_note": "Entirely constructed sentence ('Whenever a regulator described in subsection (b) applies a power granted under any Act mentioned in that subsection, a breach of any duty created under this chapter is treated as a breach of a duty created under that Act.') and a fresh invented preceding_text naming no SPECIFIC Act of its own in the current sentence. This generically-worded 'any Act ... that subsection ... that Act' span resolves to the NEAREST named Act carried over from preceding_text, never to an Act named earlier than the nearest one, and never crashes on a cross-sentence antecedent."
+}

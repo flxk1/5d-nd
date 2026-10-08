@@ -1,0 +1,29 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-plural-list-de-ss-und",
+  "input": {
+    "text": "Die Regel nach §§ 3 und 4 gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§§ 3 und 4",
+        "literal_start": 15,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 3",
+            "expanded_from": "§§ 3 und 4"
+          },
+          {
+            "pinpoint": "§ 4",
+            "expanded_from": "§§ 3 und 4"
+          }
+        ]
+      }
+    ]
+  }
+}

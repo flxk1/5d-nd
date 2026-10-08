@@ -1,0 +1,15 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r11-bare-host-anaphora-gdpr-no-item",
+  "input": {
+    "text": "That Regulation applies.",
+    "preceding_text": "Regulation (EU) 2016/679 applies. ",
+    "numbering_family": "eu",
+    "host_instrument_name": "Regulation (EU) 2016/679",
+    "host_instrument_number": "2016/679"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "GDPR host named earlier, then a bare 'That Regulation' with no pinpoint of its own -- R1's bare self-reference, no item. Constructed wording."
+}

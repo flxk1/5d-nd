@@ -1,0 +1,27 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r14-uk-host-year-derived-internal",
+  "input": {
+    "text": "Section 5 of the 2020 Act applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Example Protection Act 2020"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 5 of the 2020 Act",
+        "literal_start": 0,
+        "literal_end": 25,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 5",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "The short-year rule ('the 2018 Act' IS the host when its year equals the host's own number) must still fire when the caller passes NO host_instrument_number. The resolver derives the host's year straight from host_instrument_name when it ends '... Act YYYY' (never written back into host_instrument_number itself). Host 'Example Protection Act 2020' + no number -> 'the 2020 Act' IS the host, INTERNAL section 5. Constructed wording."
+}

@@ -1,0 +1,21 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n4-de-eu-act-with-german-article",
+  "input": {
+    "text": "§ 3 Absatz 2 der Verordnung (EU) 2016/679 gilt.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "§ 3 Absatz 2 der Verordnung (EU) 2016/679",
+        "literal_start": 0,
+        "literal_end": 41,
+        "kind": "EXTERNAL",
+        "external_instrument": "Verordnung (EU) 2016/679",
+        "targets": [],
+        "external_target": "§ 3 Abs. 2"
+      }
+    ]
+  }
+}

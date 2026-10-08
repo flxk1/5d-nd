@@ -1,0 +1,22 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-savings-clause",
+  "input": {
+    "text": "Nothing in this Act affects section 5 of the Consumer Protection Act 1998.",
+    "whole_host_unit": "act",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 5 of the Consumer Protection Act 1998",
+        "literal_start": 28,
+        "literal_end": 73,
+        "kind": "EXTERNAL",
+        "external_instrument": "Consumer Protection Act 1998",
+        "targets": [],
+        "external_target": "section 5"
+      }
+    ]
+  }
+}

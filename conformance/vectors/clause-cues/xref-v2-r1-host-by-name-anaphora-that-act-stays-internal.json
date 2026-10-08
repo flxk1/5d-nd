@@ -1,0 +1,39 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r1-host-by-name-anaphora-that-act-stays-internal",
+  "input": {
+    "text": "This duty is prepared under section 81 of the Secure Communications Act 1991, and section 82 of that Act.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Secure Communications Act 1991"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "section 81 of the Secure Communications Act 1991",
+        "literal_start": 28,
+        "literal_end": 76,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 81",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "section 82 of that Act",
+        "literal_start": 82,
+        "literal_end": 104,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 82",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

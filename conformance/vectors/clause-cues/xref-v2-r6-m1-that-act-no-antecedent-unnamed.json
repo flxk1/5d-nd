@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m1-that-act-no-antecedent-unnamed",
+  "input": {
+    "text": "The agency shall exercise its powers under that Act with respect to covered entities.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "that Act",
+        "literal_start": 43,
+        "literal_end": 51,
+        "kind": "EXTERNAL",
+        "external_instrument": "unnamed (see note)",
+        "targets": [],
+        "external_target": null,
+        "hard_case_tags": [
+          "ambiguous_reference"
+        ]
+      }
+    ]
+  },
+  "_note": "When no Act-like naming can be parsed anywhere before 'that Act' (neither in text nor in preceding_text), the resolver must emit EXTERNAL 'unnamed (see note)' with hard_case_tags ['ambiguous_reference'] rather than falling back to any other, wrong, Act."
+}

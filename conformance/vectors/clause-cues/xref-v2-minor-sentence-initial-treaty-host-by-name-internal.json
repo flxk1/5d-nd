@@ -1,0 +1,25 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-sentence-initial-treaty-host-by-name-internal",
+  "input": {
+    "text": "The Treaty 2004 applies to all member states.",
+    "host_instrument_name": "Treaty 2004"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Treaty 2004",
+        "literal_start": 4,
+        "literal_end": 15,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Instrument",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

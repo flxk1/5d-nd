@@ -1,0 +1,18 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-dispatch-shared-v2-uk-schedule-adds-structural",
+  "input": {
+    "text": "The condition in Schedule 2, paragraph 3 applies.",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "uk"
+  },
+  "expected": {
+    "raw": {
+      "structural": 2,
+      "causal": 0,
+      "intentional": 0,
+      "temporal": 0,
+      "relational": 0.0
+    }
+  }
+}

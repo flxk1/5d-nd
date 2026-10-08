@@ -1,0 +1,44 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-sections-plural-that-act-both-members",
+  "input": {
+    "text": "Section 2 of the Data Protection Act 2018 applies. Sections 38 and 39 of that Act also apply.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Data Protection Act 2018"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 2 of the Data Protection Act 2018",
+        "literal_start": 0,
+        "literal_end": 41,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 2",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "Sections 38 and 39 of that Act",
+        "literal_start": 51,
+        "literal_end": 81,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "section 38",
+            "expanded_from": "Sections 38 and 39"
+          },
+          {
+            "pinpoint": "section 39",
+            "expanded_from": "Sections 38 and 39"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "‘sections 38 and 39 of that Act’ expands BOTH members, not only the first. Constructed wording."
+}

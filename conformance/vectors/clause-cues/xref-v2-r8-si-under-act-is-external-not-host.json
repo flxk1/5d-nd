@@ -1,0 +1,23 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-si-under-act-is-external-not-host",
+  "input": {
+    "text": "Part 5 of the Online Safety Act 2023 (Commencement No. 2) Regulations 2024 applies.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Online Safety Act 2023"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Part 5 of the Online Safety Act 2023 (Commencement No. 2) Regulations 2024",
+        "literal_start": 0,
+        "literal_end": 74,
+        "kind": "EXTERNAL",
+        "external_instrument": "Online Safety Act 2023 (Commencement No. 2) Regulations 2024",
+        "targets": [],
+        "external_target": "Part 5"
+      }
+    ]
+  },
+  "_note": "A statutory instrument MADE UNDER the host Act, named by extending the host's own name, is a DIFFERENT, EXTERNAL instrument — never INTERNAL to the host merely because its name starts with the host's own name. Constructed wording."
+}

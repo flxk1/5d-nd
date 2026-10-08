@@ -1,0 +1,26 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r5-x2-article-of-this-convention-host-is-that-type-internal",
+  "input": {
+    "text": "Article 5 of this Convention applies.",
+    "host_instrument_name": "Strasbourg Convention"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Article 5 of this Convention",
+        "literal_start": 0,
+        "literal_end": 28,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 5",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "resolver : 'Article N of this Convention'/'Protocol'/'Treaty'/'Accord' resolves INTERNAL, R1-style, when the host instrument genuinely IS that treaty type (host_instrument_name contains the same type word) -- never EXTERNAL merely because the surface word names a generic treaty-type keyword. Constructed wording, not drawn from any gold/dev extract."
+}

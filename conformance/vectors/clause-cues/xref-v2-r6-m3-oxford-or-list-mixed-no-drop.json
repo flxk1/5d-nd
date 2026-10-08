@@ -1,0 +1,50 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r6-m3-oxford-or-list-mixed-no-drop",
+  "input": {
+    "text": "sections 45, 6502, or 57a of this title",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6502",
+      "6503"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 45",
+        "literal_start": 0,
+        "literal_end": 11,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 45"
+      },
+      {
+        "literal": ", 6502",
+        "literal_start": 11,
+        "literal_end": 17,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6502",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": ", or 57a of this title",
+        "literal_start": 17,
+        "literal_end": 39,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 57a"
+      }
+    ]
+  },
+  "_note": "The Oxford-comma connector (', or', comma DIRECTLY followed by 'or') before the LAST listed member must still be recognised by _SECTION_PLURAL_RE — the old single-token connector alternation silently stopped the match BEFORE ', or 57a', dropping that member from the output entirely. 6502 is INTERNAL (in host_section_numbers); 45 and 57a are EXTERNAL; no member is dropped."
+}

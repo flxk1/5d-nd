@@ -1,0 +1,63 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r10-m3-range-multiple-switches-b",
+  "input": {
+    "text": "Example text with sections 6502 through 6510 of this title included.",
+    "numbering_family": "us",
+    "host_title_instrument": "15 U.S.C.",
+    "host_section_numbers": [
+      "6501",
+      "6503",
+      "6510"
+    ]
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "sections 6502",
+        "literal_start": 18,
+        "literal_end": 31,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6502"
+      },
+      {
+        "literal": "",
+        "literal_start": 32,
+        "literal_end": 32,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6503",
+            "expanded_from": null
+          }
+        ]
+      },
+      {
+        "literal": "",
+        "literal_start": 32,
+        "literal_end": 32,
+        "kind": "EXTERNAL",
+        "external_instrument": "15 U.S.C.",
+        "targets": [],
+        "external_target": "§ 6504 to § 6509"
+      },
+      {
+        "literal": "through 6510 of this title",
+        "literal_start": 32,
+        "literal_end": 58,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "§ 6510",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "Host_section_numbers {6501, 6503, 6510}, 'sections 6502 through 6510 of this title' — only 6503 and 6510 are INTERNAL, every other member (6502, 6504-6509) is EXTERNAL. The middle EXTERNAL run (6504-6509) has no WRITTEN textual anchor of its own and is reported at a synthetic zero-width span, carrying its full member list in external_target; nothing is dropped. Constructed wording."
+}

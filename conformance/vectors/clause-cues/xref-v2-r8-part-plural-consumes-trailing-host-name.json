@@ -1,0 +1,35 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-r8-part-plural-consumes-trailing-host-name",
+  "input": {
+    "text": "Parts 5 to 7 of the Processing Rules apply.",
+    "numbering_family": "uk",
+    "host_instrument_name": "Processing Rules"
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Parts 5 to 7 of the Processing Rules",
+        "literal_start": 0,
+        "literal_end": 36,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Part 5",
+            "expanded_from": "Parts 5 to 7"
+          },
+          {
+            "pinpoint": "Part 6",
+            "expanded_from": "Parts 5 to 7"
+          },
+          {
+            "pinpoint": "Part 7",
+            "expanded_from": "Parts 5 to 7"
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "mutant proof (_consume_trailing_host_name call site, _UK_PART_PLURAL_RE): a host name NOT matching any _EXT_ACT_WITH_YEAR shape ('Processing Rules') reaches the bare Pass 6 loop, making this call site genuinely load-bearing. Constructed wording."
+}

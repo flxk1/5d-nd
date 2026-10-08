@@ -1,0 +1,17 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-n2-pipeline-links-threads-enclosing-units",
+  "input": {
+    "text": "This Chapter applies.",
+    "source_id": "sid-n2-links",
+    "xref_resolver": "shared-v2",
+    "numbering_family": "uk",
+    "enclosing_units": {
+      "part": "Part 7"
+    }
+  },
+  "expected": {
+    "links": []
+  },
+  "_note": "N2 pipeline threading: cross_reference_links() must thread enclosing_units through _xref_count_and_objects() to resolve_references() -- with 'chapter' absent from the ancestor chain, NO link is produced. If enclosing_units were silently dropped, a link with o='Chapter' would appear instead."
+}

@@ -1,0 +1,34 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-m9-explicit-self-override-alone",
+  "input": {
+    "text": "In Regulation (EU) 2019/1020, Article 14 of this Regulation applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Regulation (EU) 2019/1020",
+        "literal_start": 3,
+        "literal_end": 28,
+        "kind": "EXTERNAL",
+        "external_instrument": "Regulation (EU) 2019/1020",
+        "targets": [],
+        "external_target": null
+      },
+      {
+        "literal": "Article 14",
+        "literal_start": 30,
+        "literal_end": 40,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Article 14",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  },
+  "_note": "'Article 14 of this Regulation' is EXPLICITLY self-named right after the citation, so it overrides the surrounding chapeau (which names a DIFFERENT instrument, Regulation (EU) 2019/1020) and stays INTERNAL. This is independent of the semicolon-boundary fix -- there is no semicolon here at all."
+}

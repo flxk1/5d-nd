@@ -1,0 +1,12 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-minor-de-rechtsverordnung-no-pinpoint-no-item",
+  "input": {
+    "text": "Eine Rechtsverordnung regelt die Einzelheiten.",
+    "numbering_family": "de"
+  },
+  "expected": {
+    "references": []
+  },
+  "_note": "'eine Rechtsverordnung' ('a statutory instrument') -- the generic TYPE word itself, fused compound shape, with no pinpoint attached and no 'der/des/dem' article at all -- no item."
+}

@@ -1,0 +1,24 @@
+{
+  "family": "clause-cues",
+  "case": "xref-v2-outer-first-section-of-chapter",
+  "input": {
+    "text": "The obligation in Section 3 of Chapter IV applies."
+  },
+  "expected": {
+    "references": [
+      {
+        "literal": "Section 3 of Chapter IV",
+        "literal_start": 18,
+        "literal_end": 41,
+        "kind": "INTERNAL",
+        "external_instrument": null,
+        "targets": [
+          {
+            "pinpoint": "Chapter IV, Section 3",
+            "expanded_from": null
+          }
+        ]
+      }
+    ]
+  }
+}

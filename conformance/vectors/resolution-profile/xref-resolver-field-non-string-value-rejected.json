@@ -1,0 +1,14 @@
+{
+  "family": "resolution-profile",
+  "case": "xref-resolver-field-non-string-value-rejected",
+  "input": {
+    "doc": {
+      "profile_id": "x",
+      "xref_resolver": 5
+    }
+  },
+  "expected": {
+    "valid": false
+  },
+  "_note": "A resolution-profile vector for a non-string xref_resolver value. A bogus STRING value already has its own vector (xref-resolver-field-bogus-value-rejected.json), but a non-string (int/list/null) type did not. Wired the SAME way every other resolution-profile vector is (test_resolution_profile() dispatches it through profile.is_valid_profile())."
+}
