@@ -32,8 +32,10 @@
   at v3.5).
 - A benchmark result (`docs/benchmark-2026-10.md`): a pre-registered
   cross-law provision-matching gate on the typed 5D signal against a
-  structural baseline. Result: a loss. 5D stays a labelled structural
-  index with no role in the migration (the dim5 → 5D migration), and no claim is made.
+  structural baseline, plus a second pre-registered round on a
+  concept-typed, rarity-weighted signal. Both rounds are a loss. 5D
+  stays a labelled structural index with no role in the migration (the
+  dim5 → 5D migration), and no claim is made.
 
 ### Fixed
 
