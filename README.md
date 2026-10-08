@@ -55,6 +55,14 @@ out: b'{"anchor":"versum://policy/p1#span-150-240","dimensions":["temporal","rel
 - is/ought: 5D is what **IS** — `resolve`'s `dimension` is `None` for an OUGHT/norm (O/P/F) entry, never a fabricated 5D value
 - output shape for a `grounded` pillar: `{"scheme": "5d+nd", "ref", "digest"}`
 
+## Evaluation
+
+[`docs/benchmark-2026-10.md`](docs/benchmark-2026-10.md) — a pre-registered
+benchmark on cross-law provision matching (does a typed 5D signal improve
+matching a provision across EU instruments over a structural baseline?).
+Result: a loss against the pre-registered gate. 5D stays a labelled
+structural index with no role in the migration (the dim5 → 5D migration), and no claim is made.
+
 ## Family
 
 Assurance artifact, pillar "grounding" of [governance-certification](https://github.com/flxk1/governance-certification). Consumes: the `Dimension` algebra vendored from [loomground-solver](https://github.com/flxk1/loomground-solver); a [loomground-versum](https://github.com/flxk1/loomground-versum) store, via its public API (`pip install '5d-nd[grounding]'`). Peers: `7d+nd`, `prov-o`. Docs: [docs/](docs/).

@@ -30,6 +30,10 @@
   than silently falling back to an unassisted result.
 - Actor-role and typed-Statement predicate vocabularies (the latter now
   at v3.5).
+- A benchmark result (`docs/benchmark-2026-10.md`): a pre-registered
+  cross-law provision-matching gate on the typed 5D signal against a
+  structural baseline. Result: a loss. 5D stays a labelled structural
+  index with no role in the migration (the dim5 → 5D migration), and no claim is made.
 
 ### Fixed
 
