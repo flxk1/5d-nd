@@ -217,7 +217,12 @@ repository. The run that produced the results above is identified by:
 
 - **Harness commit:** `59801d7600e4c846012d9c4ecd53364349f4b506`.
 - **Resolver commit:** `d0ee57b606641494b6a6a414aa8f778c82a4be4a`, `src/`
-  tree `7ddb0ede4f5f24bfb856728041553429a09dc08d`.
+  tree `7ddb0ede4f5f24bfb856728041553429a09dc08d`. This pre-publication
+  commit is not in this repository's history. The resolver was published
+  as `f17423a4583ea179dfbcff08006e0dab0eacd86e`, which is
+  behaviour-identical to it: its outputs match on every sentence of the
+  benchmark's source texts, and the benchmark resolution-profile digest
+  is unchanged. See `docs/xref-resolver-measurement.md`.
 - **Extractor commit (pinned):** `d3fb466f132a67c7aa1aae85c1b456c06cb7ecf4`.
 - **Coder-view commit:** `b2b3da5`, coder-view digest (sha256):
   `5b2914076fbc94b7fe360f8a5bf4615462a5af7248084b2a8c45a0be8e17d56d`.
