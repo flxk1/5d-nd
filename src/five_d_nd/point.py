@@ -148,7 +148,7 @@ def shares_view(raw: Mapping) -> dict:
 
 
 def point_violations(doc: Any) -> list:
-    """Violations of a POINT document's shape (fix round, item 7): a
+    """Violations of a POINT document's shape: a
     mapping with EXACTLY the five dimension keys (§2), each a JSON number
     (never a boolean) in ``[0, 1]``. No extra keys; no missing keys.
     Returns ``[]`` when the document validates — mirrors
@@ -178,7 +178,7 @@ def is_valid_point(doc: Any) -> bool:
 
 
 def point_from_contributions_from_profile(raw: Mapping, profile_doc: Mapping) -> dict:
-    """Residual (fix round): wire the RESOLUTION PROFILE (§16) directly into
+    """Wires the RESOLUTION PROFILE (§16) directly into
     :func:`point_from_contributions` — accepts a profile DOCUMENT
     (validated or not; call ``five_d_nd.profile.profile_violations``
     first) and reads its ``point_saturation`` field rather than requiring

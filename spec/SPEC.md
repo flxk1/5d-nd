@@ -1965,7 +1965,7 @@ fixed_mean(total, n) = round_half_up(total / n)                 # ONE division p
 ```
 
 `to_fixed`'s multiplication `x * 1_000_000` is performed in IEEE-754
-binary64 (fix round item 12): `x`'s own binary64 representation times the
+binary64: `x`'s own binary64 representation times the
 binary64 value `1_000_000.0`, producing the nearest binary64 result per
 IEEE-754's default rounding rule, and ONLY THEN rounded to the nearest
 integer, half away from zero. Stated explicitly so another language
@@ -2280,8 +2280,8 @@ the withdrawn rule (`neighbourhood_digest()`/`automorphic()`) is REMOVED.
         giving equal `d`), alongside the locality and monotonicity
         vectors for (i)/(iii).
 
-**Depth quantiles inside a cube — IMPLEMENTED (fix round item 9,
-replacing an earlier unimplemented normative sentence).**
+**Depth quantiles inside a cube — IMPLEMENTED**, replacing an earlier
+unimplemented normative sentence.
 `depth_quantiles(member_depths)` reports each member's own `d`'s quantile
 RANK within its container's member set (`0.0` shallowest, `1.0` deepest;
 ties share the lowest rank in the tied group) — a pure REPORTING
@@ -2291,15 +2291,15 @@ itself. `nesting_level` and `d` remain SEPARATE fields.
 See `src/five_d_nd/container.py` (position, match key),
 `src/five_d_nd/depth.py` (d, depth_quantiles), `src/five_d_nd/profile.py`
 (the resolution-profile wiring — `conceptual_depth_from_profile()`,
-`trimmed_top_k_match_from_profile()`, `point_from_contributions_from_profile()`,
-fix round residual), `conformance/vectors/container-average/`,
+`trimmed_top_k_match_from_profile()`, `point_from_contributions_from_profile()`),
+`conformance/vectors/container-average/`,
 `conformance/vectors/trimmed-topk/`, `conformance/vectors/depth/`.
 
 ## §15 Derived views and staleness
 
 Status: build list items 1 and 3. `position` (§11/§5), `match_statistic`
 (§14), `d` (§14) and `nesting_level` (§13) are ALL VIEWS, named by a
-`kind` field (fix round item 7: `kind` IN `{position, match_statistic, d,
+`kind` field (`kind` IN `{position, match_statistic, d,
 nesting_level}`, a CLOSED enum, `VIEW_KINDS`) — each view carries a
 `position_digest` (sha256 over the SORTED contributing claim-ids, the
 SORTED embeds edges that fed it, and the resolution-profile digest, §16),
@@ -2558,14 +2558,14 @@ AND passes every vector under the FAMILIES this round adds:
 `point`, `triple`, `fixedpoint`, `container-average`, `trimmed-topk`,
 `depth`, `staleness`, `cycle-rejection`, `resolution-profile` — see
 `tests/test_conformance.py`'s `FAMILIES` dict for the minimum count per
-family, and `tests/test_fuzz_coordinates.py` for this round's own seeded,
+family, and `tests/test_fuzz_coordinates.py` for a seeded,
 mutation-based crash-safety fuzz over the profile/triple/point validators
 (each checked against an independent ORACLE and, when `jsonschema` is
-importable, the matching schema — fix round item 3) and the
+importable, the matching schema) and the
 container/depth/fixedpoint functions (no exception type is excused any
 more).
 
-**Two further owner decisions, fix round, 2026-10-01 (FIXED, implemented
+**Two further owner decisions, 2026-10-01 (FIXED, implemented
 verbatim):**
 
 - **D-a — the point formula** (§11): replaces the earlier max-normalised
@@ -2934,13 +2934,13 @@ non-negative numbers, summing strictly positive — the SAME shape §16's
 
 See `src/five_d_nd/match.py`, `conformance/vectors/match-blend/`.
 
-## §20 Conformance (fix round, integration step, stage 1)
+## §20 Conformance
 
-An implementation conforms to THIS fix round's additions (§8a, §18,
-§19) when it, IN ADDITION to §10's and §17's existing criteria (all of
+An implementation conforms to §8a/§18/§19's own additions
+when it, IN ADDITION to §10's and §17's existing criteria (all of
 which remain unchanged and still apply, including every
-`assertoric-lowering` vector and the factual/versum differentials — this
-round touches none of them):
+`assertoric-lowering` vector and the factual/versum differentials, none
+of which these additions touch):
 
 17. Computes the clause-cue layer's own raw contribution counts (§8a),
     sums them with the UNCHANGED §8 assertoric contribution, and feeds
@@ -2957,10 +2957,10 @@ round touches none of them):
     weighted-average formula, fail-closed on an out-of-range score or a
     malformed weights mapping;
 
-AND passes every vector under the FAMILIES this fix round adds:
+AND passes every vector under the FAMILIES these additions add:
 `clause-cues`, `match-blend`, `term-grammar`, `requirement-grammar` —
 see `tests/test_conformance.py`'s `FAMILIES` dict for the minimum count
-per family, and `tests/test_fuzz_coordinates.py` for this round's own
+per family, and `tests/test_fuzz_coordinates.py` for a
 seeded, mutation-based crash-safety fuzz over `clause_cues` and `match`
 (each checked against an independent ORACLE, same method as the
 coordinate round's own profile/triple/point fuzz).

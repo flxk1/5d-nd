@@ -1,6 +1,6 @@
 {
   "family": "depth",
-  "case": "po-counterexample-zero-incoming-anchors-three-equal-d-no-injectivity",
+  "case": "counterexample-zero-incoming-anchors-three-equal-d-no-injectivity",
   "input": {
     "graph": {
       "concept_links": {},

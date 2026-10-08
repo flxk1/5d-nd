@@ -275,7 +275,7 @@ def conceptual_depth(
 
 
 def depth_quantiles(member_depths: Mapping[str, float]) -> dict:
-    """Depth quantiles inside a cube (fix round item 9, IMPLEMENTED): given
+    """Depth quantiles inside a cube: given
     ``{claim_id: d, ...}`` for a container's own members, returns
     ``{claim_id: quantile}`` where ``quantile`` is each member's own rank
     among the set, normalised to ``[0, 1]`` (``0.0`` for the shallowest
@@ -311,7 +311,7 @@ def depth_quantiles(member_depths: Mapping[str, float]) -> dict:
 
 
 def conceptual_depth_from_profile(graph: Mapping, dag: Mapping, entry_id: str, profile_doc: Mapping) -> float:
-    """Residual (fix round): wire the RESOLUTION PROFILE (§16) directly into
+    """Wires the RESOLUTION PROFILE (§16) directly into
     :func:`conceptual_depth` — accepts a profile DOCUMENT (validated or
     not; this function does not itself validate it, call
     ``five_d_nd.profile.profile_violations`` first) rather than requiring

@@ -68,7 +68,7 @@ FAMILIES = {
     "descriptor-binding": 6,
     "is-ought": 3,
     "assertoric-lowering": 6,
-    # coordinate round (stage 1, 2026-10-01; fix round) — spec/SPEC.md §11-§17
+    # spec/SPEC.md §11-§17
     "point": 18,
     "fixedpoint": 8,
     "container-average": 6,
@@ -78,7 +78,7 @@ FAMILIES = {
     "cycle-rejection": 8,
     "resolution-profile": 15,
     "triple": 8,
-    # fix round (owner-approved integration step, 2026-10-02) — spec/SPEC.md
+    # spec/SPEC.md
     # §8a (clause cues), §19 (matching), and the two EXAMPLE nD grammars
     "clause-cues": 10,
     "match-blend": 8,
@@ -1004,7 +1004,7 @@ def test_staleness(path):
 
 
 def test_position_digest_is_order_invariant_over_claim_ids_and_embeds_edges():
-    """Mutation-testing gap (fix round item 3): a ``position_digest`` MUST
+    """A ``position_digest`` MUST
     be the SAME regardless of the ORDER ``contributing_claim_ids``/
     ``embeds_edges`` are supplied in — the function sorts them internally
     specifically so the digest reflects the SET, not an incidental
@@ -1018,7 +1018,7 @@ def test_position_digest_is_order_invariant_over_claim_ids_and_embeds_edges():
 
 
 def test_member_set_digest_depends_on_version_not_only_membership():
-    """Mutation-testing gap (fix round item 3): the SAME member set at two
+    """The SAME member set at two
     DIFFERENT version numbers MUST digest differently — version is part of
     the digest input, not merely bookkeeping alongside it.
     """
@@ -1044,13 +1044,13 @@ def test_staleness_propagation_is_a_true_topological_order():
 
 
 def test_staleness_enum_vectors_cover_both_tiers():
-    """Fix round item 3: compare against a LITERAL expected set (not merely
+    """Compare against a LITERAL expected set (not merely
     the live ``views.STALENESS_TIERS`` value), so a mutant that silently
     REMOVES a tier from the live enum AND from this test's own comparison
     target at the same time cannot slip through — the literal frozenset
     below is this test's own independent ground truth. Also requires at
-    least one vector that calls ``make_view`` for EACH tier (fix round item
-    3), not merely one that happens to carry the tier string somewhere.
+    least one vector that calls ``make_view`` for EACH tier, not merely
+    one that happens to carry the tier string somewhere.
     """
     EXPECTED_TIERS = frozenset({"erasure", "ingest"})
     assert set(views.STALENESS_TIERS) == EXPECTED_TIERS, (
@@ -1505,7 +1505,7 @@ def test_resolution_profile(path):
 
 
 def test_resolution_profile_unknown_field_is_rejected_and_never_changes_the_digest():
-    """Fix round item 7 (replaces the earlier ``assert True`` stub): a typo
+    """A typo
     field (e.g. ``"K"`` instead of ``"k"``) MUST be a violation — never
     silently ignored, and never silently absorbed into the digest as an
     unresolved extra key. Mirrors the dedicated vectors directly against
@@ -1517,7 +1517,7 @@ def test_resolution_profile_unknown_field_is_rejected_and_never_changes_the_dige
 
 
 def test_resolution_profile_float_and_int_agree_with_the_schema():
-    """Fix round item 7: ``k: 5.0`` (a JSON number with zero fractional
+    """``k: 5.0`` (a JSON number with zero fractional
     part) must get the SAME verdict from the code as from
     ``resolution-profile.schema.json``'s own ``"type": "integer"`` keyword
     (which, per the JSON Schema spec, already accepts a zero-fractional
@@ -1529,7 +1529,7 @@ def test_resolution_profile_float_and_int_agree_with_the_schema():
     assert not profile.is_valid_profile({"profile_id": "x", "k": True})
 
 
-# fix round, item 3 + item 5 (PR4):
+# Kills mutant PR4.
 def test_resolution_profile_weight_mappings_reject_bool_nan_inf_negative():
     for field, pair in (("d_blend_weights", ("links", "nesting")),
                         ("match_blend_weights", ("term", "structural"))):
@@ -1707,7 +1707,7 @@ def test_host_section_numbers_in_derives_us_section_headings():
     assert clause_cues.host_section_numbers_in("", "us") == set()
 
 
-# fix round, item 5: kill CC6/CC7/CC8 directly.
+# Kills mutants CC6/CC7/CC8.
 def test_clause_cues_cross_reference_link_dimension_is_structural():
     links = clause_cues.cross_reference_links(
         "This measure is referred to in Article 6(1).", "entry-x")
@@ -1902,7 +1902,7 @@ def test_match_blend_default_weights_are_fixed_a_priori():
     assert match.DEFAULT_MATCH_BLEND_WEIGHTS is not profile.DEFAULTS["match_blend_weights"]
 
 
-# fix round, item 3 + item 5 (MA2/MA5/MA6):
+# Kills mutants MA2/MA5/MA6.
 def test_match_blend_rejects_negative_weight():
     with pytest.raises(ValueError):
         match.combine_scores(0.5, 0.5, {"term": -0.1, "structural": 0.3})
@@ -1939,7 +1939,7 @@ def test_combine_scores_from_profile_actually_uses_the_profile_weights():
     assert custom == match.combine_scores(0.9, 0.1, {"term": 0.0, "structural": 1.0})
 
 
-# ── replay: runtime never enters a hashed result (fix round, item 5) ────────
+# ── replay: runtime never enters a hashed result ────────
 def test_timed_call_keeps_runtime_out_of_the_result():
     from five_d_nd import replay
 
@@ -1990,7 +1990,7 @@ def test_term_grammar(path):
         pytest.fail(f"unhandled term-grammar case {case!r}")
 
 
-# fix round, items 4c/5/9 (TM3/TM5/TM6):
+# Kills mutants TM3/TM5/TM6.
 def test_term_grammar_descriptor_binds_relational_not_structural():
     """TM3: the published binding must be exactly relational — both
     'relational' and 'structural' independently pass §9's own shape
@@ -2050,7 +2050,7 @@ def test_term_grammar_bm25_vector_rejects_a_mismatched_tokenizer_profile():
     tampered2["stopwords"] = []
     with pytest.raises(ValueError):
         term.bm25_vector("The controller shall notify.", tampered2)
-    # an OLD profile from before this fix round, missing the fields entirely,
+    # An OLD profile missing the fields entirely
     # is ALSO rejected — never silently treated as a match.
     old_shape = {k: v for k, v in profile.items() if k not in ("token_pattern", "stopwords")}
     with pytest.raises(ValueError):
@@ -2076,7 +2076,7 @@ def test_requirement_grammar(path):
         assert got == expected, v["case"]
 
 
-# fix round, items 1/2/5: direct unit
+# Direct unit
 # tests for behaviours a single pinned vector cannot exercise generically.
 def test_requirement_grammar_rejects_malformed_texts():
     with pytest.raises(ValueError):
@@ -2754,8 +2754,8 @@ def test_requirement_check_on_a_200k_char_text_is_fast():
 
 
 def test_requirement_sentence_boundaries_computed_once_per_text_not_per_occurrence():
-    """Deterministic guard (no flaky timing as the ONLY one) — fix round
-    7 item P: :func:`requirement._sentence_boundaries` is
+    """Deterministic guard (no flaky timing as the ONLY one):
+    :func:`requirement._sentence_boundaries` is
     ``functools.lru_cache``-d; this asserts the cache records exactly
     ONE miss (one real computation) for a FRESH text no matter how many
     cue occurrences that text contains, by comparing cache_info() before

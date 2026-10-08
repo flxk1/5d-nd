@@ -158,9 +158,9 @@ _INTENTIONAL_CUES = [
     r"\bnecessary for\b", r"\bobjective[s]?\b", r"\bseek(?:s|ing)?\s+to\b",
     r"\bin order that\b", r"\bpurpose[s]?\s+of\b",
 ]
-# deadlines/sequence -> temporal. Fix round item 6: a bare `\bwithin\b` cue
-# matched "within the Union"/"within the scope" (spatial, not temporal) —
-# `within` now counts ONLY alongside an actual time expression.
+# deadlines/sequence -> temporal. A bare `\bwithin\b` cue alone would
+# match "within the Union"/"within the scope" (spatial, not temporal) —
+# `within` counts ONLY alongside an actual time expression.
 _TEMPORAL_CUES = [
     r"\bwithin\s+\d+\s*(?:hour|day|week|month|year)s?\b",
     r"\bwithin\s+(?:one|two|three|four|five|six|seven|eight|nine|ten)\s+"
@@ -172,9 +172,9 @@ _TEMPORAL_CUES = [
     r"\bdeadline[s]?\b", r"\bsubsequently\b", r"\bat the time of\b",
     r"\bby\s+\d\b",
 ]
-# containment/definitions/"referred to in paragraph" -> structural. Fix
-# round item 6: a bare `\bmeans\b` cue matched "automated means"/"by other
-# means" (the noun "means", not a definition) — `means` now counts ONLY in
+# containment/definitions/"referred to in paragraph" -> structural. A bare
+# `\bmeans\b` cue alone would match "automated means"/"by other
+# means" (the noun "means", not a definition) — `means` counts ONLY in
 # definitional form. "means any/a/an/the" alone MISSED
 # 6 real GDPR Art. 4 definitions whose own phrasing has no article after
 # "means" at all ("'main establishment' means:", "'cross-border processing'
@@ -370,7 +370,7 @@ _ARTICLE_LIST_TOKEN_RE = re.compile(
 
 
 def _dedup_hit_count(matches: list) -> int:
-    """Fix round item 6: de-duplicate OVERLAPPING match spans so one
+    """De-duplicate OVERLAPPING match spans so one
     surface phrase counts once, never once per overlapping pattern (e.g.
     "referred to in paragraph" and "referred to in" both matching the same
     text previously double-counted it). ``matches`` is a list of ``(start,
@@ -391,7 +391,7 @@ def _dedup_hit_count(matches: list) -> int:
 
 
 def count_cue_hits(text: str, dimension: str) -> int:
-    """De-duplicated hit count (fix round item 6 — see
+    """De-duplicated hit count (see
     :func:`_dedup_hit_count`) for ``dimension``'s own closed cue table over
     ``text``: every pattern's matches are pooled, then overlapping spans
     (across patterns, or repeated by one pattern) are merged before
@@ -562,7 +562,7 @@ def cross_reference_targets(text: str, self_article_number: "Optional[int]" = No
     (``Article N``/``Article N(M)``, or a plural/listed/ranged form —
     ``Articles 15, 16 and 17``, ``Articles 15 to 20``), excluding a
     self-reference and excluding any citation that is itself to ANOTHER
-    instrument (fix round item 6 — see :data:`_EXTERNAL_INSTRUMENT_RE`).
+    instrument (see :data:`_EXTERNAL_INSTRUMENT_RE`).
     ``host_instrument_number`` (e.g. ``"2016/679"``
     for GDPR, from the resolution profile or document metadata) names the
     HOST instrument's own number: "Article 45 of Regulation (EU)

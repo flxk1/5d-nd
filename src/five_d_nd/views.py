@@ -117,7 +117,7 @@ def position_digest(
     return sha256(canon.encode("utf-8")).hexdigest()
 
 
-#: The closed set of the four derived view KINDS (§14/§15, fix round item 7)
+#: The closed set of the four derived view KINDS (§14/§15)
 #: — ``position``, ``match_statistic``, ``d`` and ``nesting_level`` are ALL
 #: views; ``kind`` names WHICH one a given view record is.
 VIEW_KINDS: tuple = ("position", "match_statistic", "d", "nesting_level")
@@ -136,8 +136,8 @@ def make_view(
 ) -> dict:
     """Build one derived view record: ``{"value", "kind", "position_digest",
     "basis", "stale", "staleness_tier"}``. ``kind`` MUST be one of
-    :data:`VIEW_KINDS` (fix round item 7 — every view now names which of
-    the four view kinds it is). ``staleness_tier`` MUST be one of
+    :data:`VIEW_KINDS` — every view names which of
+    the four view kinds it is. ``staleness_tier`` MUST be one of
     :data:`STALENESS_TIERS` when ``stale`` is True, and MUST be ``None``
     when ``stale`` is False (a view that isn't stale has no tier to report).
     """
@@ -160,7 +160,7 @@ def make_view(
 
 
 def view_violations(doc: Any) -> list:
-    """Violations of a derived VIEW document's shape (fix round, item 7):
+    """Violations of a derived VIEW document's shape:
     mirrors :func:`make_view`'s own output shape and
     ``schema/view.schema.json``. ``kind`` MUST be one of :data:`VIEW_KINDS`;
     ``position_digest`` a non-empty string; ``basis`` a non-empty string;
@@ -287,12 +287,12 @@ def erasure_bit_identical(rederived_view: Mapping, never_contained_baseline: Map
 def ingest_stale_window(view: Mapping, *, now: float, window_seconds: float) -> dict:
     """The ingest-stale bounded window (§15): returns ``view`` augmented
     with ``"age"`` (``now - view["as_of"]``) and ``"servable"`` (``age <=
-    window_seconds`` — the boundary ``age == window_seconds`` IS servable,
-    fix round item 6: the window is closed, inclusive, not open). ``view``
+    window_seconds`` — the boundary ``age == window_seconds`` IS servable;
+    the window is closed, inclusive, not open). ``view``
     MUST be a mapping carrying a numeric ``"as_of"`` timestamp (the time the
     last GOOD view was materialised); raises ``ValueError`` — never an
-    uncaught ``KeyError``/``TypeError`` — when it is not (fix round item 6:
-    ``ingest_stale_window({})`` must not crash).
+    uncaught ``KeyError``/``TypeError`` — when it is not
+    (``ingest_stale_window({})`` must not crash).
     """
     if not isinstance(view, Mapping):
         raise ValueError(f"view must be a mapping, got {view!r}")

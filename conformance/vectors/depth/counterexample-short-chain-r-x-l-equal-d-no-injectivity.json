@@ -1,6 +1,6 @@
 {
   "family": "depth",
-  "case": "po-counterexample-short-chain-r-x-l-equal-d-no-injectivity",
+  "case": "counterexample-short-chain-r-x-l-equal-d-no-injectivity",
   "input": {
     "graph": {
       "concept_links": {},

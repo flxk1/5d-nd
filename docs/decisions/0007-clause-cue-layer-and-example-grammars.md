@@ -87,7 +87,7 @@ defects in how each was implemented or documented.
 own `relational`-only-when-silent gate is DISCONTINUOUS by construction:
 GDPR Art. 65(5)'s own sentence scores `relational: 5`; adding one
 clause-initial "Where applicable, " flips it to `relational: 0` — a
-jump, not a gradual shift, on a single added word. This fix round KEEPS
+jump, not a gradual shift, on a single added word. This design KEEPS
 the gate AS INTEGRATED (the gate
 itself was a design call made in drafting §8a, never something the owner
 approved or was even asked about directly; only the integration step as

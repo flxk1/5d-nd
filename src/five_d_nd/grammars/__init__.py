@@ -2,7 +2,7 @@
 # Copyright 2026 flxk1
 """EXAMPLE nD grammars demonstrating the §9 contract — NOT part of 5D itself.
 
-Owner-approved integration step (2026-10-02): the winning build's design
+The winning build's design
 (candidate C, the lexical "term" grammar) and its grafted requirement
 grammar (candidate D+), shipped as REFERENCE nD grammars so §9's contract
 has a worked, runnable example beyond the deontic/topos planes this

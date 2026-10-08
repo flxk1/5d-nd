@@ -117,7 +117,7 @@ def build_term_profile(doc_texts: "dict[str, str]", profile_id: str = "term-nd-d
         "b": BM25_B,
         "vocabulary": vocabulary,
         "df": {t: df[t] for t in vocabulary},
-        # fix round item 4c: the tokenizer itself is now part of what gets
+        # The tokenizer itself is part of what gets
         # pinned/digested, not merely claimed in the module docstring.
         "token_pattern": TOKEN_RE.pattern,
         "stopwords": sorted(STOPWORDS),
@@ -258,7 +258,7 @@ def produce_term_claims(entry_id: str, text: str, profile: dict, grammar_id: str
     BM25 vector under `profile`. Every claim binds dimension `relational`
     (see module docstring) and carries the `term_weight` axis value as its
     `o` (the term) with `weight` the BM25 weight, NORMALISED per DOCUMENT
-    (fix round, item 9 — divided by the span's own MAXIMUM raw BM25
+    (divided by the span's own MAXIMUM raw BM25
     weight, so the top term is always 1.0 and every other term's weight
     stays PROPORTIONAL to it), rounded to 6dp (§12's single-rounding-point
     discipline). `provenance` names the profile digest so the claim is
