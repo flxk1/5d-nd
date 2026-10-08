@@ -57,11 +57,12 @@ out: b'{"anchor":"versum://policy/p1#span-150-240","dimensions":["temporal","rel
 
 ## Evaluation
 
-[`docs/benchmark-2026-10.md`](docs/benchmark-2026-10.md) — a pre-registered
-benchmark on cross-law provision matching (does a typed 5D signal improve
-matching a provision across EU instruments over a structural baseline?).
-Result: a loss against the pre-registered gate. 5D stays a labelled
-structural index with no role in the migration (the dim5 → 5D migration), and no claim is made.
+[`docs/benchmark-2026-10.md`](docs/benchmark-2026-10.md) — two pre-registered
+rounds on cross-law provision matching (does a typed, then a concept-typed,
+5D signal improve matching a provision across EU instruments over a
+structural baseline?). Both rounds are a loss against their pre-registered
+gate. 5D stays a labelled structural index with no role in the migration
+(the dim5 → 5D migration), and no claim is made.
 
 ## Family
 

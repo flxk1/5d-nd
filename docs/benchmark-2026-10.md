@@ -4,6 +4,8 @@ Dated 2026-10-07, independently recomputed and confirmed 2026-10-08
 (0 of 104 ranks differ from the recomputation; every statistic matches
 as an exact fraction).
 
+A second, pre-registered round follows this one; see "Round 2" below.
+
 ## The question
 
 Does adding a typed 5D signal improve cross-law provision matching
@@ -236,3 +238,127 @@ The `src/` tree id above identifies the resolver's source content
 independent of any later commit-message change on that line of
 history; the claim is narrowed to that subtree, not the commit's full
 root tree.
+
+## Round 2
+
+### Why a second round
+
+Round 1's typed signature classified 99.3% of endpoints as the generic
+`non_actor` role, because its role lookup matched only a closed actor
+list. A look at the round-1 gold afterwards suggested that typing
+endpoints by concept, rather than only by actor role, might help. That
+look is not evidence on its own: it used gold the first round had
+already spent, and a concept lexicon written by the team running the
+benchmark, who had seen the queries. Round 2 was pre-registered to
+test the concept idea cleanly, on fresh queries and a vocabulary built
+blind to them.
+
+### Design
+
+- **Clusters and queries.** 16 fresh clusters, 30 queries, with source
+  provisions from the AI Act (6), the DSA (5) and NIS2 (5); targets are
+  the other instruments among the AI Act, the DSA, NIS2 and ePrivacy.
+  The queries were chosen by a proposer that read only the law texts
+  and was blind to round 1's results.
+- **Concept vocabulary.** A 28-concept vocabulary, built blind to the
+  queries and gold, from the frequency of Statement endpoints across
+  all locked Statements — a file containing no query or gold
+  information.
+- **The concept-typed signal.** Each Statement endpoint is typed as: an
+  actor role, if it matches the closed actor list; `other_actor`, if it
+  matches the "other(...)" escape; otherwise the first concept in the
+  vocabulary whose pattern matches the endpoint's text; otherwise
+  `non_actor`. The signatures (`Sig1`, one tuple per Statement; `Sig2`,
+  one tuple per directed two-Statement path sharing an endpoint) are
+  built from these concept types the same way round 1 built them from
+  actor roles. The similarity score adds a rarity weight: each matching
+  element is weighted by how rare it is across all provisions, rather
+  than counted once each, before the same 0.5/0.5 split round 1 used.
+  This concept-typed, rarity-weighted signal is added as a fifth signal
+  to the same structural-plus-lexical baseline (direct citation,
+  co-citation, bibliographic coupling, BM25) and fused by the same RRF.
+- **Decision rule.** A win requires a mean reciprocal-rank gain of at
+  least 0.10, AND an exact one-sided cluster sign-flip test at
+  p ≤ 0.05, AND at least 8 non-zero clusters. Fewer than 8 non-zero
+  clusters means the benchmark cannot gate at all.
+- **Gold.** Two labellers read the full target-pool text independently
+  and blind to each other; one is the gold labeller, the other
+  contributes agreement only. The project owner spot-checked 15 of the
+  30 queries by hand and found 0 disagreements. The two labellers agree
+  at mean Jaccard 0.904, with 22 of 30 queries an exact match.
+
+### Disclosures
+
+- 7 of the 16 source provisions were gold targets in round 1 (the
+  signed pre-registration recorded 6; the correct count is 7): NIS2
+  Art. 21, DSA Art. 34, DSA Art. 13, AI Act Art. 85, AI Act Art. 50,
+  DSA Art. 45 and AI Act Art. 70. Round 2 uses them as sources, against
+  different target instruments.
+- The form of the concept-typed arm (concept typing, the specific
+  rarity-weight formula, the 0.5/0.5 split) was chosen after the
+  project owner had already seen round 1's gold, though round 2's own
+  queries and vocabulary were built blind to it.
+- Before the run, concept typing was disclosed to leave 17.7% of
+  endpoints as `non_actor` (against round 1's 99.3%) and to give a
+  non-zero similarity for 63.5% of candidates.
+- With 16 clusters, the pre-registered power to detect a true gain of
+  0.10 was about 0.3 to 0.5; detection needed an observed gain of about
+  0.15. A post-hoc estimate ahead of the run put the likely gain at
+  +0.03, so a loss was the expected outcome.
+
+### Result
+
+| Arm (cluster-mean MRR) | MRR |
+|---|---|
+| Structural-plus-lexical baseline | 0.584 |
+| Concept-typed arm | 0.515 |
+
+Mean gain −0.068, against the required +0.10. The exact one-sided
+cluster sign-flip test gives p = 27771/32768 ≈ 0.848, over 15 of 16
+non-zero clusters (no clusters or queries were dropped). This is a
+loss. The result was independently recomputed and confirmed.
+
+**Descriptive controls (not tested, no claim):**
+
+| Control | MRR |
+|---|---|
+| Sig1 only, fused with the structural signals | 0.624 |
+| Sig2 only, fused with the structural signals | 0.371 |
+| Plain Jaccard, fused with the structural signals | 0.484 |
+| Round-1 typed signal, fused with the structural signals | 0.419 |
+| BM25 alone | 0.584 |
+
+### Context
+
+In round 2, the structural-plus-lexical baseline was effectively BM25
+alone: the locked citation graph has no links at all among the AI Act,
+the DSA, NIS2 and ePrivacy, so the three citation-based signals were
+empty for every query, and 0 of the 30 gold pairs have a citation link
+between them.
+
+### Consequence
+
+A loss means no new claim; the round-1 consequence stands.
+
+**Scope.** Round 2 tests only the concept-typed arm against the
+structural-plus-lexical baseline. It does not test the typing claim
+(the round-1 "H2" comparison) or the descriptive query classes (4.1 to
+4.3); a win would not have been attributable to the 5D dimension
+itself.
+
+### Provenance (round 2)
+
+- **Amendment 2 (sha256):** `81f114a559c78074c2c5497949e3e3fa39748a2ddee72bb8b1264ad9195f291f`.
+- **Concept vocabulary (sha256):** `af6e413011e37cc3d1805d0956cb704749c964fe75bd1375e760adbaab93ce50`.
+- **Queries (sha256):** `d009b05f06af444157aaa1a09036186c9b3a4f069b9700b3623898d45cdb26b0`.
+- **Round-2 labelling contract (sha256):** `65f65bdd6d268e62b51c82c52a3c78d301dd14720c6a3b400569ea968a143e5b`.
+- **Round-2 judged answers (sha256):** `7f0df77393e6283f943c7aaed6fc490085cf24fb9616a5a122443d4d7aa05c6b`.
+- **Harness commit:** `6f6cb4096488c71ba03375df40b1a4eb2eabb74b`.
+- **Extractor pin (T3):** `d3fb466`.
+- **Requests manifest (sha256):** `cf0e031dc7d64cfae3e79d07ccc0420397fdd4ade5f9b9f582302da7a8f83390`.
+- **Reused round-1 locks:** candidate pools
+  `67fdee76525044e80a82285fdabe69e9835954f8914a40327492523384e5a7af`;
+  Statements
+  `d14fc410e0b769fdb8e732ac20221b4edd81b806f3ce34a3d8e2a8dc58ec8a7b`;
+  cross-reference resolver output
+  `23322e8b5c7bb6c443ee991f0de874ff5414c4e6dbce859246c03e510c045072`.
