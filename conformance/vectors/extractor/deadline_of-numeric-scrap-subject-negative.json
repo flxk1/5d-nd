@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-numeric-scrap-subject-negative",
+  "input": {
+    "unit_text": "Codes of practice shall be ready at the latest by 2 May 2025."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#dd2a35019e27d190",
+        "subj": "Codes of practice",
+        "obj": "ready at the latest by 2 May 2025",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.35,
+        "provenance": {
+          "start": 0,
+          "end": 60
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-copula-fallback"
+      }
+    ]
+  }
+}

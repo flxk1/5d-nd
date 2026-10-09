@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-relative-by-calendar-date",
+  "input": {
+    "unit_text": "The provider shall ensure conformity by 25 May 2018."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#4763f6fcbef74d18",
+        "subj": "provider",
+        "obj": "ensure conformity by 25 May 2018",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 51
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      },
+      {
+        "id": "extracted-unit#n/a#103a92c1cb593faf",
+        "subj": "ensure conformity",
+        "obj": "by 25 may 2018",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 51
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-relative-by-date"
+      }
+    ]
+  }
+}

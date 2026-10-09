@@ -89,8 +89,15 @@ __all__ = [
 # gave the supervisory authority NO edge of its own -- it was text
 # INSIDE `performs`'s object, never a node a path could end at. Every
 # OTHER v3.5 predicate, and the v3.5 PREDICATE_DIMENSION mapping, is
-# UNCHANGED.
-PREDICATE_VOCABULARY_VERSION = "typed-statements-v3.6"
+# UNCHANGED. v3.7 adds NO new predicate -- it extends `deadline_of`'s
+# own obj NORMALISATION convention with two new cue families (dated
+# limits anchored to a calendar date rather than a counted duration;
+# periodic, recurring duties rather than a one-off bounded window),
+# the same kind of definition-text change v3.1 already counted as
+# version-worthy. The predicate set, every other predicate's own
+# definition, and the PREDICATE_DIMENSION mapping are UNCHANGED from
+# v3.6.
+PREDICATE_VOCABULARY_VERSION = "typed-statements-v3.7"
 
 PREDICATE_DIMENSION: dict = {
     "is_a": Dimension.STRUCTURAL.value,

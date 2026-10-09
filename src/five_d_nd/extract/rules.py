@@ -70,6 +70,7 @@ __all__ = [
     "collect_segmented_candidates",
     "type_recipient_actor",
     "normalize_deadline_text",
+    "strip_trailing_deadline_cue",
 ]
 
 
@@ -341,6 +342,26 @@ def _clause_start_before_skipping_empty(unit_text: str, pos: int) -> int:
         if unit_text[idx:pos].strip():
             return idx
     return 0
+
+
+_SENTENCE_END_RE = re.compile(r"[.]\s*")
+
+
+def _clamp_subj_start_to_sentence(unit_text: str, subj_start: int, pos: int) -> int:
+    """v3.7 generalisation: :func:`_clause_start_before_skipping_empty`
+    only treats `,`/`;`/`:` as a boundary, NEVER a sentence-ending `.`
+    -- a v3.7 cue with no comma anywhere between it and ``pos`` (e.g.
+    "...from the use made of their services.\\nThey shall carry out the
+    risk assessments by the date of application...") would otherwise
+    walk straight past the PERIOD into the PREVIOUS sentence looking
+    for one, pulling in that earlier sentence's own act as a
+    companion-search starting point instead of the CORRECT, current
+    one. Clamps ``subj_start`` forward to the nearest sentence start at
+    or before ``pos``, never backward past it."""
+    sentence_start = 0
+    for m in _SENTENCE_END_RE.finditer(unit_text, 0, pos):
+        sentence_start = m.end()
+    return max(subj_start, sentence_start)
 
 
 #: A quoted-term character class covering BOTH ASCII and the curly/smart
@@ -927,14 +948,140 @@ _DEADLINE_QUALITATIVE_RE = re.compile(
 )
 
 
+#: v3.7: the DATED-limit cue -- "by" followed by a calendar date, or
+#: one of the SAME "the date of application"/"that date" anchors a
+#: duty can be timed against. Deliberately NARROW (an explicit date
+#: shape only) so the common, non-temporal "by" ("approved by the
+#: supervisory authority", "determined by the controller") never
+#: reaches this rule at all.
+#: a SCOPE/eligibility date, never a duty's own time
+#: limit -- "AI systems ... that HAVE BEEN placed on the market or put
+#: into service before 2 August 2027" names which systems a provision
+#: covers (a RETROSPECTIVE, already-happened status as of that date),
+#: not when an act must happen; a genuine duty uses "shall be placed"/
+#: "to be placed", never "have/has/had been placed". Denied when the
+#: text immediately before the cue ends in "have/has/had been
+#: placed"/"already placed"/"... been put into service" -- kept for
+#: the dated cue below even though its own anchor is a literal
+#: calendar date, not an event, since a transitional provision
+#: routinely states a scope cutoff and a genuine "by <date>" duty in
+#: the SAME sentence (AI Act Art. 111).
+_RELATIVE_SCOPE_DATE_RE = re.compile(
+    r"\b(?:(?:have|has|had)\s+been|already)\s+(?:produced|placed|put)\b[^.;:,]{0,100}$",
+    re.IGNORECASE,
+)
+#: a RETENTION/look-back window ("in the 12 months' period before X",
+#: "during the last six months before X") -- a backward-looking
+#: eligibility/record-keeping condition, never a forward-looking
+#: deadline -- denied when the text immediately preceding the cue ends
+#: in a "<N> <unit>(s)' period"/"last <N> <unit>(s)" shape.
+_RELATIVE_RETROSPECTIVE_WINDOW_RE = re.compile(
+    r"(?:\b(?:last|past)\s+(?:\d+|" + _NUMBER_WORD + r")\s*(?:month|year|day|week)s?|"
+    r"(?:\d+|" + _NUMBER_WORD + r")\s*(?:month|year|day|week)s?['’]?\s*period|"
+    r"for\s+a\s+period\s+of\s+(?:at\s+least\s+)?(?:\d+|" + _NUMBER_WORD
+    + r")\s*(?:month|year|day|week)s?)\s*$",
+    re.IGNORECASE,
+)
+_RELATIVE_DATE_RE_FRAGMENT = (
+    r"\d{1,2}\s+(?:January|February|March|April|May|June|July|August|"
+    r"September|October|November|December)\s+\d{4}|"
+    r"\d{4}-\d{2}-\d{2}|"
+    r"the\s+date\s+of\s+application|"
+    r"that\s+date"
+)
+_RELATIVE_BY_DATE_RE = re.compile(
+    r"\bby\s+(?:" + _RELATIVE_DATE_RE_FRAGMENT + r")\b",
+    re.IGNORECASE,
+)
+
+#: v3.7: the PERIODIC-duty cues -- a recurring obligation, never a
+#: one-off bounded duration. "at least once a/every year" and bare
+#: "annually" both normalise to the identical "annually" (below);
+#: "every N months/years" (digit or spelled-out number) normalises to
+#: "every N months"/"every N years"; "periodically"/"on a regular
+#: basis" normalise to "periodically"/"regularly".
+_PERIODIC_RE = re.compile(
+    r"\b(?P<obj>annually|periodically|on\s+a\s+regular\s+basis|"
+    r"at\s+least\s+once\s+(?:a|every)\s+year|"
+    r"at\s+least\s+once\s+every\s+(?:\d+|" + _NUMBER_WORD + r")?\s*(?:months?|years?)|"
+    r"every\s+(?:\d+|" + _NUMBER_WORD + r")?\s*(?:months?|years?))\b",
+    re.IGNORECASE,
+)
+#: v3.7 generalisation: "... that each certified out-of-court dispute
+#: settlement body HAS RECEIVED annually" names a COUNT describing
+#: report CONTENT -- how often disputes arrive -- never a duty to be
+#: performed periodically; a periodic adverb modifying a past/perfect
+#: participle describing content ("received", "submitted", "handled")
+#: right before it is denied outright.
+_PERIODIC_CONTENT_DESCRIPTION_RE = re.compile(
+    r"\b(?:has|have|had)\s+(?:been\s+)?(?:received|submitted|handled)\s*$", re.IGNORECASE,
+)
+
+_NUMBER_WORD_VALUE = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+    "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16,
+    "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20,
+}
+
+
+def _normalize_periodic_text(t: str) -> Optional[str]:
+    """``None`` when ``t`` is not one of the periodic shapes
+    :data:`_PERIODIC_RE` can produce -- a `normalize_deadline_text` caller
+    then falls through to its own next check."""
+    tl = t.strip().lower()
+    if tl == "periodically":
+        return "periodically"
+    if "regular basis" in tl:
+        return "regularly"
+    if tl == "annually" or re.fullmatch(r"at\s+least\s+once\s+(?:a|every)\s+year", tl):
+        return "annually"
+    m = re.fullmatch(
+        r"(?:at\s+least\s+once\s+)?every\s+(?:(?P<n>\d+|" + _NUMBER_WORD + r")\s*)?(?P<unit>months?|years?)",
+        tl,
+    )
+    if m:
+        unit = m.group("unit").rstrip("s")
+        n_raw = m.group("n")
+        if n_raw is None:
+            n = 1
+        elif n_raw.isdigit():
+            n = int(n_raw)
+        else:
+            n = _NUMBER_WORD_VALUE.get(n_raw)
+        if n is None:
+            return None
+        if unit == "year" and n == 1:
+            return "annually"
+        return f"every {n} {unit}{'s' if n != 1 else ''}"
+    return None
+
+
+def _normalize_date_text(t: str) -> Optional[str]:
+    """``None`` when ``t`` does not start with the "by" cue
+    :data:`_RELATIVE_BY_DATE_RE` produces. ``_RELATIVE_BY_DATE_RE``'s
+    own anchor is already a tightly bounded calendar date or "the date
+    of application"/"that date" -- no further collapsing needed, just
+    lower-casing."""
+    m = re.match(r"^by\s+(?P<anchor>.+)$", t.strip(), re.IGNORECASE | re.DOTALL)
+    if not m:
+        return None
+    return f"by {m.group('anchor').strip().lower()}"
+
+
 def normalize_deadline_text(raw: str) -> str:
-    """The v3.6 deadline NORMALISER: a captured deadline
-    span's own raw text (e.g. "72 hours after having become aware of
-    it") collapses to just the LIMIT itself ("72 hours") -- the "after
-    ..." qualifier names what starts the clock, not the limit's own
-    size, and is dropped. A qualitative cue ("without undue delay",
+    """The v3.6 deadline NORMALISER, extended in v3.7: a captured
+    deadline span's own raw text (e.g. "72 hours after having become
+    aware of it") collapses to just the LIMIT itself ("72 hours") -- the
+    "after ..." qualifier names what starts the clock, not the limit's
+    own size, and is dropped. A qualitative cue ("without undue delay",
     "promptly", "immediately") is returned lower-cased, unchanged
-    otherwise. Deterministic, pure string work -- no model call."""
+    otherwise. v3.7 adds two further shapes, checked in order after
+    the pre-existing two fail: a PERIODIC cue (`_normalize_periodic_text`)
+    normalises to "annually"/"every N months"/"every N years"/
+    "periodically"/"regularly"; a DATED cue (`_normalize_date_text`)
+    normalises to "by <date>". Deterministic, pure string work -- no
+    model call."""
     t = raw.strip()
     m = re.match(
         r"^(?P<n>\d+|" + _NUMBER_WORD + r")\s*(?P<unit>hours?|days?|weeks?|months?|years?)\b",
@@ -946,6 +1093,12 @@ def normalize_deadline_text(raw: str) -> str:
     for phrase in ("without undue delay", "promptly", "immediately"):
         if phrase in tl:
             return phrase
+    periodic = _normalize_periodic_text(t)
+    if periodic is not None:
+        return periodic
+    dated = _normalize_date_text(t)
+    if dated is not None:
+        return dated
     return t
 
 
@@ -993,7 +1146,105 @@ def _find_deadline_of(text: str, context: dict) -> "list[Candidate]":
             clause_span=(subj_start, m.end()), subj_span=(subj_start, m.start()),
             obj_span=m.span("obj"), base_confidence=0.5, never_conflicts=True,
         ))
+    # v3.7: DATED limits ("by 25 May 2018", "by the date of
+    # application") -- the obj span is the WHOLE match (cue word
+    # included), since `normalize_deadline_text`'s own
+    # `_normalize_date_text` needs the cue word for the "by " prefix.
+    # A SCOPE/eligibility date (`_RELATIVE_SCOPE_DATE_RE`) or a
+    # retention/look-back window (`_RELATIVE_RETROSPECTIVE_WINDOW_RE`)
+    # immediately before the cue is denied right here, before a
+    # `Candidate` is ever built from it.
+    for m in _RELATIVE_BY_DATE_RE.finditer(text):
+        if _RELATIVE_RETROSPECTIVE_WINDOW_RE.search(text[max(0, m.start() - 40):m.start()]):
+            continue
+        if _RELATIVE_SCOPE_DATE_RE.search(text[max(0, m.start() - 160):m.start()]):
+            continue
+        subj_start = _clause_start_before_skipping_empty(text, m.start())
+        subj_start = _clamp_subj_start_to_sentence(text, subj_start, m.start())
+        # The fronted form ("By 1 February 2024 and ..., the
+        # Cooperation Group shall ...") has NO text before the cue to
+        # use as even a placeholder `subj_span` -- the whole match
+        # stands in for one instead, since `_rebind_deadline_subjects`
+        # always REPLACES it with the real governed-act companion (or
+        # drops this `never_conflicts` candidate outright when none
+        # exists).
+        if subj_start >= m.start():
+            subj_start, subj_end = m.span(0)
+        else:
+            subj_end = m.start()
+        key = (subj_start, m.end())
+        if key in seen_spans:
+            continue
+        seen_spans.add(key)
+        out.append(Candidate(
+            rule_id=_cite("T3-deadline_of-relative-by-date",
+                           "`deadline_of` — temporal: dated limit "
+                           "(\"by\" + a calendar date/\"the date of application\")"),
+            predicate="deadline_of",
+            clause_span=(subj_start, m.end()), subj_span=(subj_start, subj_end),
+            obj_span=m.span(0), base_confidence=0.5, never_conflicts=True,
+            # a calendar month name ("May") collides with the modal
+            # "may" under MODAL_ANYWHERE_RE's case-insensitive
+            # match -- the obj span here is never truncated at an
+            # internal modal for that reason.
+            truncate_midspan_modal=False,
+        ))
+    # v3.7: PERIODIC duties ("annually", "every six months",
+    # "periodically") -- a recurring obligation, never a one-off
+    # bounded duration.
+    for m in _PERIODIC_RE.finditer(text):
+        if _PERIODIC_CONTENT_DESCRIPTION_RE.search(text[max(0, m.start() - 40):m.start()]):
+            continue
+        subj_start = _clause_start_before_skipping_empty(text, m.start())
+        subj_start = _clamp_subj_start_to_sentence(text, subj_start, m.start())
+        if subj_start >= m.start():
+            continue
+        key = (subj_start, m.end())
+        if key in seen_spans:
+            continue
+        seen_spans.add(key)
+        out.append(Candidate(
+            rule_id=_cite("T3-deadline_of-periodic",
+                           "`deadline_of` — temporal: periodic duty "
+                           "(\"annually\"/\"every N months|years\"/\"periodically\"/\"on a regular basis\")"),
+            predicate="deadline_of",
+            clause_span=(subj_start, m.end()), subj_span=(subj_start, m.start()),
+            obj_span=m.span("obj"), base_confidence=0.5, never_conflicts=True,
+        ))
     return out
+
+
+#: v3.7 generalisation: the deadline_of cue families, reused here (NEVER
+#: re-derived) to strip a cue the OWN deadline_of's trailing text
+#: swallowed back OUT of a governed-act text a v3.7 companion search
+#: found -- "report annually" (the periodic cue's own clause text
+#: companion-bound unchanged) -> "report"; "shall be brought into
+#: compliance with this Regulation by 31 December 2030" (a last-resort
+#: passive-act match that reaches past the SAME "by <date>" this
+#: Statement's own obj already names) -> "shall be brought into
+#: compliance with this Regulation". The EARLIEST cue match, of any
+#: family, wins -- deadline_of's own cue text is never a part of the
+#: act it times.
+_ALL_DEADLINE_CUE_PATTERNS = (
+    _DEADLINE_RE, _DEADLINE_WORD_NUMBER_RE, _DEADLINE_QUALITATIVE_RE,
+    _RELATIVE_BY_DATE_RE, _PERIODIC_RE,
+)
+
+
+def strip_trailing_deadline_cue(text: str) -> str:
+    """Truncate ``text`` right before the EARLIEST match of any
+    deadline_of cue family found inside it, if any; returns ``text``
+    unchanged when no cue is found, or when the only match found is at
+    position 0 (the text IS the cue, nothing to strip)."""
+    earliest = None
+    for pattern in _ALL_DEADLINE_CUE_PATTERNS:
+        m = pattern.search(text)
+        if m is not None and m.start() > 0 and (earliest is None or m.start() < earliest):
+            earliest = m.start()
+    if earliest is None:
+        return text
+    trimmed = text[:earliest].rstrip(" ,;:")
+    return trimmed or text
 
 
 # ─────────────────────────── precedes ──────────────────────────────────
@@ -1405,6 +1656,11 @@ def _register_all_rule_citations() -> None:
         ("T3-deadline_of-qualitative-cue",
          "`deadline_of` — temporal: qualitative cue "
          "(\"without undue delay\"/\"promptly\"/\"immediately\")"),
+        ("T3-deadline_of-relative-by-date",
+         "`deadline_of` — temporal: dated limit (\"by\" + a calendar date/\"the date of application\")"),
+        ("T3-deadline_of-periodic",
+         "`deadline_of` — temporal: periodic duty "
+         "(\"annually\"/\"every N months|years\"/\"periodically\"/\"on a regular basis\")"),
         ("T3-addressed_to-verb-to-recipient",
          "`addressed_to` — relational: \"notify/report/inform/communicate/submit/transmit "
          "... to X\" recipient cue"),

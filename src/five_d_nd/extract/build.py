@@ -50,6 +50,7 @@ from .rules import (
     CO_CODABLE_PREDICATE_PAIRS,
     collect_segmented_candidates,
     normalize_deadline_text,
+    strip_trailing_deadline_cue,
     type_recipient_actor,
 )
 
@@ -382,6 +383,20 @@ def _governed_act_text(statement: dict) -> str:
     return statement["obj"]
 
 
+#: v3.7: a companion whose own act text ends in a DANGLING coordinating
+#: conjunction (", and"/", or") is a span-boundary misfire, not a real
+#: act -- "the individuals or entities that have submitted a notice,
+#: and to the provider..." gives an `addressed_to` rule a SPURIOUS
+#: "submitted a notice, and" reading (the comma right before "and" is
+#: itself inside a coordinated list, not the act's own end). Never
+#: trusted as a `deadline_of` companion.
+_DANGLING_CONJUNCTION_RE = re.compile(r",\s*(?:and|or)\s*$", re.IGNORECASE)
+
+
+def _is_dangling_fragment(act_text: str) -> bool:
+    return bool(_DANGLING_CONJUNCTION_RE.search(act_text.strip()))
+
+
 #: v3.6: the LAST-RESORT governed-act fallback, tried only when NO
 #: `performs`/`competence_of`/`addressed_to` companion shares a clause
 #: with a `deadline_of` candidate (`_find_passive_act_phrase`, below)
@@ -414,6 +429,189 @@ def _find_passive_act_phrase(unit_text: str, near_span: tuple) -> Optional[str]:
         return None
     act_text = _spans.span_text(unit_text, (sent_start, sent_start + pm.end()))
     return act_text or None
+
+
+#: v3.7 generalisation: `_PASSIVE_ACT_RE`'s own bare `shall\s+be\s+[a-z]+`
+#: accepts ANY word after "be" -- an ADJECTIVE ("lawful", "ready",
+#: "commensurate", "subject") or a bare ADVERB with the real participle
+#: one word further on ("shall be TACITLY extended") reads as a
+#: plausible-looking but WRONG act for a v3.7 cue, unlike the digit
+#: cue's own long-settled, unmodified use of `_PASSIVE_ACT_RE` (NEVER
+#: touched here). Restricted to a GENUINE past participle: the closed
+#: irregular list, or a regular `-ed`/`-en` ending; an optional single
+#: adverb between "be" and the participle is skipped over, never
+#: mistaken for the participle itself.
+#: ``pred`` captures the WHOLE predicate from "be" onward (through the
+#: next clause boundary), modal EXCLUDED -- "be brought into compliance
+#: with this Regulation" -- so a trailing deadline cue inside it
+#: ("... by 31 December 2030") is still there for
+#: `strip_trailing_deadline_cue` to find and remove, the SAME as any
+#: other v3.7 act text.
+#: the calendar month "May" collides with the modal "may" under a
+#: case-insensitive match -- "by 2 MAY 2025" is a date, never a modal
+#: verb. The negative lookahead rejects a modal match immediately
+#: followed by a digit (a date's own day-of-month number, "May 2025"),
+#: shared by every v3.7 modal-anchored regex below.
+_V37_MODAL_RE_FRAGMENT = r"(?:shall|must|may(?!\s+\d))"
+_V37_PASSIVE_ACT_RE = re.compile(
+    r"\b" + _V37_MODAL_RE_FRAGMENT + r"\s+(?P<pred>be\s+(?:[a-z]+ly\s+)?(?P<verb>[a-z]+)[^.;:,]*)",
+    re.IGNORECASE,
+)
+_V37_IRREGULAR_PARTICIPLES = frozenset({
+    "made", "given", "taken", "kept", "held", "brought", "sent", "built",
+    "done", "put", "set", "shown", "known", "drawn", "begun", "chosen",
+    "broken", "spoken", "found", "understood", "met", "heard", "read",
+    "said", "told", "sold", "left", "felt", "dealt", "meant", "written",
+    "seen", "gone", "come", "become", "grown", "worn", "torn", "born",
+    "sworn", "thrown", "blown", "flown", "withdrawn", "paid", "lost",
+    "sought", "bought", "caught", "taught", "fought",
+})
+
+
+def _is_past_participle(word: str) -> bool:
+    wl = word.lower()
+    if wl in _V37_IRREGULAR_PARTICIPLES:
+        return True
+    return wl.endswith("ed") or wl.endswith("en")
+
+
+#: v3.7 generalisation: a chapeau/passive-act match that is really a HEADING or
+#: a definition lead-in ("Article 3 Definitions ...", "Chapter 2
+#: Obligations ...") -- a title, never an act. Denied as a v3.7 act
+#: text outright.
+_HEADING_LEADIN_RE = re.compile(r"^(?:Article|Chapter|Section|Annex|Title)\s+\d+\b", re.IGNORECASE)
+#: v3.7 generalisation: a bare number or date-shaped scrap ("2025", "2
+#: May", "31 December") is NEVER a governed act -- a trailing deadline
+#: cue `strip_trailing_deadline_cue` removes can leave nothing but the
+#: date's own fragment behind when no OTHER act text preceded it in
+#: the same sentence (AI Act Art. 56(9)'s own "Codes of practice shall
+#: be ready at the latest by 2 May 2025" -- "ready" is an ADJECTIVE,
+#: never a participle, so the passive fallback correctly finds no act
+#: at all; this guard catches any OTHER path that might still produce
+#: a bare numeric/date scrap).
+_NUMERIC_SCRAP_RE = re.compile(
+    r"^(?:\d{1,4}|\d{1,2}\s+(?:January|February|March|April|May|June|July|August|"
+    r"September|October|November|December)(?:\s+\d{4})?)$",
+    re.IGNORECASE,
+)
+
+
+#: v3.7 generalisation: a conditional/exception subordinator -- "unless",
+#: "except where", "except", "save where" (the `except_when` cue
+#: family) -- that starts a NEW sub-clause the main clause's own
+#: passive verb is never found inside. `_find_v37_passive_act_phrase`
+#: never lets its own sentence-bounded search reach BACKWARD across one
+#: of these into the general rule it carves an exception out of.
+_V37_CONDITIONAL_SUBORDINATOR_RE = re.compile(
+    r"\b(?:unless|except\s+where|except|save\s+where|if|where)\b", re.IGNORECASE,
+)
+#: v3.7 generalisation: "Member States shall ensure that X ..., AND
+#: SHALL encourage Y ... on a regular basis" -- TWO coordinated main
+#: clauses sharing one elided subject; a companion from the FIRST
+#: clause (the only one `performs`'s own closed actor-NP shape could
+#: ever fire on, since the second clause's own subject is elided) is
+#: NEVER trusted for a deadline cue that itself sits in the SECOND,
+#: coordinated clause -- signalled by an "and"/"or" + a FURTHER modal
+#: sitting between the companion's own end and the deadline's own
+#: start.
+_V37_COORDINATED_CLAUSE_BOUNDARY_RE = re.compile(
+    r"\b(?:and|or)\s+(?P<modal>" + _V37_MODAL_RE_FRAGMENT + r")\b", re.IGNORECASE,
+)
+
+
+def _crosses_coordinated_clause_boundary(unit_text: str, start: int, end: int) -> bool:
+    if start >= end:
+        return False
+    return bool(_V37_COORDINATED_CLAUSE_BOUNDARY_RE.search(unit_text, start, end))
+
+
+def _v37_sentence_bounds(unit_text: str, near_span: tuple) -> tuple:
+    """The SAME sentence-bounded window every v3.7 last-resort act
+    search uses: from the nearest sentence start at or before
+    ``near_span``, trimmed forward past the nearest conditional
+    subordinator (:data:`_V37_CONDITIONAL_SUBORDINATOR_RE`) between
+    there and ``near_span``'s own end — "... unless X opposes ...
+    before Y" times X's own exception condition, never the GENERAL
+    rule the exception carves itself out of — through to the next
+    sentence start (or the text's own end)."""
+    sent_start = 0
+    for m in _SENTENCE_START_RE.finditer(unit_text, 0, near_span[0]):
+        sent_start = m.end()
+    last_subordinator_end = None
+    for m in _V37_CONDITIONAL_SUBORDINATOR_RE.finditer(unit_text, sent_start, near_span[1]):
+        last_subordinator_end = m.end()
+    if last_subordinator_end is not None:
+        sent_start = last_subordinator_end
+    # a coordinated "..., AND SHALL encourage ... on a regular basis"
+    # main clause is its OWN local scope too -- the search never
+    # reaches back across it into an earlier, unrelated "shall" clause.
+    for m in _V37_COORDINATED_CLAUSE_BOUNDARY_RE.finditer(unit_text, sent_start, near_span[1]):
+        sent_start = m.start("modal")
+    sent_end_match = _SENTENCE_START_RE.search(unit_text, near_span[1])
+    sent_end = sent_end_match.start() if sent_end_match else len(unit_text)
+    return sent_start, sent_end
+
+
+#: v3.7 generalisation: the fronted "Prior to X, <actor> shall <act>" form (and
+#: any OTHER construction where the main clause's own actor NP falls
+#: outside the closed `ACTOR_NP_FRAGMENT` shape -- a trailing participial
+#: modifier, "providers ESTABLISHED IN THIRD COUNTRIES shall...", is
+#: never allowed there, so `performs` itself never fires) -- finds the
+#: ACT directly from the nearest "shall"/"may"/"must" MODAL onward,
+#: regardless of what actor NP shape precedes it. EVERY comma-bounded
+#: adverbial interruption between the modal and the act is skipped over
+#: (`*`, not `?` -- "shall, except where X, prior to Y, invite Z" has
+#: TWO chained interruptions, not just the one `_MODAL_INTERRUPTION`
+#: itself tolerates for `performs`).
+_V37_ACTIVE_ACT_RE = re.compile(
+    r"\b" + _V37_MODAL_RE_FRAGMENT + r"\b(?:\s*,\s*[^,]{1,80},)*(?!\s*be\b)\s*(?P<act>[^.;:,]{1,200})",
+    re.IGNORECASE,
+)
+
+
+def _find_v37_active_act_phrase(unit_text: str, near_span: tuple) -> Optional[str]:
+    """The v3.7-only ACTIVE-voice companion of
+    :func:`_find_v37_passive_act_phrase` — the first "shall/may/must
+    <act>" (the one-comma adverbial interruption skipped over) found in
+    the same, conditional-subordinator-trimmed sentence window."""
+    sent_start, sent_end = _v37_sentence_bounds(unit_text, near_span)
+    sentence = unit_text[sent_start:sent_end]
+    m = _V37_ACTIVE_ACT_RE.search(sentence)
+    if m is None:
+        return None
+    act_text = _spans.span_text(unit_text, (sent_start + m.start("act"), sent_start + m.end("act")))
+    if act_text and not _HEADING_LEADIN_RE.match(act_text.strip()):
+        return act_text
+    return None
+
+
+def _find_v37_passive_act_phrase(unit_text: str, near_span: tuple) -> Optional[str]:
+    """The v3.7-only, STRICT variant of :func:`_find_passive_act_phrase`
+    — same sentence-bounded search, but only a GENUINE past participle
+    (:func:`_is_past_participle`) after "shall/may/must be" counts,
+    never a bare adjective or a stray adverb. Tries every match in the
+    sentence (not just the first), in order, since an earlier "shall be
+    tacitly extended" style match is checked word-by-word before this
+    function ever gets to the real participle further on; here it
+    checks the CAPTURED verb itself, so the FIRST `_V37_PASSIVE_ACT_RE`
+    match whose own captured word genuinely IS a participle wins."""
+    sent_start, sent_end = _v37_sentence_bounds(unit_text, near_span)
+    sentence = unit_text[sent_start:sent_end]
+    for pm in _V37_PASSIVE_ACT_RE.finditer(sentence):
+        if not _is_past_participle(pm.group("verb")):
+            continue
+        # v3.7 generalisation: the act text starts at THIS match's own "shall"
+        # (`pm.start()`), never at the sentence's own start -- a long
+        # sentence with an unrelated clause before the modal ("Without
+        # prejudice to ..., AI systems ... before 2 August 2027 SHALL BE
+        # brought into compliance ...") must never carry that unrelated
+        # prefix into the act text.
+        act_text = _spans.span_text(
+            unit_text, (sent_start + pm.start("pred"), sent_start + pm.end("pred")),
+        )
+        if act_text and not _HEADING_LEADIN_RE.match(act_text.strip()):
+            return act_text
+    return None
 
 
 #: v3.6: a SECOND companion search, tried when
@@ -492,8 +690,33 @@ def _spans_share_a_clause(unit_text: str, span_a: tuple, span_b: tuple) -> bool:
     return not _SENTENCE_BOUNDARY_RE.search(unit_text, lo, hi)
 
 
+#: v3.7: the dated/periodic cues' own rule ids -- the ONLY ones that
+#: widen the companion SEARCH POOL below to `all_built` (pre-overlap-
+#: resolution candidates), never the pre-v3.7 cues. A fronted dated cue
+#: ("By 1 February 2024 and ..., the Cooperation Group shall
+#: establish...") or a pronoun-subject clause ("They shall carry out
+#: ... by the date of application...") routinely has NO SURVIVING
+#: `performs`/`competence_of` companion in the narrow, post-overlap
+#: pool at all -- `performs`'s own closed actor-NP shape never matches
+#: a bare pronoun, and a fronted cue's own trigger word can collide
+#: with `precedes`'s own unbounded-greedy obj capture (`_PRECEDES_RE`'s
+#: own `[^.;:]{1,150}`), which (listed before `performs` in `rules.
+#: RULES`, and not `CO_CODABLE_PREDICATE_PAIRS` with it) wins the
+#: overlap, leaving no SURVIVING companion for THESE cues' own rebind
+#: search at all. Searching the wider, pre-overlap pool for an act's own
+#: TEXT changes nothing about what `precedes`/`performs` themselves end
+#: up emitting (`built`, the post-overlap list, is what every OTHER
+#: Statement in `out` still comes from) -- it only lets one of these
+#: NEW, `never_conflicts` candidates find a governed act to rebind to
+#: that this feature itself would otherwise make impossible to find.
+_V37_WIDE_POOL_RULE_IDS = frozenset({
+    "T3-deadline_of-relative-by-date", "T3-deadline_of-periodic",
+})
+
+
 def _rebind_deadline_subjects(
     unit_text: str, built: "list[BuiltStatement]", *, instrument_uri: str, consolidation_date: str,
+    all_built: "Optional[list[BuiltStatement]]" = None,
 ) -> "list[BuiltStatement]":
     """v3.6's own deadline-subject BINDING rule: a `deadline_of`
     Statement's own ``subj`` is NEVER a clause subject, a sentence
@@ -512,7 +735,14 @@ def _rebind_deadline_subjects(
     through UNCHANGED. Rebinding
     the `subj` changes the Statement's own id (the id hashes
     `predicate|subj|obj|span`), recomputed here the same way
-    `build_statement` computes it the first time."""
+    `build_statement` computes it the first time.
+
+    ``all_built`` (v3.7, optional, backwards-compatible — omitting it
+    reproduces the pre-v3.7 behaviour exactly) is the PRE-overlap-
+    resolution candidate list; a v3.7 dated/periodic cue's own
+    companion search (:data:`_V37_WIDE_POOL_RULE_IDS`) uses it INSTEAD
+    OF ``built`` — see that set's own docstring. Every pre-existing cue
+    keeps searching ``built`` only, unchanged."""
     deadline_stmts = [b for b in built if b.statement["predicate"] == "deadline_of"]
     if not deadline_stmts:
         return built
@@ -521,15 +751,29 @@ def _rebind_deadline_subjects(
         if b.statement["predicate"] != "deadline_of":
             out.append(b)
             continue
+        is_v37 = all_built is not None and b.statement["extraction_rule_id"] in _V37_WIDE_POOL_RULE_IDS
+        pool = all_built if is_v37 else built
         span = b.spans["clause"]
         companion = None
         antecedent_case = False
         for pred in _DEADLINE_SUBJECT_SOURCE_PRIORITY:
+            # v3.7 generalisation: a dated/periodic cue never trusts
+            # `except_when` as a companion at all -- its own obj IS the
+            # exception CONDITION itself ("unless X opposes..."), never
+            # a free-standing duty act; "... before the end of each
+            # period" times that condition's own internal count, not a
+            # duty this extractor should emit. The pre-existing digit-
+            # based cue's own `except_when` trust (R-n, tested on main)
+            # is UNCHANGED -- this skip is v3.7-only.
+            if is_v37 and pred == "except_when":
+                continue
             if pred == "requires":
-                for other in built:
+                for other in pool:
                     if other is b or other.statement["predicate"] != "requires":
                         continue
                     if not _is_trustworthy_requires_companion(other.statement):
+                        continue
+                    if is_v37 and _is_dangling_fragment(other.statement["obj"]):
                         continue
                     # A `requires` reading has
                     # TWO halves — the antecedent (subj) and the
@@ -561,12 +805,35 @@ def _rebind_deadline_subjects(
                 if companion is not None or antecedent_case:
                     break
                 continue
-            for other in built:
+            for other in pool:
                 if other is b or other.statement["predicate"] != pred:
                     continue
                 if pred == "except_when" and not _is_trustworthy_except_when_companion(other.statement):
                     continue
-                if _spans_share_a_clause(unit_text, span, other.spans["clause"]):
+                if is_v37 and _is_dangling_fragment(_governed_act_text(other.statement)):
+                    continue
+                # v3.7: a candidate's own ``clause`` span, for a
+                # chapeau-inherited list item, runs from the FAR-AWAY
+                # inherited subject through to its own obj — reasonable
+                # for the narrow, already-overlap-cleaned `built` pool
+                # (nothing else from a DIFFERENT list item could ever
+                # have survived overlapping it there), but a hazard once
+                # `pool` is the WIDER, pre-overlap `all_built` (this
+                # candidate may be exactly the one THAT resolution step
+                # drops for conflicting with a DIFFERENT item's own
+                # reading) — `other.spans["clause"]`'s own inflated span
+                # would then spuriously "share a clause" with a deadline
+                # that actually belongs to a sibling item. Pinned to the
+                # companion's own, narrow ``obj`` span instead whenever
+                # searching the wider pool.
+                other_span = other.spans["obj"] if pool is all_built else other.spans["clause"]
+                if is_v37 and _crosses_coordinated_clause_boundary(
+                    unit_text,
+                    min(other_span[1], span[0]),
+                    max(other_span[1], span[0]) + 10,
+                ):
+                    continue
+                if _spans_share_a_clause(unit_text, span, other_span):
                     companion = other
                     break
             if companion is not None:
@@ -585,11 +852,36 @@ def _rebind_deadline_subjects(
             out.append(b)
             continue
         if companion is None:
+            # v3.7: the chapeau-trigger fallback matches a companion by
+            # its own clause START alone, which every item in the SAME
+            # chapeau-inherited list shares identically (the inherited
+            # subject sits at the chapeau's own start for every item
+            # alike) -- harmless over the narrow, already-overlap-
+            # cleaned `built` pool (one genuine per-item candidate
+            # survives there at most), but would pick an arbitrary
+            # SIBLING item's own candidate over the widened, pre-
+            # overlap `all_built` pool, where several siblings' own
+            # candidates all still exist side by side. Always searched
+            # over `built`, never `pool`, for that reason.
             companion = _chapeau_trigger_companion(unit_text, span, built)
         if companion is not None:
             new_subj = _governed_act_text(companion.statement)
+            if is_v37 and new_subj and _HEADING_LEADIN_RE.match(new_subj.strip()):
+                new_subj = None
+        elif is_v37:
+            new_subj = _find_v37_active_act_phrase(unit_text, span)
+            if not new_subj:
+                new_subj = _find_v37_passive_act_phrase(unit_text, span)
         else:
             new_subj = _find_passive_act_phrase(unit_text, span)
+        if is_v37 and new_subj:
+            new_subj = strip_trailing_deadline_cue(new_subj)
+            if new_subj and _NUMERIC_SCRAP_RE.fullmatch(new_subj.strip()):
+                # a bare number or date token ("2025", "2 May") is
+                # never a governed act -- e.g. a trailing deadline cue
+                # STRIPPED from "by 2 May 2025" leaves only the date's
+                # own scrap behind when no other act text preceded it.
+                new_subj = None
         if not new_subj:
             # The pre-existing, pre-v3.6 digit-
             # based "within N" cue (`b.never_conflicts` False — see
@@ -660,6 +952,7 @@ def extract_with_spans(
     accepted = resolve_overlaps_built(built, diagnostics)
     accepted = _rebind_deadline_subjects(
         unit_text, accepted, instrument_uri=instrument_uri, consolidation_date=consolidation_date,
+        all_built=built,
     )
     accepted.sort(key=lambda b: _statement.canonical_sort_key(b.statement))
     return accepted

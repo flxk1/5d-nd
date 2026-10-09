@@ -1,0 +1,59 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-dated-and-periodic-same-clause",
+  "input": {
+    "unit_text": "The Cooperation Group shall, by 17 April 2025 and every two years thereafter, establish a work programme."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#722bc68dba50a085",
+        "subj": "Cooperation Group shall, by 17 April 2025",
+        "obj": "and every two years thereafter, establish a work programme",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.2,
+        "provenance": {
+          "start": 0,
+          "end": 104
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-whole-unit-fallback"
+      },
+      {
+        "id": "extracted-unit#n/a#9262c3b85224e751",
+        "subj": "establish a work programme",
+        "obj": "by 17 april 2025",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 45
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-relative-by-date"
+      },
+      {
+        "id": "extracted-unit#n/a#d93122e6777fd102",
+        "subj": "establish a work programme",
+        "obj": "every 2 years",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 28,
+          "end": 65
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-periodic"
+      }
+    ]
+  }
+}
