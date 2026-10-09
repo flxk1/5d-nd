@@ -1,0 +1,60 @@
+{
+  "family": "interplay-grammar",
+  "case": "relation-vocabulary-closed-ten-relations",
+  "kind": "relation_vocabulary",
+  "input": {},
+  "expected": {
+    "relations": {
+      "same_definition": {
+        "meaning": "B's term is defined by A's",
+        "dimension": "structural",
+        "reason": "a definitional cross-reference is structural (is-a/part-of-like), not causal or temporal"
+      },
+      "cumulative": {
+        "meaning": "both apply",
+        "dimension": "relational",
+        "reason": "plain co-application to the same conduct, with no causal or structural content of its own"
+      },
+      "complementary": {
+        "meaning": "B adds to A within the same matter",
+        "dimension": "relational",
+        "reason": "a co-application relation (B supplements A's own matter), not a cause/effect or containment"
+      },
+      "alternative": {
+        "meaning": "one or the other applies, by scope",
+        "dimension": "causal",
+        "reason": "which instrument governs is determined by a scope/triggering condition — a conditional gate"
+      },
+      "substitutive": {
+        "meaning": "compliance with A discharges B",
+        "dimension": "causal",
+        "reason": "compliance with A is stated to CAUSE (discharge) B's own obligation"
+      },
+      "separate_tracks": {
+        "meaning": "independent regimes on one act",
+        "dimension": "relational",
+        "reason": "two regimes relate to the same act without one causing or structurally containing the other"
+      },
+      "non_cumulative": {
+        "meaning": "an express bar on double application, e.g. fines",
+        "dimension": "causal",
+        "reason": "an express bar PREVENTS a second legal consequence from arising at all"
+      },
+      "no_presumption": {
+        "meaning": "compliance with A gives no presumption under B",
+        "dimension": "causal",
+        "reason": "compliance with A is stated NOT to CAUSE a presumption of compliance under B"
+      },
+      "defers_to": {
+        "meaning": "A states it is without prejudice to / does not affect B",
+        "dimension": "structural",
+        "reason": "restates which instrument's provisions control — a structural subordination, matching spec §21's own cross_references/savings-clause binding"
+      },
+      "reference_redirect": {
+        "meaning": "references to X are read as references to Y",
+        "dimension": "structural",
+        "reason": "rewires a textual reference from one instrument's identity to another's, matching spec §21's own cross_references binding"
+      }
+    }
+  }
+}

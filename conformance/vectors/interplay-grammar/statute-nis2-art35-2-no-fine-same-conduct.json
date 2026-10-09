@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-nis2-art35-2-no-fine-same-conduct",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.35(2)",
+        "text": "2. Where the supervisory authorities as referred to in Article 55 or 56 of Regulation (EU) 2016/679 impose an administrative fine pursuant to Article 58(2), point (i), of that Regulation, the competent authorities shall not impose an administrative fine pursuant to Article 34 of this Directive for an infringement referred to in paragraph 1 of this Article arising from the same conduct as that which was the subject of the administrative fine under Article 58(2), point (i), of Regulation (EU) 2016/679. The competent authorities may, however, impose the enforcement measures provided for in Article 32(4), points (a) to (h), Article 32(5) and Article 33(4), points (a) to (g), of this Directive.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.35(2)",
+        "relation": "non_cumulative",
+        "target_instrument": "gdpr",
+        "target_article": null,
+        "cue_id": "no-fine-same-conduct",
+        "verbatim_span": "shall not impose an administrative fine pursuant to Article 34 of this Directive for an infringement referred to in paragraph 1 of this Article arising from the same conduct as that which was the subject of the administrative fine under Article 58(2), point (i), of Regulation (EU) 2016/679.",
+        "match_start": 214,
+        "unresolved": false,
+        "confidence": 0.85,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. nis2:Art.35, paragraph 2."
+}

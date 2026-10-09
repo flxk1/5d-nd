@@ -1,0 +1,185 @@
+{
+  "family": "interplay-grammar",
+  "case": "ruleset-shape-unknown-relation-rejected",
+  "kind": "ruleset_shape",
+  "input": {
+    "doc": {
+      "ruleset_id": "interplay-grammar-rules-v1",
+      "repealed_instrument_by_source": {
+        "gdpr": "dpd95"
+      },
+      "cues": [
+        {
+          "cue_id": "no-additional-obligations-same-objective",
+          "relation": "not_a_real_relation",
+          "trigger_pattern": "shall\\s+not\\s+impose\\s+(?:additional|further)\\s+obligations\\b",
+          "require_all_patterns": [
+            "same\\s+objective"
+          ],
+          "max_span_chars": 600,
+          "target_mode": "cited",
+          "confidence": 0.85,
+          "notes": "GDPR Art. 95: the clause bars a second, duplicate obligation with the same objective as the named instrument."
+        },
+        {
+          "cue_id": "no-fine-same-conduct",
+          "relation": "non_cumulative",
+          "trigger_pattern": "shall\\s+not\\s+impose\\s+an?\\s+(?:administrative\\s+)?fine\\b",
+          "require_all_patterns": [
+            "same\\s+conduct"
+          ],
+          "max_span_chars": 500,
+          "target_lookback_chars": 250,
+          "target_mode": "cited",
+          "confidence": 0.85,
+          "notes": "NIS2 Art. 35(2): an express bar on a second fine for the same conduct already sanctioned under the named instrument."
+        },
+        {
+          "cue_id": "repealed-directive-redirect",
+          "relation": "reference_redirect",
+          "trigger_pattern": "references?\\s+to\\s+the\\s+repealed\\s+Directiv(?:e|es)\\b",
+          "require_all_patterns": [
+            "shall\\s+be\\s+construed\\s+as\\s+references?\\s+to\\s[\\s\\S]{0,80}?\\bthis\\s+(?:Regulation|Directive)\\b"
+          ],
+          "max_span_chars": 300,
+          "target_mode": "repealed_alias",
+          "confidence": 0.9,
+          "notes": "GDPR Art. 94(2): references to the Directive this instrument repeals are redirected to this instrument. Target resolved via repealed_instrument_by_source, not by citation in the clause."
+        },
+        {
+          "cue_id": "citation-redirect",
+          "relation": "reference_redirect",
+          "trigger_pattern": "references?\\s+to\\s+(?!the\\s+repealed\\s+Directiv)",
+          "require_all_patterns": [
+            "shall\\s+be\\s+construed\\s+as\\s+references?\\s+to\\s[\\s\\S]{0,80}?\\bthis\\s+(?:Regulation|Directive)\\b"
+          ],
+          "max_span_chars": 400,
+          "target_mode": "cited",
+          "confidence": 0.85,
+          "notes": "DSA Art. 89(2): references to a named instrument's articles are redirected to this instrument's own provisions. Requires the named instrument to be found inside the matched clause itself."
+        },
+        {
+          "cue_id": "without-prejudice-to",
+          "relation": "defers_to",
+          "trigger_pattern": "without\\s+prejudice\\s+to\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 1400,
+          "clause_end_chars": ".",
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "DSA Art. 2(4)(g): this instrument explicitly yields to the named instrument(s) on the stated matter. clause_end_chars is period-only: the real clause is a single sentence enumerating an (a)-(j) list separated by ';', and the named instrument (GDPR/ePrivacy) sits at list item (g) — stopping at the first ';' truncates the clause before reaching it."
+        },
+        {
+          "cue_id": "shall-not-affect",
+          "relation": "defers_to",
+          "trigger_pattern": "shall\\s+not\\s+affect\\s+(?:the\\s+application\\s+of\\s+)?",
+          "require_all_patterns": [],
+          "max_span_chars": 500,
+          "clause_end_chars": ".",
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "AI Act Art. 2(5): 'shall not affect the application of'. AI Act Art. 2(7): 'shall not affect' with no 'the application of' and a multi-citation list ('Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680') — 'the application of' is made OPTIONAL so both forms fire on one trigger. clause_end_chars is period-only so a long citation list with no ';' boundary still reaches its own final period intact; the same sentence's own trailing 'without prejudice to Article 10(5) and Article 59 of this Regulation' is a self-reference (see _SELF_REFERENCE_RE), which is excluded from target resolution, not a second named instrument."
+        },
+        {
+          "cue_id": "inform-supervisory-authorities",
+          "relation": "separate_tracks",
+          "trigger_pattern": "shall\\b[\\s\\S]{0,60}?\\binform\\b",
+          "require_all_patterns": [
+            "supervisory\\s+authorit"
+          ],
+          "max_span_chars": 400,
+          "target_lookback_chars": 200,
+          "target_mode": "cited",
+          "confidence": 0.7,
+          "notes": "NIS2 Art. 35(1): a competent authority under this instrument must notify the named instrument's own supervisory authorities — two independent regimes coordinating on one act."
+        },
+        {
+          "cue_id": "in-accordance-with-governed-by",
+          "relation": "defers_to",
+          "trigger_pattern": "in\\s+accordance\\s+with\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 250,
+          "target_mode": "cited",
+          "suppress_if_unresolved": true,
+          "confidence": 0.5,
+          "notes": "NIS2 Art. 2(14): an activity under this instrument is carried out 'in accordance with' the named instrument's own rules — the named instrument's own rules control that part of the conduct, a structural subordination, not a definitional cross-reference. 'in accordance with' is a weak, generic cue (low confidence) that very often names no instrument at all (e.g. 'in accordance with paragraph 9'); suppress_if_unresolved is set so a reference within the same instrument, or no named instrument at all, never produces a record."
+        },
+        {
+          "cue_id": "within-the-meaning-of-definition",
+          "relation": "same_definition",
+          "trigger_pattern": "within\\s+the\\s+meaning\\s+of\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 250,
+          "target_mode": "cited",
+          "confidence": 0.7,
+          "notes": "Generic definitional cross-reference: a term used in this instrument has the meaning given to it in the named instrument."
+        },
+        {
+          "cue_id": "as-defined-in-definition",
+          "relation": "same_definition",
+          "trigger_pattern": "as\\s+defined\\s+in\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 250,
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "NIS2 Art. 35(1): 'as defined in Article 4, point (12), of Regulation (EU) 2016/679' — a term used in this instrument is defined by an explicit cross-reference to the named instrument's own article."
+        },
+        {
+          "cue_id": "applies-in-addition-to",
+          "relation": "cumulative",
+          "trigger_pattern": "shall\\s+apply\\s+in\\s+addition\\s+to\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "target_mode": "cited",
+          "confidence": 0.7,
+          "notes": "Synthetic cue: both this instrument and the named instrument apply together, additively, to the same conduct."
+        },
+        {
+          "cue_id": "adds-to-the-obligations",
+          "relation": "complementary",
+          "trigger_pattern": "adds?\\s+to\\s+the\\s+obligations\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "target_mode": "cited",
+          "confidence": 0.7,
+          "notes": "Synthetic cue: this instrument supplements the named instrument's obligations within the same matter, rather than replacing or barring them."
+        },
+        {
+          "cue_id": "applies-to-the-exclusion-of",
+          "relation": "alternative",
+          "trigger_pattern": "applies?\\s+to\\s+the\\s+exclusion\\s+of\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "Synthetic cue: only one of this instrument or the named instrument applies, determined by the stated scope condition."
+        },
+        {
+          "cue_id": "deemed-to-satisfy",
+          "relation": "substitutive",
+          "trigger_pattern": "shall\\s+be\\s+deemed\\s+to\\s+satisfy\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "Synthetic cue: compliance with this instrument discharges the corresponding obligation under the named instrument."
+        },
+        {
+          "cue_id": "no-presumption-of-compliance",
+          "relation": "no_presumption",
+          "trigger_pattern": "shall\\s+not\\s+(?:give\\s+rise\\s+to|create)\\s+a\\s+presumption\\s+of\\s+compliance\\b",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "target_mode": "cited",
+          "confidence": 0.75,
+          "notes": "Synthetic cue: compliance with this instrument does not, by itself, raise a presumption of compliance with the named instrument."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "violations": [
+      "cues[0].relation 'not_a_real_relation' is not a known RELATIONS key ['alternative', 'complementary', 'cumulative', 'defers_to', 'no_presumption', 'non_cumulative', 'reference_redirect', 'same_definition', 'separate_tracks', 'substitutive']"
+    ]
+  }
+}

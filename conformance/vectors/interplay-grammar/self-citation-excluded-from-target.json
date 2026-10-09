@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "self-citation-excluded-from-target",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.102(synthetic)",
+        "text": "Within the meaning of Regulation (EU) 2024/1689, the requirements set out in Chapter III, Section 2, of that Regulation shall be taken into account."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "Regression vector for the AI Act's own frequent self-citation (Art. 102-109 in the real corpus each cite 'Regulation (EU) 2024/1689', which IS the AI Act) — a clause naming ONLY the citing instrument itself produces NO record at all."
+}

@@ -1,0 +1,32 @@
+{
+  "family": "interplay-grammar",
+  "case": "synthetic-cumulative-applies-in-addition-to",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.99(synthetic)",
+        "text": "This Directive shall apply in addition to Regulation (EU) 2016/679 for the processing of personal data in connection with a reported incident."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.99(synthetic)",
+        "relation": "cumulative",
+        "target_instrument": "gdpr",
+        "target_article": null,
+        "cue_id": "applies-in-addition-to",
+        "verbatim_span": "shall apply in addition to Regulation (EU) 2016/679 for the processing of personal data in connection with a reported incident.",
+        "match_start": 15,
+        "unresolved": false,
+        "confidence": 0.7,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  }
+}

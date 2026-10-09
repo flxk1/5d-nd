@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "non-cumulative-cue-requires-same-objective-phrase",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "gdpr",
+        "article_id": "gdpr:Art.99(synthetic)",
+        "text": "This Regulation shall not impose additional obligations on controllers established outside the Union."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "Negative case: the trigger phrase fires but 'same objective' never appears, so require_all_patterns blocks the match and no record is emitted."
+}

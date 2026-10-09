@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "unknown-instrument-kept-as-external-id",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.99(synthetic)",
+        "text": "This Regulation shall not affect the application of Regulation (EU) 2022/2554."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.99(synthetic)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2022-2554",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect the application of Regulation (EU) 2022/2554.",
+        "match_start": 16,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Regulation (EU) 2022/2554 (DORA) is not one of the seven known citation forms — kept as external:regulation-eu-2022-2554, never dropped."
+}

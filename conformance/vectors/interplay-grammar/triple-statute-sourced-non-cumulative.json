@@ -1,0 +1,36 @@
+{
+  "family": "interplay-grammar",
+  "case": "triple-statute-sourced-non-cumulative",
+  "kind": "triple",
+  "input": {
+    "record": {
+      "source_instrument": "gdpr",
+      "source_article": "gdpr:Art.95",
+      "relation": "non_cumulative",
+      "target_instrument": "eprivacy",
+      "target_article": null,
+      "cue_id": "no-additional-obligations-same-objective",
+      "verbatim_span": "shall not impose additional obligations on natural or legal persons in relation to processing in connection with the provision of publicly available electronic communications services in public communication networks in the Union in relation to matters for which they are subject to specific obligations with the same objective set out in Directive 2002/58/EC.",
+      "match_start": 68,
+      "unresolved": false,
+      "confidence": 0.85,
+      "basis": "statute",
+      "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+    }
+  },
+  "expected": {
+    "triple": {
+      "s": "gdpr:gdpr:Art.95",
+      "p": "non_cumulative",
+      "o": "eprivacy",
+      "dimension": "causal",
+      "weight": 0.85,
+      "provenance": {
+        "basis": "statute",
+        "verbatim_span": "shall not impose additional obligations on natural or legal persons in relation to processing in connection with the provision of publicly available electronic communications services in public communication networks in the Union in relation to matters for which they are subject to specific obligations with the same objective set out in Directive 2002/58/EC.",
+        "cue_id": "no-additional-obligations-same-objective"
+      },
+      "grammar_id": "interplay-grammar"
+    }
+  }
+}

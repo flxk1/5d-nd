@@ -1,0 +1,159 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-dsa-art2-4g-without-prejudice",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "dsa",
+        "article_id": "dsa:Art.2(4)",
+        "text": "4. This Regulation is without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "eprivacy",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:directive-2001-95-ec",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:directive-2010-13",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2012-1215",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2017-2394",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2019-1020",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2019-1148",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2019-1150",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2021-784",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.2(4)",
+        "relation": "defers_to",
+        "target_instrument": "gdpr",
+        "target_article": null,
+        "cue_id": "without-prejudice-to",
+        "verbatim_span": "without prejudice to the rules laid down by other Union legal acts regulating other aspects of the provision of intermediary services in the internal market or specifying and complementing this Regulation, in particular, the following:\n\n(a)\n\nDirective 2010/13/EU;\n\n(b)\n\nUnion law on copyright and related rights;\n\n(c)\n\nRegulation (EU) 2021/784;\n\n(d)\n\nRegulation (EU) 2019/1148;\n\n(e)\n\nRegulation (EU) 2019/1150;\n\n(f)\n\nUnion law on consumer protection and product safety, including Regulations (EU) 2017/2394 and (EU) 2019/1020 and Directives 2001/95/EC and 2013/11/EU;\n\n(g)\n\nUnion law on the protection of personal data, in particular Regulation (EU) 2016/679 and Directive 2002/58/EC;\n\n(h)\n\nUnion law in the field of judicial cooperation in civil matters, in particular Regulation (EU) No 1215/2012 or any Union legal act laying down the rules on law applicable to contractual and non-contractual obligations;\n\n(i)\n\nUnion law in the field of judicial cooperation in criminal matters, in particular a Regulation on European Production and Preservation Orders for electronic evidence in criminal matters;\n\n(j)\n\na Directive laying down harmonised rules on the appointment of legal representatives for the purpose of gathering evidence in criminal proceedings.",
+        "match_start": 22,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. dsa:Art.2, paragraph 4 to the end of the article's own recorded text (the (a)-(j) savings-clause list)."
+}

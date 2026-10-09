@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "self-reference-this-regulation-excluded-from-target",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.2(7)",
+        "text": "without prejudice to Article 10(5) and Article 59 of this Regulation."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "Regression vector for AI Act Art. 2(7)'s own trailing clause — 'this Regulation' is a self-reference, not a second named instrument; no record is produced."
+}

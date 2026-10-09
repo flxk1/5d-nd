@@ -1,0 +1,47 @@
+{
+  "family": "interplay-grammar",
+  "case": "duplicate-clauses-told-apart-by-match-start",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.3(synthetic)",
+        "text": "'term one' means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679; 'term two' means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.3(synthetic)",
+        "relation": "same_definition",
+        "target_instrument": "gdpr",
+        "target_article": "4, point (1)",
+        "cue_id": "as-defined-in-definition",
+        "verbatim_span": "as defined in Article 4, point (1), of Regulation (EU) 2016/679;",
+        "match_start": 31,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.3(synthetic)",
+        "relation": "same_definition",
+        "target_instrument": "gdpr",
+        "target_article": "4, point (1)",
+        "cue_id": "as-defined-in-definition",
+        "verbatim_span": "as defined in Article 4, point (1), of Regulation (EU) 2016/679.",
+        "match_start": 127,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Regression vector for match_start: two list items (e.g. two distinct AI Act Art. 3 definitions, as in the real corpus) that cite the same provision in byte-identical words must still produce TWO records, told apart by their own distinct match_start — never collapsed into one by a dedup key that only looked at the verbatim text."
+}

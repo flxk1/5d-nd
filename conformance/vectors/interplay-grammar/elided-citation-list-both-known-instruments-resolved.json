@@ -1,0 +1,75 @@
+{
+  "family": "interplay-grammar",
+  "case": "elided-citation-list-both-known-instruments-resolved",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.2(7)",
+        "text": "7.   Union law on the protection of personal data, privacy and the confidentiality of communications applies to personal data processed in connection with the rights and obligations laid down in this Regulation. This Regulation shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation. \n\n "
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.2(7)",
+        "relation": "defers_to",
+        "target_instrument": "eprivacy",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation.",
+        "match_start": 228,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.2(7)",
+        "relation": "defers_to",
+        "target_instrument": "external:directive-eu-2016-680",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation.",
+        "match_start": 228,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.2(7)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2018-1725",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation.",
+        "match_start": 228,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.2(7)",
+        "relation": "defers_to",
+        "target_instrument": "gdpr",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation.",
+        "match_start": 228,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. Same source text as statute-ai-act-art2-7, isolated here to exercise the elided-citation-list resolution on its own: 'Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680' resolves to gdpr, external:regulation-eu-2018-1725, eprivacy, and external:directive-eu-2016-680."
+}

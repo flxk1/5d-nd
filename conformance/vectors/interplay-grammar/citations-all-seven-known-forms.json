@@ -1,0 +1,54 @@
+{
+  "family": "interplay-grammar",
+  "case": "citations-all-seven-known-forms",
+  "kind": "citations",
+  "input": {
+    "text": "See Regulation (EU) 2016/679, Directive 2002/58/EC, Directive 2000/31/EC, Regulation (EU) 2022/2065, Directive (EU) 2022/2555, Regulation (EU) 2024/1689, and Directive 95/46/EC."
+  },
+  "expected": {
+    "citations": [
+      [
+        4,
+        28,
+        "gdpr",
+        "Regulation (EU) 2016/679"
+      ],
+      [
+        30,
+        50,
+        "eprivacy",
+        "Directive 2002/58/EC"
+      ],
+      [
+        52,
+        72,
+        "ecommerce",
+        "Directive 2000/31/EC"
+      ],
+      [
+        74,
+        99,
+        "dsa",
+        "Regulation (EU) 2022/2065"
+      ],
+      [
+        101,
+        125,
+        "nis2",
+        "Directive (EU) 2022/2555"
+      ],
+      [
+        127,
+        152,
+        "ai-act",
+        "Regulation (EU) 2024/1689"
+      ],
+      [
+        158,
+        176,
+        "dpd95",
+        "Directive 95/46/EC"
+      ]
+    ]
+  }
+}

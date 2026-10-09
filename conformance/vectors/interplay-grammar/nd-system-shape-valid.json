@@ -1,0 +1,89 @@
+{
+  "family": "interplay-grammar",
+  "case": "nd-system-shape-valid",
+  "kind": "nd_system_shape",
+  "input": {
+    "doc": {
+      "id": "interplay-grammar",
+      "namespace": "org.loomground.nd.interplay",
+      "version": "1.0.0",
+      "version_5d": "1.0-draft",
+      "axes": {
+        "relation": {
+          "value_type": "controlled_identifier",
+          "cardinality": "one",
+          "vocabulary_mode": "closed",
+          "vocabulary": [
+            "alternative",
+            "complementary",
+            "cumulative",
+            "defers_to",
+            "no_presumption",
+            "non_cumulative",
+            "reference_redirect",
+            "same_definition",
+            "separate_tracks",
+            "substitutive"
+          ]
+        }
+      },
+      "bindings": [
+        {
+          "form_slot": "relation",
+          "allowed_axes": [
+            "relation"
+          ],
+          "required": true
+        }
+      ],
+      "ontology_relations": [],
+      "validation": {
+        "unknown_values": "reject",
+        "missing_coordinates": "reject",
+        "provenance_required": true
+      }
+    }
+  },
+  "expected": {
+    "doc": {
+      "id": "interplay-grammar",
+      "namespace": "org.loomground.nd.interplay",
+      "version": "1.0.0",
+      "version_5d": "1.0-draft",
+      "axes": {
+        "relation": {
+          "value_type": "controlled_identifier",
+          "cardinality": "one",
+          "vocabulary_mode": "closed",
+          "vocabulary": [
+            "alternative",
+            "complementary",
+            "cumulative",
+            "defers_to",
+            "no_presumption",
+            "non_cumulative",
+            "reference_redirect",
+            "same_definition",
+            "separate_tracks",
+            "substitutive"
+          ]
+        }
+      },
+      "bindings": [
+        {
+          "form_slot": "relation",
+          "allowed_axes": [
+            "relation"
+          ],
+          "required": true
+        }
+      ],
+      "ontology_relations": [],
+      "validation": {
+        "unknown_values": "reject",
+        "missing_coordinates": "reject",
+        "provenance_required": true
+      }
+    }
+  }
+}
