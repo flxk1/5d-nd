@@ -1,6 +1,9 @@
-# Codebook: typed statements, v3.6 (`typed-statements-v3.6`)
+# Codebook: typed statements, v3.7 (`typed-statements-v3.7`)
 
-v3.6 ADDS ONE new predicate, `addressed_to` (relational —
+v3.7 ADDS NO new predicate — it extends `deadline_of`'s own obj
+NORMALISATION convention with two new cue families, DATED limits
+and PERIODIC duties (see that predicate's own section, below). v3.6
+ADDED ONE new predicate, `addressed_to` (relational —
 see that predicate's own section, below), and a deterministic deadline
 SPLIT for `deadline_of` (see that predicate's own section). Every other
 v3.5 predicate, and the v3.5 dimension mapping, is UNCHANGED. v3.1
@@ -652,10 +655,15 @@ happens BEFORE the object event/act (`prior to`, `before`).
 
 ## `deadline_of` — temporal
 
-**Definition.** A bounded-duration relation: the object names a fixed
-time window or deadline within which the subject act must occur.
-Distinguished from `requires` (the TRIGGER itself) and from `precedes`
-(bare ordering, no duration).
+**Definition.** A bounded-duration, DATED, or PERIODIC limit: the
+object names a fixed time window or deadline (a counted duration,
+"within 30 days"), a DATED limit anchored to a calendar date rather
+than a count ("by 25 May 2018", "by the date of application" — v3.7),
+or a PERIODIC, recurring duty ("annually", "every six months",
+"periodically" — v3.7, see that version's own section below) within or
+on which the subject act must occur. Distinguished from `requires` (the
+TRIGGER itself) and from `precedes` (bare ordering, no duration, no
+recurrence).
 
 **Negation scope for a CONDITIONAL antecedent (R-n).** "Where/if...
 cannot be achieved/adopted/completed... within N" states the
@@ -708,6 +716,59 @@ reason: nothing negates the RELATION naming N either.
    > ‘personal data’ means any information relating to an identified or identifiable natural person
    >
    No temporal content at all — `is_a`, never `deadline_of`.
+3. (v3.7 scope-date exclusion, synthetic) "AI systems that have been
+   placed on the market or put into service before the date of
+   application shall not be subject to this Article." — a
+   SCOPE/eligibility cutoff describing which instances a provision
+   covers, never a duty's own time limit; no `deadline_of` candidate
+   is built from it.
+4. (v3.7 retrospective-window exclusion, synthetic) "The controller
+   shall keep the logs for a period of six months." — a backward-
+   looking RETENTION/look-back window, never a forward-looking duty
+   limit.
+5. (v3.7 content-description exclusion, synthetic) "That report shall
+   in particular list the number of disputes that each certified
+   out-of-court dispute settlement body has received annually." — a
+   periodic adverb modifying a past/perfect participle that describes
+   report CONTENT (a count), never a duty to be performed
+   periodically.
+6. (v3.7 final-provisions exclusion, synthetic) "This Regulation shall
+   enter into force on the twentieth day following its publication." —
+   neither the "by" cue nor a periodic cue appears in an entry-into-
+   force/application-date clause at all, so it is never reached.
+
+**v3.7 — dated limits.** A time limit anchored to a CALENDAR DATE
+rather than a counted duration: "by" + an explicit date ("by 25 May
+2018", "by the date of application"). obj normalises to `"by <date>"`
+— see `statement-predicates.json`'s own `deadline_of` definition for
+the full normalisation table. EXCLUDED: a SCOPE/eligibility date
+describing which instances a provision covers ("... that HAVE BEEN
+placed on the market ... before 2 August 2027"); a retrospective
+retention/look-back window; and an entry-into-force/application-date
+clause in a final provision. A GENUINE transitional duty right next
+to an excluded scope date in the SAME sentence ("... before 2 August
+2027 shall be brought into compliance ... by 31 December 2030") still
+gets its own clean edge. A bare number or date-shaped scrap ("2025")
+is NEVER itself a governed act — when no other act text can be found
+(e.g. "Codes of practice shall be ready ... by 2 May 2025" — "ready"
+is an adjective, never a participle), the Statement is dropped rather
+than keep a subj known to be wrong.
+
+**v3.7 — periodic duties.** A RECURRING obligation, never a one-off
+bounded window: "annually", "at least once a year"/"at least once
+every year" (both normalise to `"annually"`), "every six months"/"every
+two years" (normalise to `"every 6 months"`/`"every 2 years"`),
+"periodically", "on a regular basis" (normalises to `"regularly"`).
+Same subject-binding rule as every other `deadline_of` cue — the
+governed act, never a clause subject/fragment/pronoun/connective; with
+no governed act in the clause, emits nothing. A periodic adverb
+modifying a past/perfect participle that describes report CONTENT
+("has received annually") is excluded, the same as the dated cue's own
+content-description exclusion above. A periodic cue sitting in the
+SECOND of two coordinated main clauses sharing one elided subject
+("Member States shall ensure that X ..., AND SHALL encourage Y ... on
+a regular basis") binds to ITS OWN clause's act, never the first,
+unrelated clause's act.
 
 ---
 

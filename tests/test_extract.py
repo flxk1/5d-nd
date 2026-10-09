@@ -880,3 +880,251 @@ def test_except_when_notwithstanding_provision_is_never_a_deadline_companion():
     assert not any(s["subj"].strip() == "paragraph 2 of this Article" for s in deadlines)
 
 
+
+
+# ═══════════════════ v3.7: periodic + dated deadline_of cues ══════════
+
+from five_d_nd.extract.rules import normalize_deadline_text as _norm_deadline  # noqa: E402
+
+
+def test_dated_by_date_literal_calendar_date():
+    text = "The provider shall ensure conformity by 25 May 2018."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "by 25 may 2018" for s in deadlines)
+
+
+def test_dated_by_the_date_of_application():
+    text = "The provider shall ensure conformity by the date of application."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "by the date of application" for s in deadlines)
+
+
+def test_periodic_annually():
+    text = "The controller shall review the data protection impact assessment annually."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "annually" for s in deadlines)
+
+
+def test_periodic_at_least_once_a_year_normalises_to_annually():
+    text = "The provider shall review the quality management system at least once a year."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "annually" for s in deadlines)
+
+
+def test_periodic_at_least_once_every_year_normalises_to_annually():
+    text = "The provider shall review the quality management system at least once every year."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "annually" for s in deadlines)
+
+
+def test_periodic_every_six_months_normalises_with_a_digit():
+    text = "The deployer shall carry out an assessment of the impact every six months."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "every 6 months" for s in deadlines)
+
+
+def test_periodic_every_two_years():
+    text = "Digital Services Coordinators shall, every two years, draw up a report on the functioning of the bodies."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "every 2 years" for s in deadlines)
+
+
+def test_periodic_on_a_regular_basis_normalises_to_regularly():
+    text = "The notified body shall review the technical documentation on a regular basis."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "regularly" for s in deadlines)
+
+
+def test_periodic_bare_periodically():
+    text = "The provider shall monitor the system periodically."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "periodically" for s in deadlines)
+
+
+def test_periodic_cue_is_never_conflicts_and_coexists_with_performs():
+    """A `never_conflicts` v3.7 cue is a PURE ADDITION: the pre-existing
+    `performs` reading of the SAME clause survives unchanged alongside
+    it, same as the v3.6 cues."""
+    text = "The provider shall review the quality management system annually."
+    stmts = extract(text)
+    assert _preds(stmts, "performs")
+    assert _preds(stmts, "deadline_of")
+
+
+def test_retention_window_for_a_period_of_is_excluded():
+    """A retention/look-back window ("for a period of at least six
+    months") is never a `deadline_of` -- it names how LONG something is
+    KEPT, never a periodic or dated DUTY limit."""
+    text = "The logs shall be kept for a period of at least six months."
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_entry_into_force_shall_apply_from_is_excluded():
+    text = "This Regulation shall apply from the date of application referred to in Article 113."
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_entry_into_force_shall_enter_into_force_on_is_excluded():
+    text = "This Regulation shall enter into force on the twentieth day following its publication."
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_normalize_deadline_text_dated():
+    assert _norm_deadline("by 25 May 2018") == "by 25 may 2018"
+    assert _norm_deadline("by the date of application") == "by the date of application"
+
+
+def test_normalize_deadline_text_periodic():
+    assert _norm_deadline("annually") == "annually"
+    assert _norm_deadline("at least once a year") == "annually"
+    assert _norm_deadline("at least once every year") == "annually"
+    assert _norm_deadline("every six months") == "every 6 months"
+    assert _norm_deadline("every two years") == "every 2 years"
+    assert _norm_deadline("on a regular basis") == "regularly"
+    assert _norm_deadline("periodically") == "periodically"
+
+
+# ═══════════════════ v3.7 generalised mechanisms ═══════════════════════
+
+def test_dangling_fragment_guard_is_v37_only_within_n_unchanged():
+    """The pre-existing digit-based cue's own exact main-branch output
+    (including an `addressed_to` companion ending in a dangling ",
+    and") is reproduced byte-for-byte -- `_is_dangling_fragment` never
+    runs for this rule id."""
+    text = "The controller shall notify the supervisory authority within 72 hours, and to the processor."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and deadlines[0]["subj"] == "notify the supervisory authority within 72 hours, and"
+    assert deadlines[0]["obj"] == "72 hours"
+
+
+def test_dangling_fragment_guard_is_v37_only_second_within_n_case():
+    text = (
+        "The body shall make the information available to the individuals or entities that have "
+        "submitted a notice, and to the provider of the online platform concerned, within 10 days."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and deadlines[0]["subj"] == "submitted a notice, and"
+    assert deadlines[0]["obj"] == "10 days"
+
+
+def test_dated_and_periodic_cues_coexist_in_the_same_clause():
+    """"shall, by 17 April 2025 and every two years thereafter,
+    establish a work programme" -- NIS2 Art. 14(7)-shaped reproduction
+    -- a dated cue and a periodic cue drawn from the SAME modal
+    interruption, both binding to the SAME governed act."""
+    text = "The Cooperation Group shall, by 17 April 2025 and every two years thereafter, establish a work programme."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and all("establish a work programme" in s["subj"] for s in deadlines)
+    objs = {s["obj"] for s in deadlines}
+    assert "by 17 april 2025" in objs
+    assert "every 2 years" in objs
+
+
+def test_pronoun_subject_does_not_block_emission():
+    """"They shall carry out ... by the date of application ... at
+    least once every year ..." -- a pronoun actor is not in the closed
+    `performs` actor vocabulary at all, so `performs` never fires; the
+    v3.7 active-act fallback binds to the ACT regardless."""
+    text = (
+        "Providers shall diligently identify systemic risks. "
+        "They shall carry out the risk assessments by the date of application referred to in "
+        "Article 33(6), and at least once every year thereafter."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and all("carry out the risk assessments" in s["subj"] for s in deadlines)
+    objs = {s["obj"] for s in deadlines}
+    assert "by the date of application" in objs
+    assert "annually" in objs
+
+
+def test_scope_date_is_never_a_duty_anchor_for_a_dated_cue_either():
+    """"AI systems ... that HAVE BEEN placed on the market ... before
+    2 August 2027" names a SCOPE/eligibility cutoff -- kept here even
+    though the "before" cue itself is gone, since the SAME scope-date
+    deny is still checked for the "by" cue in the SAME sentence (AI
+    Act Art. 111's own shape, below)."""
+    text = (
+        "AI systems that have been placed on the market or put into service before 2 August 2027 "
+        "shall be brought into compliance with this Regulation by 31 December 2030."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and len(deadlines) == 1
+    assert deadlines[0]["obj"] == "by 31 december 2030"
+    assert "brought" in deadlines[0]["subj"] and "2027" not in deadlines[0]["subj"]
+
+
+def test_subj_duplicate_of_periodic_obj_is_stripped():
+    """"submit to ENISA every three months a summary report" -- the
+    periodic cue text itself is stripped back OUT of the companion
+    act text it sits inside of, "submit to ENISA", never left included
+    verbatim inside the subj too."""
+    text = "The single point of contact shall submit to ENISA every three months a summary report."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and any(s["obj"] == "every 3 months" for s in deadlines)
+    assert all("every three months" not in s["subj"] for s in deadlines)
+
+
+def test_retention_window_for_a_period_of_n_months_is_excluded():
+    text = "The controller shall keep the logs for a period of six months."
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_numeric_scrap_subject_is_never_emitted():
+    """AI Act Art. 56(9)'s own shape: "Codes of practice shall be ready
+    at the latest by 2 May 2025" -- "ready" is an ADJECTIVE, never a
+    participle, so no act can be found; emits NOTHING rather than a
+    bare date scrap ("2025") as the subj."""
+    text = "Codes of practice shall be ready at the latest by 2 May 2025."
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_periodic_cue_in_a_coordinated_second_clause_binds_to_its_own_act():
+    """NIS2 Art. 20(2)-shaped reproduction: "Member States shall ensure
+    that X ..., AND SHALL encourage Y to offer similar training ... on
+    a regular basis" -- TWO coordinated main clauses sharing one
+    elided subject; the periodic cue in the SECOND clause binds to
+    ITS OWN act ("encourage ... to offer similar training"), never the
+    FIRST clause's unrelated act."""
+    text = (
+        "Member States shall ensure that the members of the management bodies of essential and "
+        "important entities are required to follow training, and shall encourage essential and "
+        "important entities to offer similar training to their employees on a regular basis, in "
+        "order that they gain sufficient knowledge and skills."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and all("encourage" in s["subj"] for s in deadlines)
+    assert not any("are required to follow training" in s["subj"] for s in deadlines)
+
+
+def test_periodic_adverb_describing_report_content_is_excluded():
+    """DSA Art. 21(6)(a)-shaped reproduction: "... the number of
+    disputes that each certified out-of-court dispute settlement body
+    HAS RECEIVED annually" -- a COUNT describing report content, never
+    a duty to be performed periodically."""
+    text = (
+        "That report shall in particular list the number of disputes that each certified "
+        "out-of-court dispute settlement body has received annually."
+    )
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")

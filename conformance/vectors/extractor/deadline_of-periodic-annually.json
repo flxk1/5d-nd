@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-periodic-annually",
+  "input": {
+    "unit_text": "The controller shall review the data protection impact assessment annually."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#5456f7aa6c4bdc1a",
+        "subj": "controller",
+        "obj": "review the data protection impact assessment annually",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 74
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      },
+      {
+        "id": "extracted-unit#n/a#16f61d03ff65cd70",
+        "subj": "review the data protection impact assessment",
+        "obj": "annually",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 74
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-periodic"
+      }
+    ]
+  }
+}

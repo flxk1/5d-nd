@@ -159,6 +159,83 @@
   `requires-and-deadline-of-co-coded` (the `deadline_of` subject is now
   the governed act instead of the actor). No pre-existing Statement in
   any of them was removed.
+- `deadline_of` (relational — temporal, spec §21, `typed-statements-
+  v3.7`) emits a DATED or PERIODIC time limit, in addition to the
+  pre-existing bounded-duration and qualitative cues: a DATED limit
+  anchored to a calendar date rather than a count ("by 25 May 2018",
+  "by the date of application"), and a PERIODIC, recurring duty
+  ("annually", "at least once a year"/"at least once every year",
+  "every six months"/"every two years", "on a regular basis",
+  "periodically"). Both cue families are `never_conflicts` pure
+  additions, the same v3.6 convention. Subject binding is the
+  IDENTICAL v3.6 rule, unmodified: the governed act, never a clause
+  subject/fragment/pronoun/connective; with no governed act in the
+  clause, a v3.7 cue emits nothing. obj normalises to `"by <date>"`
+  for the dated cue, `"annually"`/`"every N months"`/`"every N
+  years"`/`"periodically"`/`"regularly"` for the periodic cue — see
+  `vocabulary/statement-predicates.json`'s own `deadline_of` definition
+  for the full table. EXCLUDED, denied before a candidate is even
+  built: a SCOPE/eligibility date describing which instances a
+  provision covers ("AI systems ... that HAVE BEEN placed on the
+  market ... before 2 August 2027"); a retrospective retention/
+  look-back window ("in the 12 months' period before the beginning of
+  the audit", "for a period of six months"); an entry-into-force/
+  application-date clause in a final provision; and a periodic adverb
+  modifying a past/perfect participle that describes report CONTENT
+  rather than a duty ("the number of disputes ... has received
+  annually" names a count, never a duty). A GENUINE transitional duty
+  right next to an excluded scope date in the SAME sentence ("...
+  before 2 August 2027 shall be brought into compliance ... by 31
+  December 2030") still gets its own clean edge. A bare number or
+  date-shaped scrap ("2025") is never itself a governed act — where no
+  other act text can be found (e.g. "Codes of practice shall be
+  ready ... by 2 May 2025", "ready" an adjective, never a participle),
+  the Statement is dropped rather than keep a subj known to be wrong.
+  `build._rebind_deadline_subjects` gains an OPTIONAL `all_built`
+  parameter (the pre-overlap-resolution candidate list): the dated/
+  periodic cues' own companion search uses it instead of the narrow,
+  post-overlap `built` pool, since a fronted cue's own trigger word can
+  collide with `precedes`'s own unbounded-greedy obj capture, and a
+  pronoun-subject or elided-subject clause ("They shall carry out ...",
+  "... and shall encourage ... on a regular basis") has no companion
+  `performs`'s own closed actor-NP shape could ever fire on — the
+  pre-existing digit-based and qualitative cues keep searching the
+  narrow pool only, completely unchanged. The last-resort act fallback,
+  v3.7-only, is split into an ACTIVE-voice search (the nearest
+  "shall/may/must <act>", regardless of the preceding actor NP's own
+  shape or absence, bounded so it never reaches backward across a
+  conditional subordinator or a coordinated "and/or shall" clause
+  boundary into an UNRELATED earlier clause's own act) and a STRICT
+  passive-voice search (a genuine past participle after "shall/may/
+  must be", never a bare adjective like "lawful"/"ready", and never a
+  bare adverb with the real participle one word further on; the
+  calendar month "May" is excluded from ever matching the modal "may").
+  `except_when`'s own exception condition is never a trusted companion
+  for these two cues at all (the pre-existing digit-based cue's own R-n
+  binding to that same condition is unaffected). A v3.7 act text found
+  via any source has a trailing deadline_of cue of its own stripped
+  back out of it ("report annually" companion-bound unchanged ->
+  "report") — `strip_trailing_deadline_cue`. A companion ending in a
+  dangling coordinating conjunction (", and"/", or" — a span-boundary
+  misfire) is never trusted, restricted to the two v3.7 cues only; the
+  pre-existing digit-based cue's own exact main-branch behaviour,
+  dangling companion included, is reproduced byte-for-byte.
+  No pre-existing Statement is removed or altered by any of the above;
+  no new Statement of a predicate other than `deadline_of` is added.
+- New conformance vectors (`conformance/vectors/extractor/`) and unit
+  tests (`tests/test_extract.py`) covering the dated and periodic
+  `deadline_of` cues' positive cue families (literal calendar date,
+  every periodic normalisation shape, a dated cue and a periodic cue
+  co-existing in one modal interruption) and their required negatives
+  (the scope-date exclusion paired with a genuine transitional duty in
+  the same sentence, the retrospective-window exclusion, the
+  entry-into-force exclusion, the content-description exclusion, the
+  numeric-scrap-subject guard, a periodic cue in a coordinated second
+  clause binding to its own act, and the no-governed-act drop rule).
+  2 pre-existing extractor vectors (`precedes-fronted`, `precedes-
+  prior-to`) are unchanged from main. No pre-existing Statement was
+  removed or altered; no new Statement of a predicate other than
+  `deadline_of` was added.
 - A THIRD EXAMPLE nD grammar, `src/five_d_nd/grammars/interplay.py`
   + `interplay_rules.json`: a closed, ten-relation vocabulary of typed
   relations BETWEEN legal instruments (`same_definition`, `cumulative`,

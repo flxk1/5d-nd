@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-retention-window-negative",
+  "input": {
+    "unit_text": "The logs shall be kept for a period of at least six months."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#792f50ead2f99ebb",
+        "subj": "logs",
+        "obj": "kept for a period of at least six months",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.35,
+        "provenance": {
+          "start": 0,
+          "end": 58
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-copula-fallback"
+      }
+    ]
+  }
+}

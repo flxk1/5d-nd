@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-transitional-scope-date-vs-duty",
+  "input": {
+    "unit_text": "AI systems that have been placed on the market or put into service before 2 August 2027 shall be brought into compliance with this Regulation by 31 December 2030."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#899e35f037972b68",
+        "subj": "AI systems that have been placed on the market or put into service",
+        "obj": "2 August 2027",
+        "predicate": "precedes",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 161
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-precedes-prior-before"
+      },
+      {
+        "id": "extracted-unit#n/a#fe14082f7506d343",
+        "subj": "be brought into compliance with this Regulation",
+        "obj": "by 31 december 2030",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 161
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-relative-by-date"
+      }
+    ]
+  }
+}

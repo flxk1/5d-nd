@@ -3631,7 +3631,7 @@ obligation" framed as such.
 | `compliance_purpose_of` | intentional | operative-article purpose, with a modal |
 | `based_on` | intentional | the stated legal basis (justification) of the subject |
 | `precedes` | temporal | an explicit ordering relation |
-| `deadline_of` | temporal | a bounded-duration relation |
+| `deadline_of` | temporal | a bounded-duration, dated, or periodic limit |
 | `predication` | relational | the DEFAULT — an ordinary copula/modal assertion |
 | `competence_of` | relational | an institutional actor's own mandate |
 | `performs` | relational | any other actor performing a non-deontic act |
@@ -3644,6 +3644,16 @@ are in `docs/codebook/typed-statements-v1.md` — this table is the closed
 set and each predicate's one dimension, not the full codebook. The
 coverage measurement this enum was checked against is
 `docs/codebook/coverage-measurement.md`.
+
+**v3.7 bumps the predicate VOCABULARY version without adding a new
+predicate.** `deadline_of` is the ONLY predicate this version touches —
+two NEW cue families (dated, periodic — see that predicate's own
+section below) extend its documented obj NORMALISATION convention
+beyond a bounded duration or a qualitative cue, the same kind of
+definition-text change earlier minor versions (v3.1's own predicate-
+definition clarifications) already counted as version-worthy; the
+predicate SET, every other predicate's own definition, and the
+`PREDICATE_DIMENSION` mapping are UNCHANGED from v3.6.
 
 `part_of` is the SOLE containment predicate: a clause surfacing the
 relation whole-first ("X includes Y") is coded `part_of` with `subj` and
@@ -3745,6 +3755,48 @@ antecedent, chapeau act, or passive construction can be found: a NEW
 deadline cue is DROPPED outright; the PRE-EXISTING digit-based cue
 instead keeps its ORIGINAL subject UNCHANGED — finding no governed act
 is never a licence to remove or alter a Statement that already existed.
+
+**`deadline_of`'s own v3.7 DATED and PERIODIC limits.** Two further cue
+families, both `never_conflicts` pure additions (the SAME v3.6
+convention): a DATED limit, anchored to a calendar date rather than a
+counted duration ("by 25 May 2018", "by the date of application"); and
+a PERIODIC duty, a RECURRING obligation rather than a one-off bounded
+window ("annually", "at least once a year", "every six months",
+"periodically", "on a regular basis"). Subject binding is the
+IDENTICAL v3.6 rule above, unmodified — the governed act, never a
+clause subject/fragment/pronoun/connective; with no governed act in
+the clause, a v3.7 cue emits nothing, the same "drop rather than
+guess" rule the v3.6 cues already follow. A bare number or
+date-shaped scrap ("2025", "2 May") is NEVER itself a governed act —
+where no other act text can be found (e.g. "Codes of practice shall
+be ready ... by 2 May 2025" — "ready" is an adjective, never a
+participle), the Statement is dropped rather than keep a subj known
+to be wrong. `deadline_of`'s own obj NORMALISATION table, extended:
+
+| cue shape | example source text | normalised obj |
+|---|---|---|
+| dated, literal date | "by 25 May 2018" | `by 25 may 2018` |
+| dated, date anchor | "by the date of application" | `by the date of application` |
+| periodic, bare | "annually" | `annually` |
+| periodic, counted-to-one | "at least once a year" / "at least once every year" | `annually` |
+| periodic, counted | "every six months" | `every 6 months` |
+| periodic, counted | "every two years" | `every 2 years` |
+| periodic, qualitative | "periodically" | `periodically` |
+| periodic, qualitative | "on a regular basis" | `regularly` |
+
+EXCLUDED outright, before a candidate is ever built: a SCOPE/
+eligibility date describing which instances a provision covers
+("AI systems ... that HAVE BEEN placed on the market ... before 2
+August 2027"), a RETROSPECTIVE retention/look-back window ("in the 12
+months' period before the beginning of the audit", "for a period of
+six months"), and a periodic adverb that modifies a past or perfect
+participle describing report CONTENT rather than a duty ("the number
+of disputes ... has received annually" names a COUNT, never a duty to
+be performed periodically). A genuine TRANSITIONAL duty right next to
+an excluded scope date in the SAME sentence ("... before 2 August
+2027 shall be brought into compliance ... by 31 December 2030") still
+gets its own clean edge — the scope date is excluded, the duty is
+not.
 
 ### The layer — surface, domain, deep
 
