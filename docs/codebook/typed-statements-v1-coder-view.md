@@ -1,6 +1,9 @@
-# Coder view: typed statements (dimension-blind), v3.5
+# Coder view: typed statements (dimension-blind), v3.6
 
-The predicate set is UNCHANGED from v3; v3.1 and v3.2 state the
+v3.6 ADDS ONE new predicate, `addressed_to` (see the
+table below), and a deterministic deadline SPLIT for `deadline_of`
+(also below). Every other predicate is UNCHANGED from v3.5. v3.1 and
+v3.2 state the
 `performs`/`competence_of` test (including its "responsible for"
 conferral rule), the "subject to" routing, the span rules, and the
 coordinated-NP rule (R-i); v3.3 and v3.4 state five further rules
@@ -61,12 +64,35 @@ modal itself is coded separately, never part of the fact pattern below.
 | `predication` | an ordinary statement/obligation that fits none of the above |
 | `competence_of` | X is an institutional body (an authority, a board, a notified body, a coordinator, a CSIRT — never a controller/processor/provider/deployer/data subject) AND the text CONFERS or ESTABLISHES a task or power on X — "shall be competent", "is responsible for", "shall have the task/power to", OR Y is one item of X's own enumerated task/power list. An institution EXERCISING an already-granted power ("shall exercise its powers...", "may request...") is `performs`, not this — even when the word "powers" appears. "Responsible for" counts as conferral ONLY in a clause that ASSIGNS the responsibility (a finite "is/are responsible for" main verb, with X as its own grammatical subject) — NEVER in a reduced relative that merely IDENTIFIES X ("...authorities responsible for the enforcement of..."); such a relative stays INSIDE the maximal NP (see Span granularity, below), never a separate Statement. A power, like a right, is a NORMATIVE POSITION (a competence) — NEVER Y here — use this predicate only when the text CONFERS the power; where it merely DESCRIBES an existing power, code the act it covers as `performs` instead. An act's own HOLDER is inherited only from a chapeau or subject NAMED WITHIN THE SAME UNIT, never a different one. |
 | `performs` | X (any actor) does Y, once the modal is stripped, and `competence_of`'s own CONFERS/ESTABLISHES test does not hold (including an institution merely EXERCISING an already-granted power). Y is the ACT a POWER or a RIGHT covers, when the power/right is merely DESCRIBED — a power, like a right, is a NORMATIVE POSITION (a competence); "power(s) under Z" / "power to Z" and "the right to Z" / "exercise the right to Z" are NEVER themselves Y. A Statement id may add a light verb (e.g. "seek_Z" for a Y span naming only "Z") to read as an act, where this predicate needs one |
+| `addressed_to` (NEW v3.6) | X (the act or communication itself — the SAME act a companion `performs`/`competence_of`/`requires` Statement already names) runs TO Y, the recipient — cue: notify/report/inform/communicate/submit/transmit + Y, either via an explicit "to" ("notify ... to Y") or as a direct object ("notify Y", "inform Y"). Y must itself read as a recipient (a closed `ACTOR_ROLES` surface form, or a generic authority/body/Member-State/recipient-shaped NP) — a bare infinitive or scope phrase riding the SAME word "to" ("to the extent that", "to ensure", "in relation to", "to be") is NEVER this. Y is TYPED: the closed `ACTOR_ROLES` token where it matches, otherwise `other(label)`. LAYERED on top of whatever predicate already claims the host clause — never competes for, never blocks, that clause's own span. `negation: "absent"` by construction, the SAME reason as `deadline_of` |
 
 **If a clause genuinely fits two patterns at once** (most often `requires`
 plus a purpose/legal-ground pattern, or `requires` plus `precedes`/
 `deadline_of`): code it as MULTIPLE Statements, one per pattern, from the
 SAME clause. Do not force a single predicate onto a clause that
 genuinely carries two distinct facts.
+
+**v3.6's own deadline SPLIT.** A time limit FUSED into an action phrase,
+in a spelled-out-number duration ("not later than N days/weeks/months")
+or a qualitative cue ("without undue delay", "promptly", "immediately")
+— the TWO cues v3.6 adds — is its OWN `deadline_of` Statement,
+co-existing with whatever predicate already claims the host clause, the
+SAME way `addressed_to` does above — never forcing a choice between
+naming the act and naming its own deadline. The pre-existing, digit-
+based "within N" cue keeps its own original conflict behaviour
+unchanged. `deadline_of`'s own Y, for every cue, is the NORMALISED limit
+("72 hours after having become aware of it" becomes "72 hours"), never
+a raw, untrimmed span. X is the GOVERNED ACT the time limit times —
+NEVER a clause subject, a fragment, a connective, or a pronoun — bound
+to a companion `addressed_to`/`performs`/`competence_of` Statement from
+the SAME clause, or a TRUSTED `requires`/`except_when` reading (never
+a one-word antecedent misfire, a "subject to [condition]" cue, or a
+provision-reference cue) — and, for `requires`, only when the time
+limit sits in the CONSEQUENCE, never the antecedent (an antecedent-
+embedded time limit keeps the Statement's own ORIGINAL X unchanged
+instead). When none of these exist: a NEW cue's own Statement is
+DROPPED; the pre-existing digit cue's own Statement keeps its ORIGINAL
+X unchanged rather than being dropped or coded with a wrong X.
 
 **The one pair you may be asked to code BOTH ways, as two separate
 Statements sharing a middle term:** a clause that genuinely reads as

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "addressed_to-negative-to-ensure",
+  "input": {
+    "unit_text": "The provider shall report to ensure transparency with stakeholders."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#f2def1b6cea05408",
+        "subj": "provider",
+        "obj": "report to ensure transparency with stakeholders",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 66
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      }
+    ]
+  }
+}

@@ -21,6 +21,22 @@
         },
         "negation": "absent",
         "extraction_rule_id": "T3-requires-in-the-case-of"
+      },
+      {
+        "id": "extracted-unit#n/a#0dd7fbad9b823cc7",
+        "subj": "notify",
+        "obj": "other(authority)",
+        "predicate": "addressed_to",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 54,
+          "end": 88
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-addressed_to-verb-direct-recipient"
       }
     ]
   }

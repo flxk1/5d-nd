@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "addressed_to-inform-law-enforcement-or-judicial-authorities",
+  "input": {
+    "unit_text": "The platform shall inform the law enforcement or judicial authorities of the suspected offence."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#ac85f0370204f38c",
+        "subj": "inform",
+        "obj": "other(law_enforcement_or_judicial_authorities_of_the_suspected)",
+        "predicate": "addressed_to",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 19,
+          "end": 94
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-addressed_to-verb-direct-recipient"
+      },
+      {
+        "id": "extracted-unit#n/a#df3b3a4b11292a3b",
+        "subj": "platform shall inform the law enforcement or",
+        "obj": "judicial authorities of the suspected offence",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.2,
+        "provenance": {
+          "start": 0,
+          "end": 94
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-whole-unit-fallback"
+      }
+    ]
+  }
+}

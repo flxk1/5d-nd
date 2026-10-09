@@ -1,15 +1,15 @@
 {
   "family": "extractor",
-  "case": "requires-and-deadline-of-co-coded",
+  "case": "deadline_of-antecedent-preserved-not-answered-style",
   "input": {
-    "unit_text": "If a near-miss is detected, the operator shall record the event within 72 hours."
+    "unit_text": "Where the market surveillance authority has not provided an answer within 30 days, the testing shall be understood to have been approved."
   },
   "expected": {
     "statements": [
       {
-        "id": "extracted-unit#n/a#0572044a7135caed",
-        "subj": "near-miss is detected",
-        "obj": "record the event within 72 hours",
+        "id": "extracted-unit#n/a#7dfb149b2dc7501e",
+        "subj": "market surveillance authority has not provided an answer within 30 days",
+        "obj": "be understood to have been approved",
         "predicate": "requires",
         "dimension": "causal",
         "layer": "domain",
@@ -17,23 +17,23 @@
         "edge_confidence": 0.55,
         "provenance": {
           "start": 0,
-          "end": 79
+          "end": 136
         },
         "negation": "absent",
         "extraction_rule_id": "T3-requires-where-if"
       },
       {
-        "id": "extracted-unit#n/a#482ee9e610e641aa",
-        "subj": "record the event within 72 hours",
-        "obj": "72 hours",
+        "id": "extracted-unit#n/a#81779ddd00dfc893",
+        "subj": "Where the market surveillance authority has not provided an answer",
+        "obj": "30 days",
         "predicate": "deadline_of",
         "dimension": "temporal",
         "layer": "domain",
         "weight": 1.0,
         "edge_confidence": 0.6,
         "provenance": {
-          "start": 27,
-          "end": 79
+          "start": 0,
+          "end": 81
         },
         "negation": "absent",
         "extraction_rule_id": "T3-deadline_of-within-n"

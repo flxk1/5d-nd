@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "addressed_to-report-to-market-surveillance-authorities",
+  "input": {
+    "unit_text": "The provider shall report the malfunction to the market surveillance authorities of the Member State where it occurred."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#e24578b42e828a8b",
+        "subj": "provider",
+        "obj": "report the malfunction to the market surveillance authorities of the Member State where it occurred",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 118
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      },
+      {
+        "id": "extracted-unit#n/a#fba28f431de7ef71",
+        "subj": "report the malfunction",
+        "obj": "market_surveillance_authority",
+        "predicate": "addressed_to",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 19,
+          "end": 118
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-addressed_to-verb-to-recipient"
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-except_when-exception-condition-not-provision-reference",
+  "input": {
+    "unit_text": "The power shall be tacitly extended, unless the Council opposes such extension not later than three months before the end of each period."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#69dd25e468250342",
+        "subj": "power",
+        "obj": "Council opposes such extension not later than three months before the end of each period",
+        "predicate": "except_when",
+        "dimension": "structural",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 0,
+          "end": 136
+        },
+        "negation": "present",
+        "extraction_rule_id": "T3-except_when-unless"
+      },
+      {
+        "id": "extracted-unit#n/a#c2a941786168c290",
+        "subj": "Council opposes such extension not later than three months before the end of each period",
+        "obj": "three months",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.6,
+        "provenance": {
+          "start": 36,
+          "end": 106
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-within-word-number"
+      }
+    ]
+  }
+}

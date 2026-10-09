@@ -7,9 +7,10 @@ invented sentence below is a BRAND-NEW phrase (never a >=60-char
 verbatim quote from the local corpus, including a codebook worked
 example that is ITSELF a byte-offset-cited corpus quote — the UK DPA
 2018 s. 6(1) "definition of 'controller'..." example is deliberately
-NOT reproduced here; see `tests/test_extract.py::
-test_no_vector_or_test_string_overlaps_dev_gold_60_chars`, which already
-scans this file's own module, for the mechanical leak guard). Tests
+NOT reproduced here; see `tests/test_eval_dev_scripts.py::
+test_no_vector_or_test_string_overlaps_dev_gold_60_chars` (untracked,
+see that file and .gitignore), which already scans this file's own
+module, for the mechanical leak guard). Tests
 cover the grafts added on top of the winning design (a widened
 inline-list lead-in, no-comma coordination, the
 chapeau-linguistic-completeness measurement decision,
@@ -324,10 +325,11 @@ def test_non_string_input_raises_type_error():
 
 
 # ───────────────────── round-8 (CandidateSet v2) additions ───────────────
-# Every sentence below is a brand-new, invented phrase typed for this
-# session — never a corpus quote (see `tests/test_extract.py::
-# test_no_vector_or_test_string_overlaps_dev_gold_60_chars`, which
-# already scans this module for the mechanical leak guard).
+# Every sentence below is a brand-new, invented phrase — never a
+# corpus quote (see `tests/test_eval_dev_scripts.py::
+# test_no_vector_or_test_string_overlaps_dev_gold_60_chars` (untracked,
+# see that file and .gitignore), which already scans this module for
+# the mechanical leak guard).
 
 def test_inherited_subject_spans_gives_the_chapeau_subject_to_each_item():
     text = (

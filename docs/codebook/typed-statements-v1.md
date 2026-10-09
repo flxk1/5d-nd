@@ -1,7 +1,10 @@
-# Codebook: typed statements, v3.5 (`typed-statements-v3.5`)
+# Codebook: typed statements, v3.6 (`typed-statements-v3.6`)
 
-The predicate set and dimension mapping are the v3 enum, UNCHANGED.
-v3.1 through v3.4 state ten further decision rules (R-f through R-o,
+v3.6 ADDS ONE new predicate, `addressed_to` (relational —
+see that predicate's own section, below), and a deterministic deadline
+SPLIT for `deadline_of` (see that predicate's own section). Every other
+v3.5 predicate, and the v3.5 dimension mapping, is UNCHANGED. v3.1
+through v3.4 state ten further decision rules (R-f through R-o,
 see "Rules motivated by the blind pilot", below): the
 `performs`/`competence_of` test (including its "responsible for"
 conferral rule), the "subject to [provision]" routing, the unitisation
@@ -712,7 +715,8 @@ reason: nothing negates the RELATION naming N either.
 
 **Definition.** An ordinary copula or modal assertion (`X is Y`, `the
 controller shall ensure that...`) that does not fall under any of the
-other fourteen predicates. Relational because `relational` is 5D's own
+other fifteen predicates (v3.6 adds `addressed_to`, below — see that
+predicate's own definition). Relational because `relational` is 5D's own
 two-sided identity and default dimension. A PURE modal clause with no
 further codable content — INCLUDING a clause whose own subject is not an
 actor at all (a process, a period, a requirement) — is correctly, BY
@@ -887,6 +891,166 @@ worked examples.
    `requires` (and `precedes`), never `performs`, even though the
    controller is also the one carrying out the act (a trigger-governed
    act is coded by the trigger relation, not duplicated as `performs`).
+
+---
+
+## `addressed_to` — relational (NEW in v3.6)
+
+**Definition.** The RECIPIENT of an act or communication, as its OWN
+endpoint. `subj` is the act or communication itself (the SAME act a
+companion `performs`/`competence_of`/`requires` Statement, drawn from
+the IDENTICAL clause, already names); `obj` is the party the act runs
+TO. Before v3.6, "to WHOM" an act ran had no edge of its own: GDPR Art.
+33(1)'s own "the controller shall ... notify the personal data breach
+to the supervisory authority ..." gave `performs` the WHOLE remainder
+as its object, with the supervisory authority buried, unreachable,
+INSIDE that one object string — no path could ever end there. This
+predicate closes that gap WITHOUT taking anything away from `performs`:
+the SAME clause legitimately carries BOTH
+`controller performs notify_the_personal_data_breach` AND
+`notify_the_personal_data_breach addressed_to supervisory_authority`,
+from the one "notify ... to ..." cue — `addressed_to` is LAYERED on top
+of whatever predicate already claims the host clause; it never competes
+for, and never blocks, that clause's own span.
+
+**Cue.** A notify/report/inform/communicate/submit/transmit verb (any
+inflection), followed by its own recipient — either via an explicit "to"
+("notify ... to the supervisory authority", "communicate ... to the
+data subject", "report ... to the market surveillance authorities of
+the Member States where...") or as a DIRECT OBJECT with no "to" at all
+("notify the controller" — the processor's own duty, GDPR Art. 33(2)
+style — "inform the law enforcement or judicial authorities"). The
+candidate recipient NP must ITSELF read as a recipient — one of the
+closed `ACTOR_ROLES` surface forms, or a generic authority/body/
+Member-State/recipient-shaped NP — before this predicate fires at all;
+a bare infinitive or scope phrase riding the SAME word "to" ("to the
+extent that", "to ensure", "in relation to", "to be") never even reaches
+the cue test, let alone fires it.
+
+**Typing.** `obj` is the closed `ACTOR_ROLES` token when the recipient
+NP's own head matches one of that enum's surface forms (e.g. "the
+supervisory authority competent in accordance with Article 55" types
+as `supervisory_authority`, the trailing qualifier dropped; "the
+controller" types as `controller`), otherwise the documented
+`other(label)` escape (`statement.ACTOR_OTHER_RE`) — never a silent,
+untyped copy of the source span.
+
+**Negation.** `negation: "absent"` by construction, the SAME R-n
+reasoning `deadline_of` already uses: a negator about whether the host
+act happened at all is that OTHER Statement's own negation concern,
+never a re-negation of "and it runs to X".
+
+**Positive examples** (brand-new, invented sentences — never
+a verbatim quote from gold)
+
+1. "The processor shall notify the controller promptly after
+   discovering an incident." (GDPR Art. 33(2) style — direct object,
+   no "to")
+   >
+   Coded `notify addressed_to controller` — alongside
+   `processor performs notify_the_controller`.
+2. "The controller shall communicate the incident to the data subject
+   within ten days."
+   >
+   Coded `communicate_the_incident addressed_to data_subject`.
+3. "The provider shall report the malfunction to the market
+   surveillance authorities of the Member State where it occurred."
+   >
+   Coded `report_the_malfunction addressed_to market_surveillance_
+   authority` — the trailing "of the Member State where it occurred"
+   is part of the source span, but types through the closed role at
+   its own head.
+4. "The platform shall inform the law enforcement or judicial
+   authorities of the suspected offence."
+   >
+   Coded `inform addressed_to other(law_enforcement_or_judicial_
+   authorities_of_the_suspected_off)` — not a closed `ACTOR_ROLES`
+   member, so the documented escape, never silently dropped.
+
+**Negative examples**
+
+1. "The operator shall report to the extent that resources allow."
+   >
+   "to the extent that" is a SCOPE phrase, never a recipient — no
+   `addressed_to` Statement at all (`performs` alone covers the act).
+2. "The provider shall report to ensure transparency with
+   stakeholders."
+   >
+   "to ensure" is a bare infinitive, never a recipient.
+3. "The agency shall act in relation to the matters referred to in
+   Article 5."
+   >
+   "in relation to" never names a recipient — `cross_references`
+   covers the citation itself, never this predicate.
+4. "The incident shall be reported to be reviewed by the board next
+   week."
+   >
+   "to be reviewed" is a bare passive infinitive, never a recipient.
+
+---
+
+## `deadline_of`'s own v3.6 deadline SPLIT
+
+A time limit FUSED into an action phrase, in TWO NEW cues only — a
+spelled-out-number duration ("not later than N days/weeks/months": "two
+days", "one month") and a qualitative cue ("without undue delay",
+"promptly", "immediately") — is now split OUT into its own
+`deadline_of` Statement, co-existing with whatever predicate already
+claims the host clause, the SAME way `addressed_to` does (above): never
+forcing a choice between naming the act and naming its own deadline.
+The PRE-EXISTING, digit-based "within N" cue keeps its own ORIGINAL
+conflict behaviour unchanged — only these two new cues, and
+`addressed_to`, are exempt from first-claimed-span-wins overlap
+resolution. `deadline_of`'s own `obj`, for EVERY cue (including the
+pre-existing digit one), is the NORMALISED limit — "72 hours after
+having become aware of it" becomes "72 hours"; a qualitative cue is
+returned lower-cased, unchanged otherwise — never a raw, untrimmed copy
+of the matched span. A clause naming BOTH a qualitative cue and a
+counted duration ("without undue delay and ... within 24 hours")
+legitimately yields TWO `deadline_of` Statements from the one clause,
+never a forced choice between them.
+
+**Subject binding.** Applied to EVERY `deadline_of` Statement (every
+cue, including the pre-existing digit one). `deadline_of`'s own `subj`
+is the GOVERNED ACT — the act or communication the time limit times —
+NEVER a clause subject, a sentence fragment, a connective, or a
+pronoun. "Member States shall ensure that providers notify the
+authority promptly" is `notify deadline_of promptly`, never
+`Member_States deadline_of promptly`. The governed act is the SAME act
+a companion `addressed_to`/`performs`/`competence_of` Statement from
+the SAME clause already names (preferred in that order); or — absent
+one — a TRUSTED `requires` consequence ACT (excluded when the
+`requires` reading is itself a misfire on a short parenthetical aside,
+e.g. "where applicable", or on a "subject to [condition]" qualifier
+that is not a genuine trigger) — but ONLY when the time limit sits in
+the CONSEQUENCE, never the antecedent (see below); or a TRUSTED
+`except_when` exception condition (its "unless"/"except where" cue
+family only — "notwithstanding [provision]"/"subject to [provision]"
+names a bare provision reference, never trusted as an act); or — absent
+THAT — a chapeau's own governing act (a lettered list under one colon:
+the whole list shares the chapeau's own act, even across a
+`;`-separated sibling item) or a passive construction ("the report ...
+shall be made") named earlier in the SAME sentence. An adjectival use
+of a qualitative cue ("immediately applicable") is excluded at the cue
+itself — it never reaches this binding step at all.
+
+**Antecedent vs consequence.** A time limit sitting INSIDE a
+conditional ANTECEDENT ("Where the request is not answered within 30
+days, the application shall be deemed accepted") is bound to the
+ANTECEDENT's own act ("not answered"), NEVER the consequence
+("accepted") — detected by literal span overlap with the `requires`
+candidate's own antecedent half rather than its consequence half. There
+is no separately-trimmed "just the antecedent's own act" text available
+here, so the Statement's ORIGINAL subject (already reading as the
+antecedent clause, e.g. "Where the notification ... is not made") is
+kept UNCHANGED rather than guessed at or replaced.
+
+**When no governed act can be found.** A NEW deadline cue (word-number
+or qualitative) is DROPPED outright — no pre-v3.6 Statement named this
+cue, so there is nothing to preserve. The PRE-EXISTING digit-based cue
+instead keeps its ORIGINAL subject UNCHANGED — this Statement already
+existed before `addressed_to`/the deadline split; finding no governed
+act to rebind it to is never a licence to remove or alter it.
 
 ---
 

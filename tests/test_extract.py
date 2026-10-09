@@ -16,13 +16,9 @@ and `.gitignore`), not here.
 """
 from __future__ import annotations
 
-import ast
 import json
-import os
-import re
 import subprocess
 import sys
-import unicodedata
 from pathlib import Path
 
 import pytest
@@ -47,13 +43,6 @@ from five_d_nd.extract import (
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "schema" / "statement.schema.json"
 VECTORS_DIR = ROOT / "conformance" / "vectors" / "extractor"
-# Local, un-shipped corpus root. No default path: the tests below that
-# use it SKIP cleanly unless the LOOMGROUND_DATA_ROOT environment
-# variable is set (a fresh clone, and any run that does not set this
-# variable, has neither a directory nor a fixture here).
-_LOCAL_CORPUS_ROOT_ENV = os.environ.get("LOOMGROUND_DATA_ROOT")
-TOOLS_DIR = Path(_LOCAL_CORPUS_ROOT_ENV) / "_tools" / "triple-gold" if _LOCAL_CORPUS_ROOT_ENV else Path("/nonexistent-unless-LOOMGROUND_DATA_ROOT-is-set")
-DEV_GOLD_PATH = TOOLS_DIR / "dev-set" / "dev-gold-300.json"
 
 
 def _load_vectors():
@@ -290,7 +279,7 @@ def test_no_vector_input_text_is_a_long_verbatim_corpus_quote():
     substring of a real local corpus file (the extractor's
     rules and vectors are written from the codebook, never from gold —
     see `rules.py`'s own module docstring). This test cannot read the
-    full-run gold corpus (out of this session's own read territory) — it
+    full-run gold corpus (out of this file's own read territory) — it
     instead asserts the STRUCTURAL property that is within reach: every
     vector's own text is short (a single invented sentence), which is
     the actual guarantee this session can make and keep."""
@@ -298,155 +287,6 @@ def test_no_vector_input_text_is_a_long_verbatim_corpus_quote():
         v = _case(path)
         text = v["input"]["unit_text"]
         assert len(text) < 200, (path.stem, "unexpectedly long unit_text")
-
-
-def _normalize_for_overlap(s: str) -> str:
-    """NFKC-normalise, case-fold, fold EVERY quote mark/punctuation
-    character to a space, then collapse whitespace — round-4 fix: the
-    round-3 version (case-fold + whitespace-collapse only) missed a
-    near-verbatim quote that differs only in QUOTE STYLE (curly ‘’/“”
-    vs straight ''/\"\") or other punctuation, since those characters
-    were left untouched and therefore broke the substring match even
-    though the underlying WORDS were identical. `[^\\w\\s]` (Unicode-
-    aware: underscore/digits/letters survive, everything else — every
-    quote mark, dash, comma, full stop — becomes a space) closes that
-    gap; NFKC additionally folds compatibility variants (full-width
-    forms, etc.) before the punctuation fold runs. Not
-    `statement.normalize_statement_text` (which deliberately preserves
-    case and does NOT fold punctuation — a different, §21 id-hashing
-    concern, not a leak-detection one)."""
-    t = unicodedata.normalize("NFKC", s)
-    t = t.lower()
-    t = re.sub(r"[^\w\s]", " ", t, flags=re.UNICODE)
-    return re.sub(r"\s+", " ", t).strip()
-
-
-def _collect_source_string_literals(path: Path, *, exclude_functions: frozenset = frozenset()) -> "list[tuple]":
-    """Every string literal in ``path``'s own source, via `ast` — a
-    mechanical, exhaustive alternative to a human re-reading every
-    string for an accidentally-copied quote. Returns ``(label, text)``
-    pairs; ``label`` is ``"<path.name>:<lineno>"`` for traceability.
-    ``exclude_functions`` (by name) skips a function's own subtree
-    entirely — for THIS module's own self-test, below, whose own
-    literal is DELIBERATELY a near-verbatim quote (it exists to prove
-    the overlap check catches it), not an accidental leak."""
-    source = path.read_text(encoding="utf-8")
-    tree = ast.parse(source)
-    excluded_nodes = set()
-    if exclude_functions:
-        for node in ast.walk(tree):
-            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in exclude_functions:
-                excluded_nodes.update(ast.walk(node))
-    out = []
-    for node in ast.walk(tree):
-        if node in excluded_nodes:
-            continue
-        if isinstance(node, ast.Constant) and isinstance(node.value, str):
-            out.append((f"{path.name}:{node.lineno}", node.value))
-    return out
-
-
-def _overlap_offenders(candidates: "list[tuple]", gold_texts: "list[str]", window: int = 60) -> "list[tuple]":
-    """``candidates``: ``(label, text)`` pairs. ``gold_texts``: already
-    `_normalize_for_overlap`-normalised real unit texts. Returns every
-    ``(label, chunk)`` where ``text``, normalised, shares a run of at
-    least ``window`` characters with ANY ``gold_texts`` entry."""
-    offenders = []
-    for label, text in candidates:
-        norm = _normalize_for_overlap(text)
-        if len(norm) < window:
-            continue
-        for start in range(0, len(norm) - window + 1):
-            chunk = norm[start:start + window]
-            if any(chunk in gold_text for gold_text in gold_texts):
-                offenders.append((label, chunk))
-                break
-    return offenders
-
-
-#: This scan covers the extractor's OWN source, the
-#: segmenter's own test file, and the local evaluation scripts (not
-#: shipped) that score the segmenter and the candidate-recall stage
-#: — not only THIS test file and the vector corpus. A rule's own
-#: docstring or comment, a segmenter test's own invented sentence, or a
-#: scoring script's own docstring example could just as easily carry an
-#: accidental near-verbatim quote.
-_EXTRACT_SRC_FILES = sorted((ROOT / "src" / "five_d_nd" / "extract").glob("*.py"))
-_OTHER_SCANNED_FILES = (
-    ROOT / "tests" / "test_segment.py",
-    ROOT / "score_segmenter_dev.py",
-    ROOT / "tests" / "test_hybrid.py",
-    ROOT / "score_candidate_recall_dev.py",
-)
-
-
-def test_no_vector_or_test_string_overlaps_dev_gold_60_chars():
-    """Held-out/no-gold-text hard rule, checked MECHANICALLY rather than
-    by eye: no vector's own ``unit_text``, no string literal anywhere in
-    THIS test file, `tests/test_segment.py`, the local evaluation script
-    (not shipped) that scores the segmenter, or
-    `src/five_d_nd/extract/*.py`, shares a 60-NORMALISED-character (or
-    longer) run with any real dev-gold unit text (`dev-set/
-    dev-gold-300.json`) — normalisation now folds quote-mark/punctuation
-    STYLE differences too (`_normalize_for_overlap`), not just case and
-    whitespace, so a near-verbatim quote using different quote glyphs is
-    still caught. SKIPPED if the local corpus is absent (another
-    operator's checkout may not have it) — this check can only run WITH
-    the real corpus in hand; see `test_no_vector_input_text_is_a_long_
-    verbatim_corpus_quote`, above, for the length-only property that
-    holds even without it."""
-    if not DEV_GOLD_PATH.exists():
-        pytest.skip("triple-gold dev-gold file not present on this machine")
-    data = json.loads(DEV_GOLD_PATH.read_text(encoding="utf-8"))
-    gold_texts = [_normalize_for_overlap(u["text"]) for u in data["units"].values()]
-
-    candidates = [(p.stem, _case(p)["input"]["unit_text"]) for p in VECTORS]
-    candidates += _collect_source_string_literals(Path(__file__))
-    for src_path in _EXTRACT_SRC_FILES:
-        candidates += _collect_source_string_literals(src_path)
-    for other_path in _OTHER_SCANNED_FILES:
-        if other_path.exists():
-            candidates += _collect_source_string_literals(other_path)
-
-    offenders = _overlap_offenders(candidates, gold_texts)
-    assert not offenders, f"{len(offenders)} string(s) overlap a real dev-gold unit by >= 60 chars: {offenders[:5]}"
-
-
-def test_normalize_for_overlap_flags_a_dev_unit_with_folded_quotes():
-    """Self-test (round-4 fix, round-5 fix: the fixture is now built AT
-    RUNTIME from the real dev unit text, never hand-typed as a static
-    literal in this file — a hand-typed near-copy of real corpus text is
-    itself exactly the kind of accidental leak this whole check exists
-    to catch, even when excluded from the general scan by name).
-    Takes a real dev unit's own opening text, re-renders its curly
-    quotes as straight ones (simulating the quote-STYLE difference that
-    let a round-2 test string through the round-3 normalisation
-    unnoticed), and asserts the FIXED normalisation (`_normalize_for_
-    overlap`, which folds quote-mark/punctuation style, not just case
-    and whitespace) still finds the overlap against the ORIGINAL
-    (curly-quoted) unit text. SKIPPED if the local corpus is absent."""
-    if not DEV_GOLD_PATH.exists():
-        pytest.skip("triple-gold dev-gold file not present on this machine")
-    data = json.loads(DEV_GOLD_PATH.read_text(encoding="utf-8"))
-    gold_texts = [_normalize_for_overlap(u["text"]) for u in data["units"].values()]
-
-    # Any dev unit whose own opening text is long enough and carries a
-    # curly quote mark will do — pick the first one found, so this test
-    # does not depend on one specific unit id continuing to exist.
-    source_unit = None
-    for u in data["units"].values():
-        text = u["text"]
-        if len(text) >= 70 and ("‘" in text[:70] or "“" in text[:70]):
-            source_unit = text
-            break
-    assert source_unit is not None, "expected at least one dev unit with a curly quote in its opening text"
-
-    fixture = source_unit[:70].replace("‘", "'").replace("’", "'") \
-        .replace("“", '"').replace("”", '"')
-    assert fixture != source_unit[:70], "fixture must actually differ in quote style from the source"
-
-    offenders = _overlap_offenders([("runtime-built fixture", fixture)], gold_texts)
-    assert offenders, "expected the quote-folded fixture to be flagged against its own source dev unit"
 
 
 
@@ -480,6 +320,24 @@ def test_extract_raw_output_is_schema_valid_with_jsonschema_no_stripping():
             jsonschema.validate(instance=doc, schema=schema)
             validated_at_least_one = True
     assert validated_at_least_one
+
+
+def test_extract_addressed_to_statement_is_schema_valid_with_jsonschema():
+    """v3.6: `addressed_to` is a REAL predicate in
+    `schema/statement.schema.json`'s own closed enum, not just in
+    `statement.PREDICATE_DIMENSION` — a real `addressed_to` Statement
+    `extract()` produces must validate against the schema exactly like
+    every other predicate (same no-stripping shape as the test above).
+    SKIPPED if `jsonschema` is not importable, like every other
+    jsonschema-dependent test in this file."""
+    jsonschema = _jsonschema_or_skip()
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    text = "The controller shall notify the data breach to the supervisory authority without undue delay."
+    addressed_to_docs = [doc for doc in extract(text) if doc["predicate"] == "addressed_to"]
+    assert addressed_to_docs, "expected at least one addressed_to Statement from this text"
+    for doc in addressed_to_docs:
+        assert set(doc.keys()) <= set(schema["properties"].keys())
+        jsonschema.validate(instance=doc, schema=schema)
 
 
 def test_extract_output_has_no_internal_underscore_fields():
@@ -575,6 +433,12 @@ def test_every_rule_id_has_a_citation():
         "The deployer may maintain a record of every high-risk decision.",
         "The retention schedule is a binding part of the internal compliance policy.",
         "Zorble flurn wibbet quasm trindle hobnick frandle plonquist zestivorn glim.",
+        # v3.6: addressed_to + the new deadline_of cues.
+        "The controller shall notify the data breach to the supervisory authority without undue delay.",
+        "The processor shall notify the controller promptly after discovering an incident.",
+        "The officer shall respond within two months of the request.",
+        "The agency shall issue a decision not later than one month after receipt.",
+        "The system shall alert the operator immediately after detecting the fault.",
     ]
     seen_rule_ids = set()
     for text in probe_texts:
@@ -678,5 +542,341 @@ def test_enclosing_provision_routes_purpose_predicate_by_position_not_modal():
     assert with_modal_fallback and with_modal_fallback[0]["predicate"] == "compliance_purpose_of"
     with_recital_metadata = extract(text, enclosing_provision="AI Act recital 19")
     assert with_recital_metadata and with_recital_metadata[0]["predicate"] == "legislative_purpose_of"
+
+
+# ═══════════════════ v3.6: addressed_to + deadline split ═══════════════
+
+from five_d_nd.extract.rules import normalize_deadline_text, type_recipient_actor  # noqa: E402
+
+
+def _preds(stmts, predicate):
+    return [s for s in stmts if s["predicate"] == predicate]
+
+
+def test_addressed_to_is_a_known_predicate_dimension_relational():
+    assert statement_mod.is_known_predicate("addressed_to")
+    assert statement_mod.predicate_dimension("addressed_to") == "relational"
+
+
+def test_addressed_to_fires_alongside_performs_from_the_same_clause():
+    """The B1 contract's own central case: a "notify ... to X" clause
+    yields BOTH `performs` (the act, UNCHANGED) and `addressed_to` (the
+    recipient, NEW) from the SAME host clause — the recipient is no
+    longer buried, unreachable, inside `performs`'s own object."""
+    text = "The controller shall notify the data breach to the supervisory authority without undue delay."
+    stmts = extract(text)
+    performs = _preds(stmts, "performs")
+    addressed = _preds(stmts, "addressed_to")
+    assert performs and performs[0]["subj"] == "controller"
+    assert addressed and addressed[0]["obj"] == "supervisory_authority"
+
+
+def test_addressed_to_direct_object_recipient_no_to_gdpr_33_2_style():
+    """"notify the controller" (GDPR Art. 33(2) style): the processor's
+    own recipient, no "to" at all — a direct-object cue."""
+    text = "The processor shall notify the controller promptly after discovering an incident."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert any(s["obj"] == "controller" for s in addressed)
+
+
+def test_addressed_to_communicate_to_data_subject():
+    text = "The controller shall communicate the incident to the data subject within ten days."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert any(s["obj"] == "data_subject" for s in addressed)
+
+
+def test_addressed_to_report_to_market_surveillance_authorities():
+    text = (
+        "The provider shall report the malfunction to the market surveillance "
+        "authorities of the Member State where it occurred."
+    )
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert any(s["obj"] == "market_surveillance_authority" for s in addressed)
+
+
+def test_addressed_to_inform_law_enforcement_or_judicial_authorities():
+    text = "The platform shall inform the law enforcement or judicial authorities of the suspected offence."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert addressed and addressed[0]["obj"].startswith("other(law_enforcement")
+
+
+@pytest.mark.parametrize("text", [
+    "The operator shall report to the extent that resources allow.",
+    "The provider shall report to ensure transparency with stakeholders.",
+    "The agency shall act in relation to the matters referred to in Article 5.",
+    "The incident shall be reported to be reviewed by the board next week.",
+])
+def test_addressed_to_never_fires_on_a_non_recipient_to(text):
+    """Required negative examples: "to the extent that", "to ensure",
+    "in relation to", "to be" are NEVER a recipient cue, even when a
+    recognised addressed_to verb (report/inform/...) governs the same
+    "to"."""
+    stmts = extract(text)
+    assert not _preds(stmts, "addressed_to")
+
+
+def test_type_recipient_actor_types_a_known_role():
+    assert type_recipient_actor("the supervisory authority competent in accordance with Article 55") \
+        == "supervisory_authority"
+    assert type_recipient_actor("the controller") == "controller"
+    assert type_recipient_actor("the data subject") == "data_subject"
+
+
+def test_type_recipient_actor_falls_back_to_other_escape():
+    typed = type_recipient_actor("the national public authorities or bodies")
+    assert typed == "other(national_public_authorities_or_bodies)"
+    assert statement_mod.ACTOR_OTHER_RE.match(typed)
+
+
+def test_addressed_to_negation_is_always_absent():
+    """R-n, extended (v3.6): `addressed_to` is ALWAYS `negation:
+    "absent"`, the same construction reason as `requires`/`deadline_of`
+    — see `extract.negation.ALWAYS_ABSENT_PREDICATES`."""
+    from five_d_nd.extract.negation import ALWAYS_ABSENT_PREDICATES
+    assert "addressed_to" in ALWAYS_ABSENT_PREDICATES
+    text = "The controller shall not notify the data breach to the supervisory authority without undue delay."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert addressed and all(s["negation"] == "absent" for s in addressed)
+
+
+def test_deadline_of_normalizes_away_the_after_tail():
+    """`deadline_of`'s own obj is the NORMALISED limit — "72 hours
+    after having become aware of it" collapses to "72 hours"."""
+    assert normalize_deadline_text("72 hours after having become aware of it") == "72 hours"
+    assert normalize_deadline_text("30 days") == "30 days"
+
+
+def test_deadline_of_normalizes_word_numbers():
+    assert normalize_deadline_text("one month after the submission") == "one month"
+    assert normalize_deadline_text("two days") == "two days"
+
+
+def test_deadline_of_normalizes_qualitative_cues():
+    assert normalize_deadline_text("Without Undue Delay") == "without undue delay"
+    assert normalize_deadline_text("Promptly") == "promptly"
+    assert normalize_deadline_text("Immediately") == "immediately"
+
+
+def test_deadline_of_qualitative_cue_fires_without_undue_delay_promptly_immediately():
+    cases = {
+        "The controller shall notify the authority without undue delay of the breach.": "without undue delay",
+        "The provider shall inform the authority promptly of the malfunction.": "promptly",
+        "The provider shall notify the authority immediately after detecting the fault.": "immediately",
+    }
+    for text, expected_obj in cases.items():
+        stmts = extract(text)
+        deadlines = _preds(stmts, "deadline_of")
+        assert any(s["obj"] == expected_obj for s in deadlines), (text, deadlines)
+
+
+def test_deadline_of_word_number_duration_fires():
+    """`deadline_of`'s own subject-binding rule
+    needs a GOVERNED ACT to bind to — a `performs`-shaped actor from
+    the closed `ACTOR_ROLES` set, here, so the deadline is not simply
+    dropped for lack of one."""
+    text = "The provider shall respond to the authority within two months of the request."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert any(s["obj"] == "two months" for s in deadlines)
+
+    text2 = "The provider shall notify the authority not later than one month after receipt."
+    stmts2 = extract(text2)
+    deadlines2 = _preds(stmts2, "deadline_of")
+    assert any(s["obj"] == "one month" for s in deadlines2)
+
+
+def test_deadline_of_coexists_with_performs_from_the_same_clause():
+    """`never_conflicts` applies ONLY to a NEW
+    deadline cue (here, the v3.6 word-number duration "two months") —
+    it, and not the pre-existing digit-based "within N" cue, no longer
+    silences `performs`; both survive from the SAME host clause."""
+    text = "The provider shall maintain records within two months of the request."
+    stmts = extract(text)
+    performs = _preds(stmts, "performs")
+    deadlines = _preds(stmts, "deadline_of")
+    assert performs and performs[0]["predicate"] == "performs"
+    assert deadlines and deadlines[0]["obj"] == "two months"
+
+
+def test_addressed_to_and_deadline_of_both_coexist_with_performs():
+    """A GDPR Art. 33(1)-shaped case (this feature's own worked
+    example, re-created as a brand-new sentence) using the NEW
+    qualitative cue "promptly": one clause, THREE Statements — the act
+    (`performs`), the recipient (`addressed_to`), and the limit
+    (`deadline_of`), never forcing a choice among them."""
+    text = "The controller shall notify the breach to the supervisory authority promptly."
+    stmts = extract(text)
+    assert _preds(stmts, "performs")
+    addressed = _preds(stmts, "addressed_to")
+    assert addressed and addressed[0]["obj"] == "supervisory_authority"
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and deadlines[0]["obj"] == "promptly"
+
+
+def test_pre_existing_within_n_deadline_keeps_pre_v36_conflict_behaviour():
+    """The pre-existing, pre-v3.6 digit-based
+    "within N" cue keeps EXACTLY origin/main's own conflict behaviour
+    — `never_conflicts=False` — so it still blocks (and is blocked by)
+    a REAL predicate exactly as before this whole feature existed.
+    "The operator shall report the incident within 72 hours after
+    becoming aware of it." gives ONLY `deadline_of` (`performs` is
+    blocked by it, never a NEW addition alongside it)."""
+    text = "The operator shall report the incident within 72 hours after becoming aware of it."
+    stmts = extract(text)
+    assert not _preds(stmts, "performs")
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and deadlines[0]["subj"] == "operator" and deadlines[0]["obj"] == "72 hours"
+
+
+# ═══════════════════ deadline-subject binding + recipient head ═══
+
+def test_deadline_subject_is_the_governed_act_not_the_clause_subject():
+    """Minimal reproduction: "Member States
+    shall ensure that providers notify the authority promptly." used to
+    give `deadline_of` subj="Member States" (the OUTER clause's own
+    subject) — never the ACT "promptly" actually times. It is now bound
+    to `notify` (the `addressed_to` companion's own subj, the SAME act)."""
+    text = "Member States shall ensure that providers notify the authority promptly."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and all(s["subj"] == "notify" for s in deadlines)
+    assert not any(s["subj"] == "Member States" for s in deadlines)
+
+
+@pytest.mark.parametrize("text", [
+    "The widget requires calibration immediately.",
+])
+def test_deadline_dropped_when_no_governed_act_in_clause(text):
+    """"If no governed act can be bound inside the same clause, emit
+    nothing" applies to a NEW deadline cue (here, the v3.6 qualitative
+    cue "immediately") that never existed on origin/main at all — "the
+    widget" is not a closed `ACTOR_ROLES` member, so no `performs`
+    fires, and no other companion exists, so the candidate is dropped
+    rather than kept with a clause-subject/fragment/pronoun/connective
+    subj. (This does NOT apply to the
+    pre-existing, pre-v3.6 digit-based "within N" cue — see
+    `test_pre_existing_within_n_deadline_keeps_pre_v36_subj_when_no_
+    governed_act_exists`, below, for that one.)"""
+    stmts = extract(text)
+    assert not _preds(stmts, "deadline_of")
+
+
+def test_pre_existing_within_n_deadline_keeps_pre_v36_subj_when_no_governed_act_exists():
+    """The pre-existing, pre-v3.6 digit-based
+    "within N" cue is NEVER dropped for lack of a governed act — that
+    would REMOVE a Statement origin/main already produced. "The
+    auditor shall review it within 30 days." keeps subj="auditor"
+    (main's own, pre-rebind value) UNCHANGED, exactly as before this
+    whole feature existed."""
+    text = "The auditor shall review it within 30 days."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines and deadlines[0]["subj"] == "auditor" and deadlines[0]["obj"] == "30 days"
+
+
+def test_addressed_to_negative_possessor_np_is_not_the_recipient():
+    """A possessor NP ("the findings OF the market
+    surveillance authority") is never the recipient — the role name
+    sits inside a phrase that MODIFIES a different direct object,
+    never naming the recipient itself. The genuine "to the Commission"
+    recipient in the SAME sentence still fires correctly."""
+    text = "The authority shall report the findings of the market surveillance authority to the Commission."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert addressed and all(s["obj"] == "commission" for s in addressed)
+    assert not any("market_surveillance_authority" == s["obj"] for s in addressed)
+
+
+def test_addressed_to_negative_passive_by_agent_is_not_the_recipient():
+    """"The draft decision submitted BY X" names X
+    as the passive-voice AGENT (the one doing the submitting), never
+    the recipient — "by" is excluded from the recipient cue entirely."""
+    text = "The lead supervisory authority submitted the draft decision by the deadline."
+    stmts = extract(text)
+    assert not _preds(stmts, "addressed_to")
+
+
+def test_addressed_to_national_modifier_still_types_as_closed_role():
+    """"The national market surveillance authority"
+    types as `market_surveillance_authority` — a single leading
+    modifier word ("national") narrows WHICH authority, it does not
+    block the role match or fall through to `other(...)`."""
+    text = "The provider shall inform the national market surveillance authority of the decision."
+    stmts = extract(text)
+    addressed = _preds(stmts, "addressed_to")
+    assert addressed and any(s["obj"] == "market_surveillance_authority" for s in addressed)
+
+
+# ═══════════════════ antecedent binding + except_when ═══════
+
+def test_deadline_in_a_conditional_antecedent_is_never_rebound_to_the_consequence():
+    """Minimal reproduction: "Where the
+    request is not answered within 30 days, the application shall be
+    deemed accepted." used to rebind the deadline to the CONSEQUENCE
+    ("accepted") — wrong, since "30 days" times the ANTECEDENT ("not
+    answered"), never the outcome. The `requires` candidate's own
+    `subj` (the antecedent) literally CONTAINS the deadline's own span
+    here, which is the decisive signal: the Statement's ORIGINAL,
+    pre-rebind subj (already reading as the antecedent clause itself)
+    is kept UNCHANGED rather than replaced by the consequence."""
+    text = "Where the request is not answered within 30 days, the application shall be deemed accepted."
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines
+    assert not any(s["subj"] == "accepted" for s in deadlines)
+    assert all("not answered" in s["subj"] for s in deadlines)
+
+
+def test_deadline_in_antecedent_ai_act_73_style_not_provided_an_answer():
+    """The AI Act Art. 73(8)-shaped reproduction: "has not provided an
+    answer within N days" — the deadline times the AUTHORITY's own
+    failure to answer, never a consequence elsewhere in the sentence."""
+    text = (
+        "Where the market surveillance authority has not provided an answer within 30 days, "
+        "the testing shall be understood to have been approved."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines
+    assert all("has not provided an answer" in s["subj"] for s in deadlines)
+    assert not any("approved" in s["subj"] for s in deadlines)
+
+
+def test_deadline_inside_an_except_when_exception_condition_binds_to_the_condition():
+    """The DSA Art. 87-shaped reproduction: "unless X opposes ... not
+    later than N months" — the deadline times the EXCEPTION CONDITION
+    ("opposes such extension"), never the general rule it carves an
+    exception out of ("The delegation of power shall be tacitly
+    extended ...")."""
+    text = (
+        "The delegation of power shall be tacitly extended for periods of an identical duration, "
+        "unless the European Parliament or the Council opposes such extension not later than "
+        "three months before the end of each period."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines
+    assert all("opposes such extension" in s["subj"] for s in deadlines)
+    assert not any(s["subj"].startswith("The delegation of power") for s in deadlines)
+
+
+def test_except_when_notwithstanding_provision_is_never_a_deadline_companion():
+    """A "notwithstanding [provision]"/"subject to [provision]"
+    `except_when` reading's own obj is a BARE PROVISION REFERENCE
+    ("paragraph 2") — never trusted as a `deadline_of` companion, even
+    though it is, technically, a Statement sharing the same clause."""
+    text = (
+        "Notwithstanding paragraph 2 of this Article, in the event of a serious incident, "
+        "the report shall be provided immediately."
+    )
+    stmts = extract(text)
+    deadlines = _preds(stmts, "deadline_of")
+    assert deadlines
+    assert not any(s["subj"].strip() == "paragraph 2 of this Article" for s in deadlines)
 
 

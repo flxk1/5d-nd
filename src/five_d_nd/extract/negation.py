@@ -39,11 +39,17 @@ __all__ = [
 
 NEGATION_STATES = frozenset({"present", "uncertain", "absent"})
 
-#: R-n (`requires`, `deadline_of`): a negator confined to an antecedent's
-#: own content never negates the Statement's own RELATION — both
-#: predicates are ALWAYS `negation: "absent"`, by construction, never by
-#: a generic scan (see each predicate's own codebook definition).
-ALWAYS_ABSENT_PREDICATES = frozenset({"requires", "deadline_of"})
+#: R-n (`requires`, `deadline_of`), extended to `addressed_to` (v3.6):
+#: a negator confined to an antecedent's own content, or
+#: to whether the host act happened at all, never negates the
+#: Statement's own RELATION — these three predicates are ALWAYS
+#: `negation: "absent"`, by construction, never by a generic scan (see
+#: each predicate's own codebook definition). `addressed_to` is derived
+#: FROM the same clause that already carries a `performs`/
+#: `competence_of`/`requires` Statement naming the act; a negator
+#: targeting whether that act occurred is that OTHER Statement's own
+#: negation concern, never a re-negation of "and it runs to X".
+ALWAYS_ABSENT_PREDICATES = frozenset({"requires", "deadline_of", "addressed_to"})
 
 #: Step 1's own closed, pre-digested negator lexicon: "not", "no",
 #: "never", "cannot"/"can't", "unable" — and NOTHING else (the codebook

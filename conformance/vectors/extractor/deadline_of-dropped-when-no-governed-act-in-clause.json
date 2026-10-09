@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-dropped-when-no-governed-act-in-clause",
+  "input": {
+    "unit_text": "The widget requires calibration immediately."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#f84bb543d9bcff33",
+        "subj": "widget requires calibration",
+        "obj": "immediately",
+        "predicate": "predication",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.2,
+        "provenance": {
+          "start": 0,
+          "end": 43
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-predication-whole-unit-fallback"
+      }
+    ]
+  }
+}
