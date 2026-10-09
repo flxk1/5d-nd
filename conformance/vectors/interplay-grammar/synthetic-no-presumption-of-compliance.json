@@ -1,0 +1,32 @@
+{
+  "family": "interplay-grammar",
+  "case": "synthetic-no-presumption-of-compliance",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.99(synthetic)",
+        "text": "Compliance with this Regulation shall not give rise to a presumption of compliance with Regulation (EU) 2016/679 for the same processing operation."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.99(synthetic)",
+        "relation": "no_presumption",
+        "target_instrument": "gdpr",
+        "target_article": null,
+        "cue_id": "no-presumption-of-compliance",
+        "verbatim_span": "shall not give rise to a presumption of compliance with Regulation (EU) 2016/679 for the same processing operation.",
+        "match_start": 32,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  }
+}

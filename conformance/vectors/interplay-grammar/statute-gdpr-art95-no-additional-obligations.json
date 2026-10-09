@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-gdpr-art95-no-additional-obligations",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "gdpr",
+        "article_id": "gdpr:Art.95",
+        "text": "Article 95\n\nRelationship with Directive 2002/58/EC\n\nThis Regulation shall not impose additional obligations on natural or legal persons in relation to processing in connection with the provision of publicly available electronic communications services in public communication networks in the Union in relation to matters for which they are subject to specific obligations with the same objective set out in Directive 2002/58/EC.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "gdpr",
+        "source_article": "gdpr:Art.95",
+        "relation": "non_cumulative",
+        "target_instrument": "eprivacy",
+        "target_article": null,
+        "cue_id": "no-additional-obligations-same-objective",
+        "verbatim_span": "shall not impose additional obligations on natural or legal persons in relation to processing in connection with the provision of publicly available electronic communications services in public communication networks in the Union in relation to matters for which they are subject to specific obligations with the same objective set out in Directive 2002/58/EC.",
+        "match_start": 68,
+        "unresolved": false,
+        "confidence": 0.85,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. Whole article (gdpr:Art.95)."
+}

@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-dsa-art89-2-citation-redirect",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "dsa",
+        "article_id": "dsa:Art.89",
+        "text": "Article 89\n\nAmendments to Directive 2000/31/EC\n\n1. Articles 12 to 15 of Directive 2000/31/EC are deleted.\n\n2. References to Articles 12 to 15 of Directive 2000/31/EC shall be construed as references to Articles 4, 5, 6 and 8 of this Regulation, respectively.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.89",
+        "relation": "reference_redirect",
+        "target_instrument": "ecommerce",
+        "target_article": "12",
+        "cue_id": "citation-redirect",
+        "verbatim_span": "References to Articles 12 to 15 of Directive 2000/31/EC shall be construed as references to Articles 4, 5, 6 and 8 of this Regulation, respectively.",
+        "match_start": 110,
+        "unresolved": false,
+        "confidence": 0.85,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. Whole article (dsa:Art.89)."
+}

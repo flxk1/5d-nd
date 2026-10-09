@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-ai-act-art2-5-shall-not-affect",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.2(5)",
+        "text": "5.   This Regulation shall not affect the application of the provisions on the liability of providers of intermediary services as set out in Chapter II of Regulation (EU) 2022/2065. \n\n "
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.2(5)",
+        "relation": "defers_to",
+        "target_instrument": "dsa",
+        "target_article": null,
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect the application of the provisions on the liability of providers of intermediary services as set out in Chapter II of Regulation (EU) 2022/2065.",
+        "match_start": 21,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. ai-act:Art.2, paragraph 5."
+}

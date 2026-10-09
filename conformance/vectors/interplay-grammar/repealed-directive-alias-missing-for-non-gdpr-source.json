@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "repealed-directive-alias-missing-for-non-gdpr-source",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.99(synthetic)",
+        "text": "References to the repealed Directive shall be construed as references to this Directive."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "repealed_instrument_by_source has no entry for 'nis2' — no alias to resolve, so no record is emitted."
+}

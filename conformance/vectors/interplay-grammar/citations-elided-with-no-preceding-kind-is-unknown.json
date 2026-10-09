@@ -1,0 +1,19 @@
+{
+  "family": "interplay-grammar",
+  "case": "citations-elided-with-no-preceding-kind-is-unknown",
+  "kind": "citations",
+  "input": {
+    "text": "See (EU) 2022/2554 for an example with no preceding full citation."
+  },
+  "expected": {
+    "citations": [
+      [
+        4,
+        18,
+        "external:unknown-eu-2022-2554",
+        "(EU) 2022/2554"
+      ]
+    ]
+  },
+  "provenance": "Synthetic: an elided '(EU) .../...' citation with no FULL citation earlier in the text carries no kind to inherit, and resolves as external:unknown-eu-2022-2554."
+}

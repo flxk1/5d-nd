@@ -1,0 +1,32 @@
+{
+  "family": "interplay-grammar",
+  "case": "synthetic-alternative-applies-to-the-exclusion-of",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.99(synthetic)",
+        "text": "Where an AI system is itself a safety component of a product covered by Union harmonisation legislation listed in Annex I, this Regulation applies to the exclusion of Regulation (EU) 2022/2065 for that AI system."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.99(synthetic)",
+        "relation": "alternative",
+        "target_instrument": "dsa",
+        "target_article": null,
+        "cue_id": "applies-to-the-exclusion-of",
+        "verbatim_span": "applies to the exclusion of Regulation (EU) 2022/2065 for that AI system.",
+        "match_start": 139,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  }
+}

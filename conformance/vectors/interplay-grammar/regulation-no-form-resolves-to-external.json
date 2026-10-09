@@ -1,0 +1,33 @@
+{
+  "family": "interplay-grammar",
+  "case": "regulation-no-form-resolves-to-external",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.99(synthetic)",
+        "text": "This Regulation shall not affect the application of Article 10 of Regulation (EU) No 1025/2012."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.99(synthetic)",
+        "relation": "defers_to",
+        "target_instrument": "external:regulation-eu-2012-1025",
+        "target_article": "10",
+        "cue_id": "shall-not-affect",
+        "verbatim_span": "shall not affect the application of Article 10 of Regulation (EU) No 1025/2012.",
+        "match_start": 16,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Regression vector: the older 'Regulation (EU) No <number>/<year>' citation style (e.g. AI Act Art. 40's own 'Regulation (EU) No 1025/2012') resolves to external:regulation-eu-2012-1025 — year and number normalised into the same <kind>-<year>-<number> order the modern form uses, never left reversed."
+}

@@ -1,0 +1,32 @@
+{
+  "family": "interplay-grammar",
+  "case": "synthetic-complementary-adds-to-the-obligations",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "dsa",
+        "article_id": "dsa:Art.99(synthetic)",
+        "text": "This Regulation adds to the obligations laid down in Directive 2000/31/EC for providers of hosting services established in the Union."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.99(synthetic)",
+        "relation": "complementary",
+        "target_instrument": "ecommerce",
+        "target_article": null,
+        "cue_id": "adds-to-the-obligations",
+        "verbatim_span": "adds to the obligations laid down in Directive 2000/31/EC for providers of hosting services established in the Union.",
+        "match_start": 16,
+        "unresolved": false,
+        "confidence": 0.7,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  }
+}

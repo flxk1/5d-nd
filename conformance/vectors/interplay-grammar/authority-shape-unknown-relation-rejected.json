@@ -1,0 +1,26 @@
+{
+  "family": "interplay-grammar",
+  "case": "authority-shape-unknown-relation-rejected",
+  "kind": "authority_shape",
+  "input": {
+    "doc": {
+      "relation": "not_a_real_relation",
+      "source_instrument": "nis2",
+      "source_article": "nis2:Art.21",
+      "target_instrument": "ai-act",
+      "target_article": null,
+      "verbatim_span": null,
+      "basis": "authority",
+      "authority": {
+        "name": "Example national court",
+        "locator": "ECLI:XX:XXXX:2027:0001"
+      },
+      "confidence": 0.8
+    }
+  },
+  "expected": {
+    "violations": [
+      "authority relation field 'relation' 'not_a_real_relation' is not a known RELATIONS key ['alternative', 'complementary', 'cumulative', 'defers_to', 'no_presumption', 'non_cumulative', 'reference_redirect', 'same_definition', 'separate_tracks', 'substitutive']"
+    ]
+  }
+}

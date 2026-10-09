@@ -1,0 +1,37 @@
+{
+  "family": "interplay-grammar",
+  "case": "citations-elided-list-inherits-preceding-kind",
+  "kind": "citations",
+  "input": {
+    "text": "7.   Union law on the protection of personal data, privacy and the confidentiality of communications applies to personal data processed in connection with the rights and obligations laid down in this Regulation. This Regulation shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation. \n\n "
+  },
+  "expected": {
+    "citations": [
+      [
+        245,
+        269,
+        "gdpr",
+        "Regulation (EU) 2016/679"
+      ],
+      [
+        273,
+        287,
+        "external:regulation-eu-2018-1725",
+        "(EU) 2018/1725"
+      ],
+      [
+        292,
+        312,
+        "eprivacy",
+        "Directive 2002/58/EC"
+      ],
+      [
+        316,
+        329,
+        "external:directive-eu-2016-680",
+        "(EU) 2016/680"
+      ]
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. ai-act:Art.2(7)."
+}

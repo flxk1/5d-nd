@@ -1,0 +1,47 @@
+{
+  "family": "interplay-grammar",
+  "case": "statute-gdpr-art94-2-repealed-directive-redirect",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "gdpr",
+        "article_id": "gdpr:Art.94",
+        "text": "Article 94\n\nRepeal of Directive 95/46/EC\n\n1. Directive 95/46/EC is repealed with effect from 25 May 2018.\n\n2. References to the repealed Directive shall be construed as references to this Regulation. References to the Working Party on the Protection of Individuals with regard to the Processing of Personal Data established by Article 29 of Directive 95/46/EC shall be construed as references to the European Data Protection Board established by this Regulation.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "gdpr",
+        "source_article": "gdpr:Art.94",
+        "relation": "reference_redirect",
+        "target_instrument": "dpd95",
+        "target_article": "29",
+        "cue_id": "citation-redirect",
+        "verbatim_span": "References to the Working Party on the Protection of Individuals with regard to the Processing of Personal Data established by Article 29 of Directive 95/46/EC shall be construed as references to the European Data Protection Board established by this Regulation.",
+        "match_start": 200,
+        "unresolved": false,
+        "confidence": 0.85,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      },
+      {
+        "source_instrument": "gdpr",
+        "source_article": "gdpr:Art.94",
+        "relation": "reference_redirect",
+        "target_instrument": "dpd95",
+        "target_article": null,
+        "cue_id": "repealed-directive-redirect",
+        "verbatim_span": "References to the repealed Directive shall be construed as references to this Regulation.",
+        "match_start": 110,
+        "unresolved": false,
+        "confidence": 0.9,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), sliced programmatically — never retyped. Whole article (gdpr:Art.94, includes para 1 and the Art. 94(2) clause)."
+}

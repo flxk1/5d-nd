@@ -1,0 +1,17 @@
+{
+  "family": "interplay-grammar",
+  "case": "as-defined-in-cue-fires-on-synthetic-sentence",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.99(synthetic)",
+        "text": "'Large-scale incident' means a large-scale incident as defined in Article 6, point (7), of Directive (EU) 2022/2555."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  }
+}

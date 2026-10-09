@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "in-accordance-with-governed-by-suppressed-when-self-referential",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.99(synthetic)",
+        "text": "Processing shall take place in accordance with this Directive only."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "Regression vector for the suppress_if_unresolved cue flag: 'in-accordance-with-governed-by' never emits a record when the clause names only the citing instrument itself (here, a bare self-reference)."
+}

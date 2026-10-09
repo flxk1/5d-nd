@@ -1,0 +1,32 @@
+{
+  "family": "interplay-grammar",
+  "case": "synthetic-substitutive-deemed-to-satisfy",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.99(synthetic)",
+        "text": "Compliance with the risk-management measures required by this Directive shall be deemed to satisfy the corresponding security requirements of Regulation (EU) 2022/2065 for the same essential entity."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.99(synthetic)",
+        "relation": "substitutive",
+        "target_instrument": "dsa",
+        "target_article": null,
+        "cue_id": "deemed-to-satisfy",
+        "verbatim_span": "shall be deemed to satisfy the corresponding security requirements of Regulation (EU) 2022/2065 for the same essential entity.",
+        "match_start": 72,
+        "unresolved": false,
+        "confidence": 0.75,
+        "basis": "statute",
+        "ruleset_digest": "30c02469e20ad7d400cb36526d5a31798c5d9ed1f904e80c7e06846cd2b4e01d"
+      }
+    ]
+  }
+}

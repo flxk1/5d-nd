@@ -1,0 +1,25 @@
+{
+  "family": "interplay-grammar",
+  "case": "authority-shape-missing-authority-name-rejected",
+  "kind": "authority_shape",
+  "input": {
+    "doc": {
+      "relation": "substitutive",
+      "source_instrument": "nis2",
+      "source_article": "nis2:Art.21",
+      "target_instrument": "ai-act",
+      "target_article": null,
+      "verbatim_span": null,
+      "basis": "authority",
+      "authority": {
+        "locator": "ECLI:XX:XXXX:2027:0001"
+      },
+      "confidence": 0.8
+    }
+  },
+  "expected": {
+    "violations": [
+      "authority relation field 'authority.name' must be a non-empty string"
+    ]
+  }
+}

@@ -159,6 +159,34 @@
   `requires-and-deadline-of-co-coded` (the `deadline_of` subject is now
   the governed act instead of the actor). No pre-existing Statement in
   any of them was removed.
+- A THIRD EXAMPLE nD grammar, `src/five_d_nd/grammars/interplay.py`
+  + `interplay_rules.json`: a closed, ten-relation vocabulary of typed
+  relations BETWEEN legal instruments (`same_definition`, `cumulative`,
+  `complementary`, `alternative`, `substitutive`, `separate_tracks`,
+  `non_cumulative`, `no_presumption`, `defers_to`, `reference_redirect`),
+  each with a stated 5D projection and reason, read deterministically from
+  scope clauses by a cue-rule table (rules are data, not code — the same
+  discipline `requirement.py` already establishes). A citation resolver for
+  the seven instrument-citation forms the GDPR/ePrivacy/e-Commerce/DSA/
+  NIS2/AI-Act/Directive-95-46 corpus uses, including an elided-list
+  continuation that carries no kind word of its own; unknown instruments are
+  kept as `external:<kind>-<year>-<number>`, never dropped. A clause that
+  names only the citing instrument itself (a self-citation or a bare "this
+  Regulation"/"this Directive") produces no record; a clause that names
+  nothing at all produces an `unresolved: True` record (or none, for a cue
+  that opts out via `suppress_if_unresolved`) — `relation_to_triple` refuses
+  to convert an unresolved record. An authority-sourced ingestion path
+  (court rulings/regulator guidance that type a relation not stated in the
+  statute) ships as API + validation only, seeded with no data. New spec
+  section (`spec/SPEC.md`), 48 conformance vectors
+  (`conformance/vectors/interplay-grammar/`), and a self-contained test
+  module (`tests/test_interplay.py`). The citation resolver also accepts
+  a PLURAL kind word ("Regulations (EU) 2016/679 and (EU) 2018/1725") and
+  the older "Regulation (EU) No 1025/2012" number-then-year form, both
+  normalised into the same `<kind>-<year>-<number>` id order; the
+  article-lookback also captures a trailing "Article N, point (x)"
+  reference; and every record carries its own `match_start` offset so two
+  records whose text happens to be byte-identical are still told apart.
 
 ### Fixed
 

@@ -1,0 +1,25 @@
+{
+  "family": "interplay-grammar",
+  "case": "citations-no-form-number-then-year",
+  "kind": "citations",
+  "input": {
+    "text": "See Regulation (EU) No 1025/2012 and Regulation (EU) No 910/2014 for context."
+  },
+  "expected": {
+    "citations": [
+      [
+        4,
+        32,
+        "external:regulation-eu-2012-1025",
+        "Regulation (EU) No 1025/2012"
+      ],
+      [
+        37,
+        64,
+        "external:regulation-eu-2014-910",
+        "Regulation (EU) No 910/2014"
+      ]
+    ]
+  },
+  "provenance": "Synthetic, modelled on AI Act Art. 40/41 and NIS2 Art. 6's own real 'Regulation (EU) No 1025/2012'/'Regulation (EU) No 910/2014' citations — the older NUMBER-then-YEAR citation style, normalised to the same <kind>-<year>-<number> external-id order as the modern form."
+}

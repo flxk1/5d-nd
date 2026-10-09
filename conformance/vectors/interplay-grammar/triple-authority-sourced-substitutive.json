@@ -1,0 +1,39 @@
+{
+  "family": "interplay-grammar",
+  "case": "triple-authority-sourced-substitutive",
+  "kind": "triple",
+  "input": {
+    "record": {
+      "relation": "substitutive",
+      "source_instrument": "nis2",
+      "source_article": "nis2:Art.21",
+      "target_instrument": "ai-act",
+      "target_article": null,
+      "verbatim_span": null,
+      "basis": "authority",
+      "authority": {
+        "name": "Example national court",
+        "locator": "ECLI:XX:XXXX:2027:0001"
+      },
+      "confidence": 0.8
+    }
+  },
+  "expected": {
+    "triple": {
+      "s": "nis2:nis2:Art.21",
+      "p": "substitutive",
+      "o": "ai-act",
+      "dimension": "causal",
+      "weight": 0.8,
+      "provenance": {
+        "basis": "authority",
+        "verbatim_span": null,
+        "authority": {
+          "name": "Example national court",
+          "locator": "ECLI:XX:XXXX:2027:0001"
+        }
+      },
+      "grammar_id": "interplay-grammar"
+    }
+  }
+}

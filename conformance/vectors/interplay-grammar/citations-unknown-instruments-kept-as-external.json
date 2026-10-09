@@ -1,0 +1,24 @@
+{
+  "family": "interplay-grammar",
+  "case": "citations-unknown-instruments-kept-as-external",
+  "kind": "citations",
+  "input": {
+    "text": "See Regulation (EU) 2022/2554 and Directive 2011/93/EU for context."
+  },
+  "expected": {
+    "citations": [
+      [
+        4,
+        29,
+        "external:regulation-eu-2022-2554",
+        "Regulation (EU) 2022/2554"
+      ],
+      [
+        34,
+        51,
+        "external:directive-2011-93",
+        "Directive 2011/93"
+      ]
+    ]
+  }
+}

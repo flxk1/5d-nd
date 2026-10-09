@@ -1,0 +1,18 @@
+{
+  "family": "interplay-grammar",
+  "case": "in-accordance-with-governed-by-suppressed-when-nothing-named",
+  "kind": "find_relations",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "gdpr",
+        "article_id": "gdpr:Art.99(synthetic)",
+        "text": "The authority shall act in accordance with paragraph 9."
+      }
+    ]
+  },
+  "expected": {
+    "records": []
+  },
+  "provenance": "Regression vector for the suppress_if_unresolved cue flag: 'in-accordance-with-governed-by' never emits a record when NOTHING is named at all (no citation, no self-reference) — this is the single largest source of null-target noise the cue produced before suppress_if_unresolved was added."
+}

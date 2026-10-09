@@ -4236,3 +4236,111 @@ in nD (a co-dimension), never in 5D itself.
   **This specification does NOT claim versum conforms to N2 for the
   deontic plane today; it does the opposite — it names the exact guard
   that would need to change.**
+
+## §24 EXAMPLE nD grammar: interplay (typed relations between legal instruments)
+
+**Status: a THIRD worked EXAMPLE nD grammar, added separately from §18's
+term/requirement pair — NOT part of 5D itself** (§1's scope is
+unchanged); it could be deleted without this specification's own
+normative content changing at all. `grammars/interplay.py`
+(+ `grammars/interplay_rules.json`) demonstrates §9's contract on a THIRD
+shape of problem: neither a lexical axis over one span (term) nor a
+lexical-absence check within one obligation (requirement), but a typed
+relation BETWEEN two different legal INSTRUMENTS, read from a scope
+clause in one of them.
+
+**Why.** The typed-statements enum (§21-§23) has a predicate for a plain,
+untyped `cross_references` edge, but nothing that TYPES a relation
+BETWEEN two different instruments — and the instruments themselves
+routinely state, in the text, exactly what kind of relation holds. GDPR
+Art. 95 bars a second, additional obligation "with the same objective" as
+the ePrivacy Directive; GDPR Art. 94(2) redirects every reference to its
+own repealed predecessor; the DSA and the AI Act both state they do not
+affect/are without prejudice to the GDPR; NIS2 Art. 35(2) bars a second
+fine for the "same conduct" already fined under the GDPR; NIS2 Art. 35(1)
+requires its own competent authorities to notify the GDPR's supervisory
+authorities; NIS2 Art. 2(14) requires personal-data processing to proceed
+"in accordance with" the GDPR.
+
+**A closed, ten-relation vocabulary, each with ONE stated 5D projection
+and a reason** (`same_definition`, `cumulative`, `complementary`,
+`alternative`, `substitutive`, `separate_tracks`, `non_cumulative`,
+`no_presumption`, `defers_to`, `reference_redirect` — see
+`grammars/interplay.py`'s own module docstring for the full
+meaning/dimension/reason table). Three dimensions are used:
+`structural` (`same_definition`, `defers_to`, `reference_redirect` — a
+definitional identity, a stated subordination, or a literal
+reference-rewiring are all structural, never causal or temporal, and
+match §21's own `cross_references` binding for the identical shape of
+relation, one level up between whole instruments rather than between
+provisions); `causal` (`alternative`, `substitutive`, `non_cumulative`,
+`no_presumption` — each states a conditional gate or an express
+bar/discharge on a legal CONSEQUENCE arising); `relational`
+(`cumulative`, `complementary`, `separate_tracks` — plain co-application
+of two regimes to the same conduct, with no causal or structural content
+of its own). No relation here uses `intentional`/`temporal` — this
+grammar's own ten relations happen not to need either, not a claim that
+no interplay relation ever could.
+
+**Rules are DATA, not code** — the cue table (trigger phrase, a required
+co-occurring phrase, a target-resolution mode, a confidence, and —
+where a clause embeds a `;`-separated enumerated list before its own
+named instrument, e.g. DSA Art. 2(4)(g) — a per-cue `clause_end_chars`
+override) lives in `interplay_rules.json`, loaded by `load_ruleset` and
+pinned by a sha256 digest (`ruleset_digest`) exactly like
+`requirement_rules.json` (§18). `find_relations` branches on nothing but
+the loaded ruleset document; a new cue is added by editing the JSON,
+never by adding an `if`.
+
+**Instrument-citation resolution is closed over seven named forms**
+(Regulation (EU) 2016/679, Directive 2002/58/EC, Directive 2000/31/EC,
+Regulation (EU) 2022/2065, Directive (EU) 2022/2555, Regulation (EU)
+2024/1689, Directive 95/46/EC), resolved by ONE shared numeric regex
+rather than seven separate literal patterns — so ANY OTHER
+"Regulation (EU) .../..." / "Directive (EU) .../..." / "Directive
+.../.../EC" citation is still FOUND, including an ELIDED continuation
+inside a list that shares one kind word (e.g. "Regulation (EU) 2016/679
+or (EU) 2018/1725" — the second instrument carries no kind word of its
+own; its kind is inherited from the nearest preceding full citation,
+left to right), just kept as a deterministic
+`external:<kind>-[eu-]<year>-<number>[-ec]` id (e.g.
+`external:regulation-eu-2022-2554` for DORA) rather than silently
+dropped.
+
+**A citation, or a bare "this Regulation"/"this Directive" phrase, that
+names the CITING instrument ITSELF is excluded from target
+resolution — load-bearing, not cosmetic.** This grammar types relations
+BETWEEN two different instruments; a clause that names only itself (a
+numeric self-citation, e.g. the AI Act's own Art. 102-109 each citing
+"Regulation (EU) 2024/1689" — itself; or a bare self-reference, e.g.
+"without prejudice to Article 10(5) ... of this Regulation") is not a
+relation between two instruments at all, and produces no record — a
+clause that names NEITHER a citation nor a self-reference, by contrast,
+still produces a record, but flagged `unresolved: True` with a reduced
+confidence, so the two cases are never conflated. A cue whose own trigger
+phrase is broad enough that an unresolved hit is noise rather than signal
+(`in-accordance-with-governed-by`, triggered by a bare "in accordance
+with") may additionally set `suppress_if_unresolved`, so it produces no
+record at all unless it names an actual OTHER instrument.
+`relation_to_triple` refuses outright to convert an `unresolved` record
+into a triple — there is no instrument called "unknown" for a triple's
+`o` to name.
+
+**Negation / absence are OUT OF SCOPE.** Unlike `requirement.py`'s
+three-state lexical-absence design, this grammar reports ONLY what a
+clause POSITIVELY states — there is no "this relation is absent" claim to
+make, because the grammar's job is to TYPE a stated relation, never to
+certify one is missing.
+
+**Authority-sourced relations — API and validation only, never
+populated.** `authority_relation_violations` validates the shape of a
+relation record a court ruling or regulator's guidance types (never
+derives from statute text) — the same ten-relation vocabulary, `basis:
+"authority"` instead of `"statute"`, plus an `authority` field naming who
+said so and where. `authority_relation_to_triple` converts a validated
+record into the SAME triple shape `relation_to_triple` produces for a
+statute-derived record. No data is seeded into this path by this module.
+
+See `src/five_d_nd/grammars/interplay.py`,
+`src/five_d_nd/grammars/interplay_rules.json`,
+`conformance/vectors/interplay-grammar/`, `tests/test_interplay.py`.
