@@ -3635,6 +3635,7 @@ obligation" framed as such.
 | `predication` | relational | the DEFAULT — an ordinary copula/modal assertion |
 | `competence_of` | relational | an institutional actor's own mandate |
 | `performs` | relational | any other actor performing a non-deontic act |
+| `addressed_to` | relational | NEW IN v3.6 — the recipient of an act or communication |
 
 Full definitions, and the hard-boundary decision rules between
 neighbouring predicates (causal vs intentional, temporal vs causal,
@@ -3672,6 +3673,78 @@ notified body, a market surveillance authority, the Commission, a Member
 State, the AI Office) assigned a task or power from an enumerated list;
 every other actor performing a non-deontic act (once its own modal is
 stripped) uses `performs`.
+
+**`addressed_to` (v3.6) — the recipient, as its OWN endpoint.** Before
+v3.6, "to WHOM" an act or communication runs had no edge of its own: GDPR
+Art. 33(1)'s own "the controller shall ... notify the personal data
+breach to the supervisory authority ..." gave `performs` the WHOLE
+clause as its object, with the supervisory authority buried, unreachable,
+INSIDE that one object string — a path could never end there. `addressed_to`
+closes that gap: subj is the act or communication (the SAME act a
+companion `performs`/`competence_of`/`requires` Statement, drawn from the
+IDENTICAL clause, already names), obj is the party the act runs TO. Cue: a
+notify/report/inform/communicate/submit/transmit verb (any inflection),
+followed by its own recipient — either via an explicit "to" ("notify ...
+to the supervisory authority") or as a direct object with no "to" at all
+("notify the controller", "inform the law enforcement or judicial
+authorities"). The recipient NP must itself read as a recipient (one of
+the closed `ACTOR_ROLES` surface forms, or a generic authority/body/
+Member-State/recipient-shaped NP) before this predicate fires at all — a
+bare infinitive or scope phrase riding the SAME word "to" ("to the extent
+that", "to ensure", "in relation to", "to be") is NEVER this predicate.
+obj is TYPED: the closed `ACTOR_ROLES` token when the recipient NP's own
+head matches one of its surface forms, otherwise the documented
+`other(label)` escape (`statement.ACTOR_OTHER_RE`) — never a silent,
+untyped copy of the source span. `addressed_to` is LAYERED on top of
+whatever predicate already claims the HOST clause: the SAME clause
+legitimately carries both `controller performs notify_the_personal_data_
+breach` and `notify_the_personal_data_breach addressed_to supervisory_
+authority`, from the one "notify ... to ..." cue — it never competes
+for, and never blocks, that clause's own span. `negation: "absent"` by
+construction, the same R-n reasoning `deadline_of` already uses.
+
+**`deadline_of`'s own v3.6 deadline SPLIT.** A time limit fused into an
+action phrase, in TWO NEW cues only — a spelled-out-number duration
+("not later than ten days after ...") and a qualitative cue ("without
+undue delay", "promptly", "immediately", excluding the adjectival
+"immediately applicable") — is split OUT into its own `deadline_of`
+Statement, co-existing with whatever predicate already claims the host
+clause (`performs`, `competence_of`, `requires`, `except_when`, ...) the
+SAME way `addressed_to` does — never forcing a choice between naming the
+act and naming its own deadline. The PRE-EXISTING, digit-based "within
+N" cue keeps EXACTLY its own prior conflict behaviour (first-claimed-
+span-wins, unchanged) — only the two NEW cues above, and `addressed_to`,
+are exempt from it. `deadline_of`'s own obj, for every cue including the
+pre-existing digit one, is the NORMALISED limit
+(`"72 hours after having become aware of it"` -> `"72 hours"`; a
+qualitative cue is returned lower-cased, unchanged otherwise) — never a
+raw, untrimmed copy of the matched span.
+
+**`deadline_of`'s own SUBJECT BINDING.** Applied to EVERY `deadline_of`
+Statement (every cue, including the pre-existing digit one). `subj` is
+the GOVERNED ACT the time limit times, NEVER a clause subject, a
+sentence fragment, a connective, or a pronoun — bound to a companion
+`addressed_to`/`performs`/`competence_of` Statement from the SAME clause
+(in that priority order); or a TRUSTED `requires` consequence ACT
+(excluding a one-word antecedent misfire and the "subject to
+[condition]" cue) — but ONLY when the time limit sits in the
+CONSEQUENCE, never the antecedent; or a TRUSTED `except_when` exception
+condition (its "unless"/"except where" cue family only — its
+"notwithstanding"/"subject to [provision]" cue family's own obj is a
+bare provision reference, never trusted); or a chapeau's own governing
+act; or a passive construction named earlier in the same sentence. A
+time limit sitting INSIDE a conditional ANTECEDENT ("Where the request
+is not answered within 30 days, the application shall be deemed
+accepted") is bound to the ANTECEDENT's own act, NEVER the consequence —
+detected by literal span overlap with the `requires` candidate's own
+antecedent half rather than its consequence half; since no separately-
+trimmed "just the antecedent's act" text exists, the Statement's
+ORIGINAL subject (already reading as the antecedent clause) is kept
+UNCHANGED rather than guessed at or replaced. When no companion,
+antecedent, chapeau act, or passive construction can be found: a NEW
+deadline cue is DROPPED outright; the PRE-EXISTING digit-based cue
+instead keeps its ORIGINAL subject UNCHANGED — finding no governed act
+is never a licence to remove or alter a Statement that already existed.
 
 ### The layer — surface, domain, deep
 

@@ -36,7 +36,16 @@ from .hybrid import (
     propose,
 )
 from .negation import DEFAULT_NEGATION_VERSION, NEGATION_RULES, negate, negation_v34, register_negation_rule
-from .rules import CO_CODABLE_PREDICATE_PAIRS, RULE_CITATIONS, RULES, Candidate, Rule, collect_candidates
+from .rules import (
+    CO_CODABLE_PREDICATE_PAIRS,
+    RULE_CITATIONS,
+    RULES,
+    Candidate,
+    Rule,
+    collect_candidates,
+    normalize_deadline_text,
+    type_recipient_actor,
+)
 from .spans import finalize_endpoint_span, span_text, strip_determiner, strip_modal_prefix, trim_whitespace
 
 __all__ = [
@@ -58,6 +67,8 @@ __all__ = [
     "Rule",
     "Candidate",
     "collect_candidates",
+    "normalize_deadline_text",
+    "type_recipient_actor",
     "trim_whitespace",
     "strip_determiner",
     "strip_modal_prefix",

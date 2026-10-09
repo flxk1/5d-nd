@@ -68,6 +68,8 @@ __all__ = [
     "MODAL_ANYWHERE_RE",
     "collect_candidates",
     "collect_segmented_candidates",
+    "type_recipient_actor",
+    "normalize_deadline_text",
 ]
 
 
@@ -115,6 +117,17 @@ class Candidate:
     #: chapeau-list rule explicitly produces MULTIPLE Statements, one per
     #: listed item, sharing one subject.
     chapeau_group: Optional[str] = None
+    #: v3.6: True for a candidate that is a DERIVED, layered
+    #: annotation of a HOST clause another candidate already claims
+    #: (`addressed_to`, and every `deadline_of` candidate — both the
+    #: pre-existing "within N" cue and the v3.6 additions below) — such a
+    #: candidate NEVER conflicts with, and is NEVER blocked by, any other
+    #: candidate's own overlapping span, regardless of
+    #: :data:`CO_CODABLE_PREDICATE_PAIRS` (`extract.build.
+    #: resolve_overlaps_built` reads this flag on BOTH sides of every
+    #: overlap check). False (the default) preserves every pre-v3.6
+    #: predicate's own first-claimed-span-wins behaviour exactly.
+    never_conflicts: bool = False
 
 
 @dataclass(frozen=True)
@@ -188,6 +201,109 @@ INSTITUTIONAL_ACTOR_SURFACE_RE = re.compile(
     re.IGNORECASE,
 )
 
+#: v3.6: a role-surface lookup, reused by `addressed_to`'s
+#: own recipient TYPING step (`type_recipient_actor`, below) — the exact
+#: per-role patterns `_ACTOR_ROLE_ALTERNATION` is itself built from,
+#: longest-role-first so "market_surveillance_authority" is tried
+#: before a shorter role that might also match a prefix of its own
+#: surface form.
+_ROLE_SURFACE_PATTERNS: "list[tuple[str, re.Pattern]]" = [
+    (role, re.compile(r"^" + _role_surface_pattern(role) + r"\b", re.IGNORECASE))
+    for role in sorted(_statement_mod.ACTOR_ROLES, key=len, reverse=True)
+]
+
+#: v3.6: a recipient label's own TAIL qualifier, cut before slugifying
+#: into the `other(label)` escape — "the national public authorities or
+#: bodies referred to in Article 77(1)" types as
+#: `other(national_public_authorities_or_bodies)`, never the unwieldy
+#: (but not WRONG) full clause including its own citation.
+_RECIPIENT_TAIL_CUT_RE = re.compile(
+    r"\s+(?:referred\s+to\s+in|pursuant\s+to|in\s+accordance\s+with|"
+    r"competent\s+in\s+accordance\s+with|concerned|in\s+which|where)\b.*$",
+    re.IGNORECASE,
+)
+#: v3.6: a LEADING discourse/quantifier word — a
+#: determiner (R-q's own closed list, "the"/"a"/"an"), a demonstrative
+#: ("those"/"these"/"this"/"that"), a generic quantifier ("other"/
+#: "another"/"such"), or a list-ordinal adverb ("first"/"second"/
+#: "also") — is never part of a recipient's own IDENTITY: "first the
+#: provider" strips to "provider" (then types as the closed role,
+#: never `other(first_the_provider)`); "those recipients of the
+#: significant cyber threat itself" strips its own leading "those".
+#: Stripped ITERATIVELY (more than one such word can stack: "and,
+#: also, first, the provider") — a SINGLE strip (R-q's own ordinary
+#: determiner rule) is not enough here, since this loop runs over
+#: words R-q's own closed list never names at all.
+_RECIPIENT_LEADING_DISCOURSE_RE = re.compile(
+    r"^(?:the|a|an|its|their|those|these|this|that|other|another|such|"
+    r"first|second|also|respectively)\b[,\s]*",
+    re.IGNORECASE,
+)
+
+#: v3.6: a recipient NP's own captured span is bounded only by the next
+#: clause-ending punctuation mark (`_ADDRESSED_TO_TO_RE`/`_ADDRESSED_TO_
+#: DIRECT_RE`'s own `[^.;:,]{1,150}` obj group) — too permissive for a
+#: BARE, unqualified recipient head noun ("the authority", with no
+#: ACTOR_ROLES match of its own) sitting next to a deadline-shaped
+#: adverbial with no punctuation between them at all ("notify the
+#: authority without delay"): the adverbial is never part of the
+#: recipient's own NP. `_find_addressed_to` shrinks the matched obj span
+#: to end right before the FIRST such adverbial it finds, so "the
+#: authority without delay" types as `other(authority)`, never
+#: `other(authority_without_delay)`.
+_RECIPIENT_ADVERBIAL_CUT_RE = re.compile(
+    r"\s+(?:without\s+(?:undue\s+)?delay|promptly|immediately)\b", re.IGNORECASE
+)
+
+
+def type_recipient_actor(text: str) -> str:
+    """The v3.6 `addressed_to` recipient-TYPING step: ``text`` (an
+    already span-trimmed recipient noun phrase) becomes the matching
+    CLOSED `five_d_nd.statement.ACTOR_ROLES` token when its own head
+    matches one of that enum's surface forms (`_ROLE_SURFACE_PATTERNS`,
+    reused from `performs`/`competence_of`'s own actor vocabulary,
+    never re-derived) — "the supervisory authority competent in
+    accordance with Article 55" types as ``supervisory_authority``, the
+    trailing qualifier dropped; otherwise the documented
+    ``other(label)`` escape (`five_d_nd.statement.ACTOR_OTHER_RE`),
+    never a silent, untyped copy of the source span. Deterministic,
+    pure string work — no model call, and no guessing outside the two
+    documented outcomes."""
+    t = text.strip()
+    while True:
+        m = _RECIPIENT_LEADING_DISCOURSE_RE.match(t)
+        if not m:
+            break
+        t = t[m.end():]
+    for role, pattern in _ROLE_SURFACE_PATTERNS:
+        if pattern.match(t):
+            return role
+    # v3.6: "national market surveillance authority" — a
+    # SINGLE modifier word ("national") in front of a closed role's
+    # own surface form types the SAME as the bare role: the modifier
+    # narrows WHICH market_surveillance_authority, it does not name a
+    # DIFFERENT recipient. Tried only after the bare-prefix match
+    # above fails, and only for a single leading word (never a second
+    # retry — two stacked modifiers is already outside this rule's own
+    # scope).
+    one_word = re.match(r"^[A-Za-z]+\s+", t)
+    if one_word:
+        rest = t[one_word.end():]
+        for role, pattern in _ROLE_SURFACE_PATTERNS:
+            if pattern.match(rest):
+                return role
+    label_source = _RECIPIENT_TAIL_CUT_RE.sub("", t)
+    slug = re.sub(r"[^a-z0-9]+", "_", label_source.lower()).strip("_")
+    if len(slug) > 60:
+        # word-boundary-safe truncation: never cut a label mid-word
+        # ("...enisa_of_the_significant_in") — cut back to the last
+        # underscore at or before the 60-char mark instead.
+        cut = slug.rfind("_", 0, 60)
+        slug = slug[:cut] if cut > 0 else slug[:60]
+    slug = slug.rstrip("_") or "recipient"
+    return f"other({slug})"
+
+
 #: Any modal token anywhere in the unit text — the FALLBACK purpose-
 #: routing signal used only when no `enclosing_provision` metadata is
 #: given to `extract()` (codebook: "Recital vs article (legislative
@@ -206,6 +322,25 @@ def _clause_start_before(unit_text: str, pos: int) -> int:
     for m in _CLAUSE_BOUNDARY_RE.finditer(unit_text, 0, pos):
         idx = m.end()
     return idx
+
+
+def _clause_start_before_skipping_empty(unit_text: str, pos: int) -> int:
+    """The SAME nearest-clause-boundary search as
+    :func:`_clause_start_before`, except a boundary that would leave
+    NOTHING but whitespace between itself and ``pos`` (two clause
+    boundaries sitting right next to each other with only a space
+    between them — "...where feasible, not later than 72 hours..." has
+    a comma immediately before "not", one space apart) is SKIPPED in
+    favour of the NEXT boundary further back, so a deadline cue's own
+    subj span never collapses to an all-whitespace, dropped candidate
+    merely because its own clause boundary happens to sit right next
+    to another one (v3.6 — `deadline_of`'s own two cue
+    families, below, are the only callers)."""
+    boundaries = [0] + [m.end() for m in _CLAUSE_BOUNDARY_RE.finditer(unit_text, 0, pos)]
+    for idx in reversed(boundaries):
+        if unit_text[idx:pos].strip():
+            return idx
+    return 0
 
 
 #: A quoted-term character class covering BOTH ASCII and the curly/smart
@@ -755,18 +890,108 @@ _DEADLINE_RE = re.compile(
     , re.IGNORECASE
 )
 
+#: word-number support (v3.6): NIS2 Art. 23(4)(d)'s own
+#: "not later than one month after..." and AI Act Art. 73(3)'s own "not
+#: later than two days after..." name the duration in WORDS, never
+#: digits — `_DEADLINE_RE`'s own `\d+` alone misses both. One shared
+#: number-word list, reused by the normaliser below so the NORMALISED
+#: obj is the identical "N unit" shape whether the source spelled the
+#: number out or not.
+_NUMBER_WORD = (
+    r"(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
+    r"thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|"
+    r"thirty|forty|fifty|sixty|seventy|eighty|ninety)"
+)
+_DEADLINE_WORD_NUMBER_RE = re.compile(
+    r"\b(?:within|not\s+later\s+than|no\s+later\s+than)\s+"
+    r"(?P<obj>" + _NUMBER_WORD + r"\s*(?:hour|day|week|month|year)s?"
+    r"(?:\s+after\s+[^.;,:]{1,100})?)"
+    , re.IGNORECASE
+)
+
+#: v3.6: the QUALITATIVE deadline cues — a fixed,
+#: non-durational immediacy phrase (no "N units" at all) the codebook's
+#: own deadline_of definition names as a limit just as much as a
+#: counted duration: "without undue delay" (GDPR Art. 33(1)/33(2), NIS2
+#: Art. 23(1)/(2)), "promptly" (DSA Art. 18(1)), "immediately" (AI Act
+#: Art. 73(2)/(3)/(4)). Each one is its own candidate -- a clause naming
+#: BOTH a qualitative cue and a counted duration ("without undue delay
+#: and ... within 24 hours", NIS2 Art. 23(4)(a)) legitimately yields
+#: TWO deadline_of Statements from the one clause, never a forced
+#: choice between them. The negative lookahead excludes an ADJECTIVAL
+#: use of "immediately" ("immediately applicable", GDPR Art. 45(5)) —
+#: there "immediately" modifies an ADJECTIVE ("applicable"), not a
+#: verb's own time limit, so it never names a deadline at all.
+_DEADLINE_QUALITATIVE_RE = re.compile(
+    r"\b(?P<obj>without\s+undue\s+delay|promptly|immediately(?!\s+applicable\b))\b", re.IGNORECASE
+)
+
+
+def normalize_deadline_text(raw: str) -> str:
+    """The v3.6 deadline NORMALISER: a captured deadline
+    span's own raw text (e.g. "72 hours after having become aware of
+    it") collapses to just the LIMIT itself ("72 hours") -- the "after
+    ..." qualifier names what starts the clock, not the limit's own
+    size, and is dropped. A qualitative cue ("without undue delay",
+    "promptly", "immediately") is returned lower-cased, unchanged
+    otherwise. Deterministic, pure string work -- no model call."""
+    t = raw.strip()
+    m = re.match(
+        r"^(?P<n>\d+|" + _NUMBER_WORD + r")\s*(?P<unit>hours?|days?|weeks?|months?|years?)\b",
+        t, re.IGNORECASE,
+    )
+    if m:
+        return f"{m.group('n').lower()} {m.group('unit').lower()}"
+    tl = t.lower()
+    for phrase in ("without undue delay", "promptly", "immediately"):
+        if phrase in tl:
+            return phrase
+    return t
+
 
 def _find_deadline_of(text: str, context: dict) -> "list[Candidate]":
     out = []
-    for m in _DEADLINE_RE.finditer(text):
-        subj_start = _clause_start_before(text, m.start())
+    seen_spans = set()
+    for pattern, rule_id, section, is_new_cue in (
+        # the pre-existing, pre-v3.6 digit-based "within N" cue keeps
+        # `never_conflicts=False` — the pre-v3.6
+        # first-claimed-span-wins behaviour, completely unchanged
+        # Only the cues v3.6 itself ADDS
+        # (spelled-out numbers, the qualitative cues, below) are
+        # `never_conflicts=True`.
+        (_DEADLINE_RE, "T3-deadline_of-within-n", "`deadline_of` — temporal: \"within N days/...\"", False),
+        (_DEADLINE_WORD_NUMBER_RE, "T3-deadline_of-within-word-number",
+         "`deadline_of` — temporal: \"within/not later than [a spelled-out number] days/...\"", True),
+    ):
+        for m in pattern.finditer(text):
+            subj_start = _clause_start_before_skipping_empty(text, m.start())
+            if subj_start >= m.start():
+                continue
+            key = (subj_start, m.end())
+            if key in seen_spans:
+                continue
+            seen_spans.add(key)
+            out.append(Candidate(
+                rule_id=_cite(rule_id, section),
+                predicate="deadline_of",
+                clause_span=(subj_start, m.end()), subj_span=(subj_start, m.start()),
+                obj_span=m.span("obj"), base_confidence=0.6, never_conflicts=is_new_cue,
+            ))
+    for m in _DEADLINE_QUALITATIVE_RE.finditer(text):
+        subj_start = _clause_start_before_skipping_empty(text, m.start())
         if subj_start >= m.start():
             continue
+        key = (subj_start, m.end())
+        if key in seen_spans:
+            continue
+        seen_spans.add(key)
         out.append(Candidate(
-            rule_id=_cite("T3-deadline_of-within-n", "`deadline_of` — temporal: \"within N days/...\""),
+            rule_id=_cite("T3-deadline_of-qualitative-cue",
+                           "`deadline_of` — temporal: qualitative cue "
+                           "(\"without undue delay\"/\"promptly\"/\"immediately\")"),
             predicate="deadline_of",
             clause_span=(subj_start, m.end()), subj_span=(subj_start, m.start()),
-            obj_span=m.span("obj"), base_confidence=0.6,
+            obj_span=m.span("obj"), base_confidence=0.5, never_conflicts=True,
         ))
     return out
 
@@ -875,6 +1100,152 @@ def _find_competence_and_performs(text: str, context: dict) -> "list[Candidate]"
             strip_modal_obj=True, base_confidence=0.5,
             truncate_midspan_modal=False,
         ))
+    return out
+
+
+# ─────────────────────────── addressed_to ───────────────────────────────
+# v3.6, codebook: "`addressed_to` — relational" — the
+# recipient of an act or communication, as its OWN endpoint. Cue: a
+# notify/report/inform/communicate/submit/transmit verb (any inflection)
+# followed by its own recipient, either via an explicit "to" ("notify
+# ... to X") or as a direct object with no "to" at all ("notify X",
+# "inform X"). This predicate is LAYERED on top of whatever predicate
+# already claims the host clause (`performs`/`competence_of`/`requires`/
+# `except_when`/...) — every candidate below is `never_conflicts=True`
+# (`extract.build.resolve_overlaps_built`), so it is never dropped for
+# "overlapping" the very clause it is drawn from, and never blocks
+# anything else either.
+_ADDRESSED_TO_VERB = (
+    r"(?:notify|notifies|notified|report|reports|reported|inform|informs|informed|"
+    r"communicate|communicates|communicated|submit|submits|submitted|"
+    r"transmit|transmits|transmitted)"
+)
+
+#: A recipient-shaped NP: the closed §21 actor vocabulary
+#: (`_ACTOR_ROLE_ALTERNATION`, reused, never re-derived), PLUS a small,
+#: fixed set of generic institutional-recipient nouns the closed
+#: vocabulary does not itself name ("authority"/"authorities" bare,
+#: "body"/"bodies" bare, "Member State(s)", "law enforcement
+#: (authority/authorities)", "judicial authority/authorities", "public
+#: authority/authorities") — required so "the law enforcement or
+#: judicial authorities", "the national public authorities or bodies"
+#: and "the Member State ... concerned" are recognised as recipients
+#: even though no SINGLE ACTOR_ROLES member names them outright. This
+#: is the decisive GATE: a candidate recipient NP that does not match
+#: this pattern at its own head is NOT a recipient at all (the
+#: required negative examples — "to the extent that", "to ensure", "in
+#: relation to", "to be" — fail this gate outright, since none of them
+#: has an actor/institution noun anywhere near their own head).
+#: v3.6: the 0-3 filler words before the cue noun must
+#: NEVER include "of" or "by" — "the findings OF the market
+#: surveillance authority" and "the draft decision submitted BY the
+#: lead supervisory authority" both read as a role NAME inside a
+#: POSSESSOR/PASSIVE-AGENT phrase, never as the recipient itself (the
+#: findings/the decision IS the recipient-less direct object; "of X"/
+#: "by X" merely modifies or attributes it). Excluding both words from
+#: the filler class makes the whole head match fail outright on such
+#: a phrase, rather than reaching past them into an unrelated role
+#: name.
+_RECIPIENT_HEAD_RE = re.compile(
+    r"^(?:the\s+|a\s+|an\s+|its\s+|their\s+)?"
+    r"(?:(?!of\b|by\b)[A-Za-z]+\s+){0,3}?"
+    r"(?:" + _ACTOR_ROLE_ALTERNATION + r"|authorit(?:y|ies)|bod(?:y|ies)|"
+    r"member\s+states?|law\s+enforcement(?:\s+authorit(?:y|ies))?|"
+    r"judicial\s+authorit(?:y|ies)|public\s+authorit(?:y|ies))\b",
+    re.IGNORECASE,
+)
+
+_ADDRESSED_TO_TO_RE = re.compile(
+    r"(?P<subj>\b" + _ADDRESSED_TO_VERB + r"\b[^.;:]{0,150}?)"
+    r"\s+to\s+(?P<obj>[^.;:,]{1,150})",
+    re.IGNORECASE,
+)
+
+#: an optional single short comma-bounded adverbial between the verb
+#: and its direct object ("notify, without undue delay, the
+#: recipients..."), the SAME tolerance `performs`'s own
+#: `_MODAL_INTERRUPTION` already uses between a modal and its verb —
+#: reused here between the cue verb and ITS OWN object. The obj group's
+#: own negative lookahead (`(?!to\b)`) keeps this DIRECT (no-"to") shape
+#: from ALSO firing on a clause `_ADDRESSED_TO_TO_RE` already claims
+#: correctly — "communicate, without undue delay, to the recipients of
+#: their services..." is a "to"-form clause end to end; without this
+#: guard, the direct-form regex would ALSO match it (treating the
+#: literal word "to" as the start of an ordinary, un-stripped object),
+#: producing a second, wrongly-labelled `other(to_the_...)` escape
+#: alongside the correct `recipient` edge the "to"-form rule already
+#: produced from the SAME text.
+_ADDRESSED_TO_DIRECT_RE = re.compile(
+    r"(?P<subj>\b" + _ADDRESSED_TO_VERB + r"\b)" + _MODAL_INTERRUPTION +
+    r"\s*(?!to\b)(?P<obj>[^.;:,]{1,150})",
+    re.IGNORECASE,
+)
+
+
+def _find_addressed_to(text: str, context: dict) -> "list[Candidate]":
+    out = []
+    seen_spans = set()
+    for pattern, rule_id, section in (
+        (_ADDRESSED_TO_TO_RE, "T3-addressed_to-verb-to-recipient",
+         "`addressed_to` — relational: \"notify/report/inform/communicate/submit/transmit "
+         "... to X\" recipient cue"),
+        (_ADDRESSED_TO_DIRECT_RE, "T3-addressed_to-verb-direct-recipient",
+         "`addressed_to` — relational: \"notify X\"/\"inform X\" direct-object recipient cue "
+         "(no \"to\")"),
+    ):
+        for m in pattern.finditer(text):
+            obj_raw = m.group("obj").strip()
+            # the DIRECT (no-"to") shape must never fire on a clause
+            # that is ACTUALLY a "to"-form one — `_ADDRESSED_TO_TO_RE`
+            # already claims that text correctly; without this guard,
+            # `\s*` backtracking off the regex's own `(?!to\b)` lookahead
+            # (so the lookahead checks AT the leading whitespace, not AT
+            # "to" itself) lets the literal word "to" slip in as the
+            # obj capture's own leading token, which `_RECIPIENT_HEAD_RE`
+            # then also (wrongly) tolerates as a 0-3-word filler.
+            if pattern is _ADDRESSED_TO_DIRECT_RE and re.match(r"to\b", obj_raw, re.IGNORECASE):
+                continue
+            # a direct object starting "by X" is the PASSIVE-VOICE
+            # AGENT ("the draft decision submitted by the lead
+            # supervisory authority", "complaints submitted by
+            # bodies, organisations or associations") — X is the one
+            # DOING the submitting, never the recipient. Never a
+            # recipient cue, for either shape.
+            if re.match(r"by\b", obj_raw, re.IGNORECASE):
+                continue
+            # "the notified body" (AI Act, DSA) is the CLOSED
+            # `notified_body` ACTOR_ROLES member's own surface form —
+            # "notified" there is an adjective inside that one role's
+            # name, never this rule's own cue verb "notify/notified"
+            # governing a SEPARATE recipient. Guard against treating
+            # "notified body/bodies" as "notified" + a recipient object.
+            if (
+                pattern is _ADDRESSED_TO_DIRECT_RE
+                and re.fullmatch(r"notified", m.group("subj"), re.IGNORECASE)
+                and re.match(r"bod(?:y|ies)\b", obj_raw, re.IGNORECASE)
+            ):
+                continue
+            if not _RECIPIENT_HEAD_RE.match(obj_raw):
+                continue
+            # the recipient NP's own captured span is shrunk to end
+            # right before a deadline-shaped adverbial sitting next to
+            # it with no punctuation in between ("the authority without
+            # delay") — that adverbial is never part of the recipient.
+            obj_start, obj_end = m.span("obj")
+            cut = _RECIPIENT_ADVERBIAL_CUT_RE.search(text, obj_start, obj_end)
+            if cut is not None:
+                obj_end = cut.start()
+            obj_span = (obj_start, obj_end)
+            key = (m.start("subj"), obj_end)
+            if key in seen_spans:
+                continue
+            seen_spans.add(key)
+            out.append(Candidate(
+                rule_id=_cite(rule_id, section), predicate="addressed_to",
+                clause_span=(m.start(0), max(m.end(0), obj_end)),
+                subj_span=m.span("subj"), obj_span=obj_span,
+                base_confidence=0.5, truncate_midspan_modal=False, never_conflicts=True,
+            ))
     return out
 
 
@@ -1029,6 +1400,17 @@ def _register_all_rule_citations() -> None:
         ("T3-performs-actor-shall", "`performs` — relational: actor NP + \"shall\" + act"),
         ("T3-performs-actor-modal",
          "`performs` — relational: actor NP + \"may\"/\"must\"/\"should\" + act"),
+        ("T3-deadline_of-within-word-number",
+         "`deadline_of` — temporal: \"within/not later than [a spelled-out number] days/...\""),
+        ("T3-deadline_of-qualitative-cue",
+         "`deadline_of` — temporal: qualitative cue "
+         "(\"without undue delay\"/\"promptly\"/\"immediately\")"),
+        ("T3-addressed_to-verb-to-recipient",
+         "`addressed_to` — relational: \"notify/report/inform/communicate/submit/transmit "
+         "... to X\" recipient cue"),
+        ("T3-addressed_to-verb-direct-recipient",
+         "`addressed_to` — relational: \"notify X\"/\"inform X\" direct-object recipient cue "
+         "(no \"to\")"),
         ("T3-predication-copula-fallback",
          "`predication` — relational (the default): ordinary copula"),
         ("T3-predication-whole-unit-fallback",
@@ -1088,6 +1470,7 @@ RULES: "list[Rule]" = [
     Rule("enables", _find_enables),
     Rule("purpose", _find_purpose),
     Rule("competence_and_performs", _find_competence_and_performs),
+    Rule("addressed_to", _find_addressed_to),
     Rule("predication", _find_predication),
     Rule("predication_whole_unit", _find_predication_whole_unit),
 ]
@@ -1317,6 +1700,19 @@ def collect_segmented_candidates(
         for cand in chapeau_cands:
             if cand.rule_id in (_WHOLE_SPAN_FALLBACK_RULE_ID, "T3-predication-copula-fallback"):
                 continue
+            # v3.6: a `never_conflicts` candidate
+            # (`addressed_to`, `deadline_of`) is a DERIVED, layered
+            # reading of its own host clause, never a structural
+            # actor/subject a chapeau's list items could legitimately
+            # INHERIT — without this guard, a chapeau whose own text
+            # happens to also carry a bare deadline cue ("a final
+            # report not later than one month after..., including the
+            # following:") would wrongly adopt that cue as every list
+            # item's own inherited predicate/subject (each item then
+            # reads as -- wrongly -- "deadline_of" the chapeau's own
+            # duration, with the ITEM's text as obj).
+            if cand.never_conflicts:
+                continue
             chapeau_triggers[idx] = replace(
                 cand,
                 clause_span=(cand.clause_span[0] + start, cand.clause_span[1] + start),
@@ -1339,8 +1735,22 @@ def collect_segmented_candidates(
             chapeau_abs_span = (chapeau_node["start"], chapeau_node["end"])
             trigger = chapeau_triggers.get(inh)
 
+        # v3.6: a `never_conflicts` candidate (`addressed_to`, a NEW
+        # deadline cue) is a layered, ADDITIVE reading of whatever
+        # else this scan span already produces — it must never, by
+        # merely also firing here, change whether THIS item counts as
+        # "nothing but the fallback fired" for chapeau-subject
+        # inheritance (below). Without filtering it out first, a list
+        # item whose own text happens to also carry a "notify ... to
+        # X" cue would silently LOSE its chapeau-inherited subject/
+        # predicate (the pre-v3.6 `T3-<trigger>-chapeau-inherited-
+        # item` candidate) and fall back to the raw, un-inherited
+        # fallback instead — an undisclosed regression, never a pure
+        # addition.
+        real_sub_candidates = [c for c in sub_candidates if not c.never_conflicts]
         only_fallback_fired = (
-            len(sub_candidates) == 1 and sub_candidates[0].rule_id == _WHOLE_SPAN_FALLBACK_RULE_ID
+            len(real_sub_candidates) == 1
+            and real_sub_candidates[0].rule_id == _WHOLE_SPAN_FALLBACK_RULE_ID
         )
         for cand in sub_candidates:
             translated = replace(

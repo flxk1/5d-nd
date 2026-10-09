@@ -1,0 +1,59 @@
+{
+  "family": "extractor",
+  "case": "deadline_of-subject-binds-to-governed-act-not-clause-subject",
+  "input": {
+    "unit_text": "Member States shall ensure that providers notify the authority promptly."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#b7fb2fb90a9ea878",
+        "subj": "Member States",
+        "obj": "ensure that providers notify the authority promptly",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 71
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      },
+      {
+        "id": "extracted-unit#n/a#ddb1ace5ea668e38",
+        "subj": "notify",
+        "obj": "other(authority)",
+        "predicate": "addressed_to",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 42,
+          "end": 71
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-addressed_to-verb-direct-recipient"
+      },
+      {
+        "id": "extracted-unit#n/a#4c5f64b86de9af31",
+        "subj": "notify",
+        "obj": "promptly",
+        "predicate": "deadline_of",
+        "dimension": "temporal",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.5,
+        "provenance": {
+          "start": 0,
+          "end": 71
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-deadline_of-qualitative-cue"
+      }
+    ]
+  }
+}

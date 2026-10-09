@@ -36,6 +36,129 @@
   concept-typed, rarity-weighted signal. Both rounds are a loss. 5D
   stays a labelled structural index with no role in the migration (the
   dim5 → 5D migration), and no claim is made.
+- A new typed-Statement predicate, `addressed_to` (relational, spec
+  §21, `typed-statements-v3.6`): the recipient of an act or
+  communication, as its OWN endpoint, cued by a notify/report/inform/
+  communicate/submit/transmit verb followed by its own recipient
+  (either via an explicit "to" or as a direct object). Before this,
+  "to WHOM" an act ran had no edge of its own — GDPR Art. 33(1)'s own
+  "notify the personal data breach to the supervisory authority" gave
+  the supervisory authority no endpoint; it was text buried inside
+  `performs`'s own object. The recipient NP is TYPED: the closed
+  `ACTOR_ROLES` token where it matches, otherwise the documented
+  `other(label)` escape.
+- A deterministic deadline SPLIT for `deadline_of`, for TWO NEW cues
+  only: a spelled-out-number duration ("not later than N days/weeks/
+  months", "two days", "one month") and a qualitative cue ("without
+  undue delay", "promptly", "immediately", excluding the adjectival
+  "immediately applicable"). Either cue is split out into its own
+  `deadline_of` Statement, co-existing with whatever predicate already
+  claims the host clause (`performs`, `competence_of`, `requires`,
+  `except_when`, ...) rather than one silently dropping the other.
+  `rules.Candidate`/`build.BuiltStatement` gain a `never_conflicts`
+  field (`extract.build.resolve_overlaps_built`) so `addressed_to` and
+  ONLY these two NEW deadline cues are exempt from first-claimed-
+  span-wins overlap resolution — a pure addition that never blocks,
+  and is never blocked by, anything (a scan span's own last-resort
+  fallback included: before either cue existed, nothing stopped that
+  fallback from surviving there either, so nothing now does). **The
+  pre-existing, pre-v3.6 DIGIT-based "within N" cue keeps its
+  pre-v3.6 conflict setting (`never_conflicts=False`) — it still
+  blocks, and is blocked by, a real predicate as before.** One
+  observable consequence of the new subject binding: in AI Act Art.
+  73(2) the digit cue's `deadline_of` ("The report referred to in
+  paragraph 1 shall be made" -> "15 days") now survives where a
+  last-resort copula-fallback `predication` ("report referred to in
+  paragraph 1" -> "made immediately after ... not later than 15 days",
+  negation `present`) previously survived instead. The fallback was a
+  low-confidence reading with a wrong negation state; the time limit it
+  is replaced by is correct. This is the only removed non-`deadline_of`
+  Statement observed in the four reference articles and a seeded
+  28-article sample.
+  The hybrid/DecisionCache path (`extract.hybrid`) is UNCHANGED: a
+  human/model decider's own final span choice there is still
+  reconstructed via `spans.span_text` alone, the same as every other
+  predicate, by design — only this deterministic rule-layer pipeline's
+  own `build_statement()` types/normalises an `addressed_to`/
+  `deadline_of` obj, as a per-predicate post-processing step on the
+  already span-derived text. `deadline_of`'s own obj (every cue,
+  including the pre-existing digit one) is now the NORMALISED limit
+  ("72 hours after having become aware of it" -> "72 hours").
+- `deadline_of`'s own SUBJECT is now the GOVERNED ACT, never a clause
+  subject, a sentence fragment, a connective, or a pronoun
+  (`build._rebind_deadline_subjects`), applied to EVERY `deadline_of`
+  Statement (every cue, including the pre-existing digit one) after
+  overlap resolution: rebound to the nearest companion Statement
+  (`addressed_to`'s own act; `performs`/`competence_of`'s own act; a
+  TRUSTED `requires` consequence ACT — excluding a one-word
+  antecedent misfire and the "subject to [condition]" cue — but ONLY
+  when the time limit sits in the CONSEQUENCE, never the antecedent;
+  a TRUSTED `except_when` exception condition from its "unless"/
+  "except where" cue family only, excluding its "notwithstanding/
+  subject to [provision]" cue family, whose own obj is a bare
+  provision reference, never an act) that shares its clause, falling
+  back to a chapeau's own governing act or a passive construction
+  ("the report ... shall be made") in the same sentence. **A time
+  limit sitting INSIDE a conditional ANTECEDENT ("Where the request
+  is not answered within 30 days, ...") is bound to the antecedent's
+  own act, NEVER the consequence** — detected by literal span overlap
+  with the `requires` candidate's own antecedent (`subj`) half rather
+  than its consequence (`obj`) half; since this extractor has no
+  separately-extracted "just the antecedent's own trimmed act" text,
+  the Statement's ORIGINAL, pre-rebind subj (already reading as the
+  antecedent clause, e.g. "Where the notification ... is not made")
+  is kept UNCHANGED rather than guessed at or replaced. When NO
+  companion, antecedent, chapeau act, or passive construction can be
+  found: a NEW deadline cue (`never_conflicts=True`) is DROPPED
+  outright (main never produced this Statement, so there is nothing
+  to preserve); the pre-existing digit-based cue (`never_conflicts=
+  False`) instead keeps its ORIGINAL, pre-rebind subj UNCHANGED — main
+  already produced this exact Statement, and finding no governed act
+  to rebind it to is never a licence to remove or alter what main
+  already had.
+- The `addressed_to` recipient-typing fixes (`type_recipient_actor`,
+  `rules._RECIPIENT_HEAD_RE`): a possessor NP ("the findings OF the
+  market surveillance authority", "the decision submitted BY the lead
+  supervisory authority") is never a recipient — "of"/"by" are
+  excluded from the head check's own filler words, and "by X" is
+  rejected outright as a passive-voice AGENT, never a recipient,
+  regardless of context. "national market surveillance authority"
+  types as `market_surveillance_authority` (a single leading modifier
+  word no longer blocks the role match). A leading discourse/
+  quantifier word ("those", "other", "first", ...) is stripped
+  iteratively before typing, fixing a mislabelled `other(...)` escape
+  that used to carry one through (`other(first_the_provider)` ->
+  `provider`). An `other(...)` label is now truncated at the nearest
+  `_`, never mid-word.
+- `rules.collect_segmented_candidates`'s own chapeau-subject-
+  inheritance decision ("did this scan span produce nothing but the
+  last-resort fallback?") now IGNORES a `never_conflicts` candidate
+  (`addressed_to`, a NEW deadline cue) when answering that question —
+  without this, a chapeau list item whose own text ALSO happens to
+  carry a "notify ... to X" cue would silently lose its own
+  chapeau-inherited subject/predicate and fall back to the raw,
+  un-inherited fallback instead, producing a Statement main never
+  produced.
+- 18 new conformance vectors (`conformance/vectors/extractor/`) and new
+  unit tests (`tests/test_extract.py`) covering `addressed_to`'s
+  positive cues (a "to"-form and a direct-object recipient, GDPR Art.
+  33(2)/NIS2/AI Act/DSA-shaped sentences), its required negative
+  "to"-idioms and possessor-NP/passive-agent negatives, the two NEW
+  `deadline_of` cues and their co-existence with `performs`, the
+  antecedent-vs-consequence and `except_when`-exception-condition
+  subject-binding rules (AI Act 73(8)/DSA Art. 87-shaped
+  reproductions), and the pre-existing digit-based cue's own
+  unchanged conflict/no-governed-act behaviour. 5 pre-existing
+  extractor vectors changed, each only by the new Statements or the
+  subject binding above: `deadline_of-within-n` (obj normalised from
+  "72 hours after becoming aware of it" to "72 hours", hence a new id;
+  its statement count is unchanged), `performs-actor-roles-with-modal-
+  interruption` and `requires-in-the-case-of` (each gains the new
+  `addressed_to`/`deadline_of` Statements), and
+  `performs-and-deadline-of-coordination-no-comma` and
+  `requires-and-deadline-of-co-coded` (the `deadline_of` subject is now
+  the governed act instead of the actor). No pre-existing Statement in
+  any of them was removed.
 
 ### Fixed
 

@@ -81,7 +81,16 @@ __all__ = [
 # include Y" to applies_to specifically — Y falls within the scope of
 # the term X, never is_a, never part_of (part_of, applies_to). The
 # predicate set and PREDICATE_DIMENSION mapping are UNCHANGED from v3.
-PREDICATE_VOCABULARY_VERSION = "typed-statements-v3.5"
+# v3.6 ADDS ONE new predicate, `addressed_to` (relational):
+# "to WHOM" an act or communication runs -- the recipient, as its OWN
+# endpoint, never buried inside a `performs`/`competence_of`/`requires`
+# object span. Before v3.6, GDPR Art. 33(1)'s own "the controller shall
+# ... notify the personal data breach to the supervisory authority ..."
+# gave the supervisory authority NO edge of its own -- it was text
+# INSIDE `performs`'s object, never a node a path could end at. Every
+# OTHER v3.5 predicate, and the v3.5 PREDICATE_DIMENSION mapping, is
+# UNCHANGED.
+PREDICATE_VOCABULARY_VERSION = "typed-statements-v3.6"
 
 PREDICATE_DIMENSION: dict = {
     "is_a": Dimension.STRUCTURAL.value,
@@ -99,6 +108,7 @@ PREDICATE_DIMENSION: dict = {
     "predication": Dimension.RELATIONAL.value,
     "competence_of": Dimension.RELATIONAL.value,
     "performs": Dimension.RELATIONAL.value,
+    "addressed_to": Dimension.RELATIONAL.value,
 }
 
 # ── §21 entity/actor vocabulary — byte-identical to vocabulary/actor-roles.json

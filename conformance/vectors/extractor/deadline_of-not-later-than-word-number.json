@@ -1,15 +1,15 @@
 {
   "family": "extractor",
-  "case": "performs-actor-roles-with-modal-interruption",
+  "case": "deadline_of-not-later-than-word-number",
   "input": {
-    "unit_text": "The data protection officer shall, within one month, respond to the request."
+    "unit_text": "The provider shall issue a decision not later than one month after receipt."
   },
   "expected": {
     "statements": [
       {
-        "id": "extracted-unit#n/a#286b26240dbabe71",
-        "subj": "data protection officer",
-        "obj": "respond to the request",
+        "id": "extracted-unit#n/a#9b3530e08a1df629",
+        "subj": "provider",
+        "obj": "issue a decision not later than one month after receipt",
         "predicate": "performs",
         "dimension": "relational",
         "layer": "domain",
@@ -17,14 +17,14 @@
         "edge_confidence": 0.55,
         "provenance": {
           "start": 0,
-          "end": 75
+          "end": 74
         },
-        "negation": "absent",
+        "negation": "present",
         "extraction_rule_id": "T3-performs-actor-shall"
       },
       {
-        "id": "extracted-unit#n/a#f28931b02c39f5cd",
-        "subj": "respond to the request",
+        "id": "extracted-unit#n/a#8ad0fcde14721711",
+        "subj": "issue a decision not later than one month after receipt",
         "obj": "one month",
         "predicate": "deadline_of",
         "dimension": "temporal",
@@ -33,7 +33,7 @@
         "edge_confidence": 0.6,
         "provenance": {
           "start": 0,
-          "end": 51
+          "end": 74
         },
         "negation": "absent",
         "extraction_rule_id": "T3-deadline_of-within-word-number"

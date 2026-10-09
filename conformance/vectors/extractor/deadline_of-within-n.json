@@ -7,9 +7,9 @@
   "expected": {
     "statements": [
       {
-        "id": "extracted-unit#n/a#9b8ee60a5e92a168",
+        "id": "extracted-unit#n/a#1d3e03cec5663380",
         "subj": "operator",
-        "obj": "72 hours after becoming aware of it",
+        "obj": "72 hours",
         "predicate": "deadline_of",
         "dimension": "temporal",
         "layer": "domain",

@@ -1,0 +1,27 @@
+{
+  "family": "extractor",
+  "case": "addressed_to-negative-to-the-extent-that",
+  "input": {
+    "unit_text": "The operator shall report to the extent that resources allow."
+  },
+  "expected": {
+    "statements": [
+      {
+        "id": "extracted-unit#n/a#59c30f56067ba820",
+        "subj": "operator",
+        "obj": "report to the extent that resources allow",
+        "predicate": "performs",
+        "dimension": "relational",
+        "layer": "domain",
+        "weight": 1.0,
+        "edge_confidence": 0.55,
+        "provenance": {
+          "start": 0,
+          "end": 60
+        },
+        "negation": "absent",
+        "extraction_rule_id": "T3-performs-actor-shall"
+      }
+    ]
+  }
+}
