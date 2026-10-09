@@ -1,0 +1,15 @@
+{
+  "family": "penalty-grammar",
+  "case": "penalty-vocabulary-closed-four-kinds",
+  "kind": "penalty_vocabulary",
+  "input": {},
+  "expected": {
+    "kinds": {
+      "administrative_fine": "a fine imposed by a supervisory/market authority or the Commission",
+      "periodic_penalty_payment": "a per-day payment compelling compliance",
+      "penalty": "the Member-State 'effective, proportionate and dissuasive' rules a directive/regulation leaves to national law",
+      "criminal_sanction": "a criminal, rather than administrative, penalty"
+    }
+  },
+  "provenance": "The closed, four-kind penalty vocabulary."
+}

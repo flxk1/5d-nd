@@ -1,0 +1,65 @@
+{
+  "family": "penalty-grammar",
+  "case": "triples-gdpr-58-2-and-58-1-dedupe-to-one-subject",
+  "kind": "triples",
+  "input": {
+    "record": {
+      "source_instrument": "gdpr",
+      "source_article": "gdpr:Art.83",
+      "paragraph": "5",
+      "penalty_kind": "administrative_fine",
+      "addressee": "undertaking",
+      "infringed_provisions": [
+        "58(2)",
+        "58(1)"
+      ],
+      "excluded_provisions": [],
+      "scope": null,
+      "fixed_amount_eur": 20000000,
+      "turnover_percentage": 4.0,
+      "turnover_basis": "total worldwide annual turnover of the preceding financial year",
+      "combination_rule": "whichever_is_higher",
+      "bound_type": "ceiling",
+      "per_day": false,
+      "verbatim_span": "non-compliance with an order ... pursuant to Article 58(2) or failure to provide access in violation of Article 58(1).",
+      "match_start": 0,
+      "cue_id": "fine-up-to-eur-or-percentage",
+      "confidence": 0.9,
+      "unresolved": false,
+      "basis": "statute",
+      "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+    }
+  },
+  "expected": {
+    "triples": [
+      {
+        "s": "gdpr:Art.58",
+        "p": "administrative_fine",
+        "o": "gdpr:Art.83(5):administrative_fine",
+        "dimension": "causal",
+        "weight": 0.9,
+        "provenance": {
+          "basis": "statute",
+          "verbatim_span": "non-compliance with an order ... pursuant to Article 58(2) or failure to provide access in violation of Article 58(1).",
+          "paragraph": "5",
+          "addressee": "undertaking",
+          "excluded_provisions": [],
+          "provisions_detail": [
+            "58(2)",
+            "58(1)"
+          ],
+          "scope": null,
+          "fixed_amount_eur": 20000000,
+          "turnover_percentage": 4.0,
+          "turnover_basis": "total worldwide annual turnover of the preceding financial year",
+          "combination_rule": "whichever_is_higher",
+          "bound_type": "ceiling",
+          "per_day": false,
+          "cue_id": "fine-up-to-eur-or-percentage"
+        },
+        "grammar_id": "penalty-grammar"
+      }
+    ]
+  },
+  "provenance": "Synthetic: 'Article 58(2)' and 'Article 58(1)' must resolve to ONE edge subject, 'gdpr:Art.58' — never two separate, non-joining 'gdpr:Art.58(2)'/'gdpr:Art.58(1)' nodes."
+}

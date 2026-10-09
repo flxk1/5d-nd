@@ -1,0 +1,210 @@
+{
+  "family": "penalty-grammar",
+  "case": "ruleset-shape-bound-type-phrase-cannot-be-unspecified",
+  "kind": "ruleset_shape",
+  "input": {
+    "doc": {
+      "ruleset_id": "penalty-grammar-rules-v1",
+      "bound_type_phrases": [
+        {
+          "pattern": "maximum\\s+of\\s+at\\s+least",
+          "bound_type": "unspecified"
+        },
+        {
+          "pattern": "up\\s+to",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "not\\s+exceeding",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "maximum\\s+amount\\b",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "a\\s+maximum\\s+of",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "at\\s+least",
+          "bound_type": "minimum"
+        }
+      ],
+      "combination_phrases": [
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+higher",
+          "combination_rule": "whichever_is_higher"
+        },
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+lower",
+          "combination_rule": "whichever_is_lower"
+        }
+      ],
+      "cues": [
+        {
+          "cue_id": "penalty-member-state-rules",
+          "penalty_kind": "penalty",
+          "trigger_pattern": "Member\\s+States\\s+shall\\s+lay\\s+down\\s+(?:the\\s+)?rules\\s+on\\s+(?:other\\s+)?penalt",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": false,
+          "confidence": 0.8,
+          "addressee_patterns": [
+            {
+              "pattern": "providers?\\s+of\\s+intermediary\\s+services",
+              "label": "providers of intermediary services"
+            },
+            {
+              "pattern": "\\bby\\s+operators\\b",
+              "label": "operators"
+            }
+          ],
+          "notes": "GDPR Art. 84(1), NIS2 Art. 36, DSA Art. 52(1), AI Act Art. 99(1): Member States are left to set their own 'other penalties'/'penalties' regime, bound only by the effective/proportionate/dissuasive formula stated in the following sentence (not captured in this clause's own span, which ends at the first period); no amount or percentage is expected."
+        },
+        {
+          "cue_id": "fine-up-to-eur-or-percentage",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "(?:administrative\\s+)?fines?\\s+(?:of\\s+)?up\\s+to\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.9,
+          "addressee_patterns": [
+            {
+              "pattern": "if\\s+the\\s+offender\\s+is\\s+an\\s+undertaking",
+              "label": "undertaking"
+            },
+            {
+              "pattern": "in\\s+the\\s+case\\s+of\\s+an\\s+undertaking",
+              "label": "undertaking"
+            },
+            {
+              "pattern": "Union\\s+institutions,\\s+bodies,\\s+offices\\s+and\\s+agencies",
+              "label": "Union institutions, bodies, offices and agencies"
+            }
+          ],
+          "notes": "GDPR Art. 83(4)/(5)/(6): 'administrative fines up to 10 000 000 EUR, or in the case of an undertaking, up to 2 %...'. AI Act Art. 99(3)/(4)/(5): 'administrative fines of up to EUR 35 000 000 or, if the offender is an undertaking, up to 7 %...'. AI Act Art. 100(2)/(3): fixed EUR amount only ('administrative fines of up to EUR 1 500 000.'), addressee resolved from Art. 100(1) earlier in the same article (the addressee fallback searches the whole article up to the clause)."
+        },
+        {
+          "cue_id": "maximum-amount-of-fine-shall-be",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "maximum\\s+amount\\s+of\\s+(?:the\\s+)?fines?\\s+that\\s+may\\s+be\\s+imposed",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.85,
+          "addressee_patterns": [
+            {
+              "pattern": "providers?\\s+of\\s+intermediary\\s+services",
+              "label": "provider of intermediary services"
+            }
+          ],
+          "notes": "DSA Art. 52(3): two sentences, each stating a percentage-only ceiling ('the maximum amount of fines ... shall be 6 % ...' / '... the maximum amount of the fine ... shall be 1 % ...'); no fixed EUR amount is stated in either."
+        },
+        {
+          "cue_id": "maximum-amount-of-periodic-penalty-payment",
+          "penalty_kind": "periodic_penalty_payment",
+          "trigger_pattern": "maximum\\s+amount\\s+of\\s+(?:a\\s+)?periodic\\s+penalty\\s+payment",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.85,
+          "addressee_patterns": [
+            {
+              "pattern": "providers?\\s+of\\s+intermediary\\s+services",
+              "label": "provider of intermediary services"
+            }
+          ],
+          "notes": "DSA Art. 52(4): 'the maximum amount of a periodic penalty payment shall be 5 % of the average daily worldwide turnover ... per day ...' — percentage-only, per-day by penalty kind."
+        },
+        {
+          "cue_id": "fines-not-exceeding",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "fines?\\s+not\\s+exceeding\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.9,
+          "addressee_patterns": [
+            {
+              "pattern": "providers?\\s+of\\s+general-purpose\\s+AI\\s+models",
+              "label": "providers of general-purpose AI models"
+            },
+            {
+              "pattern": "provider\\s+of\\s+the\\s+very\\s+large\\s+online\\s+platform\\s+or\\s+of\\s+the\\s+very\\s+large\\s+online\\s+search\\s+engine",
+              "label": "provider of the very large online platform or of the very large online search engine"
+            }
+          ],
+          "notes": "DSA Art. 74(1)/(2): 'fines not exceeding 6 % ...' / 'fines not exceeding 1 % ...'. AI Act Art. 101(1): 'fines not exceeding 3 % of ... or EUR 15 000 000, whichever is higher' — percentage comes before the fixed amount, the reverse surface order from the GDPR/AI-Act-99 cue, handled the same way since amount/percentage extraction does not depend on order."
+        },
+        {
+          "cue_id": "periodic-penalty-payments-not-exceeding",
+          "penalty_kind": "periodic_penalty_payment",
+          "trigger_pattern": "periodic\\s+penalty\\s+payments?\\s+not\\s+exceeding\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.9,
+          "addressee_patterns": [
+            {
+              "pattern": "provider\\s+of\\s+the\\s+very\\s+large\\s+online\\s+platform\\s+or\\s+of\\s+the\\s+very\\s+large\\s+online\\s+search\\s+engine",
+              "label": "provider of the very large online platform or of the very large online search engine"
+            }
+          ],
+          "notes": "DSA Art. 76(1): 'periodic penalty payments not exceeding 5 % of the average daily income or worldwide annual turnover ... per day ...'."
+        },
+        {
+          "cue_id": "administrative-fines-of-a-maximum-of-at-least",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "administrative\\s+fines?\\s+of\\s+a\\s+maximum\\s+of\\s+at\\s+least\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.9,
+          "addressee_patterns": [
+            {
+              "pattern": "essential\\s+entities",
+              "label": "essential entities"
+            },
+            {
+              "pattern": "important\\s+entities",
+              "label": "important entities"
+            }
+          ],
+          "notes": "NIS2 Art. 34(4)/(5): 'administrative fines of a maximum of at least EUR 10 000 000 or of a maximum of at least 2 % ...' — the only real-corpus occurrence of the floor_of_maximum bound ('a maximum of at least', not a plain ceiling)."
+        },
+        {
+          "cue_id": "sme-fine-cap-whichever-is-lower",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "[Ii]n\\s+the\\s+case\\s+of\\s+SMEs?,?\\s+including\\s+start-?ups,?\\s+each\\s+fine\\s+referred\\s+to\\s+in\\s+this\\s+Article\\s+shall\\s+be\\s+up\\s+to\\s+the\\s+percentages\\s+or\\s+amount\\s+referred\\s+to\\s+in\\s+paragraphs",
+          "require_all_patterns": [],
+          "max_span_chars": 2500,
+          "clause_end_chars": ".",
+          "expects_amount": false,
+          "confidence": 0.8,
+          "addressee_patterns": [
+            {
+              "pattern": "SMEs?",
+              "label": "SMEs"
+            }
+          ],
+          "notes": "AI Act Art. 99(6): 'In the case of SMEs, including start-ups, each fine referred to in this Article shall be up to the percentages or amount referred to in paragraphs 3, 4 and 5, whichever thereof is lower.' Bound by reference to paragraphs 3-5, not a literal amount of its own — expects_amount is false, matching the 'penalty' (Member-State formula) cue's own treatment, since there is no amount in THIS clause to parse. The corpus's only real whichever_is_lower clause."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "violations": [
+      "bound_type_phrases[0].bound_type 'unspecified' must be one of ['ceiling', 'floor_of_maximum', 'minimum']"
+    ]
+  },
+  "provenance": "Synthetic negative: a bound_type_phrases entry may never itself state 'unspecified' (that value is only ever the ABSENCE of a match)."
+}

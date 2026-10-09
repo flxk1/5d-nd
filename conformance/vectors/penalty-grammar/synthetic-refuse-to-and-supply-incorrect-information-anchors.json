@@ -1,0 +1,45 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-refuse-to-and-supply-incorrect-information-anchors",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.22",
+        "text": "2. The Commission may adopt a decision imposing fines not exceeding 6 % of annual turnover where they intentionally or negligently: (a) supply incorrect, incomplete or misleading information in response to a simple request or request by a decision pursuant to Article 67; (b) refuse to submit to an inspection pursuant to Article 69."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.22",
+        "paragraph": "2",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "67",
+          "69"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": 6.0,
+        "turnover_basis": "annual turnover",
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "fines not exceeding 6 % of annual turnover where they intentionally or negligently: (a) supply incorrect, incomplete or misleading information in response to a simple request or request by a decision pursuant to Article 67; (b) refuse to submit to an inspection pursuant to Article 69.",
+        "match_start": 48,
+        "cue_id": "fines-not-exceeding",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: isolates the two new narrow anchors — 'refuse(s/d) to' and 'supply incorrect, incomplete or misleading information' — added so DSA Art. 74(2)'s own items (a) and (d) are captured directly rather than incidentally via an overlapping window."
+}

@@ -1,0 +1,42 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-dsa-art76-periodic-penalty-payments",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "dsa",
+        "article_id": "dsa:Art.76",
+        "text": "Article 76\n\nPeriodic penalty payments\n\n1. The Commission may adopt a decision, imposing on the provider of the very large online platform or of the very large online search engine concerned or other person referred to in Article 67(1), as applicable, periodic penalty payments not exceeding 5 % of the average daily income or worldwide annual turnover in the preceding financial year per day, calculated from the date appointed by the decision, in order to compel them to:\n\n(a)\n\nsupply correct and complete information in response to a decision requiring information pursuant to Article 67;\n\n(b)\n\nsubmit to an inspection which it has ordered by decision pursuant to Article 69;\n\n(c)\n\ncomply with a decision ordering interim measures pursuant to Article 70(1);\n\n(d)\n\ncomply with commitments made legally binding by a decision pursuant to Article 71(1);\n\n(e)\n\ncomply with a decision pursuant to Article 73(1), including where applicable the requirements it contains relating to the action plan referred to in Article 75.\n\n2. Where the provider of the very large online platform or of the very large online search engine concerned or other person referred to in Article 67(1) has satisfied the obligation which the periodic penalty payment was intended to enforce, the Commission may fix the definitive amount of the periodic penalty payment at a figure lower than that under the original decision.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.76",
+        "paragraph": "1",
+        "penalty_kind": "periodic_penalty_payment",
+        "addressee": "provider of the very large online platform or of the very large online search engine",
+        "infringed_provisions": [],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": 5.0,
+        "turnover_basis": "average daily income or worldwide annual turnover in the preceding financial year per day, calculated from the date appointed by the decision",
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": true,
+        "verbatim_span": "periodic penalty payments not exceeding 5 % of the average daily income or worldwide annual turnover in the preceding financial year per day, calculated from the date appointed by the decision, in order to compel them to:\n\n(a)\n\nsupply correct and complete information in response to a decision requiring information pursuant to Article 67;\n\n(b)\n\nsubmit to an inspection which it has ordered by decision pursuant to Article 69;\n\n(c)\n\ncomply with a decision ordering interim measures pursuant to Article 70(1);\n\n(d)\n\ncomply with commitments made legally binding by a decision pursuant to Article 71(1);\n\n(e)\n\ncomply with a decision pursuant to Article 73(1), including where applicable the requirements it contains relating to the action plan referred to in Article 75.",
+        "match_start": 251,
+        "cue_id": "periodic-penalty-payments-not-exceeding",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

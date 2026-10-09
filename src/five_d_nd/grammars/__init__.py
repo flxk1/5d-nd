@@ -18,9 +18,17 @@ instruments (e.g. "GDPR Art. 95 bars a second, additional obligation with
 the same objective as the ePrivacy Directive"), read deterministically
 from scope clauses by a cue-rule table. See that module's own docstring
 for the full account.
+
+``penalty`` is a FOURTH EXAMPLE nD grammar, added separately: a closed,
+versioned record for a penalty clause (administrative fine, periodic
+penalty payment, Member-State "effective, proportionate and dissuasive"
+penalty, or criminal sanction), read deterministically from statute text
+by a cue-rule table, with a single stated 5D projection (causal) for the
+edge (infringement of the cited provisions) -> (the penalty). See that
+module's own docstring for the full account.
 """
 from __future__ import annotations
 
-from . import interplay, requirement, term
+from . import interplay, penalty, requirement, term
 
-__all__ = ["term", "requirement", "interplay"]
+__all__ = ["term", "requirement", "interplay", "penalty"]

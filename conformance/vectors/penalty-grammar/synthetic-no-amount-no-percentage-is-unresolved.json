@@ -1,0 +1,44 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-no-amount-no-percentage-is-unresolved",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.4",
+        "text": "4. Non-compliance with Article 9 shall be subject to administrative fines up to the amount set out in the Annex."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.4",
+        "paragraph": "4",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "9"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines up to the amount set out in the Annex.",
+        "match_start": 53,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.54,
+        "unresolved": true,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic negative: the bound phrase 'up to' is present but no EUR amount or percentage follows it at all — unresolved. (Article 9 is still read as infringed, via the 'non-compliance with' narrow anchor; unresolved refuses a triple regardless.)"
+}

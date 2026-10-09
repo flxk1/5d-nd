@@ -4344,3 +4344,231 @@ statute-derived record. No data is seeded into this path by this module.
 See `src/five_d_nd/grammars/interplay.py`,
 `src/five_d_nd/grammars/interplay_rules.json`,
 `conformance/vectors/interplay-grammar/`, `tests/test_interplay.py`.
+
+## §25 EXAMPLE nD grammar: penalty (structured penalty clauses)
+
+**Status: a FOURTH worked EXAMPLE nD grammar, added separately from §18's
+term/requirement pair and §24's interplay grammar — NOT part of 5D itself**
+(§1's scope is unchanged); it could be deleted without this specification's
+own normative content changing at all. `grammars/penalty.py`
+(+ `grammars/penalty_rules.json`) demonstrates §9's contract on a FOURTH
+shape of problem: a single legal instrument's own fine/penalty clause,
+read into a closed, versioned record, rather than a relation between two
+spans in the same provision (term), a lexical-absence check within one
+obligation (requirement), or a typed relation between two different
+INSTRUMENTS (interplay).
+
+**Why.** A fine cap routinely sits inside a long Statement endpoint —
+"subject to administrative fines up to 10 000 000 EUR, or in the case of
+an undertaking, up to 2 % of the total worldwide annual turnover of the
+preceding financial year, whichever is higher" — and nothing in the
+typed-statements layer (§21-§23) or the interplay grammar (§24) answers
+"what is the cap, and is it a ceiling or a floor?" This grammar reads a
+penalty clause into a record carrying: the source instrument and article
+(and paragraph, when determinable); the penalty kind
+(`administrative_fine`, `periodic_penalty_payment`, `penalty` — the
+Member-State "effective, proportionate and dissuasive" rules a
+directive/regulation leaves to national law — or `criminal_sanction`);
+the addressee, where stated; the infringed provisions, as the list of
+articles cited; the EXCLUDED provisions, as a list of articles a stated
+"other than"/"except"/"excluding"/"with the exception of" carve-out
+names (never read as infringed — see "Negation and exclusion", below); a
+`scope` note for an instrument-wide clause with no specific provision
+left once an exclusion is masked out; a fixed EUR amount; a turnover
+percentage and its basis; how the two combine (`whichever_is_higher` /
+`whichever_is_lower` / `none`); whether the stated figure is a ceiling, a
+floor-of-a-maximum, a bare minimum, or `unspecified`; a per-day flag for
+a periodic penalty payment; the verbatim span; the cue id; a confidence;
+and `unresolved` when an amount or bound cannot be parsed.
+
+**A single 5D projection for the WHOLE grammar, not one per penalty
+kind — decided and justified.** Unlike the interplay grammar (§24), whose
+ten relations project onto three different dimensions, EVERY one of this
+grammar's four penalty kinds binds the SAME dimension: `causal`. The edge
+is `(infringement of ONE cited provision) -> (the penalty that attaches
+to it)`. This is the obvious candidate dimension, and the reasoning is
+narrow and text-grounded, not merely "obvious": every penalty clause this
+grammar reads states the penalty as a CONSEQUENCE TRIGGERED BY an
+infringement — "infringements of the following provisions shall... be
+subject to...", "where they infringe Article 21 or 23..., entities are
+subject to...", "non-compliance with... shall be subject to..." — never
+as a structural containment, a plain relational co-application, a
+temporal ordering, or an intentional stance. A record flagged
+`unresolved` — its own amount or bound could not be parsed — never
+becomes an edge (`penalty_to_triples` refuses it outright, raising,
+exactly as `interplay.relation_to_triple` refuses an unresolved relation
+record, §24); a record naming NO infringed provision at all (DSA Art.
+52(3)'s own two percentage-only sentences; AI Act Art. 100(3)'s own
+instrument-wide "other than Art. 5" scope) instead converts to an EMPTY
+triple list — no error, the record itself is perfectly well-formed, it
+simply names nothing an edge's own subject could be.
+
+**Edge identity — one edge PER infringed ARTICLE (never a sub-point, a
+bundle, or a collapsed range), de-duplicated per clause, and no two
+distinct clauses sharing a node.** `penalty_to_triples` (plural) emits
+ONE triple per infringed provision a record names, after EXPANDING a
+"<N> to <M>" range into every article in it ("25 to 39" -> `Art.25`,
+`Art.26`, ..., `Art.39`, each its own edge — never one `s` bundling
+several provisions together, and never a collapsed range). Each `s` is
+`"<instrument>:Art.<N>"` — the ARTICLE NODE ONLY, with any parenthesised
+sub-point STRIPPED: `"33(1)"`, `"33(3)"`, and `"33(4)"` all resolve to
+the SAME `s`, `"<instrument>:Art.33"`, collapsed into ONE edge by
+`penalty_to_triples`'s own de-duplication — a sub-point is never part of
+the subject id itself, because the id's whole job is to JOIN the article
+node; `ai-act:Art.33(1)` and `ai-act:Art.33(3)` would never join
+`ai-act:Art.33` at all, so AI Act Art. 99(4)(f)'s "Article 33(1), (3)
+and (4)" yields one subject, not three. The
+sub-point/paragraph detail this strips is NOT lost — it is kept VERBATIM
+in the triple's own `provenance.provisions_detail` (the record's
+`infringed_provisions`, ranges and sub-points intact). A Chapter
+reference, carrying no article number to expand, is
+`"<instrument>:Chapter.<roman>"`. No `s` ever carries the PENALTY
+clause's own paragraph — only the PENALTY clause's own paragraph is
+tracked, in `o`. Each `o` is
+`"<source_article>(<paragraph>):<penalty_kind>"` when the clause's own
+paragraph is known, else `"<source_article>:<penalty_kind>"` — UNIQUE
+per penalty CLAUSE, never merely per article: GDPR Art. 83(4)/(5)/(6),
+AI Act Art. 100(2)/(3), and NIS2 Art. 34(4)/(5) each resolve to a
+DISTINCT `o`, never colliding (a `tests/test_penalty.py` regression
+asserts this explicitly over the real statute vectors). No doubled
+instrument prefix anywhere: `source_article` already carries the
+instrument (`"gdpr:Art.83"`), so `s`/`o` are built from it directly.
+
+**Negation and exclusion — two SEPARATE, never-conflated conditions.**
+(1) `excluded_provisions` — text following "other than", "except(ing)",
+"excluding", or "with the exception of" NAMES provisions a clause
+explicitly carves OUT of its own scope (AI Act Art. 99(4)/100(3): "...
+other than those laid down in Article[s] 5..."). These are MASKED out of
+the working text BEFORE infringement scanning ever runs, so an excluded
+provision can never also surface as infringed — reading it as infringed
+would REVERSE the clause's own meaning (`tests/test_penalty.py` asserts
+`infringed_provisions` and `excluded_provisions` never intersect over
+every real statute record). AI Act Art. 100(3)'s own infringed set is
+"requirements or obligations under this Regulation" IN GENERAL, other
+than Art. 5 — no SPECIFIC provision survives masking, so
+`infringed_provisions` is `[]` and `scope` instead records `"the
+instrument, other than Art. 5"`; no edge is built (there is no explicit
+instrument-wide subject id defined by this grammar — a scope note is
+recorded instead of inventing one). (2) `unresolved` — the clause's own
+AMOUNT or BOUND could not be parsed, unrelated to provisions at all. A
+record may carry either condition, both, or neither, independently.
+
+**Infringement-anchored extraction — never a bare "any Article mention
+in the window".** A plain scan for "Article(s) <N>" anywhere nearby
+reads a PROCEDURAL cross-reference — the decision that EMPOWERS a fine,
+or the clause naming WHO it addresses — as if it were the infringed
+provision itself: DSA Art. 74(1)'s own "In the decision referred to in
+Article 73, the Commission may impose..." names Art. 73 as the
+empowering decision, not an infringed provision; DSA Art.
+74(2)/76(1)'s own "...or on another natural or legal person referred to
+in Article 67(1)..." names Art. 67(1) only to identify WHO the clause
+addresses. Capture is therefore GATED on an infringement-anchor phrase —
+"infringements? of ... provisions", "non-compliance (?:of|with)",
+"infringe(s/d)", "fail(s/ed) to", "in breach of" — never a connector word
+("pursuant to"/"referred to in"/"under") alone, and never the noun form
+"infringements" on its own (which would otherwise wrongly fire inside a
+Member-State formula clause's own "applicable to infringements of this
+Regulation... pursuant to Article 83/96/51", GDPR Art. 84(1)/AI Act Art.
+99(1)/DSA Art. 52(1)'s own incidental cross-references). A BROAD anchor
+("infringements of the following provisions", "non-compliance with ...
+the following provisions") scans the WHOLE remainder of the clause — the
+bulleted list that follows IS that anchor's own enumeration (GDPR Art.
+83(4)/(5), AI Act Art. 99(4)); a NARROW anchor ("fails to comply with",
+"infringe Article", "in breach of", a bare "non-compliance (?:of|with)")
+scans only a bounded window AFTER its own occurrence (GDPR Art. 83(6),
+AI Act Art. 100(2)/101(1), DSA Art. 74(1)/(2), NIS2 Art. 34(4)/(5)). A
+clause with NO anchor at all — DSA Art. 52(3)'s own two percentage-only
+sentences, DSA Art. 76(1)'s own "compel them to: (a) supply...; (b)
+submit...; (c)/(d)/(e) comply with..." list (every item describes a
+FUTURE compelled act, never a past infringement), AI Act Art. 99(6)'s
+own SME whichever-is-lower cross-reference to paragraphs 3-5 (which
+names PARAGRAPHS, never an Article at all) — never names an infringed
+provision, by design: `infringed_provisions` stays `[]`, no edge is
+built, and the record is still kept.
+
+**A Chapter reference is captured alongside an Article one.** GDPR Art.
+83(5)(d)'s own "any obligations pursuant to Member State law adopted
+under Chapter IX" names a CHAPTER, not an Article — the SAME
+anchor-gated walk recognises "Chapter <roman-numeral>" exactly like
+"Article(s) <N>", storing it as `"Chapter IX"`. A bare parenthesised
+sub-point continuation with no article number of its own — AI Act Art.
+99(4)(f)'s own "Article 31, Article 33(1), (3) and (4) or Article 34" —
+is reattached to the MOST RECENT full article number seen, so `(3)`/`(4)`
+become `"33(3)"`/`"33(4)"` rather than being dropped or stored unattached.
+
+**Rules are DATA, not code**, exactly the discipline `interplay.py`
+(§24) and `requirement.py` (§18) already establish: the cue table
+(trigger phrase, penalty kind, span bounds, a per-cue addressee-phrase
+table, and a confidence) lives in `penalty_rules.json`, loaded by
+`load_ruleset` and pinned by a sha256 digest (`ruleset_digest`) exactly
+like the other two grammars' own rules files. Two further small phrase
+tables are ALSO data, shared across every cue rather than duplicated per
+cue: `bound_type_phrases` and `combination_phrases`. `find_penalties`
+branches on nothing but the loaded ruleset document plus a small set of
+STRUCTURAL regexes the module owns in code because they parse a NUMBER
+or a closed grammatical shape, never a legal phrase specific to one
+instrument.
+
+**Number formats.** The five-instrument corpus this grammar was built
+against uses THREE amount-separator conventions for the same shape of
+number: a plain space ("10 000 000 EUR", GDPR/NIS2's own style), a
+NO-BREAK space ("EUR 35 000 000", the AI Act's own style), and a decimal
+COMMA in a percentage ("1,4 %", NIS2 Art. 34(5)'s own style) alongside
+the far more common decimal point/plain integer. An amount written out
+in words (e.g. "ten million euros") is handled by a small, closed
+ones/teens/tens/hundred/thousand/million lexicon, used as a fallback only
+when neither digit-amount regex matches; no clause in the five-instrument
+corpus this grammar runs against ever spells an amount out, so this path
+is exercised only by a synthetic conformance vector. `criminal_sanction`
+is, for the identical reason, a real member of the closed penalty-kind
+vocabulary that is exercised only by a synthetic vector.
+
+**The clause span runs to the real sentence end, or raises — it never
+silently truncates.** A clause's own `max_span_chars` is an UPPER SAFETY
+BOUND, set generously per cue; when no clause-ending character is found
+within it, `_clause_span` raises `ValueError` rather than cutting the
+span mid-sentence or mid-word (a cap set too small for a real clause —
+DSA Art. 74(2)'s own 823-character sentence, once truncated at 500 chars
+to "...given by a mem" — is a ruleset-tuning defect to FIX, never
+something to paper over with a silently cut-off span). A period is NOT
+treated as a clause end when immediately followed by a comma (AI Act
+Art. 101(1)'s own stray "...whichever is higher., when the Commission
+finds..." — a typeset error in the source text itself, not a real
+sentence boundary).
+
+**Infringed/excluded provisions, the addressee, and the paragraph
+boundary.** A penalty clause's own trigger phrase routinely sits in the
+MIDDLE of its own numbered paragraph. `find_penalties` locates the
+nearest preceding numbered-paragraph marker and scans for
+infringed/excluded provisions and for the cue's own addressee phrase
+over the SAME window — from that marker through the clause's own end —
+so a citation or an addressee phrase belonging to the PRECEDING numbered
+paragraph is never pulled into the wrong record (GDPR Art. 83(5)'s own
+boundary against Art. 83(4)'s trailing "Article 41(4)."). Extraction
+runs UNIFORMLY for every cue — the anchor-gating itself (not a cue-level
+flag) is what keeps a formula-only clause's own incidental
+cross-references from ever being read as infringed. When no addressee
+phrase is found in the paragraph-local window at all (AI Act Art.
+100(2)/(3), whose addressee is named only in Art. 100(1)), the SAME
+cue's own addressee phrases are tried a second time against the whole
+article text up to the clause's own end.
+
+**Negation / absence of a PENALTY (as opposed to a provision) is OUT OF
+SCOPE**, for the identical reason `interplay.py` documents: this grammar
+types a STATED penalty clause; there is no "no penalty applies" claim to
+make. (A provision's own exclusion from a clause's scope — "other than
+Art. 5" — is a DIFFERENT thing this grammar DOES capture, as
+`excluded_provisions`; see "Negation and exclusion", above.)
+
+**Authority-sourced penalties — API and validation only, never
+populated.** `authority_penalty_violations` validates the shape of a
+penalty record a court ruling or regulator's guidance types (never
+derived from statute text) — the same four-kind vocabulary, `basis:
+"authority"` instead of `"statute"`, plus an `authority` field naming who
+said so and where. `authority_penalty_to_triples` converts a validated
+record into the SAME triple shape `penalty_to_triples` produces for a
+statute-derived record. No data is seeded into this path by this module.
+
+See `src/five_d_nd/grammars/penalty.py`,
+`src/five_d_nd/grammars/penalty_rules.json`,
+`conformance/vectors/penalty-grammar/`, `tests/test_penalty.py`.

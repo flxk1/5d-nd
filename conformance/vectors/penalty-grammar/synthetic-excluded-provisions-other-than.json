@@ -1,0 +1,47 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-excluded-provisions-other-than",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.15",
+        "text": "4. Non-compliance with any of the following provisions, other than those laid down in Article 9, shall be subject to administrative fines up to EUR 300 000: (a) obligations pursuant to Article 10; (b) obligations pursuant to Article 11."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.15",
+        "paragraph": "4",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "10",
+          "11"
+        ],
+        "excluded_provisions": [
+          "9"
+        ],
+        "scope": null,
+        "fixed_amount_eur": 300000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines up to EUR 300 000: (a) obligations pursuant to Article 10; (b) obligations pursuant to Article 11.",
+        "match_start": 117,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: 'other than those laid down in Article 9' must be recorded as excluded_provisions, never infringed_provisions — Articles 10/11 remain infringed."
+}

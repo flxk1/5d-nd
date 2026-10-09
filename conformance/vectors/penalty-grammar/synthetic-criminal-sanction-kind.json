@@ -1,0 +1,95 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-criminal-sanction-kind",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.20",
+        "text": "Infringement of Article 15 shall be subject to criminal sanctions of up to five years' imprisonment, as determined by national law."
+      }
+    ],
+    "ruleset": {
+      "ruleset_id": "penalty-grammar-rules-v1",
+      "bound_type_phrases": [
+        {
+          "pattern": "maximum\\s+of\\s+at\\s+least",
+          "bound_type": "floor_of_maximum"
+        },
+        {
+          "pattern": "up\\s+to",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "not\\s+exceeding",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "maximum\\s+amount\\b",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "a\\s+maximum\\s+of",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "at\\s+least",
+          "bound_type": "minimum"
+        }
+      ],
+      "combination_phrases": [
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+higher",
+          "combination_rule": "whichever_is_higher"
+        },
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+lower",
+          "combination_rule": "whichever_is_lower"
+        }
+      ],
+      "cues": [
+        {
+          "cue_id": "synthetic-criminal-sanction-up-to-years",
+          "penalty_kind": "criminal_sanction",
+          "trigger_pattern": "criminal\\s+sanctions?\\s+of\\s+up\\s+to\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "clause_end_chars": ".",
+          "expects_amount": false,
+          "confidence": 0.6,
+          "addressee_patterns": [],
+          "notes": "Synthetic-only cue: no instrument in the five-pool corpus states a criminal-sanction clause with an amount; this exercises the fourth penalty_kind end-to-end."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.20",
+        "paragraph": null,
+        "penalty_kind": "criminal_sanction",
+        "addressee": null,
+        "infringed_provisions": [],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "criminal sanctions of up to five years' imprisonment, as determined by national law.",
+        "match_start": 47,
+        "cue_id": "synthetic-criminal-sanction-up-to-years",
+        "confidence": 0.6,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "31e8df3b91b67f547cbfe2e64786a244ca4cdcbdfb3a328c3c37ee0a1b174383"
+      }
+    ]
+  },
+  "provenance": "Synthetic-only: exercises the 'criminal_sanction' penalty_kind, never fired by the real five-instrument corpus."
+}
