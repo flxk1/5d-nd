@@ -1,0 +1,55 @@
+{
+  "family": "penalty-grammar",
+  "case": "descriptor-shape-valid",
+  "kind": "descriptor_shape",
+  "input": {},
+  "expected": {
+    "doc": {
+      "plane": "penalty-grammar",
+      "language_version": "1.0.0",
+      "nd_system": {
+        "id": "penalty-grammar",
+        "namespace": "org.loomground.nd.penalty",
+        "version": "1.0.0",
+        "version_5d": "1.0-draft",
+        "axes": {
+          "penalty_kind": {
+            "value_type": "controlled_identifier",
+            "cardinality": "one",
+            "vocabulary_mode": "closed",
+            "vocabulary": [
+              "administrative_fine",
+              "criminal_sanction",
+              "penalty",
+              "periodic_penalty_payment"
+            ]
+          }
+        },
+        "bindings": [
+          {
+            "form_slot": "penalty_kind",
+            "allowed_axes": [
+              "penalty_kind"
+            ],
+            "required": true
+          }
+        ],
+        "ontology_relations": [],
+        "validation": {
+          "unknown_values": "reject",
+          "missing_coordinates": "reject",
+          "provenance_required": true
+        }
+      },
+      "binding": {
+        "administrative_fine": "causal",
+        "periodic_penalty_payment": "causal",
+        "penalty": "causal",
+        "criminal_sanction": "causal"
+      },
+      "examples": [],
+      "contract_version": "1.0-draft"
+    }
+  },
+  "provenance": "The published grammar descriptor (plane + binding) for this grammar."
+}

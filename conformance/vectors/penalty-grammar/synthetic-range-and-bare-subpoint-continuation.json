@@ -1,0 +1,47 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-range-and-bare-subpoint-continuation",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.19",
+        "text": "6. Infringements of the following provisions shall be subject to administrative fines up to EUR 100 000: (a) obligations pursuant to Articles 10 to 12, Article 20(1), (2) and (4)."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.19",
+        "paragraph": "6",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "10 to 12",
+          "20(1)",
+          "20(2)",
+          "20(4)"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 100000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines up to EUR 100 000: (a) obligations pursuant to Articles 10 to 12, Article 20(1), (2) and (4).",
+        "match_start": 65,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: a 'N to M' range ('10 to 12') and a bare parenthesised sub-point continuation ('(2)', '(4)' reattached to Article 20) in the same clause."
+}

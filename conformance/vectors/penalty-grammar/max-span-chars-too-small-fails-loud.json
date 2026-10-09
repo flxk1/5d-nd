@@ -1,0 +1,71 @@
+{
+  "family": "penalty-grammar",
+  "case": "max-span-chars-too-small-fails-loud",
+  "kind": "find_penalties_rejected",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.21",
+        "text": "Non-compliance with Article 9 shall be subject to administrative fines up to EUR 500 000."
+      }
+    ],
+    "ruleset": {
+      "ruleset_id": "penalty-grammar-rules-v1",
+      "bound_type_phrases": [
+        {
+          "pattern": "maximum\\s+of\\s+at\\s+least",
+          "bound_type": "floor_of_maximum"
+        },
+        {
+          "pattern": "up\\s+to",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "not\\s+exceeding",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "maximum\\s+amount\\b",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "a\\s+maximum\\s+of",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "at\\s+least",
+          "bound_type": "minimum"
+        }
+      ],
+      "combination_phrases": [
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+higher",
+          "combination_rule": "whichever_is_higher"
+        },
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+lower",
+          "combination_rule": "whichever_is_lower"
+        }
+      ],
+      "cues": [
+        {
+          "cue_id": "synthetic-fails-to-find-boundary",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "administrative\\s+fines?\\s+up\\s+to\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 5,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.6,
+          "addressee_patterns": [],
+          "notes": "Synthetic-only cue: max_span_chars deliberately too small to reach any clause-ending character."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "raises": "ValueError"
+  },
+  "provenance": "Synthetic negative: a cue whose max_span_chars is too small to reach any clause-ending character raises ValueError rather than silently truncating the span."
+}

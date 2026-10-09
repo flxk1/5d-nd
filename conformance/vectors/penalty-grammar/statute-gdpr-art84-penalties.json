@@ -1,0 +1,42 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-gdpr-art84-penalties",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "gdpr",
+        "article_id": "gdpr:Art.84",
+        "text": "Article 84\n\nPenalties\n\n1. Member States shall lay down the rules on other penalties applicable to infringements of this Regulation in particular for infringements which are not subject to administrative fines pursuant to Article 83, and shall take all measures necessary to ensure that they are implemented. Such penalties shall be effective, proportionate and dissuasive.\n\n2. Each Member State shall notify to the Commission the provisions of its law which it adopts pursuant to paragraph 1, by 25 May 2018 and, without delay, any subsequent amendment affecting them."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "gdpr",
+        "source_article": "gdpr:Art.84",
+        "paragraph": "1",
+        "penalty_kind": "penalty",
+        "addressee": null,
+        "infringed_provisions": [],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "unspecified",
+        "per_day": false,
+        "verbatim_span": "Member States shall lay down the rules on other penalties applicable to infringements of this Regulation in particular for infringements which are not subject to administrative fines pursuant to Article 83, and shall take all measures necessary to ensure that they are implemented.",
+        "match_start": 26,
+        "cue_id": "penalty-member-state-rules",
+        "confidence": 0.8,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

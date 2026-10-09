@@ -1,0 +1,97 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-bound-type-unspecified-is-unresolved",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.3",
+        "text": "3. Infringements of the following provisions shall be subject to administrative fines of EUR 500 000: (a) obligations pursuant to Article 9."
+      }
+    ],
+    "ruleset": {
+      "ruleset_id": "penalty-grammar-rules-v1",
+      "bound_type_phrases": [
+        {
+          "pattern": "maximum\\s+of\\s+at\\s+least",
+          "bound_type": "floor_of_maximum"
+        },
+        {
+          "pattern": "up\\s+to",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "not\\s+exceeding",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "maximum\\s+amount\\b",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "a\\s+maximum\\s+of",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "at\\s+least",
+          "bound_type": "minimum"
+        }
+      ],
+      "combination_phrases": [
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+higher",
+          "combination_rule": "whichever_is_higher"
+        },
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+lower",
+          "combination_rule": "whichever_is_lower"
+        }
+      ],
+      "cues": [
+        {
+          "cue_id": "synthetic-fine-of-amount-no-bound",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "administrative\\s+fines?\\s+of\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.6,
+          "addressee_patterns": [],
+          "notes": "Synthetic-only cue: isolates bound_type 'unspecified'."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.3",
+        "paragraph": "3",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "9"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 500000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "unspecified",
+        "per_day": false,
+        "verbatim_span": "administrative fines of EUR 500 000: (a) obligations pursuant to Article 9.",
+        "match_start": 65,
+        "cue_id": "synthetic-fine-of-amount-no-bound",
+        "confidence": 0.36,
+        "unresolved": true,
+        "basis": "statute",
+        "ruleset_digest": "e8ebda815cbe0ada1beb5a36ed0a337825a32109da9136043d014873c28a0da0"
+      }
+    ]
+  },
+  "provenance": "Synthetic negative, isolated ruleset: an amount with NO 'up to'/'not exceeding'/'maximum'/'at least' phrase at all leaves bound_type 'unspecified', which marks the record unresolved."
+}

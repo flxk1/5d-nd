@@ -1,0 +1,42 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-combination-rule-whichever-is-lower",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.1",
+        "text": "1. In the case of SMEs, the administrative fines up to EUR 1 000 000, or up to 1 % of the total worldwide annual turnover of the preceding financial year, whichever is lower, shall apply."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.1",
+        "paragraph": "1",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 1000000,
+        "turnover_percentage": 1.0,
+        "turnover_basis": "total worldwide annual turnover of the preceding financial year",
+        "combination_rule": "whichever_is_lower",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines up to EUR 1 000 000, or up to 1 % of the total worldwide annual turnover of the preceding financial year, whichever is lower, shall apply.",
+        "match_start": 28,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: an isolated 'whichever is lower' combination clause carrying its own amount (the real corpus's own whichever_is_lower clause, AI Act Art. 99(6), is captured verbatim in statute-ai-act-art99-penalties and carries no amount of its own)."
+}

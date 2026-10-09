@@ -187,6 +187,54 @@
   article-lookback also captures a trailing "Article N, point (x)"
   reference; and every record carries its own `match_start` offset so two
   records whose text happens to be byte-identical are still told apart.
+- A FOURTH EXAMPLE nD grammar, `src/five_d_nd/grammars/penalty.py`
+  + `penalty_rules.json`: a closed, versioned record for a penalty clause
+  (`administrative_fine`, `periodic_penalty_payment`, `penalty` — the
+  Member-State "effective, proportionate and dissuasive" rules a
+  directive/regulation leaves to national law — or `criminal_sanction`),
+  read deterministically from statute text by a cue-rule table (rules are
+  data, not code). A single stated 5D projection, `causal`, covers EVERY
+  penalty kind: the edge is (infringement of ONE cited provision) -> (the
+  penalty) — `penalty_to_triples` (plural) emits one edge PER infringed
+  ARTICLE, a "<N> to <M>" range expanded into each article, `s` shaped
+  `"<instrument>:Art.<N>"` with any parenthesised sub-point STRIPPED and
+  the three tokens de-duplicated into one edge ("33(1)"/"33(3)"/"33(4)"
+  all resolve to the SAME `ai-act:Art.33`, never three separate,
+  non-joining nodes — the sub-point detail moves to the triple's own
+  `provenance.provisions_detail` instead), and `o` UNIQUE per penalty
+  clause (never merely per article, so e.g. GDPR Art. 83(4)/(5)/(6) each
+  get their own node). Capture of an infringed provision is GATED on an
+  infringement-anchor phrase ("infringements of ... provisions",
+  "non-compliance (?:of|with)", "infringe(s/d)", "fail(s/ed) to",
+  "refuse(s/d) to", "in breach of", "supply incorrect, incomplete or
+  misleading information") — never a bare "Article N" mention nearby a
+  procedural cross-reference ("the decision referred to in Article 73",
+  "the person referred to in Article 67(1)"), which is never captured at
+  all. Text following "other than"/"except(ing)"/"excluding"/"with the
+  exception of" is read as `excluded_provisions`, masked out BEFORE
+  infringement scanning so it can never also surface as infringed; an
+  instrument-wide clause with no specific provision left once masked
+  carries a `scope` note instead of an edge. A Chapter reference
+  ("Chapter IX") is captured alongside an Article one; a bare
+  parenthesised sub-point continuation ("(3)", "(4)") reattaches to the
+  most recently seen article number. Reads a fixed EUR
+  amount (plain-space, no-break-space, or spelled-out-in-words
+  separators) and a turnover percentage (plain or decimal-comma), a
+  combination rule (`whichever_is_higher`/`whichever_is_lower`/`none`),
+  and a bound type (`ceiling`/`floor_of_maximum`/`minimum`/`unspecified`)
+  from two further small phrase tables, also data. The clause span runs
+  to the real sentence end (skipping a stray period-then-comma typeset
+  error) or RAISES rather than silently truncating. An `unresolved`
+  record (its own amount or bound could not be parsed) refuses to become
+  a triple; a record naming no infringed provision converts to an EMPTY
+  triple list instead — never an error, for a DIFFERENT, documented
+  reason. An authority-sourced ingestion path ships as API + validation
+  only, seeded with no data. New spec section (`spec/SPEC.md` §25), 49
+  conformance vectors (`conformance/vectors/penalty-grammar/`) — ten of
+  them the real GDPR/AI-Act/DSA/NIS2 fine/penalty articles this grammar
+  was built against, verbatim — and a self-contained test module
+  (`tests/test_penalty.py`), including a regression asserting no two
+  distinct clauses ever share an edge subject node.
 
 ### Fixed
 

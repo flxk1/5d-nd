@@ -1,0 +1,36 @@
+{
+  "family": "penalty-grammar",
+  "case": "triples-empty-when-no-infringed-provisions-no-error",
+  "kind": "triples",
+  "input": {
+    "record": {
+      "source_instrument": "gdpr",
+      "source_article": "gdpr:Art.83",
+      "paragraph": "4",
+      "penalty_kind": "administrative_fine",
+      "addressee": "undertaking",
+      "infringed_provisions": [],
+      "excluded_provisions": [
+        "5"
+      ],
+      "scope": "the instrument, other than Art. 5",
+      "fixed_amount_eur": 10000000,
+      "turnover_percentage": 2.0,
+      "turnover_basis": "total worldwide annual turnover of the preceding financial year",
+      "combination_rule": "whichever_is_higher",
+      "bound_type": "ceiling",
+      "per_day": false,
+      "verbatim_span": "administrative fines up to 10 000 000 EUR, or in the case of an undertaking, up to 2 % of the total worldwide annual turnover of the preceding financial year, whichever is higher.",
+      "match_start": 95,
+      "cue_id": "fine-up-to-eur-or-percentage",
+      "confidence": 0.9,
+      "unresolved": false,
+      "basis": "statute",
+      "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+    }
+  },
+  "expected": {
+    "triples": []
+  },
+  "provenance": "A record naming no infringed provision at all (an instrument-wide 'other than' scope) converts to an EMPTY triple list — never an error; the record itself is well-formed."
+}

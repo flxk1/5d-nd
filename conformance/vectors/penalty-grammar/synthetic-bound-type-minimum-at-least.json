@@ -1,0 +1,97 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-bound-type-minimum-at-least",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.2",
+        "text": "2. Infringements of the following provisions shall be subject to administrative fines of at least EUR 500 000: (a) obligations pursuant to Article 9."
+      }
+    ],
+    "ruleset": {
+      "ruleset_id": "penalty-grammar-rules-v1",
+      "bound_type_phrases": [
+        {
+          "pattern": "maximum\\s+of\\s+at\\s+least",
+          "bound_type": "floor_of_maximum"
+        },
+        {
+          "pattern": "up\\s+to",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "not\\s+exceeding",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "maximum\\s+amount\\b",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "a\\s+maximum\\s+of",
+          "bound_type": "ceiling"
+        },
+        {
+          "pattern": "at\\s+least",
+          "bound_type": "minimum"
+        }
+      ],
+      "combination_phrases": [
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+higher",
+          "combination_rule": "whichever_is_higher"
+        },
+        {
+          "pattern": "whichever\\s+(?:thereof\\s+)?is\\s+lower",
+          "combination_rule": "whichever_is_lower"
+        }
+      ],
+      "cues": [
+        {
+          "cue_id": "synthetic-fine-of-at-least",
+          "penalty_kind": "administrative_fine",
+          "trigger_pattern": "administrative\\s+fines?\\s+of\\s+at\\s+least\\s+",
+          "require_all_patterns": [],
+          "max_span_chars": 300,
+          "clause_end_chars": ".",
+          "expects_amount": true,
+          "confidence": 0.6,
+          "addressee_patterns": [],
+          "notes": "Synthetic-only cue: isolates bound_type 'minimum'."
+        }
+      ]
+    }
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.2",
+        "paragraph": "2",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "9"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 500000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "minimum",
+        "per_day": false,
+        "verbatim_span": "administrative fines of at least EUR 500 000: (a) obligations pursuant to Article 9.",
+        "match_start": 65,
+        "cue_id": "synthetic-fine-of-at-least",
+        "confidence": 0.6,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "39194a040fff3d633807b76877554951e2500062f5ad2ac3fd6c9629485bcf20"
+      }
+    ]
+  },
+  "provenance": "Synthetic-only, isolated ruleset: exercises bound_type 'minimum' end-to-end; no real-corpus clause in the five-instrument pool states a bare minimum (unqualified 'at least')."
+}

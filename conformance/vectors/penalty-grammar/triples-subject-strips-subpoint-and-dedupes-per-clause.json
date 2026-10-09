@@ -1,0 +1,139 @@
+{
+  "family": "penalty-grammar",
+  "case": "triples-subject-strips-subpoint-and-dedupes-per-clause",
+  "kind": "triples",
+  "input": {
+    "record": {
+      "source_instrument": "ai-act",
+      "source_article": "ai-act:Art.99",
+      "paragraph": "4",
+      "penalty_kind": "administrative_fine",
+      "addressee": "undertaking",
+      "infringed_provisions": [
+        "31",
+        "33(1)",
+        "33(3)",
+        "33(4)",
+        "34"
+      ],
+      "excluded_provisions": [
+        "5"
+      ],
+      "scope": null,
+      "fixed_amount_eur": 15000000,
+      "turnover_percentage": 3.0,
+      "turnover_basis": "its total worldwide annual turnover for the preceding financial year",
+      "combination_rule": "whichever_is_higher",
+      "bound_type": "ceiling",
+      "per_day": false,
+      "verbatim_span": "requirements and obligations of notified bodies pursuant to Article 31, Article 33(1), (3) and (4) or Article 34.",
+      "match_start": 0,
+      "cue_id": "fine-up-to-eur-or-percentage",
+      "confidence": 0.9,
+      "unresolved": false,
+      "basis": "statute",
+      "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+    }
+  },
+  "expected": {
+    "triples": [
+      {
+        "s": "ai-act:Art.31",
+        "p": "administrative_fine",
+        "o": "ai-act:Art.99(4):administrative_fine",
+        "dimension": "causal",
+        "weight": 0.9,
+        "provenance": {
+          "basis": "statute",
+          "verbatim_span": "requirements and obligations of notified bodies pursuant to Article 31, Article 33(1), (3) and (4) or Article 34.",
+          "paragraph": "4",
+          "addressee": "undertaking",
+          "excluded_provisions": [
+            "5"
+          ],
+          "provisions_detail": [
+            "31",
+            "33(1)",
+            "33(3)",
+            "33(4)",
+            "34"
+          ],
+          "scope": null,
+          "fixed_amount_eur": 15000000,
+          "turnover_percentage": 3.0,
+          "turnover_basis": "its total worldwide annual turnover for the preceding financial year",
+          "combination_rule": "whichever_is_higher",
+          "bound_type": "ceiling",
+          "per_day": false,
+          "cue_id": "fine-up-to-eur-or-percentage"
+        },
+        "grammar_id": "penalty-grammar"
+      },
+      {
+        "s": "ai-act:Art.33",
+        "p": "administrative_fine",
+        "o": "ai-act:Art.99(4):administrative_fine",
+        "dimension": "causal",
+        "weight": 0.9,
+        "provenance": {
+          "basis": "statute",
+          "verbatim_span": "requirements and obligations of notified bodies pursuant to Article 31, Article 33(1), (3) and (4) or Article 34.",
+          "paragraph": "4",
+          "addressee": "undertaking",
+          "excluded_provisions": [
+            "5"
+          ],
+          "provisions_detail": [
+            "31",
+            "33(1)",
+            "33(3)",
+            "33(4)",
+            "34"
+          ],
+          "scope": null,
+          "fixed_amount_eur": 15000000,
+          "turnover_percentage": 3.0,
+          "turnover_basis": "its total worldwide annual turnover for the preceding financial year",
+          "combination_rule": "whichever_is_higher",
+          "bound_type": "ceiling",
+          "per_day": false,
+          "cue_id": "fine-up-to-eur-or-percentage"
+        },
+        "grammar_id": "penalty-grammar"
+      },
+      {
+        "s": "ai-act:Art.34",
+        "p": "administrative_fine",
+        "o": "ai-act:Art.99(4):administrative_fine",
+        "dimension": "causal",
+        "weight": 0.9,
+        "provenance": {
+          "basis": "statute",
+          "verbatim_span": "requirements and obligations of notified bodies pursuant to Article 31, Article 33(1), (3) and (4) or Article 34.",
+          "paragraph": "4",
+          "addressee": "undertaking",
+          "excluded_provisions": [
+            "5"
+          ],
+          "provisions_detail": [
+            "31",
+            "33(1)",
+            "33(3)",
+            "33(4)",
+            "34"
+          ],
+          "scope": null,
+          "fixed_amount_eur": 15000000,
+          "turnover_percentage": 3.0,
+          "turnover_basis": "its total worldwide annual turnover for the preceding financial year",
+          "combination_rule": "whichever_is_higher",
+          "bound_type": "ceiling",
+          "per_day": false,
+          "cue_id": "fine-up-to-eur-or-percentage"
+        },
+        "grammar_id": "penalty-grammar"
+      }
+    ]
+  },
+  "provenance": "Synthetic: 'Article 33(1), (3) and (4)' must resolve to ONE edge subject, 'ai-act:Art.33' — never 'ai-act:Art.33(1)'/'(3)'/'(4)' as three separate, non-joining nodes — with the sub-point detail kept in provenance.provisions_detail instead."
+}

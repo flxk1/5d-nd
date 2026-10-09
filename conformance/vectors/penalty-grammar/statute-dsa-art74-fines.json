@@ -1,0 +1,73 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-dsa-art74-fines",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "dsa",
+        "article_id": "dsa:Art.74",
+        "text": "Article 74\n\nFines\n\n1. In the decision referred to in Article 73, the Commission may impose on the provider of the very large online platform or of the very large online search engine concerned fines not exceeding 6 % of its total worldwide annual turnover in the preceding financial year where it finds that the provider, intentionally or negligently:\n\n(a)\n\ninfringes the relevant provisions of this Regulation;\n\n(b)\n\nfails to comply with a decision ordering interim measures under Article 70; or\n\n(c)\n\nfails to comply with a commitment made binding by a decision pursuant to Article 71.\n\n2. The Commission may adopt a decision imposing on the provider of the very large online platform or of the very large online search engine concerned or on another natural or legal person referred to in Article 67(1) fines not exceeding 1 % of the total annual income or worldwide turnover in the preceding financial year, where they intentionally or negligently:\n\n(a)\n\nsupply incorrect, incomplete or misleading information in response to a simple request or request by a decision pursuant to Article 67;\n\n(b)\n\nfail to reply to the request for information by decision within the set period;\n\n(c)\n\nfail to rectify within the period set by the Commission, incorrect, incomplete or misleading information given by a member of staff, or fail or refuse to provide complete information;\n\n(d)\n\nrefuse to submit to an inspection pursuant to Article 69;\n\n(e)\n\nfail to comply with the measures adopted by the Commission pursuant to Article 72; or\n\n(f)\n\nfail to comply with the conditions for access to the Commission’s file pursuant to Article 79(4).\n\n3. Before adopting the decision pursuant to paragraph 2 of this Article, the Commission shall communicate its preliminary findings to the provider of the very large online platform or of the very large online search engine concerned or to another person referred to in Article 67(1).\n\n4. In fixing the amount of the fine, the Commission shall have regard to the nature, gravity, duration and recurrence of the infringement and, for fines imposed pursuant to paragraph 2, the delay caused to the proceedings.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.74",
+        "paragraph": "1",
+        "penalty_kind": "administrative_fine",
+        "addressee": "provider of the very large online platform or of the very large online search engine",
+        "infringed_provisions": [
+          "70",
+          "71"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": 6.0,
+        "turnover_basis": "its total worldwide annual turnover in the preceding financial year",
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "fines not exceeding 6 % of its total worldwide annual turnover in the preceding financial year where it finds that the provider, intentionally or negligently:\n\n(a)\n\ninfringes the relevant provisions of this Regulation;\n\n(b)\n\nfails to comply with a decision ordering interim measures under Article 70; or\n\n(c)\n\nfails to comply with a commitment made binding by a decision pursuant to Article 71.",
+        "match_start": 193,
+        "cue_id": "fines-not-exceeding",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      },
+      {
+        "source_instrument": "dsa",
+        "source_article": "dsa:Art.74",
+        "paragraph": "2",
+        "penalty_kind": "administrative_fine",
+        "addressee": "provider of the very large online platform or of the very large online search engine",
+        "infringed_provisions": [
+          "67",
+          "69",
+          "72",
+          "79(4)"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": 1.0,
+        "turnover_basis": "total annual income or worldwide turnover in the preceding financial year",
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "fines not exceeding 1 % of the total annual income or worldwide turnover in the preceding financial year, where they intentionally or negligently:\n\n(a)\n\nsupply incorrect, incomplete or misleading information in response to a simple request or request by a decision pursuant to Article 67;\n\n(b)\n\nfail to reply to the request for information by decision within the set period;\n\n(c)\n\nfail to rectify within the period set by the Commission, incorrect, incomplete or misleading information given by a member of staff, or fail or refuse to provide complete information;\n\n(d)\n\nrefuse to submit to an inspection pursuant to Article 69;\n\n(e)\n\nfail to comply with the measures adopted by the Commission pursuant to Article 72; or\n\n(f)\n\nfail to comply with the conditions for access to the Commission’s file pursuant to Article 79(4).",
+        "match_start": 806,
+        "cue_id": "fines-not-exceeding",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

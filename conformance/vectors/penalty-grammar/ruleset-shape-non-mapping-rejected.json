@@ -1,0 +1,14 @@
+{
+  "family": "penalty-grammar",
+  "case": "ruleset-shape-non-mapping-rejected",
+  "kind": "ruleset_shape",
+  "input": {
+    "doc": "not a mapping"
+  },
+  "expected": {
+    "violations": [
+      "penalty ruleset must be a mapping"
+    ]
+  },
+  "provenance": "Synthetic negative: the ruleset document itself must be a mapping."
+}

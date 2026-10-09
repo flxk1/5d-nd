@@ -1,0 +1,71 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-nis2-art34-administrative-fines",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.34",
+        "text": "Article 34\n\nGeneral conditions for imposing administrative fines on essential and important entities\n\n1. Member States shall ensure that the administrative fines imposed on essential and important entities pursuant to this Article in respect of infringements of this Directive are effective, proportionate and dissuasive, taking into account the circumstances of each individual case.\n\n2. Administrative fines shall be imposed in addition to any of the measures referred to in Article 32(4), points (a) to (h), Article 32(5) and Article 33(4), points (a) to (g).\n\n3. When deciding whether to impose an administrative fine and deciding on its amount in each individual case, due regard shall be given, as a minimum, to the elements provided for in Article 32(7).\n\n4. Member States shall ensure that where they infringe Article 21 or 23, essential entities are subject, in accordance with paragraphs 2 and 3 of this Article, to administrative fines of a maximum of at least EUR 10 000 000 or of a maximum of at least 2 % of the total worldwide annual turnover in the preceding financial year of the undertaking to which the essential entity belongs, whichever is higher.\n\n5. Member States shall ensure that where they infringe Article 21 or 23, important entities are subject, in accordance with paragraphs 2 and 3 of this Article, to administrative fines of a maximum of at least EUR 7 000 000 or of a maximum of at least 1,4 % of the total worldwide annual turnover in the preceding financial year of the undertaking to which the important entity belongs, whichever is higher.\n\n6. Member States may provide for the power to impose periodic penalty payments in order to compel an essential or important entity to cease an infringement of this Directive in accordance with a prior decision of the competent authority.\n\n7. Without prejudice to the powers of the competent authorities pursuant to Articles 32 and 33, each Member State may lay down the rules on whether and to what extent administrative fines may be imposed on public administration entities.\n\n8. Where the legal system of a Member State does not provide for administrative fines, that Member State shall ensure that this Article is applied in such a manner that the fine is initiated by the competent authority and imposed by competent national courts or tribunals, while ensuring that those legal remedies are effective and have an equivalent effect to the administrative fines imposed by the competent authorities. In any event, the fines imposed shall be effective, proportionate and dissuasive. The Member State shall notify to the Commission the provisions of the laws which it adopts pursuant to this paragraph by 17 October 2024 and, without delay, any subsequent amendment law or amendment affecting them.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.34",
+        "paragraph": "4",
+        "penalty_kind": "administrative_fine",
+        "addressee": "essential entities",
+        "infringed_provisions": [
+          "21",
+          "23"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 10000000,
+        "turnover_percentage": 2.0,
+        "turnover_basis": "total worldwide annual turnover in the preceding financial year of the undertaking to which the essential entity belongs",
+        "combination_rule": "whichever_is_higher",
+        "bound_type": "floor_of_maximum",
+        "per_day": false,
+        "verbatim_span": "administrative fines of a maximum of at least EUR 10 000 000 or of a maximum of at least 2 % of the total worldwide annual turnover in the preceding financial year of the undertaking to which the essential entity belongs, whichever is higher.",
+        "match_start": 926,
+        "cue_id": "administrative-fines-of-a-maximum-of-at-least",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      },
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.34",
+        "paragraph": "5",
+        "penalty_kind": "administrative_fine",
+        "addressee": "important entities",
+        "infringed_provisions": [
+          "21",
+          "23"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 7000000,
+        "turnover_percentage": 1.4,
+        "turnover_basis": "total worldwide annual turnover in the preceding financial year of the undertaking to which the important entity belongs",
+        "combination_rule": "whichever_is_higher",
+        "bound_type": "floor_of_maximum",
+        "per_day": false,
+        "verbatim_span": "administrative fines of a maximum of at least EUR 7 000 000 or of a maximum of at least 1,4 % of the total worldwide annual turnover in the preceding financial year of the undertaking to which the important entity belongs, whichever is higher.",
+        "match_start": 1333,
+        "cue_id": "administrative-fines-of-a-maximum-of-at-least",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

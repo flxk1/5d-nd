@@ -1,0 +1,44 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-word-amount-seven-hundred-fifty-thousand-euros",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.6",
+        "text": "6. Non-compliance with Article 10 shall be subject to administrative fines of up to seven hundred and fifty thousand euros."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.6",
+        "paragraph": "6",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "10"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 750000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines of up to seven hundred and fifty thousand euros.",
+        "match_start": 54,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: a second word-amount case with a hundred/thousand combination and an 'and' filler word."
+}

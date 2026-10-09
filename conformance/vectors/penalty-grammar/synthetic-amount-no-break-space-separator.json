@@ -1,0 +1,44 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-amount-no-break-space-separator",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.7",
+        "text": "7. Non-compliance with Article 11 shall be subject to administrative fines of up to EUR 35 000 000."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.7",
+        "paragraph": "7",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "11"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 35000000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines of up to EUR 35 000 000.",
+        "match_start": 54,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic, isolated: a no-break-space thousands separator in the AI Act's own style, in a minimal clause."
+}

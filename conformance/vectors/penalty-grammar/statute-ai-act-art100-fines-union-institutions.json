@@ -1,0 +1,69 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-ai-act-art100-fines-union-institutions",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "ai-act",
+        "article_id": "ai-act:Art.100",
+        "text": "Article 100 \n\n Administrative fines on Union institutions, bodies, offices and agencies \n\n 1.   The European Data Protection Supervisor may impose administrative fines on Union institutions, bodies, offices and agencies falling within the scope of this Regulation. When deciding whether to impose an administrative fine and when deciding on the amount of the administrative fine in each individual case, all relevant circumstances of the specific situation shall be taken into account and due regard shall be given to the following: \n\n (a) \n\n the nature, gravity and duration of the infringement and of its consequences, taking into account the purpose of the AI system concerned, as well as, where appropriate, the number of affected persons and the level of damage suffered by them; \n\n (b) \n\n the degree of responsibility of the Union institution, body, office or agency, taking into account technical and organisational measures implemented by them; \n\n (c) \n\n any action taken by the Union institution, body, office or agency to mitigate the damage suffered by affected persons; \n\n (d) \n\n the degree of cooperation with the European Data Protection Supervisor in order to remedy the infringement and mitigate the possible adverse effects of the infringement, including compliance with any of the measures previously ordered by the European Data Protection Supervisor against the Union institution, body, office or agency concerned with regard to the same subject matter; \n\n (e) \n\n any similar previous infringements by the Union institution, body, office or agency; \n\n (f) \n\n the manner in which the infringement became known to the European Data Protection Supervisor, in particular whether, and if so to what extent, the Union institution, body, office or agency notified the infringement; \n\n (g) \n\n the annual budget of the Union institution, body, office or agency. \n\n 2.   Non-compliance with the prohibition of the AI practices referred to in Article 5 shall be subject to administrative fines of up to EUR 1 500 000. \n\n 3.   The non-compliance of the AI system with any requirements or obligations under this Regulation, other than those laid down in Article 5, shall be subject to administrative fines of up to EUR 750 000. \n\n 4.   Before taking decisions pursuant to this Article, the European Data Protection Supervisor shall give the Union institution, body, office or agency which is the subject of the proceedings conducted by the European Data Protection Supervisor the opportunity of being heard on the matter regarding the possible infringement. The European Data Protection Supervisor shall base his or her decisions only on elements and circumstances on which the parties concerned have been able to comment. Complainants, if any, shall be associated closely with the proceedings. \n\n 5.   The rights of defence of the parties concerned shall be fully respected in the proceedings. They shall be entitled to have access to the European Data Protection Supervisor’s file, subject to the legitimate interest of individuals or undertakings in the protection of their personal data or business secrets. \n\n 6.   Funds collected by imposition of fines in this Article shall contribute to the general budget of the Union. The fines shall not affect the effective operation of the Union institution, body, office or agency fined. \n\n 7.   The European Data Protection Supervisor shall, on an annual basis, notify the Commission of the administrative fines it has imposed pursuant to this Article and of any litigation or judicial proceedings it has initiated. \n\n "
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.100",
+        "paragraph": "2",
+        "penalty_kind": "administrative_fine",
+        "addressee": "Union institutions, bodies, offices and agencies",
+        "infringed_provisions": [
+          "5"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 1500000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines of up to EUR 1 500 000.",
+        "match_start": 1982,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      },
+      {
+        "source_instrument": "ai-act",
+        "source_article": "ai-act:Art.100",
+        "paragraph": "3",
+        "penalty_kind": "administrative_fine",
+        "addressee": "Union institutions, bodies, offices and agencies",
+        "infringed_provisions": [],
+        "excluded_provisions": [
+          "5"
+        ],
+        "scope": "the instrument, other than Art. 5",
+        "fixed_amount_eur": 750000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines of up to EUR 750 000.",
+        "match_start": 2192,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

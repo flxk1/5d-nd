@@ -1,0 +1,40 @@
+{
+  "family": "penalty-grammar",
+  "case": "authority-shape-unknown-penalty-kind-rejected",
+  "kind": "authority_shape",
+  "input": {
+    "doc": {
+      "source_instrument": "gdpr",
+      "source_article": "gdpr:Art.83",
+      "paragraph": null,
+      "penalty_kind": "not_a_real_kind",
+      "addressee": "controller",
+      "infringed_provisions": [
+        "5"
+      ],
+      "excluded_provisions": [],
+      "scope": null,
+      "fixed_amount_eur": 20000000,
+      "turnover_percentage": 4.0,
+      "turnover_basis": "total worldwide annual turnover of the preceding financial year",
+      "combination_rule": "whichever_is_higher",
+      "bound_type": "ceiling",
+      "per_day": false,
+      "verbatim_span": "the court held that Article 83(5) caps the fine at 20 000 000 EUR or 4 % of turnover, whichever is higher.",
+      "cue_id": null,
+      "confidence": 0.95,
+      "unresolved": false,
+      "basis": "authority",
+      "authority": {
+        "name": "CJEU",
+        "locator": "Case C-000/26, synthetic"
+      }
+    }
+  },
+  "expected": {
+    "violations": [
+      "authority penalty field 'penalty_kind' 'not_a_real_kind' is not a known PENALTY_KINDS key ['administrative_fine', 'criminal_sanction', 'penalty', 'periodic_penalty_payment']"
+    ]
+  },
+  "provenance": "Synthetic negative: penalty_kind must be a known PENALTY_KINDS key."
+}

@@ -1,0 +1,42 @@
+{
+  "family": "penalty-grammar",
+  "case": "statute-nis2-art36-penalties",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "nis2",
+        "article_id": "nis2:Art.36",
+        "text": "Article 36\n\nPenalties\n\nMember States shall lay down rules on penalties applicable to infringements of national measures adopted pursuant to this Directive and shall take all measures necessary to ensure that they are implemented. The penalties provided for shall be effective, proportionate and dissuasive. Member States shall, by 17 January 2025, notify the Commission of those rules and of those measures and shall notify it, without delay of any subsequent amendment affecting them.\n\n"
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "nis2",
+        "source_article": "nis2:Art.36",
+        "paragraph": null,
+        "penalty_kind": "penalty",
+        "addressee": null,
+        "infringed_provisions": [],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": null,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "unspecified",
+        "per_day": false,
+        "verbatim_span": "Member States shall lay down rules on penalties applicable to infringements of national measures adopted pursuant to this Directive and shall take all measures necessary to ensure that they are implemented.",
+        "match_start": 23,
+        "cue_id": "penalty-member-state-rules",
+        "confidence": 0.8,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Verbatim, real corpus text (benchmark-5d pools.json), whole article, sliced programmatically — never retyped."
+}

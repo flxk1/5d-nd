@@ -1,0 +1,44 @@
+{
+  "family": "penalty-grammar",
+  "case": "synthetic-chapter-reference-captured",
+  "kind": "find_penalties",
+  "input": {
+    "articles": [
+      {
+        "instrument_id": "synthetic",
+        "article_id": "synthetic:Art.18",
+        "text": "5. Infringements of the following provisions shall be subject to administrative fines up to EUR 100 000: (a) any obligations adopted under Chapter IV."
+      }
+    ]
+  },
+  "expected": {
+    "records": [
+      {
+        "source_instrument": "synthetic",
+        "source_article": "synthetic:Art.18",
+        "paragraph": "5",
+        "penalty_kind": "administrative_fine",
+        "addressee": null,
+        "infringed_provisions": [
+          "Chapter IV"
+        ],
+        "excluded_provisions": [],
+        "scope": null,
+        "fixed_amount_eur": 100000,
+        "turnover_percentage": null,
+        "turnover_basis": null,
+        "combination_rule": "none",
+        "bound_type": "ceiling",
+        "per_day": false,
+        "verbatim_span": "administrative fines up to EUR 100 000: (a) any obligations adopted under Chapter IV.",
+        "match_start": 65,
+        "cue_id": "fine-up-to-eur-or-percentage",
+        "confidence": 0.9,
+        "unresolved": false,
+        "basis": "statute",
+        "ruleset_digest": "a712f5c85350a369c6270da17586159928319aac62a28fa598df560fcaf21680"
+      }
+    ]
+  },
+  "provenance": "Synthetic: a bare 'Chapter IV' reference (no article number) is captured alongside an Article one, stored as 'Chapter IV'."
+}
